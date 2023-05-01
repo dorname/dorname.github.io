@@ -36,14 +36,14 @@ links = [
   {title = 'Authors', url = 'authors'},
 	{title = 'About', url = 'about'},
 	{title = 'Topics', url = 'tags'},
-	{title = 'Github', url = 'https://github.com/marcodpt/zolastrap'},
+	{title = 'Github', url = 'https://github.com/dorname'},
 ]
-email = "user@mail.com"
+email = "lgqfighting@163.com"
 icons = [
-  {title = 'Facebook', icon = 'facebook-f', url = 'https://www.facebook.com'},
-  {title = 'Instagram', icon = 'instagram', url = 'https://www.instagram.com'},
-  {title = 'Twitter', icon = 'twitter', url = 'https://twitter.com'},
-  {title = 'YouTube', icon = 'youtube', url = 'https://www.youtube.com'}
+  {title = 'ChatGPT', icon = 'chatgpt', url = 'https://chat.openai.com'},
+  {title = '微信', icon = 'wechat', url = 'https://wx.qq.com'},
+  {title = 'Sencha', icon = 'sencha', url = 'https://docs.sencha.com'},
+  {title = '谷歌', icon = 'google', url = 'https://google.com'}
 ]
 
 utterances = ""
