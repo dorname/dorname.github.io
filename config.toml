@@ -40,10 +40,9 @@ links = [
 ]
 email = "lgqfighting@163.com"
 icons = [
-  {title = 'ChatGPT', icon = 'message-question', url = 'https://chat.openai.com'},
+  {title = 'ChatGPT', icon = 'bullseye', url = 'https://chat.openai.com'},
   {title = '微信', icon = 'weixin', url = 'https://wx.qq.com'},
   {title = '谷歌', icon = 'google', url = 'https://google.com'}
-  
 ]
 
 utterances = ""
