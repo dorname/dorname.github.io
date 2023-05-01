@@ -1,4 +1,4 @@
-base_url = "https://dorname.github.io/"
+base_url = "https://dorname.github.io"
 
 default_language = "en"
 compile_sass = true
