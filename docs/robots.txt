@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 Allow: /
-Sitemap: https://marcodpt.github.io/zolastrap/sitemap.xml
+Sitemap: https://dorname.github.io/sitemap.xml
