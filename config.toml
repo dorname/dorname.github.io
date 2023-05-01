@@ -2,7 +2,7 @@ base_url = "https://dorname.github.io"
 
 default_language = "en"
 compile_sass = true
-title = "Zolastrap"
+title = "Noob but keep learning and trying and keep me alive "
 description = "A Bootstrap theme for Zola"
 generate_feed = false
 output_dir = "docs"
