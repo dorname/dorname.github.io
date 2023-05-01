@@ -1,8 +1,8 @@
-base_url = "https://dorname.github.io"
+base_url = "https://dorname.github.io/"
 
 default_language = "en"
 compile_sass = true
-title = "Noob but keep learning and trying and keep me alive "
+title = "Learning and Trying that make me feel alive "
 description = "A Bootstrap theme for Zola"
 generate_feed = false
 output_dir = "docs"
