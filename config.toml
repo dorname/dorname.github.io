@@ -39,6 +39,7 @@ links = [
 	{title = 'Github', url = 'https://github.com/dorname'},
 ]
 email = "lgqfighting@163.com"
+
 icons = [
   {title = 'ChatGPT', icon = 'search', url = 'https://chat.openai.com'},
   {title = '微信', icon = 'weixin', url = 'https://wx.qq.com'},
