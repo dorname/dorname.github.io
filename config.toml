@@ -25,9 +25,9 @@ theme = 'simplex'
 bg = "dark"
 inverted = false
 
-themes = "Choose a Theme"
-schemes = "Choose a Color Scheme"
-search = 'Search'
+themes = "选择一个主题"
+schemes = "选择一个Scheme颜色"
+search = '搜索'
 tag = 'Posts by Topic'
 tags = 'Posts by Topics'
 
