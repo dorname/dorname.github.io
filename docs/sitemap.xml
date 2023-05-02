@@ -10,23 +10,15 @@
         <loc>https://dorname.github.io/articles/</loc>
     </url>
     <url>
-        <loc>https://dorname.github.io/articles/aesonis-quam-leves-senex-artes-tellus-nam/</loc>
-        <lastmod>2018-07-06</lastmod>
-    </url>
-    <url>
         <loc>https://dorname.github.io/articles/alite-quid-bulla-si-fraudem-sed-nuper/</loc>
         <lastmod>2018-07-05</lastmod>
     </url>
     <url>
-        <loc>https://dorname.github.io/articles/belli-aera-salutem-et-tanget-facinusque-theti/</loc>
-        <lastmod>2018-07-04</lastmod>
-    </url>
-    <url>
-        <loc>https://dorname.github.io/articles/colli-desiluit-cunctis/</loc>
-        <lastmod>2018-07-09</lastmod>
-    </url>
-    <url>
         <loc>https://dorname.github.io/articles/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/articles/webassembly-rust-and-extjs-lab/</loc>
+        <lastmod>2023-05-02</lastmod>
     </url>
     <url>
         <loc>https://dorname.github.io/authors/</loc>
@@ -38,19 +30,10 @@
         <loc>https://dorname.github.io/authors/alec-m-mcclain/page/1/</loc>
     </url>
     <url>
-        <loc>https://dorname.github.io/authors/cheryl-d-zigler/</loc>
+        <loc>https://dorname.github.io/authors/liguangqiao/</loc>
     </url>
     <url>
-        <loc>https://dorname.github.io/authors/james-j-sullivan/</loc>
-    </url>
-    <url>
-        <loc>https://dorname.github.io/authors/james-j-sullivan/page/1/</loc>
-    </url>
-    <url>
-        <loc>https://dorname.github.io/authors/vicki-j-dodson/</loc>
-    </url>
-    <url>
-        <loc>https://dorname.github.io/authors/vicki-j-dodson/page/1/</loc>
+        <loc>https://dorname.github.io/authors/liguangqiao/page/1/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/</loc>
@@ -62,39 +45,27 @@
         <loc>https://dorname.github.io/tags/apple/page/1/</loc>
     </url>
     <url>
-        <loc>https://dorname.github.io/tags/blackberry/</loc>
-    </url>
-    <url>
-        <loc>https://dorname.github.io/tags/blackberry/page/1/</loc>
-    </url>
-    <url>
         <loc>https://dorname.github.io/tags/cherry/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/cherry/page/1/</loc>
     </url>
     <url>
-        <loc>https://dorname.github.io/tags/coconut/</loc>
+        <loc>https://dorname.github.io/tags/extjs/</loc>
     </url>
     <url>
-        <loc>https://dorname.github.io/tags/coconut/page/1/</loc>
+        <loc>https://dorname.github.io/tags/extjs/page/1/</loc>
     </url>
     <url>
-        <loc>https://dorname.github.io/tags/mango/</loc>
+        <loc>https://dorname.github.io/tags/rust/</loc>
     </url>
     <url>
-        <loc>https://dorname.github.io/tags/mango/page/1/</loc>
+        <loc>https://dorname.github.io/tags/rust/page/1/</loc>
     </url>
     <url>
-        <loc>https://dorname.github.io/tags/peach/</loc>
+        <loc>https://dorname.github.io/tags/webssembly/</loc>
     </url>
     <url>
-        <loc>https://dorname.github.io/tags/peach/page/1/</loc>
-    </url>
-    <url>
-        <loc>https://dorname.github.io/tags/raspberry/</loc>
-    </url>
-    <url>
-        <loc>https://dorname.github.io/tags/raspberry/page/1/</loc>
+        <loc>https://dorname.github.io/tags/webssembly/page/1/</loc>
     </url>
 </urlset>
