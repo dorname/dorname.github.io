@@ -32,10 +32,10 @@ tag = 'Posts by Topic'
 tags = 'Posts by Topics'
 
 links = [
-	{title = 'Articles', url = 'articles'},
-  {title = 'Authors', url = 'authors'},
-	{title = 'About', url = 'about'},
-	{title = 'Topics', url = 'tags'},
+	{title = '博客', url = 'articles'},
+  {title = '作者', url = 'authors'},
+	{title = '关于', url = 'about'},
+	{title = '相关主题', url = 'tags'},
 	{title = 'Github', url = 'https://github.com/dorname?tab=repositories'},
 ]
 email = "lgqfighting@163.com"

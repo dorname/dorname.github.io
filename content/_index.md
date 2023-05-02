@@ -27,7 +27,7 @@ extra:
       start: 10
       end: 14
       type: vertical
-      title: media
+      title: TODO_SECTION
     - size: 6
       items: 
        - img: img/first.jpg
