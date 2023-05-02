@@ -36,7 +36,7 @@ links = [
   {title = 'Authors', url = 'authors'},
 	{title = 'About', url = 'about'},
 	{title = 'Topics', url = 'tags'},
-	{title = 'Github', url = 'https://github.com/marcodpt/zolastrap'},
+	{title = 'Github', url = 'https://github.com/dorname?tab=repositories'},
 ]
 email = "lgqfighting@163.com"
 icons = [
