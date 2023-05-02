@@ -2,7 +2,7 @@ base_url = "https://dorname.github.io/"
 
 default_language = "en"
 compile_sass = true
-title = "Zolastrap"
+title = "Keep learning and trying"
 description = "A Bootstrap theme for Zola"
 generate_feed = false
 output_dir = "docs"
@@ -38,12 +38,11 @@ links = [
 	{title = 'Topics', url = 'tags'},
 	{title = 'Github', url = 'https://github.com/marcodpt/zolastrap'},
 ]
-email = "user@mail.com"
+email = "lgqfighting@163.com"
 icons = [
-  {title = 'Facebook', icon = 'facebook-f', url = 'https://www.facebook.com'},
-  {title = 'Instagram', icon = 'instagram', url = 'https://www.instagram.com'},
-  {title = 'Twitter', icon = 'twitter', url = 'https://twitter.com'},
-  {title = 'YouTube', icon = 'youtube', url = 'https://www.youtube.com'}
+  {title = 'chatGPT', icon = 'glide-g', url = 'https://chat.openai.com/'},
+  {title = '微信', icon = 'weixin', url = 'https://wx.qq.com/'},
+  {title = '谷歌', icon = 'google', url = 'https://www.google.com/'}
 ]
 
 utterances = ""
