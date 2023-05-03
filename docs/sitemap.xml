@@ -14,6 +14,10 @@
         <lastmod>2023-05-03</lastmod>
     </url>
     <url>
+        <loc>https://dorname.github.io/articles/database-lab/</loc>
+        <lastmod>2023-05-03</lastmod>
+    </url>
+    <url>
         <loc>https://dorname.github.io/articles/front-base-rust/</loc>
         <lastmod>2023-05-03</lastmod>
     </url>
@@ -59,6 +63,12 @@
     </url>
     <url>
         <loc>https://dorname.github.io/tags/blockchain/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/database/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/database/page/1/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/dioxus/</loc>
