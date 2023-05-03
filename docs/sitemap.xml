@@ -13,6 +13,10 @@
         <loc>https://dorname.github.io/articles/page/1/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/articles/rust-study-dinary/</loc>
+        <lastmod>2023-05-03</lastmod>
+    </url>
+    <url>
         <loc>https://dorname.github.io/articles/webassembly-rust-and-extjs-lab/</loc>
         <lastmod>2023-05-02</lastmod>
     </url>
