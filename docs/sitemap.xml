@@ -10,7 +10,26 @@
         <loc>https://dorname.github.io/articles/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/articles/classic-modern-blockchain/</loc>
+        <lastmod>2023-05-03</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/articles/front-base-rust/</loc>
+        <lastmod>2023-05-03</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/articles/leet-code-try/</loc>
+        <lastmod>2023-05-03</lastmod>
+    </url>
+    <url>
         <loc>https://dorname.github.io/articles/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/articles/page/2/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/articles/principle-of-blockchain/</loc>
+        <lastmod>2023-05-03</lastmod>
     </url>
     <url>
         <loc>https://dorname.github.io/articles/rust-study-dinary/</loc>
@@ -30,7 +49,22 @@
         <loc>https://dorname.github.io/authors/liguangqiao/page/1/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/authors/liguangqiao/page/2/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/tags/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/blockchain/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/blockchain/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/dioxus/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/dioxus/page/1/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/extjs/</loc>
