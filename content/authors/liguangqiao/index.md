@@ -2,7 +2,7 @@
 title: Li Guangqiao
 template: about.html
 extra:
-  image: hill.jpg
+  image: harry.jpg
 ---
 一个正在转rust的ExtJs前端工程师。迷信rust的整体发展，十分相信rust在各个领域都能发光发热，至少目前rust在很多领域上验证了其安全性、易维护性。但说实话对于我这种菜鸡也是真的难上手哈哈哈~~。
 有关于未来的发展，以下是鄙人的粗浅的观点：
