@@ -79,9 +79,21 @@
         <loc>https://dorname.github.io/tags/rust/page/1/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/tags/tauri/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/tauri/page/1/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/tags/webssembly/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/webssembly/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/yew/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/yew/page/1/</loc>
     </url>
 </urlset>

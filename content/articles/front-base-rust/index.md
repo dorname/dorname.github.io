@@ -7,6 +7,8 @@ taxonomies:
   tags:
     - Rust
     - dioxus
+    - yew
+    - tauri
   authors:
     - liguangqiao
 ---
@@ -22,3 +24,7 @@ web的实现——基于wasm帮助rust和js实现通信
 ## yew
 
 组件式开发框架，目前的判断类似于Ext。
+
+## tauri
+
+轻量级跨平台前端框架
