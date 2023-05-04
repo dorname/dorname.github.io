@@ -734,6 +734,185 @@
 <p><img src="https://dorname.github.io/articles/rust-study-dinary/rust_common.png" alt="rust知识大纲" /></p>
 <h1 id="qian-ru-rustji-chu">浅入Rust基础</h1>
 <p><strong>目标：首先总结归纳Rust的基本内容，接着每天回顾一个了解过的rust基础</strong></p>
+<h2 id="chang-yong-yu-fa">常用语法</h2>
+<h3 id="bian-liang-he-ke-bian-xing">变量和可变性</h3>
+<ul>
+<li>
+<p>变量的声明 </p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//let 变量名:变量类型 = 变量值
+</span><span style="color:#b48ead;">let</span><span> x = </span><span style="color:#d08770;">5
+</span></code></pre>
+</li>
+<li>
+<p>常量的声明</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//const 常量名:常量类型 = 常量值
+</span><span style="color:#b48ead;">const </span><span style="color:#d08770;">THE_X</span><span>:</span><span style="color:#d08770;">U32 </span><span>= </span><span style="color:#d08770;">60</span><span>*</span><span style="color:#d08770;">3</span><span>;
+</span></code></pre>
+</li>
+<li>
+<p>变量的可变性标记</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//变量的可变性标记 mut
+</span><span style="color:#b48ead;">let mut</span><span> x = </span><span style="color:#d08770;">5</span><span>;
+</span><span>x = </span><span style="color:#d08770;">6</span><span>;
+</span></code></pre>
+<p><strong>其他说明：</strong></p>
+<ul>
+<li>
+<p>可变变量重新声明成常态变量后，可变性会被覆盖掉，同时也会有相应的错误提示。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let mut</span><span> x = </span><span style="color:#d08770;">5</span><span>;
+</span><span style="color:#b48ead;">let</span><span> x = x+</span><span style="color:#d08770;">1</span><span>;
+</span><span>x = x+</span><span style="color:#d08770;">2</span><span>; </span><span style="color:#65737e;">//cannot mutate immutable variable `x`
+</span></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>变量的封闭性</p>
+<p>变量的封闭性可以理解成，声明同名变量，会将上一个声明覆盖，直到下一个同名变量被声明，或者作用域结束。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">variablie</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">let</span><span> x = </span><span style="color:#d08770;">5</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> x = x + </span><span style="color:#d08770;">2</span><span>;
+</span><span>    {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> x = x * x;
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">作用域内x = </span><span style="color:#d08770;">{}</span><span>&quot;,x);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">变量x = </span><span style="color:#d08770;">{}</span><span>&quot;,x);
+</span><span>}
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>//output
+</span><span>作用域内x = 49
+</span><span>变量x = 7
+</span></code></pre>
+<p>x为可变变量，x在内部块作用域内重新声明并赋值</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">variablie_mut</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> x = </span><span style="color:#d08770;">5</span><span>;
+</span><span>    x = x+</span><span style="color:#d08770;">1</span><span>;
+</span><span>    {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> x = x * x;
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">在作用域内可变变量x = </span><span style="color:#d08770;">{}</span><span>&quot;,x);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">可变变量x = </span><span style="color:#d08770;">{}</span><span>&quot;,x);
+</span><span>}
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>//output
+</span><span>在作用域内可变变量x = 36
+</span><span>可变变量x = 6
+</span></code></pre>
+<p>x为可变变量，x在内部块作用域内仅仅重新赋值</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">variablie_mut</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> x = </span><span style="color:#d08770;">5</span><span>;
+</span><span>    x = x+</span><span style="color:#d08770;">1</span><span>;
+</span><span>    {
+</span><span>        x = x * x;
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">在作用域内可变变量x = </span><span style="color:#d08770;">{}</span><span>&quot;,x);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">可变变量x = </span><span style="color:#d08770;">{}</span><span>&quot;,x);
+</span><span>}
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>//output
+</span><span>在作用域内可变变量x = 36
+</span><span>可变变量x = 36
+</span></code></pre>
+</li>
+</ul>
+<h3 id="shu-ju-lei-xing">数据类型</h3>
+<h4 id="biao-liang-lei-xing">标量类型</h4>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#c0c5ce;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span>graph LR
+</span><span>	A[&quot;标量类型&quot;]
+</span><span>	a[&quot;整型&quot;]
+</span><span>	b[&quot;浮点型&quot;]
+</span><span>	c[&quot;字符类型&quot;]
+</span><span>	d[&quot;布尔类型&quot;]
+</span><span>	A --&gt; a;
+</span><span>	A --&gt; b;
+</span><span>	A --&gt; c;
+</span><span>	A --&gt; d;
+</span></code></pre>
+<h5 id="zheng-xing">整型</h5>
+<p>Rust的整型类型根据长度划分有6类和有字符和无字符组合起来一共有12中整型类型如下图：</p>
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#c0c5ce;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span>graph TB
+</span><span>root[&quot;整型&quot;]
+</span><span>eight[&quot;8位&quot;]
+</span><span>sixtheen[&quot;16位&quot;]
+</span><span>thirty-two[&quot;32位&quot;]
+</span><span>sixty-four[&quot;64位&quot;]
+</span><span>one-hundred[&quot;128位&quot;]
+</span><span>arch[&quot;arch&quot;]
+</span><span>signed_8[&quot;i8&quot;]
+</span><span>signed_16[&quot;i16&quot;]
+</span><span>signed_32[&quot;i32&quot;]
+</span><span>signed_64[&quot;i64&quot;]
+</span><span>signed_128[&quot;i28&quot;]
+</span><span>arch_i[&quot;isize&quot;]
+</span><span>unsigned_8[&quot;u8&quot;]
+</span><span>unsigned_16[&quot;u16&quot;]
+</span><span>unsigned_32[&quot;u32&quot;]
+</span><span>unsigned_64[&quot;u64&quot;]
+</span><span>unsigned_128[&quot;u128&quot;]
+</span><span>arch_u[&quot;usize&quot;]
+</span><span>root--&gt;eight;
+</span><span>root--&gt;sixtheen;
+</span><span>root--&gt;thirty-two;
+</span><span>root--&gt;sixty-four;
+</span><span>root--&gt;one-hundred;
+</span><span>root--&gt;arch
+</span><span>eight--&gt;signed_8;
+</span><span>eight--&gt;unsigned_8;
+</span><span>sixtheen--&gt;signed_16;
+</span><span>sixtheen--&gt;unsigned_16;
+</span><span>thirty-two--&gt;signed_32;
+</span><span>thirty-two--&gt;unsigned_32;
+</span><span>sixty-four--&gt;signed_64;
+</span><span>sixty-four--&gt;unsigned_64;
+</span><span>one-hundred--&gt;signed_128;
+</span><span>one-hundred--&gt;unsigned_128;
+</span><span>arch--&gt;arch_i[&quot;isize&quot;];
+</span><span>arch--&gt;arch_u[&quot;usize&quot;];
+</span><span>
+</span></code></pre>
+<p>每一种存储类型的存储空间的计算公式（除了arch类型）：
+$$
+-(2^{n-1})\ \ to\ \  2^{n-1}-1
+$$
+<strong>注意</strong>：</p>
+<p>arch类型取决于计算机架构，64位架构对应n = 64，32位架构对应n = 32。</p>
+<h5 id="fu-dian-xing">浮点型</h5>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> x = </span><span style="color:#d08770;">1.0</span><span>; </span><span style="color:#65737e;">//默认f64
+</span><span style="color:#b48ead;">let</span><span> y:</span><span style="color:#b48ead;">f32 </span><span>= </span><span style="color:#d08770;">2.0</span><span>; </span><span style="color:#65737e;">//声明类型f32
+</span></code></pre>
+<h5 id="shu-zhi-cao-zuo">数值操作</h5>
+<p>数值操作主要包括增、删、改、查和取余。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">// addition
+</span><span>    </span><span style="color:#b48ead;">let</span><span> sum = </span><span style="color:#d08770;">5 </span><span>+ </span><span style="color:#d08770;">10</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// subtraction
+</span><span>    </span><span style="color:#b48ead;">let</span><span> difference = </span><span style="color:#d08770;">95.5 </span><span>- </span><span style="color:#d08770;">4.3</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// multiplication
+</span><span>    </span><span style="color:#b48ead;">let</span><span> product = </span><span style="color:#d08770;">4 </span><span>* </span><span style="color:#d08770;">30</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// division
+</span><span>    </span><span style="color:#b48ead;">let</span><span> quotient = </span><span style="color:#d08770;">56.7 </span><span>/ </span><span style="color:#d08770;">32.2</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> truncated = -</span><span style="color:#d08770;">5 </span><span>/ </span><span style="color:#d08770;">3</span><span>; </span><span style="color:#65737e;">// Results in -1
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// remainder
+</span><span>    </span><span style="color:#b48ead;">let</span><span> remainder = </span><span style="color:#d08770;">43 </span><span>% </span><span style="color:#d08770;">5</span><span>;
+</span></code></pre>
+<h5 id="bu-er-lei-xing">布尔类型</h5>
+<h5 id="zi-fu-lei-xing">字符类型</h5>
+<h4 id="fu-he-lei-xing">复合类型</h4>
+<h5 id="yuan-zu">元组</h5>
+<h5 id="shu-zu">数组</h5>
+<h3 id="han-shu">函数</h3>
+<h5 id="can-shu">参数</h5>
+<h5 id="yu-ju-he-biao-da-shi">语句和表达式</h5>
+<h5 id="han-shu-fan-hui-zhi">函数返回值</h5>
+<h3 id="zhu-shi">注释</h3>
+<h3 id="kong-zhi-liu">控制流</h3>
+<h5 id="if-biao-da-shi">if 表达式</h5>
+<h5 id="loopxun-huan-ti">loop循环体</h5>
+<h5 id="xun-huan-biao-qian">循环标签</h5>
+<h5 id="ji-he-de-forxun-huan">集合的for循环</h5>
 
   </div>
   
