@@ -119,15 +119,15 @@ taxonomies:
 
 ```mermaid
 graph LR
-	A["标量类型"]
-	a["整型"]
-	b["浮点型"]
-	c["字符类型"]
-	d["布尔类型"]
-	A --> a;
-	A --> b;
-	A --> c;
-	A --> d;
+A[标量类型]
+a[整型]
+b[浮点型]
+c[字符类型]
+d[布尔类型]
+A --> a
+A --> b
+A --> c
+A --> d
 ```
 
 ##### 整型
@@ -135,13 +135,13 @@ graph LR
 Rust的整型类型根据长度划分有6类和有字符和无字符组合起来一共有12中整型类型如下图：
 
 ```mermaid
-graph TB
+flowchart TB
 root["整型"]
 eight["8位"]
 sixtheen["16位"]
-thirty-two["32位"]
-sixty-four["64位"]
-one-hundred["128位"]
+thirty_two["32位"]
+sixty_four["64位"]
+one_hundred["128位"]
 arch["arch"]
 signed_8["i8"]
 signed_16["i16"]
@@ -157,20 +157,20 @@ unsigned_128["u128"]
 arch_u["usize"]
 root-->eight;
 root-->sixtheen;
-root-->thirty-two;
-root-->sixty-four;
-root-->one-hundred;
+root-->thirty_two;
+root-->sixty_four;
+root-->one_hundred;
 root-->arch
 eight-->signed_8;
 eight-->unsigned_8;
 sixtheen-->signed_16;
 sixtheen-->unsigned_16;
-thirty-two-->signed_32;
-thirty-two-->unsigned_32;
-sixty-four-->signed_64;
-sixty-four-->unsigned_64;
-one-hundred-->signed_128;
-one-hundred-->unsigned_128;
+thirty_two-->signed_32;
+thirty_two-->unsigned_32;
+sixty_four-->signed_64;
+sixty_four-->unsigned_64;
+one_hundred-->signed_128;
+one_hundred-->unsigned_128;
 arch-->arch_i["isize"];
 arch-->arch_u["usize"];
 

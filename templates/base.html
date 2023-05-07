@@ -47,6 +47,12 @@
     <script src="{{get_url(path="js/search.js")}}"></script>
     {% endif %}
     {% endblock %}
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>    
+    <!-- <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>   -->
   </head>
   <body class="d-flex flex-column min-vh-100">
     {% if config.extra.banner %}
@@ -193,11 +199,4 @@
     </footer>
     {% endif %}
   </body>
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.0.2/+esm';
-    mermaid.initialize({ startOnLoad: false });
-    await mermaid.run({
-      querySelector: '.language-mermaid',
-    });
-    </script>
 </html>

@@ -259,6 +259,12 @@
     <script src="https://dorname.github.io/js/search.js"></script>
     
     
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>    
+    <!-- <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>   -->
   </head>
   <body class="d-flex flex-column min-vh-100">
     
@@ -818,25 +824,25 @@
 <h3 id="shu-ju-lei-xing">数据类型</h3>
 <h4 id="biao-liang-lei-xing">标量类型</h4>
 <pre data-lang="mermaid" style="background-color:#2b303b;color:#c0c5ce;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span>graph LR
-</span><span>	A[&quot;标量类型&quot;]
-</span><span>	a[&quot;整型&quot;]
-</span><span>	b[&quot;浮点型&quot;]
-</span><span>	c[&quot;字符类型&quot;]
-</span><span>	d[&quot;布尔类型&quot;]
-</span><span>	A --&gt; a;
-</span><span>	A --&gt; b;
-</span><span>	A --&gt; c;
-</span><span>	A --&gt; d;
+</span><span>A[标量类型]
+</span><span>a[整型]
+</span><span>b[浮点型]
+</span><span>c[字符类型]
+</span><span>d[布尔类型]
+</span><span>A --&gt; a
+</span><span>A --&gt; b
+</span><span>A --&gt; c
+</span><span>A --&gt; d
 </span></code></pre>
 <h5 id="zheng-xing">整型</h5>
 <p>Rust的整型类型根据长度划分有6类和有字符和无字符组合起来一共有12中整型类型如下图：</p>
-<pre data-lang="mermaid" style="background-color:#2b303b;color:#c0c5ce;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span>graph TB
+<pre data-lang="mermaid" style="background-color:#2b303b;color:#c0c5ce;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span>flowchart TB
 </span><span>root[&quot;整型&quot;]
 </span><span>eight[&quot;8位&quot;]
 </span><span>sixtheen[&quot;16位&quot;]
-</span><span>thirty-two[&quot;32位&quot;]
-</span><span>sixty-four[&quot;64位&quot;]
-</span><span>one-hundred[&quot;128位&quot;]
+</span><span>thirty_two[&quot;32位&quot;]
+</span><span>sixty_four[&quot;64位&quot;]
+</span><span>one_hundred[&quot;128位&quot;]
 </span><span>arch[&quot;arch&quot;]
 </span><span>signed_8[&quot;i8&quot;]
 </span><span>signed_16[&quot;i16&quot;]
@@ -852,20 +858,20 @@
 </span><span>arch_u[&quot;usize&quot;]
 </span><span>root--&gt;eight;
 </span><span>root--&gt;sixtheen;
-</span><span>root--&gt;thirty-two;
-</span><span>root--&gt;sixty-four;
-</span><span>root--&gt;one-hundred;
+</span><span>root--&gt;thirty_two;
+</span><span>root--&gt;sixty_four;
+</span><span>root--&gt;one_hundred;
 </span><span>root--&gt;arch
 </span><span>eight--&gt;signed_8;
 </span><span>eight--&gt;unsigned_8;
 </span><span>sixtheen--&gt;signed_16;
 </span><span>sixtheen--&gt;unsigned_16;
-</span><span>thirty-two--&gt;signed_32;
-</span><span>thirty-two--&gt;unsigned_32;
-</span><span>sixty-four--&gt;signed_64;
-</span><span>sixty-four--&gt;unsigned_64;
-</span><span>one-hundred--&gt;signed_128;
-</span><span>one-hundred--&gt;unsigned_128;
+</span><span>thirty_two--&gt;signed_32;
+</span><span>thirty_two--&gt;unsigned_32;
+</span><span>sixty_four--&gt;signed_64;
+</span><span>sixty_four--&gt;unsigned_64;
+</span><span>one_hundred--&gt;signed_128;
+</span><span>one_hundred--&gt;unsigned_128;
 </span><span>arch--&gt;arch_i[&quot;isize&quot;];
 </span><span>arch--&gt;arch_u[&quot;usize&quot;];
 </span><span>
@@ -996,11 +1002,4 @@ $$
     </footer>
     
   </body>
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.0.2/+esm';
-    mermaid.initialize({ startOnLoad: false });
-    await mermaid.run({
-      querySelector: '.language-mermaid',
-    });
-    </script>
 </html>
