@@ -823,59 +823,10 @@
 </ul>
 <h3 id="shu-ju-lei-xing">数据类型</h3>
 <h4 id="biao-liang-lei-xing">标量类型</h4>
-<pre data-lang="mermaid" style="background-color:#2b303b;color:#c0c5ce;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span>graph LR
-</span><span>A[标量类型]
-</span><span>a[整型]
-</span><span>b[浮点型]
-</span><span>c[字符类型]
-</span><span>d[布尔类型]
-</span><span>A --&gt; a
-</span><span>A --&gt; b
-</span><span>A --&gt; c
-</span><span>A --&gt; d
-</span></code></pre>
+<p><img src="F:%5Cproject%5Cdorname.github.io%5Ccontent%5Carticles%5Crust-study-dinary%5Cscalar.png" alt="标量类型" /></p>
 <h5 id="zheng-xing">整型</h5>
 <p>Rust的整型类型根据长度划分有6类和有字符和无字符组合起来一共有12中整型类型如下图：</p>
-<pre data-lang="mermaid" style="background-color:#2b303b;color:#c0c5ce;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span>flowchart TB
-</span><span>root[&quot;整型&quot;]
-</span><span>eight[&quot;8位&quot;]
-</span><span>sixtheen[&quot;16位&quot;]
-</span><span>thirty_two[&quot;32位&quot;]
-</span><span>sixty_four[&quot;64位&quot;]
-</span><span>one_hundred[&quot;128位&quot;]
-</span><span>arch[&quot;arch&quot;]
-</span><span>signed_8[&quot;i8&quot;]
-</span><span>signed_16[&quot;i16&quot;]
-</span><span>signed_32[&quot;i32&quot;]
-</span><span>signed_64[&quot;i64&quot;]
-</span><span>signed_128[&quot;i28&quot;]
-</span><span>arch_i[&quot;isize&quot;]
-</span><span>unsigned_8[&quot;u8&quot;]
-</span><span>unsigned_16[&quot;u16&quot;]
-</span><span>unsigned_32[&quot;u32&quot;]
-</span><span>unsigned_64[&quot;u64&quot;]
-</span><span>unsigned_128[&quot;u128&quot;]
-</span><span>arch_u[&quot;usize&quot;]
-</span><span>root--&gt;eight;
-</span><span>root--&gt;sixtheen;
-</span><span>root--&gt;thirty_two;
-</span><span>root--&gt;sixty_four;
-</span><span>root--&gt;one_hundred;
-</span><span>root--&gt;arch
-</span><span>eight--&gt;signed_8;
-</span><span>eight--&gt;unsigned_8;
-</span><span>sixtheen--&gt;signed_16;
-</span><span>sixtheen--&gt;unsigned_16;
-</span><span>thirty_two--&gt;signed_32;
-</span><span>thirty_two--&gt;unsigned_32;
-</span><span>sixty_four--&gt;signed_64;
-</span><span>sixty_four--&gt;unsigned_64;
-</span><span>one_hundred--&gt;signed_128;
-</span><span>one_hundred--&gt;unsigned_128;
-</span><span>arch--&gt;arch_i[&quot;isize&quot;];
-</span><span>arch--&gt;arch_u[&quot;usize&quot;];
-</span><span>
-</span></code></pre>
+<p><img src="F:%5Cproject%5Cdorname.github.io%5Ccontent%5Carticles%5Crust-study-dinary%5Cint.png" alt="整型分类" /></p>
 <p>每一种存储类型的存储空间的计算公式（除了arch类型）：
 $$
 -(2^{n-1})\ \ to\ \  2^{n-1}-1

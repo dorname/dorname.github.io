@@ -117,64 +117,13 @@ taxonomies:
 ### 数据类型
 #### 标量类型
 
-```mermaid
-graph LR
-A[标量类型]
-a[整型]
-b[浮点型]
-c[字符类型]
-d[布尔类型]
-A --> a
-A --> b
-A --> c
-A --> d
-```
+![标量类型](F:\project\dorname.github.io\content\articles\rust-study-dinary\scalar.png)
 
 ##### 整型
 
 Rust的整型类型根据长度划分有6类和有字符和无字符组合起来一共有12中整型类型如下图：
 
-```mermaid
-flowchart TB
-root["整型"]
-eight["8位"]
-sixtheen["16位"]
-thirty_two["32位"]
-sixty_four["64位"]
-one_hundred["128位"]
-arch["arch"]
-signed_8["i8"]
-signed_16["i16"]
-signed_32["i32"]
-signed_64["i64"]
-signed_128["i28"]
-arch_i["isize"]
-unsigned_8["u8"]
-unsigned_16["u16"]
-unsigned_32["u32"]
-unsigned_64["u64"]
-unsigned_128["u128"]
-arch_u["usize"]
-root-->eight;
-root-->sixtheen;
-root-->thirty_two;
-root-->sixty_four;
-root-->one_hundred;
-root-->arch
-eight-->signed_8;
-eight-->unsigned_8;
-sixtheen-->signed_16;
-sixtheen-->unsigned_16;
-thirty_two-->signed_32;
-thirty_two-->unsigned_32;
-sixty_four-->signed_64;
-sixty_four-->unsigned_64;
-one_hundred-->signed_128;
-one_hundred-->unsigned_128;
-arch-->arch_i["isize"];
-arch-->arch_u["usize"];
-
-```
+![整型分类](F:\project\dorname.github.io\content\articles\rust-study-dinary\int.png)
 
 每一种存储类型的存储空间的计算公式（除了arch类型）：
 $$
