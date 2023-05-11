@@ -117,13 +117,13 @@ taxonomies:
 ### 数据类型
 #### 标量类型
 
-![标量类型](F:\project\dorname.github.io\content\articles\rust-study-dinary\scalar.png)
+![标量类型](scalar.png)
 
 ##### 整型
 
 Rust的整型类型根据长度划分有6类和有字符和无字符组合起来一共有12中整型类型如下图：
 
-![整型分类](F:\project\dorname.github.io\content\articles\rust-study-dinary\int.png)
+![整型分类](int.png)
 
 每一种存储类型的存储空间的计算公式（除了arch类型）：
 $$
