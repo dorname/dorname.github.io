@@ -856,10 +856,99 @@ $$
 </span><span>    </span><span style="color:#b48ead;">let</span><span> remainder = </span><span style="color:#d08770;">43 </span><span>% </span><span style="color:#d08770;">5</span><span>;
 </span></code></pre>
 <h5 id="bu-er-lei-xing">布尔类型</h5>
+<p>布尔类型的只有两个值：true和false。</p>
+<p>布尔类型只有一个字节。</p>
+<p>在Rust中实际是使用bool比如：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> t = </span><span style="color:#d08770;">true</span><span>;
+</span><span style="color:#b48ead;">let</span><span> f:</span><span style="color:#b48ead;">bool </span><span>= </span><span style="color:#d08770;">false</span><span>;
+</span></code></pre>
+<p>布尔类型的主要作用是条件判断。比如控制流中的<strong>if</strong>表达式</p>
 <h5 id="zi-fu-lei-xing">字符类型</h5>
+<p>Rust 的char 类型是该语言最基础的字母类型例如：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> c = &#39;</span><span style="color:#a3be8c;">z</span><span>&#39;;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> z: </span><span style="color:#b48ead;">char </span><span>= &#39;</span><span style="color:#a3be8c;">ℤ</span><span>&#39;; </span><span style="color:#65737e;">// with explicit type annotation
+</span><span>    </span><span style="color:#b48ead;">let</span><span> heart_eyed_cat = &#39;</span><span style="color:#a3be8c;">😻</span><span>&#39;;
+</span><span>}
+</span></code></pre>
+<p><strong>注意：</strong></p>
+<p>字符字面量使用单引号，而字符串字面量使用双引号</p>
+<p>Rust的字符类型大小是4字节而且代表Unicode标量值。这意味着它可以表示的不仅仅是ASCII。重音字母;中文、日文、韩文;emoji;和零宽度空格在Rust中都是有效的字符值.</p>
 <h4 id="fu-he-lei-xing">复合类型</h4>
+<p>复合类型的目标场景：可以将多个值组到一个类型中。</p>
+<p>Rust 拥有两个原始复合类型</p>
+<ol>
+<li>元组</li>
+<li>数组</li>
+</ol>
 <h5 id="yuan-zu">元组</h5>
+<p>元组是一种将多种类型的值组合成一种复合类型的通用方法。</p>
+<p>元组有固定的长度:一旦声明，它们就不能增大或缩小</p>
+<p>例如：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> tup:(</span><span style="color:#b48ead;">i32</span><span>,</span><span style="color:#b48ead;">f64</span><span>,</span><span style="color:#b48ead;">u8</span><span>) = (</span><span style="color:#d08770;">500</span><span>,</span><span style="color:#d08770;">6.4</span><span>,</span><span style="color:#d08770;">1</span><span>);
+</span></code></pre>
+<p>元组解构</p>
+<ul>
+<li>用模式匹配的方式解构元组</li>
+</ul>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//声明元组
+</span><span style="color:#b48ead;">let</span><span> tup = (</span><span style="color:#d08770;">500</span><span>,</span><span style="color:#d08770;">6.4</span><span>,</span><span style="color:#d08770;">1</span><span>);
+</span><span style="color:#b48ead;">let </span><span>(x,y,z) = tup;
+</span><span>println!(&quot;</span><span style="color:#a3be8c;">x = </span><span style="color:#d08770;">{}</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;"> y = </span><span style="color:#d08770;">{} </span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;"> z = </span><span style="color:#d08770;">{}</span><span>&quot;,x,y,z);
+</span></code></pre>
+<ul>
+<li>使用 (<em>.</em>) 的方式进行解构</li>
+</ul>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> x: (</span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">f64</span><span>, </span><span style="color:#b48ead;">u8</span><span>) = (</span><span style="color:#d08770;">500</span><span>, </span><span style="color:#d08770;">6.4</span><span>, </span><span style="color:#d08770;">1</span><span>);
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> five_hundred = x.</span><span style="color:#d08770;">0</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> six_point_four = x.</span><span style="color:#d08770;">1</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> one = x.</span><span style="color:#d08770;">2</span><span>;
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">x = </span><span style="color:#d08770;">{}</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;"> y = </span><span style="color:#d08770;">{} </span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;"> z = </span><span style="color:#d08770;">{}</span><span>&quot;,five_hundred,six_point_four,one);
+</span><span>}
+</span></code></pre>
+<p>空元组拥有一个特殊的名字<strong>unit</strong>，这个值写作**()**代表元组空值类型位一个空的返回类型。</p>
 <h5 id="shu-zu">数组</h5>
+<p>数组的声明</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> a = [</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>,</span><span style="color:#d08770;">3</span><span>,</span><span style="color:#d08770;">4</span><span>,</span><span style="color:#d08770;">5</span><span>];
+</span></code></pre>
+<p><strong>注意：</strong></p>
+<ol>
+<li>
+<p>如果你希望在堆栈上分配数据而不是直接在堆上分配，数组非常有用的。</p>
+</li>
+<li>
+<p>当你确保你的元素是具有固定长度时，数组非常有用。</p>
+</li>
+<li>
+<p>但数组并没有像容器（<em>Vector</em>）那样，大小可以灵活的增加或者减少</p>
+</li>
+<li>
+<p>然而数组对于固定长度且不需要变化的固定值集合更有用比如：月份数组</p>
+</li>
+</ol>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> months = [&quot;</span><span style="color:#a3be8c;">January</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">February</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">March</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">April</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">May</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">June</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">July</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">August</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">September</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">October</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">November</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">December</span><span>&quot;];
+</span></code></pre>
+<p>声明类型和长度</p>
+<p>$$
+let\ 变量名:[成员类型;数组长度] = [成员1,成员2,...]
+$$</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//声明类型和长度
+</span><span style="color:#b48ead;">let</span><span> a:[</span><span style="color:#b48ead;">i32</span><span>;</span><span style="color:#d08770;">5</span><span>] = [</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>,</span><span style="color:#d08770;">3</span><span>,</span><span style="color:#d08770;">4</span><span>,</span><span style="color:#d08770;">5</span><span>];
+</span><span>
+</span></code></pre>
+<p>快速声明元素相同的数组</p>
+<p>$$
+let\ 变量名:[成员值;数组长度];
+$$</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> a = [</span><span style="color:#d08770;">3</span><span>;</span><span style="color:#d08770;">5</span><span>]
+</span><span style="color:#65737e;">// a = [3,3,3,3,3]
+</span><span>
+</span></code></pre>
+<p>有效数组访问机制：通过数组索引去访问，但索引不能超过数组的长度。</p>
 <h3 id="han-shu">函数</h3>
 <h5 id="can-shu">参数</h5>
 <h5 id="yu-ju-he-biao-da-shi">语句和表达式</h5>
