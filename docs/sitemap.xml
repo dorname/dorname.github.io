@@ -10,6 +10,10 @@
         <loc>https://dorname.github.io/articles/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/articles/brain-storm/</loc>
+        <lastmod>2023-05-12</lastmod>
+    </url>
+    <url>
         <loc>https://dorname.github.io/articles/classic-modern-blockchain/</loc>
         <lastmod>2023-05-03</lastmod>
     </url>
@@ -91,6 +95,12 @@
     </url>
     <url>
         <loc>https://dorname.github.io/tags/js/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/one-mind/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/one-mind/page/1/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/rust/</loc>
