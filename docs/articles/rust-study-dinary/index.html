@@ -720,7 +720,7 @@
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  11&#x2F;05&#x2F;2023
+  13&#x2F;05&#x2F;2023
 
   </p>
   
@@ -951,14 +951,183 @@ $$</p>
 <p>有效数组访问机制：通过数组索引去访问，但索引不能超过数组的长度。</p>
 <h3 id="han-shu">函数</h3>
 <h5 id="can-shu">参数</h5>
+<p>Rust函数的参数声明</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//()括号内容声明参数名和参数类型
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test_fn</span><span>(</span><span style="color:#bf616a;">x</span><span>:</span><span style="color:#b48ead;">i32</span><span>){
+</span><span>    
+</span><span>}
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>(){
+</span><span>    </span><span style="color:#96b5b4;">test_fn</span><span>(</span><span style="color:#d08770;">5</span><span>);
+</span><span>}
+</span></code></pre>
 <h5 id="yu-ju-he-biao-da-shi">语句和表达式</h5>
+<p>函数体内容由一系列语句组成，并可选择性的使用表达式作为返回值。</p>
+<p><strong>注意：</strong> <em>Rust</em> 是一门基于表达式的语言，这也是<em>Rust</em>特有的部分，其他语言并没有相同的规则。</p>
+<p>**语句：**语句是执行某些操作但不返回值的指令</p>
+<p>**表达式：**表达式实际上指的是表达式的结果值</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> y = </span><span style="color:#d08770;">6</span><span>; </span><span style="color:#65737e;">//statement
+</span><span style="color:#b48ead;">let</span><span> z = {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> x = </span><span style="color:#d08770;">3</span><span>;
+</span><span>    x+</span><span style="color:#d08770;">2 </span><span style="color:#65737e;">//expression
+</span><span>}</span><span style="color:#65737e;">//expression
+</span><span style="color:#65737e;">// y = 6,z=5
+</span></code></pre>
 <h5 id="han-shu-fan-hui-zhi">函数返回值</h5>
+<p>函数返回值声明 
+$$
+fn 函数名() -&gt; 返回值类型
+$$</p>
+<p>使用return返回</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test_fn</span><span>() -&gt; </span><span style="color:#b48ead;">i32 </span><span>{
+</span><span> 	</span><span style="color:#b48ead;">return  </span><span style="color:#d08770;">5</span><span>;
+</span><span>}
+</span></code></pre>
+<p>使用表达式返回</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test_fn</span><span>() -&gt; </span><span style="color:#b48ead;">i32 </span><span>{
+</span><span>    </span><span style="color:#d08770;">5
+</span><span>}
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test_one</span><span>(</span><span style="color:#bf616a;">x</span><span>:</span><span style="color:#b48ead;">i32</span><span>) -&gt; </span><span style="color:#b48ead;">i32</span><span>{
+</span><span>    x+</span><span style="color:#d08770;">1
+</span><span>}
+</span></code></pre>
 <h3 id="zhu-shi">注释</h3>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">// 单行注释
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;">*注释块
+</span><span style="color:#65737e;">*/
+</span></code></pre>
 <h3 id="kong-zhi-liu">控制流</h3>
 <h5 id="if-biao-da-shi">if 表达式</h5>
+<p><em>if</em>表达式的存在主要是为了分支判断处理例如：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> number = </span><span style="color:#d08770;">3</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">if</span><span> number &lt; </span><span style="color:#d08770;">5 </span><span>{
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">condition was true</span><span>&quot;);
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">condition was false</span><span>&quot;);
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p><strong>在let语句中使用if</strong></p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> condition = </span><span style="color:#d08770;">5</span><span>&gt;</span><span style="color:#d08770;">3</span><span>;
+</span><span style="color:#b48ead;">let</span><span> number = </span><span style="color:#b48ead;">if</span><span> condition {
+</span><span>    </span><span style="color:#d08770;">5
+</span><span>} </span><span style="color:#b48ead;">else </span><span>{
+</span><span>    </span><span style="color:#d08770;">3
+</span><span>}
+</span><span>println!(&quot;</span><span style="color:#d08770;">{number}</span><span>&quot;);
+</span><span style="color:#65737e;">//println!(&quot;{}&quot;,number);
+</span></code></pre>
+<p><strong>注意：</strong></p>
+<p>原理：<em>Rust</em>中变量类型是单一的。</p>
+<p>故当if和else返回的值类型不一致时会报错，例如：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> condition = </span><span style="color:#d08770;">true</span><span>;
+</span><span>
+</span><span style="color:#b48ead;">let</span><span> number = </span><span style="color:#b48ead;">if</span><span> condition { </span><span style="color:#d08770;">5 </span><span>} </span><span style="color:#b48ead;">else </span><span>{ &quot;</span><span style="color:#a3be8c;">six</span><span>&quot; };
+</span><span>
+</span><span>println!(&quot;</span><span style="color:#a3be8c;">The value of number is: </span><span style="color:#d08770;">{number}</span><span>&quot;);
+</span></code></pre>
 <h5 id="loopxun-huan-ti">loop循环体</h5>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//死循环
+</span><span style="color:#b48ead;">loop</span><span>{
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">again!</span><span>&quot;);
+</span><span>}
+</span></code></pre>
+<p>利用循环体返回值</p>
+<p>$$
+break + 语句
+$$</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let mut</span><span> counter = </span><span style="color:#d08770;">0</span><span>;
+</span><span style="color:#b48ead;">let</span><span> result = </span><span style="color:#b48ead;">loop </span><span>{
+</span><span>    counter += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">if</span><span> counter == </span><span style="color:#d08770;">10</span><span>{
+</span><span>        </span><span style="color:#65737e;">//break 后可以添加循环的返回值
+</span><span>        </span><span style="color:#b48ead;">break</span><span> counter * </span><span style="color:#d08770;">2</span><span>;
+</span><span>    }
+</span><span>};
+</span></code></pre>
 <h5 id="xun-huan-biao-qian">循环标签</h5>
+<p>循环体允许添加循环体标签，目的是消除多个循环之间的歧义。</p>
+<p>例如：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> count = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    &#39;counting_up: </span><span style="color:#b48ead;">loop </span><span>{
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">count = </span><span style="color:#d08770;">{count}</span><span>&quot;);
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> remaining = </span><span style="color:#d08770;">10</span><span>;
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">loop </span><span>{
+</span><span>            println!(&quot;</span><span style="color:#a3be8c;">remaining = </span><span style="color:#d08770;">{remaining}</span><span>&quot;);
+</span><span>            </span><span style="color:#b48ead;">if</span><span> remaining == </span><span style="color:#d08770;">9 </span><span>{
+</span><span>                </span><span style="color:#b48ead;">break</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">if</span><span> count == </span><span style="color:#d08770;">2 </span><span>{
+</span><span>                </span><span style="color:#b48ead;">break &#39;counting_up</span><span>;
+</span><span>            }
+</span><span>            remaining -= </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>
+</span><span>        count += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">End count = </span><span style="color:#d08770;">{count}</span><span>&quot;);
+</span><span>}
+</span></code></pre>
+<p><strong>while+循环条件</strong></p>
+<p>循环条件为真，执行循环体</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> number = </span><span style="color:#d08770;">3</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">while</span><span> number != </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{number}</span><span style="color:#a3be8c;">!</span><span>&quot;);
+</span><span>
+</span><span>        number -= </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">LIFTOFF!!!</span><span>&quot;);
+</span><span>}
+</span></code></pre>
+<p>循环一个数组</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> a = [</span><span style="color:#d08770;">10</span><span>, </span><span style="color:#d08770;">20</span><span>, </span><span style="color:#d08770;">30</span><span>, </span><span style="color:#d08770;">40</span><span>, </span><span style="color:#d08770;">50</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> index = </span><span style="color:#d08770;">0</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">while</span><span> index &lt; </span><span style="color:#d08770;">5 </span><span>{
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">the value is: </span><span style="color:#d08770;">{}</span><span>&quot;, a[index]);
+</span><span>
+</span><span>        index += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h5 id="ji-he-de-forxun-huan">集合的for循环</h5>
+<p>数组换成for循环</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> a = [</span><span style="color:#d08770;">10</span><span>, </span><span style="color:#d08770;">20</span><span>, </span><span style="color:#d08770;">30</span><span>, </span><span style="color:#d08770;">40</span><span>, </span><span style="color:#d08770;">50</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> index = </span><span style="color:#d08770;">0</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">for</span><span> index in </span><span style="color:#d08770;">0</span><span>..</span><span style="color:#d08770;">5 </span><span>{
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">the value is: </span><span style="color:#d08770;">{}</span><span>&quot;, a[index]);
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>增强for循环:可以避免越界问题</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> a = [</span><span style="color:#d08770;">10</span><span>, </span><span style="color:#d08770;">20</span><span>, </span><span style="color:#d08770;">30</span><span>, </span><span style="color:#d08770;">40</span><span>, </span><span style="color:#d08770;">50</span><span>];
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">for</span><span> item in a {
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">the value is: </span><span style="color:#d08770;">{}</span><span>&quot;, item);
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>另一种避免循环越界的方式是倒序循环</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#65737e;">//rev方法是将数组(1..4)倒序遍历
+</span><span>    </span><span style="color:#65737e;">//前闭后开
+</span><span>    </span><span style="color:#b48ead;">for</span><span> number in (</span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">4</span><span>).</span><span style="color:#96b5b4;">rev</span><span>() {
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{number}</span><span style="color:#a3be8c;">!</span><span>&quot;);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">LIFTOFF!!!</span><span>&quot;);
+</span><span>}
+</span></code></pre>
 
   </div>
   

@@ -1,6 +1,6 @@
 ---
 title: rust学习
-date: 2023-05-11
+date: 2023-05-13
 extra:
     image: rust.jpg
 taxonomies:
@@ -295,23 +295,244 @@ let a = [3;5]
 
 ##### 参数
 
+Rust函数的参数声明
+
+```rust
+//()括号内容声明参数名和参数类型
+fn test_fn(x:i32){
+    
+}
+fn main(){
+    test_fn(5);
+}
+```
+
 ##### 语句和表达式
+
+函数体内容由一系列语句组成，并可选择性的使用表达式作为返回值。
+
+**注意：** *Rust* 是一门基于表达式的语言，这也是*Rust*特有的部分，其他语言并没有相同的规则。
+
+**语句：**语句是执行某些操作但不返回值的指令
+
+**表达式：**表达式实际上指的是表达式的结果值
+
+```rust
+let y = 6; //statement
+let z = {
+    let x = 3;
+    x+2 //expression
+}//expression
+// y = 6,z=5
+```
 
 ##### 函数返回值
 
+函数返回值声明 
+$$
+fn 函数名() -> 返回值类型
+$$
+
+使用return返回
+
+```rust
+fn test_fn() -> i32 {
+ 	return  5;
+}
+```
+
+使用表达式返回
+
+```rust
+fn test_fn() -> i32 {
+    5
+}
+fn test_one(x:i32) -> i32{
+    x+1
+}
+```
+
 ### 注释
 
-
+```rust
+// 单行注释
+/**
+*注释块
+*/
+```
 
 ### 控制流
 
 ##### if 表达式
 
+*if*表达式的存在主要是为了分支判断处理例如：
+
+```rust
+fn main() {
+    let number = 3;
+
+    if number < 5 {
+        println!("condition was true");
+    } else {
+        println!("condition was false");
+    }
+}
+```
+
+**在let语句中使用if**
+
+```rust
+let condition = 5>3;
+let number = if condition {
+    5
+} else {
+    3
+}
+println!("{number}");
+//println!("{}",number);
+```
+
+**注意：**
+
+原理：*Rust*中变量类型是单一的。
+
+故当if和else返回的值类型不一致时会报错，例如：
+
+```rust
+let condition = true;
+
+let number = if condition { 5 } else { "six" };
+
+println!("The value of number is: {number}");
+```
+
 ##### loop循环体
+
+```rust
+//死循环
+loop{
+    println!("again!");
+}
+```
+
+利用循环体返回值
+
+$$
+break + 语句
+$$
+
+```rust
+let mut counter = 0;
+let result = loop {
+    counter += 1;
+    if counter == 10{
+        //break 后可以添加循环的返回值
+        break counter * 2;
+    }
+};
+```
 
 ##### 循环标签
 
+循环体允许添加循环体标签，目的是消除多个循环之间的歧义。
+
+例如：
+```rust
+fn main() {
+    let mut count = 0;
+    'counting_up: loop {
+        println!("count = {count}");
+        let mut remaining = 10;
+
+        loop {
+            println!("remaining = {remaining}");
+            if remaining == 9 {
+                break;
+            }
+            if count == 2 {
+                break 'counting_up;
+            }
+            remaining -= 1;
+        }
+
+        count += 1;
+    }
+    println!("End count = {count}");
+}
+```
+
+**while+循环条件**
+
+循环条件为真，执行循环体
+
+```rust
+fn main() {
+    let mut number = 3;
+
+    while number != 0 {
+        println!("{number}!");
+
+        number -= 1;
+    }
+
+    println!("LIFTOFF!!!");
+}
+```
+
+循环一个数组
+
+```rust
+fn main() {
+    let a = [10, 20, 30, 40, 50];
+    let mut index = 0;
+
+    while index < 5 {
+        println!("the value is: {}", a[index]);
+
+        index += 1;
+    }
+}
+```
+
 ##### 集合的for循环
+
+数组换成for循环
+
+```rust
+fn main() {
+    let a = [10, 20, 30, 40, 50];
+    let mut index = 0;
+
+    for index in 0..5 {
+        println!("the value is: {}", a[index]);
+    }
+}
+```
+
+增强for循环:可以避免越界问题
+
+```rust
+fn main() {
+    let a = [10, 20, 30, 40, 50];
+
+    for item in a {
+        println!("the value is: {}", item);
+    }
+}
+```
+
+另一种避免循环越界的方式是倒序循环
+
+```rust
+fn main() {
+    //rev方法是将数组(1..4)倒序遍历
+    //前闭后开
+    for number in (1..4).rev() {
+        println!("{number}!");
+    }
+    println!("LIFTOFF!!!");
+}
+```
 
 
 
