@@ -1,5 +1,5 @@
 ---
-title: rust学习
+title: rust学习(一)基础概念
 date: 2023-05-13
 extra:
     image: rust.jpg
