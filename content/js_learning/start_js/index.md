@@ -1,8 +1,8 @@
 ---
-title: js学习笔记
+title: js学习笔记(一)
 date: 2023-05-11
 extra:
-    image: js_logo.png
+    image: ../js_logo.png
 taxonomies:
   tags:
     - js

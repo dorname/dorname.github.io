@@ -27,12 +27,12 @@ inverted = false
 
 themes = "选择一个主题"
 schemes = "选择一个Scheme颜色"
+topics = "博客分类"
 search = '搜索'
 tag = 'Posts by Topic'
 tags = 'Posts by Topics'
 
 links = [
-	{title = '博客', url = 'articles'},
   {title = '作者', url = 'authors'},
 	{title = '关于', url = 'about'},
 	{title = '相关主题', url = 'tags'},
@@ -94,4 +94,9 @@ data_schemes = [
   'warning inverted',
   'info',
   'info inverted',
+]
+data_topics = [
+  { title= "Rust学习", url="rust"},
+  { title= "未分类博客",url = "articles"},
+  {title = "js学习", url = "js_learning"},
 ]

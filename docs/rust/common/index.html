@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <title>rust学习(一)基础概念 | Keep learning and trying</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          
+          id="default"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/cerulean/bootstrap.min.css"
+          
+          id="cerulean"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/cosmo/bootstrap.min.css"
+          
+          id="cosmo"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/cyborg/bootstrap.min.css"
+          
+          id="cyborg"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/darkly/bootstrap.min.css"
+          
+          id="darkly"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/flatly/bootstrap.min.css"
+          
+          id="flatly"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/journal/bootstrap.min.css"
+          
+          id="journal"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/litera/bootstrap.min.css"
+          
+          id="litera"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/lumen/bootstrap.min.css"
+          
+          id="lumen"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/lux/bootstrap.min.css"
+          
+          id="lux"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/materia/bootstrap.min.css"
+          
+          id="materia"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/minty/bootstrap.min.css"
+          
+          id="minty"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/morph/bootstrap.min.css"
+          
+          id="morph"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/pulse/bootstrap.min.css"
+          
+          id="pulse"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/quartz/bootstrap.min.css"
+          
+          id="quartz"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/sandstone/bootstrap.min.css"
+          
+          id="sandstone"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet"
+          
+          href="https://bootswatch.com/5/simplex/bootstrap.min.css"
+          
+          id="simplex"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/sketchy/bootstrap.min.css"
+          
+          id="sketchy"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/slate/bootstrap.min.css"
+          
+          id="slate"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/solar/bootstrap.min.css"
+          
+          id="solar"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/spacelab/bootstrap.min.css"
+          
+          id="spacelab"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/superhero/bootstrap.min.css"
+          
+          id="superhero"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/united/bootstrap.min.css"
+          
+          id="united"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/vapor/bootstrap.min.css"
+          
+          id="vapor"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/yeti/bootstrap.min.css"
+          
+          id="yeti"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/zephyr/bootstrap.min.css"
+          
+          id="zephyr"
+          class="alternate"
+        >
+      
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
+    <script src="https://dorname.github.io/js/topic.js"></script>
+    
+    
+    <script src="https://dorname.github.io/js/theme.js"></script>
+    
+    
+    <script src="https://dorname.github.io/js/scheme.js"></script>
+    
+    <script src="https://dorname.github.io/js/blockquote.js"></script>
+    <script src="https://dorname.github.io/js/img.js"></script>
+    
+    <script defer src="https://dorname.github.io/elasticlunr.min.js"></script>
+    <script defer src="https://dorname.github.io/search_index.en.js"></script>
+    <script src="https://dorname.github.io/js/search.js"></script>
+    
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>    
+    <!-- <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>   -->
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    
+      <div class="w-100">
+        <img src="https://dorname.github.io/img/banner.jpeg" class="w-100" />
+      </div>
+    
+    
+    
+    
+    <nav class="
+      navbar
+      navbar-expand-lg
+      navbar-dark
+      bg-dark
+    ">
+      <div class="container-fluid">
+        <a class="navbar-brand"
+          href="https:&#x2F;&#x2F;dorname.github.io&#x2F;"
+          title="A Bootstrap theme for Zola"
+        >Keep learning and trying</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarColor02"
+          aria-controls="navbarColor02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav me-auto">
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors"
+                >作者</a>
+              </li>
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;dorname.github.io&#x2F;about"
+                >关于</a>
+              </li>
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags"
+                >相关主题</a>
+              </li>
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;github.com&#x2F;dorname?tab=repositories"
+                >Github</a>
+              </li>
+            
+            
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  博客分类
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust"
+                        onclick="switchTopic('Rust学习')"
+                      >Rust学习</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles"
+                        onclick="switchTopic('未分类博客')"
+                      >未分类博客</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning"
+                        onclick="switchTopic('js学习')"
+                      >Js学习</a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+            
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  选择一个主题
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('default')"
+                      >Default</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('cerulean')"
+                      >Cerulean</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('cosmo')"
+                      >Cosmo</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('cyborg')"
+                      >Cyborg</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('darkly')"
+                      >Darkly</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('flatly')"
+                      >Flatly</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('journal')"
+                      >Journal</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('litera')"
+                      >Litera</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('lumen')"
+                      >Lumen</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('lux')"
+                      >Lux</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('materia')"
+                      >Materia</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('minty')"
+                      >Minty</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('morph')"
+                      >Morph</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('pulse')"
+                      >Pulse</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('quartz')"
+                      >Quartz</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('sandstone')"
+                      >Sandstone</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('simplex')"
+                      >Simplex</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('sketchy')"
+                      >Sketchy</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('slate')"
+                      >Slate</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('solar')"
+                      >Solar</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('spacelab')"
+                      >Spacelab</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('superhero')"
+                      >Superhero</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('united')"
+                      >United</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('vapor')"
+                      >Vapor</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('yeti')"
+                      >Yeti</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('zephyr')"
+                      >Zephyr</a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+            
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  选择一个Scheme颜色
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('dark')"
+                      >Dark</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('light')"
+                      >Light</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('primary')"
+                      >Primary</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('primary inverted')"
+                      >Primary inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('secondary')"
+                      >Secondary</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('secondary inverted')"
+                      >Secondary inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('success')"
+                      >Success</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('success inverted')"
+                      >Success inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('danger')"
+                      >Danger</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('danger inverted')"
+                      >Danger inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('warning')"
+                      >Warning</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('warning inverted')"
+                      >Warning inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('info')"
+                      >Info</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('info inverted')"
+                      >Info inverted</a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+          </ul>
+          
+          <form class="d-flex" onsubmit="return goSearch(event)">
+            <input
+              class="form-control me-sm-2"
+              type="text"
+              placeholder="搜索"
+            />
+            <button
+              class="btn btn-secondary my-2 my-sm-0"
+              type="submit"
+            ><i class="fas fa-search"></i></button>
+          </form>
+          
+        </div>
+      </div>
+    </nav>
+    <main class="container mx-auto my-5">
+      
+  <h1>rust学习(一)基础概念</h1>
+  <p class="text-muted">
+    
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  13&#x2F;05&#x2F;2023
+
+  </p>
+  
+  <p>
+    
+      <a
+        href="https://dorname.github.io/tags/rust/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        Rust
+      </a>
+    
+  </p>
+  
+  <div class="content">
+    <h1 id="rustxiang-guan-zhi-shi-de-si-wei-dao-tu">Rust相关知识的思维导图</h1>
+<p><img src="https://dorname.github.io/rust/common/rust_common.png" alt="rust知识大纲" /></p>
+<h1 id="qian-ru-rustji-chu">浅入Rust基础</h1>
+<p><strong>目标：首先总结归纳Rust的基本内容，接着每天回顾一个了解过的rust基础</strong></p>
+<h2 id="chang-yong-yu-fa">常用语法</h2>
+<h3 id="bian-liang-he-ke-bian-xing">变量和可变性</h3>
+<ul>
+<li>
+<p>变量的声明 </p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//let 变量名:变量类型 = 变量值
+</span><span style="color:#b48ead;">let</span><span> x = </span><span style="color:#d08770;">5
+</span></code></pre>
+</li>
+<li>
+<p>常量的声明</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//const 常量名:常量类型 = 常量值
+</span><span style="color:#b48ead;">const </span><span style="color:#d08770;">THE_X</span><span>:</span><span style="color:#d08770;">U32 </span><span>= </span><span style="color:#d08770;">60</span><span>*</span><span style="color:#d08770;">3</span><span>;
+</span></code></pre>
+</li>
+<li>
+<p>变量的可变性标记</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//变量的可变性标记 mut
+</span><span style="color:#b48ead;">let mut</span><span> x = </span><span style="color:#d08770;">5</span><span>;
+</span><span>x = </span><span style="color:#d08770;">6</span><span>;
+</span></code></pre>
+<p><strong>其他说明：</strong></p>
+<ul>
+<li>
+<p>可变变量重新声明成常态变量后，可变性会被覆盖掉，同时也会有相应的错误提示。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let mut</span><span> x = </span><span style="color:#d08770;">5</span><span>;
+</span><span style="color:#b48ead;">let</span><span> x = x+</span><span style="color:#d08770;">1</span><span>;
+</span><span>x = x+</span><span style="color:#d08770;">2</span><span>; </span><span style="color:#65737e;">//cannot mutate immutable variable `x`
+</span></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>变量的封闭性</p>
+<p>变量的封闭性可以理解成，声明同名变量，会将上一个声明覆盖，直到下一个同名变量被声明，或者作用域结束。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">variablie</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">let</span><span> x = </span><span style="color:#d08770;">5</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> x = x + </span><span style="color:#d08770;">2</span><span>;
+</span><span>    {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> x = x * x;
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">作用域内x = </span><span style="color:#d08770;">{}</span><span>&quot;,x);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">变量x = </span><span style="color:#d08770;">{}</span><span>&quot;,x);
+</span><span>}
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>//output
+</span><span>作用域内x = 49
+</span><span>变量x = 7
+</span></code></pre>
+<p>x为可变变量，x在内部块作用域内重新声明并赋值</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">variablie_mut</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> x = </span><span style="color:#d08770;">5</span><span>;
+</span><span>    x = x+</span><span style="color:#d08770;">1</span><span>;
+</span><span>    {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> x = x * x;
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">在作用域内可变变量x = </span><span style="color:#d08770;">{}</span><span>&quot;,x);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">可变变量x = </span><span style="color:#d08770;">{}</span><span>&quot;,x);
+</span><span>}
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>//output
+</span><span>在作用域内可变变量x = 36
+</span><span>可变变量x = 6
+</span></code></pre>
+<p>x为可变变量，x在内部块作用域内仅仅重新赋值</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">variablie_mut</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> x = </span><span style="color:#d08770;">5</span><span>;
+</span><span>    x = x+</span><span style="color:#d08770;">1</span><span>;
+</span><span>    {
+</span><span>        x = x * x;
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">在作用域内可变变量x = </span><span style="color:#d08770;">{}</span><span>&quot;,x);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">可变变量x = </span><span style="color:#d08770;">{}</span><span>&quot;,x);
+</span><span>}
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>//output
+</span><span>在作用域内可变变量x = 36
+</span><span>可变变量x = 36
+</span></code></pre>
+</li>
+</ul>
+<h3 id="shu-ju-lei-xing">数据类型</h3>
+<h4 id="biao-liang-lei-xing">标量类型</h4>
+<p><img src="https://dorname.github.io/rust/common/scalar.png" alt="标量类型" /></p>
+<h5 id="zheng-xing">整型</h5>
+<p>Rust的整型类型根据长度划分有6类和有字符和无字符组合起来一共有12中整型类型如下图：</p>
+<p><img src="https://dorname.github.io/rust/common/int.png" alt="整型分类" /></p>
+<p>每一种存储类型的存储空间的计算公式（除了arch类型）：
+$$
+-(2^{n-1})\ \ to\ \  2^{n-1}-1
+$$
+<strong>注意</strong>：</p>
+<p>arch类型取决于计算机架构，64位架构对应n = 64，32位架构对应n = 32。</p>
+<h5 id="fu-dian-xing">浮点型</h5>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> x = </span><span style="color:#d08770;">1.0</span><span>; </span><span style="color:#65737e;">//默认f64
+</span><span style="color:#b48ead;">let</span><span> y:</span><span style="color:#b48ead;">f32 </span><span>= </span><span style="color:#d08770;">2.0</span><span>; </span><span style="color:#65737e;">//声明类型f32
+</span></code></pre>
+<h5 id="shu-zhi-cao-zuo">数值操作</h5>
+<p>数值操作主要包括增、删、改、查和取余。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">// addition
+</span><span>    </span><span style="color:#b48ead;">let</span><span> sum = </span><span style="color:#d08770;">5 </span><span>+ </span><span style="color:#d08770;">10</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// subtraction
+</span><span>    </span><span style="color:#b48ead;">let</span><span> difference = </span><span style="color:#d08770;">95.5 </span><span>- </span><span style="color:#d08770;">4.3</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// multiplication
+</span><span>    </span><span style="color:#b48ead;">let</span><span> product = </span><span style="color:#d08770;">4 </span><span>* </span><span style="color:#d08770;">30</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// division
+</span><span>    </span><span style="color:#b48ead;">let</span><span> quotient = </span><span style="color:#d08770;">56.7 </span><span>/ </span><span style="color:#d08770;">32.2</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> truncated = -</span><span style="color:#d08770;">5 </span><span>/ </span><span style="color:#d08770;">3</span><span>; </span><span style="color:#65737e;">// Results in -1
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// remainder
+</span><span>    </span><span style="color:#b48ead;">let</span><span> remainder = </span><span style="color:#d08770;">43 </span><span>% </span><span style="color:#d08770;">5</span><span>;
+</span></code></pre>
+<h5 id="bu-er-lei-xing">布尔类型</h5>
+<p>布尔类型的只有两个值：true和false。</p>
+<p>布尔类型只有一个字节。</p>
+<p>在Rust中实际是使用bool比如：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> t = </span><span style="color:#d08770;">true</span><span>;
+</span><span style="color:#b48ead;">let</span><span> f:</span><span style="color:#b48ead;">bool </span><span>= </span><span style="color:#d08770;">false</span><span>;
+</span></code></pre>
+<p>布尔类型的主要作用是条件判断。比如控制流中的<strong>if</strong>表达式</p>
+<h5 id="zi-fu-lei-xing">字符类型</h5>
+<p>Rust 的char 类型是该语言最基础的字母类型例如：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> c = &#39;</span><span style="color:#a3be8c;">z</span><span>&#39;;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> z: </span><span style="color:#b48ead;">char </span><span>= &#39;</span><span style="color:#a3be8c;">ℤ</span><span>&#39;; </span><span style="color:#65737e;">// with explicit type annotation
+</span><span>    </span><span style="color:#b48ead;">let</span><span> heart_eyed_cat = &#39;</span><span style="color:#a3be8c;">😻</span><span>&#39;;
+</span><span>}
+</span></code></pre>
+<p><strong>注意：</strong></p>
+<p>字符字面量使用单引号，而字符串字面量使用双引号</p>
+<p>Rust的字符类型大小是4字节而且代表Unicode标量值。这意味着它可以表示的不仅仅是ASCII。重音字母;中文、日文、韩文;emoji;和零宽度空格在Rust中都是有效的字符值.</p>
+<h4 id="fu-he-lei-xing">复合类型</h4>
+<p>复合类型的目标场景：可以将多个值组到一个类型中。</p>
+<p>Rust 拥有两个原始复合类型</p>
+<ol>
+<li>元组</li>
+<li>数组</li>
+</ol>
+<h5 id="yuan-zu">元组</h5>
+<p>元组是一种将多种类型的值组合成一种复合类型的通用方法。</p>
+<p>元组有固定的长度:一旦声明，它们就不能增大或缩小</p>
+<p>例如：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> tup:(</span><span style="color:#b48ead;">i32</span><span>,</span><span style="color:#b48ead;">f64</span><span>,</span><span style="color:#b48ead;">u8</span><span>) = (</span><span style="color:#d08770;">500</span><span>,</span><span style="color:#d08770;">6.4</span><span>,</span><span style="color:#d08770;">1</span><span>);
+</span></code></pre>
+<p>元组解构</p>
+<ul>
+<li>用模式匹配的方式解构元组</li>
+</ul>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//声明元组
+</span><span style="color:#b48ead;">let</span><span> tup = (</span><span style="color:#d08770;">500</span><span>,</span><span style="color:#d08770;">6.4</span><span>,</span><span style="color:#d08770;">1</span><span>);
+</span><span style="color:#b48ead;">let </span><span>(x,y,z) = tup;
+</span><span>println!(&quot;</span><span style="color:#a3be8c;">x = </span><span style="color:#d08770;">{}</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;"> y = </span><span style="color:#d08770;">{} </span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;"> z = </span><span style="color:#d08770;">{}</span><span>&quot;,x,y,z);
+</span></code></pre>
+<ul>
+<li>使用 (<em>.</em>) 的方式进行解构</li>
+</ul>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> x: (</span><span style="color:#b48ead;">i32</span><span>, </span><span style="color:#b48ead;">f64</span><span>, </span><span style="color:#b48ead;">u8</span><span>) = (</span><span style="color:#d08770;">500</span><span>, </span><span style="color:#d08770;">6.4</span><span>, </span><span style="color:#d08770;">1</span><span>);
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> five_hundred = x.</span><span style="color:#d08770;">0</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> six_point_four = x.</span><span style="color:#d08770;">1</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> one = x.</span><span style="color:#d08770;">2</span><span>;
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">x = </span><span style="color:#d08770;">{}</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;"> y = </span><span style="color:#d08770;">{} </span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;"> z = </span><span style="color:#d08770;">{}</span><span>&quot;,five_hundred,six_point_four,one);
+</span><span>}
+</span></code></pre>
+<p>空元组拥有一个特殊的名字<strong>unit</strong>，这个值写作**()**代表元组空值类型位一个空的返回类型。</p>
+<h5 id="shu-zu">数组</h5>
+<p>数组的声明</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> a = [</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>,</span><span style="color:#d08770;">3</span><span>,</span><span style="color:#d08770;">4</span><span>,</span><span style="color:#d08770;">5</span><span>];
+</span></code></pre>
+<p><strong>注意：</strong></p>
+<ol>
+<li>
+<p>如果你希望在堆栈上分配数据而不是直接在堆上分配，数组非常有用的。</p>
+</li>
+<li>
+<p>当你确保你的元素是具有固定长度时，数组非常有用。</p>
+</li>
+<li>
+<p>但数组并没有像容器（<em>Vector</em>）那样，大小可以灵活的增加或者减少</p>
+</li>
+<li>
+<p>然而数组对于固定长度且不需要变化的固定值集合更有用比如：月份数组</p>
+</li>
+</ol>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> months = [&quot;</span><span style="color:#a3be8c;">January</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">February</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">March</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">April</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">May</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">June</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">July</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">August</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">September</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">October</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">November</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">December</span><span>&quot;];
+</span></code></pre>
+<p>声明类型和长度</p>
+<p>$$
+let\ 变量名:[成员类型;数组长度] = [成员1,成员2,...]
+$$</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//声明类型和长度
+</span><span style="color:#b48ead;">let</span><span> a:[</span><span style="color:#b48ead;">i32</span><span>;</span><span style="color:#d08770;">5</span><span>] = [</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>,</span><span style="color:#d08770;">3</span><span>,</span><span style="color:#d08770;">4</span><span>,</span><span style="color:#d08770;">5</span><span>];
+</span><span>
+</span></code></pre>
+<p>快速声明元素相同的数组</p>
+<p>$$
+let\ 变量名:[成员值;数组长度];
+$$</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> a = [</span><span style="color:#d08770;">3</span><span>;</span><span style="color:#d08770;">5</span><span>]
+</span><span style="color:#65737e;">// a = [3,3,3,3,3]
+</span><span>
+</span></code></pre>
+<p>有效数组访问机制：通过数组索引去访问，但索引不能超过数组的长度。</p>
+<h3 id="han-shu">函数</h3>
+<h5 id="can-shu">参数</h5>
+<p>Rust函数的参数声明</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//()括号内容声明参数名和参数类型
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test_fn</span><span>(</span><span style="color:#bf616a;">x</span><span>:</span><span style="color:#b48ead;">i32</span><span>){
+</span><span>    
+</span><span>}
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>(){
+</span><span>    </span><span style="color:#96b5b4;">test_fn</span><span>(</span><span style="color:#d08770;">5</span><span>);
+</span><span>}
+</span></code></pre>
+<h5 id="yu-ju-he-biao-da-shi">语句和表达式</h5>
+<p>函数体内容由一系列语句组成，并可选择性的使用表达式作为返回值。</p>
+<p><strong>注意：</strong> <em>Rust</em> 是一门基于表达式的语言，这也是<em>Rust</em>特有的部分，其他语言并没有相同的规则。</p>
+<p>**语句：**语句是执行某些操作但不返回值的指令</p>
+<p>**表达式：**表达式实际上指的是表达式的结果值</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> y = </span><span style="color:#d08770;">6</span><span>; </span><span style="color:#65737e;">//statement
+</span><span style="color:#b48ead;">let</span><span> z = {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> x = </span><span style="color:#d08770;">3</span><span>;
+</span><span>    x+</span><span style="color:#d08770;">2 </span><span style="color:#65737e;">//expression
+</span><span>}</span><span style="color:#65737e;">//expression
+</span><span style="color:#65737e;">// y = 6,z=5
+</span></code></pre>
+<h5 id="han-shu-fan-hui-zhi">函数返回值</h5>
+<p>函数返回值声明 
+$$
+fn 函数名() -&gt; 返回值类型
+$$</p>
+<p>使用return返回</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test_fn</span><span>() -&gt; </span><span style="color:#b48ead;">i32 </span><span>{
+</span><span> 	</span><span style="color:#b48ead;">return  </span><span style="color:#d08770;">5</span><span>;
+</span><span>}
+</span></code></pre>
+<p>使用表达式返回</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test_fn</span><span>() -&gt; </span><span style="color:#b48ead;">i32 </span><span>{
+</span><span>    </span><span style="color:#d08770;">5
+</span><span>}
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test_one</span><span>(</span><span style="color:#bf616a;">x</span><span>:</span><span style="color:#b48ead;">i32</span><span>) -&gt; </span><span style="color:#b48ead;">i32</span><span>{
+</span><span>    x+</span><span style="color:#d08770;">1
+</span><span>}
+</span></code></pre>
+<h3 id="zhu-shi">注释</h3>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">// 单行注释
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;">*注释块
+</span><span style="color:#65737e;">*/
+</span></code></pre>
+<h3 id="kong-zhi-liu">控制流</h3>
+<h5 id="if-biao-da-shi">if 表达式</h5>
+<p><em>if</em>表达式的存在主要是为了分支判断处理例如：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> number = </span><span style="color:#d08770;">3</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">if</span><span> number &lt; </span><span style="color:#d08770;">5 </span><span>{
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">condition was true</span><span>&quot;);
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">condition was false</span><span>&quot;);
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p><strong>在let语句中使用if</strong></p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> condition = </span><span style="color:#d08770;">5</span><span>&gt;</span><span style="color:#d08770;">3</span><span>;
+</span><span style="color:#b48ead;">let</span><span> number = </span><span style="color:#b48ead;">if</span><span> condition {
+</span><span>    </span><span style="color:#d08770;">5
+</span><span>} </span><span style="color:#b48ead;">else </span><span>{
+</span><span>    </span><span style="color:#d08770;">3
+</span><span>}
+</span><span>println!(&quot;</span><span style="color:#d08770;">{number}</span><span>&quot;);
+</span><span style="color:#65737e;">//println!(&quot;{}&quot;,number);
+</span></code></pre>
+<p><strong>注意：</strong></p>
+<p>原理：<em>Rust</em>中变量类型是单一的。</p>
+<p>故当if和else返回的值类型不一致时会报错，例如：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> condition = </span><span style="color:#d08770;">true</span><span>;
+</span><span>
+</span><span style="color:#b48ead;">let</span><span> number = </span><span style="color:#b48ead;">if</span><span> condition { </span><span style="color:#d08770;">5 </span><span>} </span><span style="color:#b48ead;">else </span><span>{ &quot;</span><span style="color:#a3be8c;">six</span><span>&quot; };
+</span><span>
+</span><span>println!(&quot;</span><span style="color:#a3be8c;">The value of number is: </span><span style="color:#d08770;">{number}</span><span>&quot;);
+</span></code></pre>
+<h5 id="loopxun-huan-ti">loop循环体</h5>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//死循环
+</span><span style="color:#b48ead;">loop</span><span>{
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">again!</span><span>&quot;);
+</span><span>}
+</span></code></pre>
+<p>利用循环体返回值</p>
+<p>$$
+break + 语句
+$$</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let mut</span><span> counter = </span><span style="color:#d08770;">0</span><span>;
+</span><span style="color:#b48ead;">let</span><span> result = </span><span style="color:#b48ead;">loop </span><span>{
+</span><span>    counter += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#b48ead;">if</span><span> counter == </span><span style="color:#d08770;">10</span><span>{
+</span><span>        </span><span style="color:#65737e;">//break 后可以添加循环的返回值
+</span><span>        </span><span style="color:#b48ead;">break</span><span> counter * </span><span style="color:#d08770;">2</span><span>;
+</span><span>    }
+</span><span>};
+</span></code></pre>
+<h5 id="xun-huan-biao-qian">循环标签</h5>
+<p>循环体允许添加循环体标签，目的是消除多个循环之间的歧义。</p>
+<p>例如：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> count = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    &#39;counting_up: </span><span style="color:#b48ead;">loop </span><span>{
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">count = </span><span style="color:#d08770;">{count}</span><span>&quot;);
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> remaining = </span><span style="color:#d08770;">10</span><span>;
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">loop </span><span>{
+</span><span>            println!(&quot;</span><span style="color:#a3be8c;">remaining = </span><span style="color:#d08770;">{remaining}</span><span>&quot;);
+</span><span>            </span><span style="color:#b48ead;">if</span><span> remaining == </span><span style="color:#d08770;">9 </span><span>{
+</span><span>                </span><span style="color:#b48ead;">break</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">if</span><span> count == </span><span style="color:#d08770;">2 </span><span>{
+</span><span>                </span><span style="color:#b48ead;">break &#39;counting_up</span><span>;
+</span><span>            }
+</span><span>            remaining -= </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>
+</span><span>        count += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">End count = </span><span style="color:#d08770;">{count}</span><span>&quot;);
+</span><span>}
+</span></code></pre>
+<p><strong>while+循环条件</strong></p>
+<p>循环条件为真，执行循环体</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> number = </span><span style="color:#d08770;">3</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">while</span><span> number != </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{number}</span><span style="color:#a3be8c;">!</span><span>&quot;);
+</span><span>
+</span><span>        number -= </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">LIFTOFF!!!</span><span>&quot;);
+</span><span>}
+</span></code></pre>
+<p>循环一个数组</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> a = [</span><span style="color:#d08770;">10</span><span>, </span><span style="color:#d08770;">20</span><span>, </span><span style="color:#d08770;">30</span><span>, </span><span style="color:#d08770;">40</span><span>, </span><span style="color:#d08770;">50</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> index = </span><span style="color:#d08770;">0</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">while</span><span> index &lt; </span><span style="color:#d08770;">5 </span><span>{
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">the value is: </span><span style="color:#d08770;">{}</span><span>&quot;, a[index]);
+</span><span>
+</span><span>        index += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<h5 id="ji-he-de-forxun-huan">集合的for循环</h5>
+<p>数组换成for循环</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> a = [</span><span style="color:#d08770;">10</span><span>, </span><span style="color:#d08770;">20</span><span>, </span><span style="color:#d08770;">30</span><span>, </span><span style="color:#d08770;">40</span><span>, </span><span style="color:#d08770;">50</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> index = </span><span style="color:#d08770;">0</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">for</span><span> index in </span><span style="color:#d08770;">0</span><span>..</span><span style="color:#d08770;">5 </span><span>{
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">the value is: </span><span style="color:#d08770;">{}</span><span>&quot;, a[index]);
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>增强for循环:可以避免越界问题</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> a = [</span><span style="color:#d08770;">10</span><span>, </span><span style="color:#d08770;">20</span><span>, </span><span style="color:#d08770;">30</span><span>, </span><span style="color:#d08770;">40</span><span>, </span><span style="color:#d08770;">50</span><span>];
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">for</span><span> item in a {
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">the value is: </span><span style="color:#d08770;">{}</span><span>&quot;, item);
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>另一种避免循环越界的方式是倒序循环</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#65737e;">//rev方法是将数组(1..4)倒序遍历
+</span><span>    </span><span style="color:#65737e;">//前闭后开
+</span><span>    </span><span style="color:#b48ead;">for</span><span> number in (</span><span style="color:#d08770;">1</span><span>..</span><span style="color:#d08770;">4</span><span>).</span><span style="color:#96b5b4;">rev</span><span>() {
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{number}</span><span style="color:#a3be8c;">!</span><span>&quot;);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">LIFTOFF!!!</span><span>&quot;);
+</span><span>}
+</span></code></pre>
+
+  </div>
+  
+    
+  
+  <div class="card my-5">
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center">
+        
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;harry.jpg"
+    class="img-fluid m-auto d-block rounded-circle"
+    alt="Li Guangqiao"
+  />
+
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a
+              class="text-decoration-none text-reset"
+              href="https://dorname.github.io/authors/liguangqiao/"
+            >Li Guangqiao</a>
+          </h5>
+          <p class="card-text"><p>一个正在转rust的ExtJs前端工程师。迷信rust的整体发展，十分相信rust在各个领域都能发光发热，至少目前rust在很多领域上验证了其安全性、易维护性。但说实话对于我这种菜鸡也是真的难上手哈哈哈~~。
+有关于未来的发展，以下是鄙人的粗浅的观点：</p>
+<ul>
+<li>编程语言未来应该是每个人必备的工具</li>
+<li>未来的交互方式应该会以语言交互为主流</li>
+<li>下一个去中心化的技术方案出来之前，区块链依然是web3建立价值体系的基础技术方案，如何将现实价值和虚拟价值联通是进入数字世界的一个大难题。</li>
+<li>未来注定是AI的世界。AI的进化会伴随绝大部分人的退化，届时除了尖端人才，人们学习的重心会放在何处？</li>
+</ul>
+</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+    </main>
+    
+  
+
+    
+    <footer class="
+      mt-auto p-5
+      bg-dark
+      text-center
+      text-white
+    ">
+      
+      <a
+        href="mailto:lgqfighting@163.com"
+        class="text-reset text-decoration-none"
+      >lgqfighting@163.com</a>
+      
+      
+      <div class="mt-2">
+        
+          <a
+            class="text-reset mx-1 bg-transparent"
+            href="https:&#x2F;&#x2F;chat.openai.com&#x2F;"
+            title="chatGPT"
+          ><i class="fab fa-glide-g"></i></a>
+        
+          <a
+            class="text-reset mx-1 bg-transparent"
+            href="https:&#x2F;&#x2F;wx.qq.com&#x2F;"
+            title="微信"
+          ><i class="fab fa-weixin"></i></a>
+        
+          <a
+            class="text-reset mx-1 bg-transparent"
+            href="https:&#x2F;&#x2F;www.google.com&#x2F;"
+            title="谷歌"
+          ><i class="fab fa-google"></i></a>
+        
+      </div>
+      
+    </footer>
+    
+  </body>
+</html>
