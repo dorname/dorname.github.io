@@ -3,7 +3,7 @@ base_url = "https://dorname.github.io/"
 default_language = "en"
 compile_sass = true
 title = "Keep learning and trying"
-description = "A Bootstrap theme for Zola"
+description = "主页"
 generate_feed = false
 output_dir = "docs"
 
@@ -30,7 +30,7 @@ schemes = "选择一个Scheme颜色"
 topics = "博客分类"
 search = '搜索'
 tag = 'Posts by Topic'
-tags = 'Posts by Topics'
+tags = '标签主题'
 
 links = [
   {title = '作者', url = 'authors'},
@@ -98,5 +98,5 @@ data_schemes = [
 data_topics = [
   { title= "Rust学习", url="rust"},
   { title= "未分类博客",url = "articles"},
-  {title = "js学习", url = "js_learning"},
+  { title = "js学习", url = "js_learning"},
 ]
