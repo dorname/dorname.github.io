@@ -47,7 +47,7 @@ js为什么会涉及到客户端存储呢？
 
 ### cookie构成
 
-![cookie_arc](D:\project\note_md\js_learning\cookie_arc.png)
+![cookie_arc](js_learning\cookie_arc.png)
 
 - 名称：cookie的唯一可标识，且不区分大小写，cookie名称必须经过URL编码。
 
