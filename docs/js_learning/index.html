@@ -762,9 +762,9 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;start-js&#x2F;..&#x2F;js_logo.png"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-25-client-storage&#x2F;..&#x2F;js_logo.png"
     class="img-fluid m-auto d-block "
-    alt="js学习笔记(一)"
+    alt="js学习笔记(25)"
   />
 
         </div>
@@ -774,10 +774,10 @@
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;start-js&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-25-client-storage&#x2F;"
       rel="bookmark"
-      title="js学习笔记(一)"
-    ><b>js学习笔记(一)</b></a>
+      title="js学习笔记(25)"
+    ><b>js学习笔记(25)</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -791,7 +791,7 @@
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  11&#x2F;05&#x2F;2023
+  23&#x2F;05&#x2F;2023
 
     </small>
   </p>
@@ -800,8 +800,115 @@
           
   <p class="card-text text-muted">
     
-      <small>js高级程序设计
-本此将开始深入学习js的机制和原理
+      <small>Section 25 客户端存储
+js为什么会涉及到客户端存储呢？
+目标：将不常更新、且相对公用的数据存储在客户端中，减少与服务端的交互，提高整体的性能。
+cookie
+原始目标：
+要求HTTP头部包含会话信息。
+cookie具有局限性
+浏览器级别的局限性：
+
+不超过300个cookie
+每个cookie不超过4096字节
+每个域不超过20个cookie
+每个域不超过81920字节。
+
+域级别的局限性：
+浏览器每个域的cookie限制
+Edge不超过50
+Firefox不超过150个
+Opera不超过180个
+Safari和Chrome没有硬性限制
+
+浏览器对于cookie的过限处理：
+如果cookie总数超过了单域上限，浏览器会删除之前设置的cookie。
+
+Opera的处理策略是最少使用删除原则
+Firefox是随机删除原则
+
+cookie构成
+
+
+
+名称：cookie的唯一可标识，且不区分大小写，cookie名称必须经过URL编码。
+
+
+值：存储在cookie里的字符串值，值也必须经过URL编码
+
+
+域：cookie的有效域。发送到这个域的所有请求都会包含对应的cookie
+
+
+路径：请求URL中包含这个路径才会把cookie发送到服务器。
+
+
+过期时间：表示何时删除cookie的时间戳。
+删除策略：
+
+删除cookie
+
+
+
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-27-worker-thread&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block "
+    alt="js学习笔记(27)"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-27-worker-thread&#x2F;"
+      rel="bookmark"
+      title="js学习笔记(27)"
+    ><b>js学习笔记(27)</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  23&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Section 27 工作者线程
 ...</small>
     
   </p>

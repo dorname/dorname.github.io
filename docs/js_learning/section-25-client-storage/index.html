@@ -2,7 +2,7 @@
 <html>
   <head>
     
-    <title>js学习笔记(一) | Keep learning and trying</title>
+    <title>js学习笔记(25) | Keep learning and trying</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -745,7 +745,7 @@
     </nav>
     <main class="container mx-auto my-5">
       
-  <h1>js学习笔记(一)</h1>
+  <h1>js学习笔记(25)</h1>
   <p class="text-muted">
     
   
@@ -757,7 +757,7 @@
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  11&#x2F;05&#x2F;2023
+  23&#x2F;05&#x2F;2023
 
   </p>
   
@@ -773,8 +773,56 @@
   </p>
   
   <div class="content">
-    <h1 id="jsgao-ji-cheng-xu-she-ji">js高级程序设计</h1>
-<p>本此将开始深入学习js的机制和原理</p>
+    <h2 id="section-25-ke-hu-duan-cun-chu">Section 25 客户端存储</h2>
+<p>js为什么会涉及到客户端存储呢？</p>
+<p><strong>目标</strong>：将不常更新、且相对公用的数据存储在客户端中，减少与服务端的交互，提高整体的性能。</p>
+<h2 id="cookie">cookie</h2>
+<p>原始目标：
+要求HTTP头部包含会话信息。</p>
+<h3 id="cookieju-you-ju-xian-xing">cookie具有局限性</h3>
+<p><strong>浏览器级别的局限性：</strong></p>
+<ol>
+<li>不超过300个cookie</li>
+<li>每个cookie不超过4096字节</li>
+<li>每个域不超过20个cookie</li>
+<li>每个域不超过81920字节。</li>
+</ol>
+<p><strong>域级别的局限性：</strong></p>
+<table><thead><tr><th>浏览器</th><th>每个域的cookie限制</th></tr></thead><tbody>
+<tr><td>Edge</td><td>不超过50</td></tr>
+<tr><td>Firefox</td><td>不超过150个</td></tr>
+<tr><td>Opera</td><td>不超过180个</td></tr>
+<tr><td>Safari和Chrome</td><td>没有硬性限制</td></tr>
+</tbody></table>
+<p><strong>浏览器对于cookie的过限处理：</strong></p>
+<p>如果cookie总数超过了单域上限，浏览器会删除之前设置的cookie。</p>
+<ul>
+<li>Opera的处理策略是最少使用删除原则</li>
+<li>Firefox是随机删除原则</li>
+</ul>
+<h3 id="cookiegou-cheng">cookie构成</h3>
+<p><img src="D:%5Cproject%5Cnote_md%5Cjs_learning%5Ccookie_arc.png" alt="cookie_arc" /></p>
+<ul>
+<li>
+<p>名称：cookie的唯一可标识，且不区分大小写，cookie名称必须经过URL编码。</p>
+</li>
+<li>
+<p>值：存储在cookie里的字符串值，值也必须经过URL编码</p>
+</li>
+<li>
+<p>域：cookie的有效域。发送到这个域的所有请求都会包含对应的cookie</p>
+</li>
+<li>
+<p>路径：请求URL中包含这个路径才会把cookie发送到服务器。</p>
+</li>
+<li>
+<p>过期时间：表示何时删除cookie的时间戳。</p>
+<p>删除策略：</p>
+<ul>
+<li>删除cookie</li>
+</ul>
+</li>
+</ul>
 
   </div>
   

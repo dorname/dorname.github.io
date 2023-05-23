@@ -62,8 +62,12 @@
         <loc>https://dorname.github.io/js_learning/page/1/</loc>
     </url>
     <url>
-        <loc>https://dorname.github.io/js_learning/start-js/</loc>
-        <lastmod>2023-05-11</lastmod>
+        <loc>https://dorname.github.io/js_learning/section-25-client-storage/</loc>
+        <lastmod>2023-05-23</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/js_learning/section-27-worker-thread/</loc>
+        <lastmod>2023-05-23</lastmod>
     </url>
     <url>
         <loc>https://dorname.github.io/rust/</loc>
