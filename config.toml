@@ -21,7 +21,7 @@ highlight_code = true
 banner = "img/banner.jpeg"
 date_format = '%d/%m/%Y'
 
-theme = 'simplex'
+theme = 'cyborg'
 bg = "dark"
 inverted = false
 
