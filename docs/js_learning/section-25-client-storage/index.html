@@ -817,12 +817,25 @@
 </li>
 <li>
 <p>过期时间：表示何时删除cookie的时间戳。</p>
-<p>删除策略：</p>
+<p>​	删除策略：</p>
 <ul>
-<li>删除cookie</li>
+<li>默认会话结束后删除cookie</li>
+<li>定时删除cookie</li>
 </ul>
 </li>
+<li>
+<p>安全标记：设置之后，只在使用SSL安全连接的情况下才会把cookie发送到服务器。例如:<em>https://www.test.com</em>会发送cookie，而请求<em>http://www.wrox.com</em>则不会。</p>
+</li>
 </ul>
+<h3 id="jsde-cookie">js的cookie</h3>
+<p>js中的cookie接口只有*BOM(Brower Object Model)*的document.cookie</p>
+<p>取值过程会获取页面中所有的有效cookie字符串（根据域、路径、过期时间和安全设置），以分号分隔。</p>
+<h3 id="zi-cookie">子cookie</h3>
+<p>子cookie的机制实际上是利用cookie的机制，将一连串的cookie信息编码成字符串，给cookie的其中一个键上。</p>
+<h3 id="shi-yong-cookiede-zhu-yi-shi-xiang">使用cookie的注意事项</h3>
+<p>叫做<strong>HTTP-only</strong>的cookie。<strong>Http-only</strong>可以在浏览器设置，也可以在服务器设置。但只能在服务器上读取。这种cookie值js无法读取。</p>
+<p><strong>注意</strong>：因为所有cookie都会作为请求头部由浏览器发送给服务器，所以在cookie种保存大量信息可能影响特定域浏览器请求的性能。保存的cookie越大，请求完成的时间就越长。即使浏览器对cookie大小有限制，最好还是尽可能只能保存必要信息，避免性能问题。</p>
+<p>对cookie的限制及其特性决定了cookie并不是存储大量数据的理想方式。</p>
 
   </div>
   
