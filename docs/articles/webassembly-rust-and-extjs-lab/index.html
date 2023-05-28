@@ -792,6 +792,23 @@
 <li>思路1：从根拔起，利用wasm实现rust和js之间通信直接重写一边Ext.Base、Ext.Event等基础设施</li>
 <li>思路2：初步简单整合，外部引入ext-all-debug.js框架，利用wasm实现rust和js之间通信获取Ext命名空间，然后逐个复写Ext函数</li>
 </ul>
+<h2 id="extjszhong-gou-shi-yan">ExtJs重构实验</h2>
+<h3 id="zhong-gou-mu-biao">重构目标</h3>
+<ol>
+<li>学习ExtJs背后的设计思路和实现原理。</li>
+<li>ExtJs的性能优化。</li>
+<li>ExtJs可以使用ES6以及之上的特性。</li>
+<li>ExtJs的轻量化。</li>
+<li>后续计划对比vue、react框架设计思路、实现方式的区别。</li>
+<li>后续计划结合wasm和rust技术栈尝试设计一个全新的前端js框架。</li>
+</ol>
+<p><img src="https://dorname.github.io/articles/webassembly-rust-and-extjs-lab/ext_js_lab_plan.png" alt="Ext重构实验架构图" /></p>
+<h3 id="extjskuang-jia-de-zong-ti-jia-gou">ExtJs框架的总体架构</h3>
+<p>TODO</p>
+<h3 id="extji-chu-di-ceng-mo-kuai">Ext基础底层模块</h3>
+<h4 id="ext-base">Ext.Base</h4>
+<p><em><strong>Ext.Base</strong></em>的思考</p>
+<p><img src="https://dorname.github.io/articles/webassembly-rust-and-extjs-lab/ext_base_think.png" alt="" /></p>
 
   </div>
   
@@ -817,7 +834,14 @@
             >Li Guangqiao</a>
           </h5>
           <p class="card-text"><p>一个正在转rust的ExtJs前端工程师。迷信rust的整体发展，十分相信rust在各个领域都能发光发热，至少目前rust在很多领域上验证了其安全性、易维护性。但说实话对于我这种菜鸡也是真的难上手哈哈哈~~。
-有关于未来的发展，以下是鄙人的粗浅的观点：</p>
+思路总结：</p>
+<ul>
+<li>万物诞生都会有一个需求来源，每一个改变都是为了解决某个问题，最后应该考虑如何去做</li>
+<li>学会掌握一些宏观的知识和理论：系统论、还原论</li>
+<li>工程化思想，如何描述整体，从整体架构到模块关联等
+故学习东西应该像看地图一样，先看整体了解整体的结构，然后再聚焦每一个模块，对于模块的学习，思考三个问题，“是什么？”、“为什么？”、“怎么做？”；那么设计一个东西时也应该去考虑整体性和关联性。</li>
+</ul>
+<p>有关于未来的发展，以下是鄙人的粗浅的观点：</p>
 <ul>
 <li>编程语言未来应该是每个人必备的工具</li>
 <li>未来的交互方式应该会以语言交互为主流</li>
