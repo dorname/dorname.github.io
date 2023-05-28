@@ -56,6 +56,9 @@
         <loc>https://dorname.github.io/authors/liguangqiao/page/2/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/authors/liguangqiao/page/3/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/js_learning/</loc>
     </url>
     <url>
@@ -78,6 +81,10 @@
     </url>
     <url>
         <loc>https://dorname.github.io/rust/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/rust/rust-connect-mysql/</loc>
+        <lastmod>2023-05-29</lastmod>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/</loc>
@@ -113,6 +120,12 @@
         <loc>https://dorname.github.io/tags/js/page/1/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/tags/mysql/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/mysql/page/1/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/tags/one-mind/</loc>
     </url>
     <url>
@@ -123,6 +136,9 @@
     </url>
     <url>
         <loc>https://dorname.github.io/tags/rust/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/rust/page/2/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/tauri/</loc>
