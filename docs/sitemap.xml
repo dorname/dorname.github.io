@@ -40,10 +40,6 @@
         <lastmod>2023-05-03</lastmod>
     </url>
     <url>
-        <loc>https://dorname.github.io/articles/webassembly-rust-and-extjs-lab/</loc>
-        <lastmod>2023-05-02</lastmod>
-    </url>
-    <url>
         <loc>https://dorname.github.io/authors/</loc>
     </url>
     <url>
@@ -157,5 +153,19 @@
     </url>
     <url>
         <loc>https://dorname.github.io/tags/yew/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/webAssembly_rust_and_extJs-lab/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/webAssembly_rust_and_extJs-lab/lab-one/</loc>
+        <lastmod>2023-05-29</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/webAssembly_rust_and_extJs-lab/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/webAssembly_rust_and_extJs-lab/preview/</loc>
+        <lastmod>2023-05-02</lastmod>
     </url>
 </urlset>

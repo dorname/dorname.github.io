@@ -99,4 +99,5 @@ data_topics = [
   { title= "Rust学习", url="rust"},
   { title= "未分类博客",url = "articles"},
   { title = "js学习", url = "js_learning"},
+  { title = "Extjs/Rust/WASM实验", url = "webAssembly_rust_and_extJs-lab"},
 ]

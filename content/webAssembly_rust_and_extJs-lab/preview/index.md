@@ -2,7 +2,7 @@
 title: WebAssembly Rust and ExtJs 实验
 date: 2023-05-02
 extra:
-  image: new.jpg
+  image: ../new.jpg
 taxonomies:
   tags:
     - Webssembly

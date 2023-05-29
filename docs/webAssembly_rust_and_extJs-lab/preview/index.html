@@ -2,7 +2,7 @@
 <html>
   <head>
     
-    <title>Keep learning and trying</title>
+    <title>WebAssembly Rust and ExtJs 实验 | Keep learning and trying</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -753,43 +753,9 @@
     </nav>
     <main class="container mx-auto my-5">
       
-  
-  
-  
-    <h1 class="px-3">rust学习</h1>
-  
-  
-  
-	
+  <h1>WebAssembly Rust and ExtJs 实验</h1>
+  <p class="text-muted">
     
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust连接mysql建表测试"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;"
-      rel="bookmark"
-      title="rust连接mysql建表测试"
-    ><b>rust连接mysql建表测试</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
   
   
     
@@ -799,187 +765,109 @@
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  29&#x2F;05&#x2F;2023
+  02&#x2F;05&#x2F;2023
 
-    </small>
   </p>
-
-          
-          
-  <p class="card-text text-muted">
+  
+  <p>
     
-      <small>rust连接mysql建表测试
-前期准备
-
-
-创建一个新的Rust项目
-cargo new web_server_demo
-
-
-
-修改Cargo.toml
-
-添加actix-web依赖，快速构建接口服务。
-添加mysql依赖，连接&#x2F;操作mysql数据库。
-添加serde库依赖，用来序列化结构体实例。
-
-[dependencies]
-actix-web = &amp;quot;4&amp;quot;
-mysql = &amp;quot;*&amp;quot;# 通配符*表示可以使用任何版本，通常会拉取最新版本
-serde = { version = &amp;quot;1.0&amp;quot;, features = [&amp;quot;derive&amp;quot;] }
-
-
-
-创建一个模块mysql_connect目录结构为
-
-
-src
-|--mysql_connect
-	|--mod.rs
-	|--database_test.rs
-|--main.rs
-
-mod.rs的内容
-&#x2F;&#x2F;导出模块database_test
-pub mod database_test;
-&#x2F;&#x2F;导入模块database_test所有函数
-pub use database_test::*;
-
-
-接下是模块database_test.rs的内容
-
-use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
-use mysql::{PooledConn, prelude::Queryable};
-use serde::Deserialize;
-const DATA_SOURCE_URL:&amp;amp;str = &amp;quot;mysql:&#x2F;&#x2F;root:lgq1995@localhost:3306&#x2F;example&amp;quot;;
-&#x2F;&#x2F; #[derive(Debug)]
-#[derive(Deserialize,Debug)]
-struct Info{
-    name:String
-}
-&#x2F;&#x2F;建表接口
-#[get(&amp;quot;&#x2F;create_table&amp;quot;)]
-async fn create_table(info:web::Query&amp;lt;Info&amp;gt;) -&amp;gt; impl Responder{
-    println!(&amp;quot;name:{:?}&amp;quot;,info.name);
- ...</small>
+      <a
+        href="https://dorname.github.io/tags/webssembly/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        Webssembly
+      </a>
+    
+      <a
+        href="https://dorname.github.io/tags/extjs/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        ExtJs
+      </a>
+    
+      <a
+        href="https://dorname.github.io/tags/rust/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        Rust
+      </a>
     
   </p>
-
-          
-        </div>
-      </div>
-    </div>
   
+  <div class="content">
+    <h1 id="tu-fa-qi-xiang-li-yong-webassembly-rustqu-jiang-qian-duan-zhong-qi-kuang-jia-extjsjin-xing-qian-yi-zhong-gou">突发奇想:利用WebAssembly、Rust去将前端重器框架ExtJs进行迁移重构</h1>
+<ul>
+<li>思路1：从根拔起，利用wasm实现rust和js之间通信直接重写一边Ext.Base、Ext.Event等基础设施</li>
+<li>思路2：初步简单整合，外部引入ext-all-debug.js框架，利用wasm实现rust和js之间通信获取Ext命名空间，然后逐个复写Ext函数</li>
+</ul>
+<h2 id="extjszhong-gou-shi-yan">ExtJs重构实验</h2>
+<h3 id="zhong-gou-mu-biao">重构目标</h3>
+<ol>
+<li>学习ExtJs背后的设计思路和实现原理。</li>
+<li>ExtJs的性能优化。</li>
+<li>ExtJs可以使用ES6以及之上的特性。</li>
+<li>ExtJs的轻量化。</li>
+<li>后续计划对比vue、react框架设计思路、实现方式的区别。</li>
+<li>后续计划结合wasm和rust技术栈尝试设计一个全新的前端js框架。</li>
+</ol>
+<p><img src="https://dorname.github.io/webAssembly_rust_and_extJs-lab/preview/ext_js_lab_plan.png" alt="Ext重构实验架构图" /></p>
+<h3 id="extjskuang-jia-de-zong-ti-jia-gou">ExtJs框架的总体架构</h3>
+<p>TODO</p>
+<h3 id="extji-chu-di-ceng-mo-kuai">Ext基础底层模块</h3>
+<h4 id="ext-base">Ext.Base</h4>
+<p><em><strong>Ext.Base</strong></em>的思考</p>
+<p><img src="https://dorname.github.io/webAssembly_rust_and_extJs-lab/preview/ext_base_think.png" alt="" /></p>
 
-	
+  </div>
+  
     
   
-    <div class="card p-3 border-0">
-      <div class="row g-5">
+  <div class="card my-5">
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center">
         
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust学习(一)基础概念"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;harry.jpg"
+    class="img-fluid m-auto d-block rounded-circle"
+    alt="Li Guangqiao"
   />
 
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;"
-      rel="bookmark"
-      title="rust学习(一)基础概念"
-    ><b>rust学习(一)基础概念</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  13&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>Rust相关知识的思维导图
-
-浅入Rust基础
-目标：首先总结归纳Rust的基本内容，接着每天回顾一个了解过的rust基础
-常用语法
-变量和可变性
-
-
-变量的声明 
-&#x2F;&#x2F;let 变量名:变量类型 = 变量值
-let x = 5
-
-
-
-常量的声明
-&#x2F;&#x2F;const 常量名:常量类型 = 常量值
-const THE_X:U32 = 60*3;
-
-
-
-变量的可变性标记
-&#x2F;&#x2F;变量的可变性标记 mut
-let mut x = 5;
-x = 6;
-
-其他说明：
-
-
-可变变量重新声明成常态变量后，可变性会被覆盖掉，同时也会有相应的错误提示。
-let mut x = 5;
-let x = x+1;
-x = x+2; &#x2F;&#x2F;cannot mutate immutable variable `x`
-
-
-
-
-
-变量的封闭性
-变量的封闭性可以理解成，声明同名变量，会将上一个声明覆盖，直到下一个同名变量被声明，或者作用域结束。
-fn variablie(){
-    let x = 5;
-    let x = x...</small>
-    
-  </p>
-
-          
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a
+              class="text-decoration-none text-reset"
+              href="https://dorname.github.io/authors/liguangqiao/"
+            >Li Guangqiao</a>
+          </h5>
+          <p class="card-text"><p>一个正在转rust的ExtJs前端工程师。迷信rust的整体发展，十分相信rust在各个领域都能发光发热，至少目前rust在很多领域上验证了其安全性、易维护性。但说实话对于我这种菜鸡也是真的难上手哈哈哈~~。
+思路总结：</p>
+<ul>
+<li>万物诞生都会有一个需求来源，每一个改变都是为了解决某个问题，最后应该考虑如何去做</li>
+<li>学会掌握一些宏观的知识和理论：系统论、还原论</li>
+<li>工程化思想，如何描述整体，从整体架构到模块关联等
+故学习东西应该像看地图一样，先看整体了解整体的结构，然后再聚焦每一个模块，对于模块的学习，思考三个问题，“是什么？”、“为什么？”、“怎么做？”；那么设计一个东西时也应该去考虑整体性和关联性。</li>
+</ul>
+<p>有关于未来的发展，以下是鄙人的粗浅的观点：</p>
+<ul>
+<li>编程语言未来应该是每个人必备的工具</li>
+<li>未来的交互方式应该会以语言交互为主流</li>
+<li>下一个去中心化的技术方案出来之前，区块链依然是web3建立价值体系的基础技术方案，如何将现实价值和虚拟价值联通是进入数字世界的一个大难题。</li>
+<li>未来注定是AI的世界。AI的进化会伴随绝大部分人的退化，届时除了尖端人才，人们学习的重心会放在何处？</li>
+</ul>
+</p>
         </div>
       </div>
     </div>
-  
-
-	
-  
-  
+  </div>
 
   
-
 
     </main>
     
-    
+  
+
     
     <footer class="
       mt-auto p-5
