@@ -805,31 +805,31 @@
 <p>找到一种合适的算法确保忠诚的将军能达到意见一致</p>
 <h2 id="da-dao-mu-biao-de-tiao-jian">达到目标的条件</h2>
 <ul>
-<li>A 所有忠诚的将军都决定同样的行动计划。</li>
-<li>B  一小撮叛徒不能使忠诚的将军们采纳一个坏计划。</li>
+<li><em><strong>A  所有忠诚的将军都决定同样的行动计划。</strong></em></li>
+<li><em><strong>B  一小撮叛徒不能使忠诚的将军们采纳一个坏计划。</strong></em></li>
 </ul>
-<p>描述：条件B很难形式化，因为它要求准确地说出什么是糟糕的计划，而我们并不打算这样做。相反，我们考虑将军们如何做出决定。每个将军都观察敌人，并把他的观察结果传达给其他人。设v(i)为第i个将军传达的信息。每个一般使用一些方法来组合值v (1) .....V (n)变成一个单独的行动计划，其中n是将军的数目。条件A是通过让所有将军使用相同的方法来组合信息来实现的，条件B是通过使用一种鲁棒方法来实现的。例如，如果要做的唯一决定是进攻还是撤退，那么v(i)就是i将军的意见，即哪个选择是最好的，而最终的决定可以基于他们中的大多数人的投票。只有当忠诚的将军们在两种可能性中几乎平分，少数卖国贼才能影响决策，在这种情况下，任何一个决定都不能被称为坏决定。虽然这种方法可能不是满足条件A和B的唯一方法，但它是我们所知道的唯一方法。它采用了一种方法，将军们通过这种方法互相交流他们的价值观v (i)。显而易见的方法是第i个将军通过信使发送v (i)给对方将军。但是，这是行不通的，因为满足条件A要求每个忠诚的将军获得相同的值v(1) .....V (n)，一个叛国的将军可能会给不同的将军发送不同的值。要满足条件A，下列条件必须成立</p>
+<p>描述：条件<em><strong>B</strong></em>很难形式化，因为它要求准确地说出什么是糟糕的计划，而我们并不打算这样做。相反，我们考虑将军们如何做出决定。每个将军都观察敌人，并把他的观察结果传达给其他人。设v(i)为第i个将军传达的信息。每个一般使用一些方法来组合值<em><strong>v (1) .....V (n)<em><strong>变成一个单独的行动计划，其中</strong></em>n</strong></em>是将军的数目。条件A是通过让所有将军使用相同的方法来组合信息来实现的，条件B是通过使用一种鲁棒方法来实现的。例如，如果要做的唯一决定是进攻还是撤退，那么<em><strong>v(i)<em><strong>就是</strong></em>i</strong></em>将军的意见，即哪个选择是最好的，而最终的决定可以基于他们中的大多数人的投票。只有当忠诚的将军们在两种可能性中几乎平分，少数卖国贼才能影响决策，在这种情况下，任何一个决定都不能被称为坏决定。虽然这种方法可能不是满足条件A和B的唯一方法，但它是我们所知道的唯一方法。它采用了一种方法，将军们通过这种方法互相交流他们的价值观<em><strong>v (i)</strong></em>。显而易见的方法是第i个将军通过信使发送<em><strong>v (i)<em><strong>给对方将军。但是，这是行不通的，因为满足条件</strong></em>A</strong></em>要求每个忠诚的将军获得相同的值<em><strong>v(1) .....V (n)</strong></em>，一个叛国的将军可能会给不同的将军发送不同的值。要满足条件<em><strong>A</strong></em>，下列条件必须成立</p>
 <ol>
 <li>
-<p>每个忠诚的将军必须获得相同的信息v (1) ....v (n)。</p>
-<p>条件1意味着将军不能使用直接从第i将军获得的值v(i)，因为叛变的第i将军可以将不同的值发送给不同的将军。这意味着，除非我们小心，在满足条件1的情况下，我们可能引入一种可能性，即将军使用的v (i)值与第i个将军发送的值不同——即使第i个将军是忠诚的。如果满足条件B，我们绝不允许这种情况发生。例如，我们不能允许少数卖国贼使洛亚将军以“撤退”的价值作决定，……如果每一个忠诚的将军都派人去“进攻”的话。因此，我们对每个i都有以下要求</p>
+<p>每个忠诚的将军必须获得相同的信息<em><strong>v (1) ....v (n)</strong></em>。</p>
+<p>条件1意味着将军不能使用直接从第i将军获得的值<em><strong>v(i)</strong></em>，因为叛变的第i将军可以将不同的值发送给不同的将军。这意味着，除非我们小心，在满足条件1的情况下，我们可能引入一种可能性，即将军使用的<em><strong>v (i)<em><strong>值与第</strong></em>i</strong></em>个将军发送的值不同——即使第<em><strong>i</strong></em>个将军是忠诚的。如果满足条件<em><strong>B</strong></em>，我们绝不允许这种情况发生。例如，我们不能允许少数卖国贼使洛亚将军以“撤退”的价值作决定，……如果每一个忠诚的将军都派人去“进攻”的话。因此，我们对每个i都有以下要求</p>
 </li>
 <li>
-<p>如果第i个将军是忠诚的，那么他发送的值必须被每个忠诚的将军用作v (i)的值。</p>
+<p>如果第i个将军是忠诚的，那么他发送的值必须被每个忠诚的将军用作***v (i)***的值。</p>
 </li>
 </ol>
-<p>我们可以将条件I重写为条件对于每一个I(无论第I个将军是否忠诚)：1”.任何两个忠诚的将军使用相同的v(i)值。</p>
-<p>条件1'和2都是第i个将军发送的单个值的条件。因此，我们可以把我们的考虑限制在一个将军如何将他的价值传递给其他将军的问题上。我们用一个指挥将军向他的副官们发出命令的方式来描述这个问题。</p>
+<p>我们可以将条件I重写为条件对于每一个I(无论第I个将军是否忠诚)：1”.任何两个忠诚的将军使用相同的***v(i)***值。</p>
+<p>条件1'和2都是第<em><strong>i</strong></em>个将军发送的单个值的条件。因此，我们可以把我们的考虑限制在一个将军如何将他的价值传递给其他将军的问题上。我们用一个指挥将军向他的副官们发出命令的方式来描述这个问题。</p>
 <p>最终拜占庭将军的问题变成下面这样一个命题
-一个将军必须向他的n - 1个中将发出这样的命令
+一个将军必须向他的<em><strong>n - 1</strong></em>个中将发出这样的命令
 对于命令的要求：</p>
 <ul>
 <li>
-<p>IC1 所有忠诚的中尉都服从同一命令</p>
+<p><em><strong>IC1 所有忠诚的中尉都服从同一命令</strong></em></p>
 </li>
 <li>
-<p>IC2 如果指挥官是忠诚的，那么每个忠诚的中尉都会服从他的命令。</p>
-<p>条件IC1和IC2称为交互一致性条件。注意，如果指挥官是忠诚的，IC1就会跟着IC2。然而，指挥官不需要忠诚。为了解决我们最初的问题，第i个将军通过使用拜占庭将军问题的解发送他的v(i)值命令“使用v(i)作为我的值”，其他将军作为副手。</p>
+<p><em><strong>IC2 如果指挥官是忠诚的，那么每个忠诚的中尉都会服从他的命令。</strong></em></p>
+<p>条件<em><strong>IC1</strong></em>和<em><strong>IC2</strong></em>称为交互一致性条件。注意，如果指挥官是忠诚的，<em><strong>IC1</strong></em>就会跟着<em><strong>IC2</strong></em>。然而，指挥官不需要忠诚。为了解决我们最初的问题，第i个将军通过使用拜占庭将军问题的解发送他的***v(i)<em><strong>值命令“使用</strong></em>v(i)***作为我的值”，其他将军作为副手。</p>
 </li>
 </ul>
 <h2 id="bu-ke-neng-de-jie-guo">不可能的结果</h2>
@@ -839,44 +839,42 @@
 <p>让我们首先检查图1所示的场景，在这个场景中，指挥官是忠诚的，并发出了“攻击”命令，但中尉2是叛徒，并向中尉1报告他收到了“撤退”命令。为了满足IC2，中尉1必须服从攻击命令。</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/liguangqiao/documentImage/raw/main/pbft/image/%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B%E9%97%AE%E9%A2%98%E5%9B%BE%E7%A4%BA2.png" alt="拜占庭将军问题图示2.png" /></p>
+<p><img src="https://dorname.github.io/blockchain/consensus/%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B%E9%97%AE%E9%A2%98%E5%9B%BE%E7%A4%BA2.png" alt="拜占庭将军问题图示2.png" /></p>
 <ul>
 <li><h3 id="qing-jing-2">情景2</h3>
-<p>在这个场景中，指挥官是叛徒，向中尉1发送“攻击”命令，向中尉2发送“撤退”命令。中尉1不知道叛徒是谁，他也不知道指挥官实际上给中尉2发了什么信息。因此，在中尉1看来，这两幅图中的场景完全相同。如果叛徒总是撒谎，那么中尉1就没有办法区分这两种情况，所以他必须在这两种情况下都服从“进攻”命令。因此，每当中尉接到指挥官下达的“进攻”命令时，他必须服从。同样的，如果中尉2从指挥官那里收到“撤退”命令，那么即使中尉1告诉他指挥官说“进攻”，他也必须服从。因此，在图2的场景中，中尉2必须服从“撤退”命令，而中尉1服从“进攻”命令，从而违反条件IC1。因此，在一个叛徒面前，没有解决三个将军的办法。</p>
+<p>在这个场景中，指挥官是叛徒，向中尉1发送“攻击”命令，向中尉2发送“撤退”命令。中尉1不知道叛徒是谁，他也不知道指挥官实际上给中尉2发了什么信息。因此，在中尉1看来，这两幅图中的场景完全相同。如果叛徒总是撒谎，那么中尉1就没有办法区分这两种情况，所以他必须在这两种情况下都服从“进攻”命令。因此，每当中尉接到指挥官下达的“进攻”命令时，他必须服从。同样的，如果中尉2从指挥官那里收到“撤退”命令，那么即使中尉1告诉他指挥官说“进攻”，他也必须服从。因此，在图2的场景中，中尉2必须服从“撤退”命令，而中尉1服从“进攻”命令，从而违反条件<em><strong>IC1</strong></em>。因此，在一个叛徒面前，没有解决三个将军的办法。</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/liguangqiao/documentImage/raw/main/pbft/image/%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B%E9%97%AE%E9%A2%98%E5%9B%BE%E7%A4%BA1.png" alt="拜占庭将军问题图示1.png" /></p>
-<p>这个论点似乎很有说服力，但我们强烈建议读者对这种非严密的推理持怀疑态度。虽然这个结果确实是正确的，但这个证明过程是非常不严谨的。严格证明3将军中带一个叛徒的问题是无解的，请参阅论文PEASE, M., SHOSTAK, R., AND LAMPORT, L. Reaching agreement in the presence of faults. J.ACM 27, 2 (Apr. 1980), 228-234.</p>
-<p>从结论来看，设有m个叛徒则要保证忠诚将士最后信息的一致，至少要求有3m+1个节点如下图根据少数服从多数，最后忠诚的将士总能达成信息的一致</p>
-<p><img src="https://gitee.com/liguangqiao/documentImage/raw/main/pbft/image/%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B%E9%97%AE%E9%A2%98%E5%9B%BE%E7%A4%BA3.png" alt="拜占庭将军问题图示3.png" /></p>
+<p><img src="https://dorname.github.io/blockchain/consensus/%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B%E9%97%AE%E9%A2%98%E5%9B%BE%E7%A4%BA1.png" alt="拜占庭将军问题图示1.png" /></p>
+<p>这个论点似乎很有说服力，但我们强烈建议读者对这种非严密的推理持怀疑态度。虽然这个结果确实是正确的，但这个证明过程是非常不严谨的。严格证明3将军中带一个叛徒的问题是无解的，请参阅论文<em><strong>PEASE, M., SHOSTAK, R., AND LAMPORT, L. Reaching agreement in the presence of faults. J.ACM 27, 2 (Apr. 1980), 228-234.</strong></em></p>
+<p>从结论来看，设有<em><strong>m</strong></em>个叛徒则要保证忠诚将士最后信息的一致，至少要求有<em><strong>3m+1</strong></em>个节点如下图根据少数服从多数，最后忠诚的将士总能达成信息的一致</p>
+<p><img src="https://dorname.github.io/blockchain/consensus/%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B%E9%97%AE%E9%A2%98%E5%9B%BE%E7%A4%BA3.png" alt="拜占庭将军问题图示3.png" /></p>
 <h2 id="jie-jue-bai-zhan-ting-wen-ti-de-suan-fa">解决拜占庭问题的算法</h2>
 <ol>
 <li><h3 id="kou-tou-xin-xi-suan-fa">口头信息算法</h3>
 <p><strong>口头信息的定义在将军信息系统中的体现:</strong></p>
-<p>A1.发送的每个消息都正确地传递。</p>
-<p>A2.信息的接收者知道是谁发送的。</p>
 </li>
-<li>
-<p>A3.可以检测到没有消息。</p>
+</ol>
+<p>*** A1.发送的每个消息都正确地传递。***</p>
+<p><em><strong>A2.信息的接收者知道是谁发送的。</strong></em></p>
+<p>2.*** A3.可以检测到没有消息。***</p>
 <p><strong>定义：</strong></p>
-<p>我们归纳定义了口头信息算法$OM(m)$，对于所有非负整数$m$，指挥官向$n - 1$个中尉发送命令。我们证明$OM(m)$解决了$3m+ 1$或更多的将军在最多m个卖国贼在场的情况下的拜占庭将军问题。我们发现用副手“获取一个值”而不是“服从一个命令”来描述这个算法更方便。算法假定函数$majority$具有这样的属性:如果大多数值$vi$等于$v$，则$majority (Vl，..， v，-D = v$(实际上，它假设一个这样的函数序列——每个$n$对应一个)。对于majority的值有两个自然的选择$(v1，…, v, 1)$：</p>
-<p>1）$vi$中的大多数值如果存在，则返回值</p>
-<p>2）$vi$的中值（<strong>序列中间的顺序的值？</strong>），假设它们来自有序集。</p>
+<p>我们归纳定义了口头信息算法<em><strong>OM(m)</strong></em>，对于所有非负整数<em><strong>m</strong></em>，指挥官向<em><strong>n - 1</strong></em>个中尉发送命令。我们证明<em><strong>OM(m)<em><strong>解决了</strong></em>3m+ 1</strong></em>或更多的将军在最多m个卖国贼在场的情况下的拜占庭将军问题。我们发现用副手“获取一个值”而不是“服从一个命令”来描述这个算法更方便。算法假定函数<em><strong>majority</strong></em>具有这样的属性:如果大多数值<em><strong>vi</strong></em>等于<em><strong>v</strong></em>，则<em><strong>majority (Vl，..， v，-D = v</strong></em>(实际上，它假设一个这样的函数序列——每个<em><strong>n</strong></em>对应一个)。对于majority的值有两个自然的选择***(v1，…, v, 1)***：</p>
+<p>1）<em><strong>vi</strong></em>中的大多数值如果存在，则返回值</p>
+<p>2）<em><strong>vi</strong></em>的中值（<strong>序列中间的顺序的值？</strong>），假设它们来自有序集。</p>
 <p><strong>算法描述：</strong></p>
-<p>$OM(0) ,m=0$,即没有叛徒的时候</p>
+<p><em><strong>OM(0) ,m=0</strong></em>,即没有叛徒的时候</p>
 <p>(1)司令员把他的价值发给每个中尉。</p>
 <p>(2)每个中尉使用他从指挥官那里得到的值，或者如果他没有得到值就使用撤退值。</p>
-<p>$OM(m),m&gt;0$,有$m$个叛徒的时候。</p>
+<p><em><strong>OM(m),m&gt;0</strong></em>,有<em><strong>m</strong></em>个叛徒的时候。</p>
 <p>(1)指挥官把他的价值发给每个中尉。</p>
-<p>(2)对于每一个$i$，让$vi$作为中尉从指挥官那里得到的价值，否则，如果他没有价值，就撤退。中尉$i$作为$OM(m - 1)$算法的指挥官，将值$vi$发送给其他$n - 2$个中尉。</p>
-<p>(3)对于每个$i$和每个$j ~ i$，让$vj$为中尉$i$在step(2)(使用$OM(m - 1)$算法)中从中尉j接收到的值，或者如果没有接收到该值则撤退。中尉i使用值多数$(vl .....v, 1)$。</p>
-<p><strong>引理1：对于任意$m$，如果有$3m$以上的将军，最多$m$个叛徒，则$OM (m)$算法满足$IC1$和$IC2$条件。</strong></p>
+<p>(2)对于每一个<em><strong>i</strong></em>，让<em><strong>vi</strong></em>作为中尉从指挥官那里得到的价值，否则，如果他没有价值，就撤退。中尉<em><strong>i</strong></em>作为<em><strong>OM(m - 1)<em><strong>算法的指挥官，将值</strong></em>vi</strong></em>发送给其他<em><strong>n - 2</strong></em>个中尉。</p>
+<p>(3)对于每个<em><strong>i</strong></em>和每个<em><strong>j ~ i</strong></em>，让<em><strong>vj</strong></em>为中尉<em><strong>i</strong></em>在step(2)(使用<em><strong>OM(m - 1)<em><strong>算法)中从中尉j接收到的值，或者如果没有接收到该值则撤退。中尉i使用值多数</strong></em>(vl .....v, 1)</strong></em>。</p>
+<p><strong>引理1：对于任意</strong><em>m</em>**，如果有<em><strong>3m</strong></em>以上的将军，最多<em><strong>m</strong></em>个叛徒，则<em><strong>OM (m)<em><strong>算法满足</strong></em>IC1</strong></em>和<em><strong>IC2</strong></em>条件。**</p>
 <p>如图：</p>
 <p>上图：副官1、2、3：结果集result均为（x,y,z）</p>
 <p>下图：副官1、2、3：结果集result均为（v,v,x）=&gt;均为v</p>
-</li>
-</ol>
-<h2 id="kou-tou-xin-xi-suan-fa-png"><img src="https://gitee.com/liguangqiao/documentImage/raw/main/pbft/image/%E5%8F%A3%E5%A4%B4%E4%BF%A1%E6%81%AF%E7%AE%97%E6%B3%95.png" alt="口头信息算法.png" /></h2>
+<h2 id="kou-tou-xin-xi-suan-fa-png"><img src="https://dorname.github.io/blockchain/consensus/%E5%8F%A3%E5%A4%B4%E4%BF%A1%E6%81%AF%E7%AE%97%E6%B3%95.png" alt="口头信息算法.png" /></h2>
 <ol start="2">
 <li><h2 id="qian-ming-xin-xi-suan-fa">签名信息算法</h2>
 <p>A1.发送的每个消息都正确地传递。
@@ -888,37 +886,37 @@ A4.(a)一个忠诚的将军的签名是不能被伪造的，他的签名信息�
 <p><strong>算法概述：</strong></p>
 <p>指挥官给他的每个中尉都发了一份签过字的命令。然后每个中尉将自己的签名添加到命令中，并将其发送给其他中尉，后者将自己的签名发送给其他人，以此类推。这意味着一名中尉必须有效地接收一份已签名的信息，将其复制几份，并签署并发送这些副本。如何获得这些副本并不重要;单个消息可能被影印，或者每个消息可能由一堆相同的消息组成，这些消息根据需要被签名和分发。</p>
 <p><strong>算法定义:</strong></p>
-<p>设$x: i$标记值$x$被将军$i$签名，因此，$v:j: i$标记值$v$先被$j$签名，然后是值$v:j$被$i$标记。我们让将军0表示指挥官。在这个算法中，每个中尉$i$维护一个集合$Vi$，其中包含他到目前为止收到的正确签名的命令集。(如果指挥官是忠诚的，那么这个集合就不应该包含超过一个元素。)不要将他收到的命令集Vi与他收到的消息集混淆，因为存在有消息不同但命令相同的情况。</p>
+<p>设<em><strong>x: i</strong></em>标记值<em><strong>x</strong></em>被将军<em><strong>i</strong></em>签名，因此，<em><strong>v:j: i</strong></em>标记值<em><strong>v</strong></em>先被<em><strong>j</strong></em>签名，然后是值<em><strong>v:j</strong></em>被<em><strong>i</strong></em>标记。我们让将军0表示指挥官。在这个算法中，每个中尉<em><strong>i</strong></em>维护一个集合<em><strong>Vi</strong></em>，其中包含他到目前为止收到的正确签名的命令集。(如果指挥官是忠诚的，那么这个集合就不应该包含超过一个元素。)不要将他收到的命令集Vi与他收到的消息集混淆，因为存在有消息不同但命令相同的情况。</p>
 <p><strong>算法描述:</strong></p>
-<p>$SM(m)$</p>
-<p>初始化：$V_i$ = $\varnothing$</p>
+<p><em><strong>SM(m)</strong></em></p>
+<p>初始化：<em><strong>V_i</strong></em> = <em><strong>\varnothing</strong></em></p>
 <p>(1)指挥官签字，并把他的价值发给每个中尉。</p>
-<p>(2) 对于任意中尉$i$来说：</p>
+<p>(2) 对于任意中尉<em><strong>i</strong></em>来说：</p>
 </li>
 </ol>
-<p>(A)如果中尉$i$从指挥官那里收到$v: 0$格式的信息，而他还没有收到任何命令，那么</p>
-<p>(i)$V_i$ = ${v}$</p>
-<p>(ii)将信息$v:0:i$发送给其他的中尉</p>
-<p>(B)如果中尉接受一个形式是$v:0:j_i:...:j_k$同时$v$不在数据集$Vi$，然后</p>
-<p>(i)将$v$添加到数据集$V_i$</p>
-<p>(ii)如果$k&lt;m$然后将信息$v:0:j_i:...:j_k:i$发给除了$j_i:...:j_k$的其他中尉</p>
-<p>(3)对于任意中尉$i$来说，当中尉$i$没有收到更多的信息，将服从命令choice(Vi)。</p>
+<p>(A)如果中尉<em><strong>i</strong></em>从指挥官那里收到<em><strong>v: 0</strong></em>格式的信息，而他还没有收到任何命令，那么</p>
+<p>(i)<em><strong>V_i</strong></em> = <em><strong>{v}</strong></em></p>
+<p>(ii)将信息<em><strong>v:0:i</strong></em>发送给其他的中尉</p>
+<p>(B)如果中尉接受一个形式是<em><strong>v:0:j_i:...:j_k</strong></em>同时<em><strong>v</strong></em>不在数据集<em><strong>Vi</strong></em>，然后</p>
+<p>(i)将<em><strong>v</strong></em>添加到数据集<em><strong>V_i</strong></em></p>
+<p>(ii)如果<em><strong>k&lt;m</strong></em>然后将信息<em><strong>v:0:j_i:...:j_k:i</strong></em>发给除了<em><strong>j_i:...:j_k</strong></em>的其他中尉</p>
+<p>(3)对于任意中尉<em><strong>i</strong></em>来说，当中尉<em><strong>i</strong></em>没有收到更多的信息，将服从命令choice(Vi)。</p>
 <p>注意：</p>
-<p>步骤(2)中任意中尉$i$，所有命令相同(均为$v$)的信息,若命令$v$已经在$V$中，则无视这些信息</p>
+<p>步骤(2)中任意中尉<em><strong>i</strong></em>，所有命令相同(均为<em><strong>v</strong></em>)的信息,若命令<em><strong>v</strong></em>已经在<em><strong>V</strong></em>中，则无视这些信息</p>
 <p>步骤(2)将抛出所有不带验证信息即签名的数据包</p>
-<p>引理2：$\forall m$,$SM(m)$算法能解决至多$m$个叛徒的拜占庭问题</p>
+<p>引理2：<em><strong>\forall m</strong></em>,<em><strong>SM(m)<em><strong>算法能解决至多</strong></em>m</strong></em>个叛徒的拜占庭问题</p>
 <p>要求：</p>
-<p>1)如果结果集$V$只有单个元素$v$组成，则$chioce(V)=v$</p>
-<p>2)$chioce(\varnothing)= RESTREAT$</p>
-<p>如图$SM(1)$</p>
-<p><img src="https://gitee.com/liguangqiao/documentImage/raw/main/pbft/image/%E7%AD%BE%E5%90%8D%E6%B6%88%E6%81%AF%E7%AE%97%E6%B3%95.png" alt="签名消息算法.png" /></p>
+<p>1)如果结果集<em><strong>V</strong></em>只有单个元素<em><strong>v</strong></em>组成，则<em><strong>chioce(V)=v</strong></em></p>
+<p>2)<em><strong>chioce(\varnothing)= RESTREAT</strong></em></p>
+<p>如图<em><strong>SM(1)</strong></em></p>
+<p><img src="https://dorname.github.io/blockchain/consensus/%E7%AD%BE%E5%90%8D%E6%B6%88%E6%81%AF%E7%AE%97%E6%B3%95.png" alt="签名消息算法.png" /></p>
 <ol start="3">
 <li><h3 id="mei-you-zhi-jie-gou-tong-de-lu-jing">没有直接沟通的路径</h3>
-<p>如果将军的图$G$是$3m$正则的，则在$m$叛徒存在的情况下解决拜占庭将军问题。(注意，一个$3m$规则图必须包含至少$3m + 1$个节点。对于所      有正整数$m$和$p$，当一般图$G$为正则时，定义算法$OM(m, p)$如下:(如果$G$不是正则的，则$OM(m,p)$没有定义。)定义使用了对$m$的归纳法。</p>
+<p>如果将军的图<em><strong>G</strong></em>是<em><strong>3m</strong></em>正则的，则在<em><strong>m</strong></em>叛徒存在的情况下解决拜占庭将军问题。(注意，一个<em><strong>3m</strong></em>规则图必须包含至少<em><strong>3m + 1</strong></em>个节点。对于所      有正整数<em><strong>m</strong></em>和<em><strong>p</strong></em>，当一般图<em><strong>G</strong></em>为正则时，定义算法<em><strong>OM(m, p)<em><strong>如下:(如果</strong></em>G</strong></em>不是正则的，则<em><strong>OM(m,p)<em><strong>没有定义。)定义使用了对</strong></em>m</strong></em>的归纳法。</p>
 </li>
 </ol>
-<p>引理3 $\forall m&gt;0$,$p&gt;=3m$,算法$OM(m,p)$在最多$m$个叛徒的前提下能解决拜占庭问题</p>
-<p>引理4$\forall m,p$，如果拥有至多$m$个叛徒且忠诚将军的子图直径为d（注：图直径的最小值d是任意两个节点连线最短的那条）</p>
+<p>引理3 <em><strong>\forall m&gt;0</strong></em>,<em><strong>p&gt;=3m</strong></em>,算法<em><strong>OM(m,p)<em><strong>在最多</strong></em>m</strong></em>个叛徒的前提下能解决拜占庭问题</p>
+<p>引理4***\forall m,p***，如果拥有至多<em><strong>m</strong></em>个叛徒且忠诚将军的子图直径为d（注：图直径的最小值d是任意两个节点连线最短的那条）</p>
 <p><strong>注：正则图的概念在图论中，正则图中每个顶点具有相同数量的邻点； 即每个顶点具有相同的度或价态。 正则的有向图也必须满足更多的条件，即每个顶点的内外自由度都要彼此相等。具有k个自由度的顶点的正则图被称为k度的k-正则图。 此外，奇数程度的正则图形将包含偶数个顶点。</strong></p>
 
   </div>
