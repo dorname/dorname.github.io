@@ -15,8 +15,8 @@ extra:
       start: 4
       end: 12
       type: horizontal
-      title: 近期相关博客
-  - - section: articles
+      title: 区块链
+  - - section: blockchain
       size: 12 
       start: 0
       end: 12
