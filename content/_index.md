@@ -10,18 +10,18 @@ extra:
       end: 4
       type: default
       title: Rust学习
-    - section: blockchain
+    - section: articles
       size: 4
-      start: 4
-      end: 12
+      start: 0
+      end: 4
       type: horizontal
-      title: 区块链
-  - - section: articles
+      title: 杂活博客
+  - - section: blockchain
       size: 12 
       start: 0
       end: 12
       type: vertical
-      title: 杂活博客
+      title: 区块链
       row: 4
   # - - section: articles
   #     size: 6
