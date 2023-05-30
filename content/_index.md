@@ -50,18 +50,18 @@ extra:
     #      icon: fas fa-rss
     #      button: secondary
     #      url: about
-  - - section: articles
+  - - section: js_learning
       size: 4
-      start: 4
+      start: 0
       end: 14
       type: carousel
-      title: library
-    - section: articles
+      title: js相关博客
+    - section: webAssembly_rust_and_extJs-lab
       size: 8
-      start: 6
+      start: 0
       end: 14
       type: overlay 
-      title: other
+      title: wasm实验
       rows:
        - 3
        - 4
