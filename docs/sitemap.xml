@@ -14,10 +14,6 @@
         <lastmod>2023-05-12</lastmod>
     </url>
     <url>
-        <loc>https://dorname.github.io/articles/classic-modern-blockchain/</loc>
-        <lastmod>2023-05-03</lastmod>
-    </url>
-    <url>
         <loc>https://dorname.github.io/articles/database-lab/</loc>
         <lastmod>2023-05-03</lastmod>
     </url>
@@ -31,9 +27,6 @@
     </url>
     <url>
         <loc>https://dorname.github.io/articles/page/1/</loc>
-    </url>
-    <url>
-        <loc>https://dorname.github.io/articles/page/2/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/articles/principle-of-blockchain/</loc>
@@ -53,6 +46,20 @@
     </url>
     <url>
         <loc>https://dorname.github.io/authors/liguangqiao/page/3/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/blockchain/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/blockchain/classic-modern-blockchain/</loc>
+        <lastmod>2023-05-03</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/blockchain/consensus/</loc>
+        <lastmod>2023-05-30</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/blockchain/page/1/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/js_learning/</loc>
@@ -126,6 +133,12 @@
     </url>
     <url>
         <loc>https://dorname.github.io/tags/one-mind/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/pbft/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/pbft/page/1/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/rust/</loc>

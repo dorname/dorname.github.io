@@ -2,7 +2,7 @@
 title: 经典区块链和现代区块链
 date: 2023-05-03
 extra:
-    image: blockchain_one.jpg
+    image: ../blockchain_one.jpg
 taxonomies:
   tags:
     - blockchain
