@@ -153,3 +153,175 @@ localStorage和sessionStorage的区别，loaclStorage中的数据会保留到通
 
 ### *IndexedDB*
 
+Indexed Database API简称IndexedDB，浏览器中存储结构化数据的解决方案。
+
+IndexedDB的设计完全异步，故通常是以请求的形式执行，这些请求会异步执行，产生成功的结果或错误。
+
+常利用onerror和onsuccess事件处理程序来确定输出。
+
+#### 数据库
+
+声明一个indexedDB数据库
+
+1. 调用**indexedDB.open()**方法，第一个参数是数据库名称，第二个参数是版本号
+
+   **注意：**如果给定名称的数据库已存在，则会发送一个打开它的请求；如果不存在，则会发送创建并打
+
+   开这个数据库的请求
+
+2. 通过添加**onerror**和**onsuccess**事件去监听打开失败或者打开成功
+   ```js
+   let db, 
+    request, 
+    version = 1; 
+   request = indexedDB.open("admin", version); 
+   request.onerror = (event) => 
+    alert(`Failed to open: ${event.target.errorCode}`); 
+   request.onsuccess = (event) => { 
+    db = event.target.result; 
+   };
+   ```
+
+#### 对象存储
+
+***IndexedDB***使用对象存储而不是表，并且单个数据库可以包含任意数量的对象存储。当一个值存储在对象存储库中时，它就与一个键相关联。根据对象存储是使用密钥路径(***Key Path***)还是密钥生成器(***Key Generator***)，有几种不同的方式可以提供密钥。
+
+**下述表格多种以提供键的方式：**
+
+| Key Path(keyPath) | Key Generator(autoIncrement) | Description                                                  |
+| ----------------- | :--------------------------- | ------------------------------------------------------------ |
+| N                 | N                            | 这个对象存储可以保存任何类型的值，甚至是像数字和字符串这样的基本值。每当要添加新值时，必须提供单独的键参数。 |
+| Y                 | N                            | 这个对象存储只能保存***JavaScript***对象。对象必须具有与***Key Path***同名的属性。 |
+| N                 | Y                            | 这个对象存储可以保存任何类型的值。键是自动生成的，如果您想使用特定的键，也可以提供单独的键参数。 |
+| Y                 | Y                            | 这个对象存储只能保存***JavaScript***对象。通常生成一个键，并且生成的键的值存储在与***Key Path***同名的属性中的对象中。但是，如果这样的属性已经存在，则使用该属性的值作为键，而不是生成新键。 |
+
+1. 准备数据
+
+   ```js
+   // 创建用户对象数组
+   const customerData = [
+     { ssn: "444-44-4444", name: "Bill", age: 35, email: "bill@company.com" },
+     { ssn: "555-55-5555", name: "Donna", age: 32, email: "donna@home.org" },
+   ];
+   ```
+
+2. 创建***IndexedDB***存储我们的数据
+
+   ```js
+   const dbName = "the_name";
+   
+   const request = indexedDB.open(dbName, 2);
+   
+   request.onerror = (event) => {
+     // 处理数据库打开的异常处理
+   };
+   request.onupgradeneeded = (event) => {
+     const db = event.target.result;
+   
+     //创建一个对象存储保存用户信息，并通过ssn作为键路径（默认为唯一索引）
+     const objectStore = db.createObjectStore("customers", { keyPath: "ssn" });
+   
+     // 将name作为对象存储的一个查询索引，目标是为了通过name去筛选用户
+     // 因为用户名是可重复的，所以我们唯一索引属性不能为true
+     objectStore.createIndex("name", "name", { unique: false });
+   
+     // Create an index to search customers by email. We want to ensure that
+     // no two customers have the same email, so use a unique index.
+     // 将email作为对象存储的一个查询索引，目标是为了通过email去筛选用户
+     // 因为邮箱是不可重复的，所以我们唯一索引属性设置为true
+     objectStore.createIndex("email", "email", { unique: true });
+   
+     // 使用交易的oncomplete 来保证对象存储的创建在数据添加之前已经完成
+     // 事务处理
+     objectStore.transaction.oncomplete = (event) => {
+       // Store values in the newly created objectStore.
+       // 将用户信息存储到一个创建好的对象存储当中。
+       const customerObjectStore = db
+         .transaction("customers", "readwrite")
+         .objectStore("customers");
+       customerData.forEach((customer) => {
+         customerObjectStore.add(customer);
+       });
+     };
+   };
+   
+   ```
+
+   ***注意：***
+
+   onupgradenneeded是唯一可以更改数据库结构的地方。在其中，您可以创建和删除对象存储，构建和删除索引。
+
+#### 事务：
+```js
+const transaction = db.transaction(["customers"], "readwrite");
+// Note: Older experimental implementations use the deprecated constant IDBTransaction.READ_WRITE instead of "readwrite".
+// In case you want to support such an implementation, you can write:
+// const transaction = db.transaction(["customers"], IDBTransaction.READ_WRITE);
+```
+在对新数据库执行任何操作之前，需要启动一个事务***transaction***。事务来自数据库对象，您必须指定希望事务跨越哪个对象存储。一旦进入事务内部，就可以访问保存数据和发出请求的对象存储。接下来，您需要决定是否要对数据库进行更改，还是只需要从数据库中读取数据。事务有三种可用的模式:只读(***readonly***)、读写(***readwrite***)和版本变更(***versionchange***)。
+
+***注意：***通过在事务中使用正确的作用域和模式可以加速数据访问
+
+- 在定义范围(scope)时，只指定需要的对象存储。通过这种方式，可以并发地运行具有不重叠作用域的多个事务。
+- 只在必要时指定读写事务模式(***readwrite***)。可以并发地运行多个具有重叠作用域的只读事务，但是一个对象存储只能有一个读写事务。要了解更多信息。
+
+**事务方法:**
+
+transaction()**拥有两个参数，其中一个可选的，最后会返回一个事务对象。
+
+- 第一个参数：类型数组，数组成员是对象存储名称，注意：数组为空时，事务将包括所有对象存储，不推荐这样做，后期空数组应该作为一种无效操作错误。
+- 第二个参数：事务模式，参数值可选，只读(***readonly***)、读写(***readwrite***)和版本变更(***versionchange***)。注意：如果不传参数默认为只读模式
+
+**事务生命周期：**
+
+事务与事件循环紧密相连。如果您创建一个事务并返回到事件循环而不使用它，那么该事务将变为非活动状态。保持事务活动的唯一方法是对其发出请求。当请求完成时，您将获得一个DOM事件，并且假设请求成功，您将有另一个机会在回调期间扩展事务。如果没有扩展事务就返回事件循环，则事务将变为非活动状态，依此类推。只要有挂起的请求，事务就保持活动状态。事务生命周期非常简单，但可能需要一点时间来适应。再举几个例子也会有所帮助。如果你开始看到**TRANSACTION_INACTIVE_ERR**错误代码，那么你就把事情搞砸了。
+
+事务可以接收三种不同类型的DOM事件:错误(**error**)、中止(**abort**)和完成(**complete**)。我们已经讨论了错误事件冒泡的方式，因此事务从它生成的任何请求中接收错误事件。这里更微妙的一点是，错误的默认行为是中止发生错误的事务。除非先在错误事件上调用**stopPropagation**()，然后再执行其他操作来处理错误，否则整个事务将回滚。这种设计迫使您考虑和处理错误，但您总是可以添加一个捕获错误处理程序。
+
+**1)数据库添加数据**
+
+```js
+// Do something when all the data is added to the database.
+transaction.oncomplete = (event) => {
+  console.log("All done!");
+};
+
+transaction.onerror = (event) => {
+  // Don't forget to handle errors!
+};
+
+const objectStore = transaction.objectStore("customers");
+customerData.forEach((customer) => {
+  const request = objectStore.add(customer);
+  request.onsuccess = (event) => {
+    // event.target.result === customer.ssn;
+  };
+});
+```
+
+调用**add**()生成的请求的结果是所添加值的键。所以在这种情况下，它应该等于所添加对象的ssn属性，因为对象存储使用**ssn**属性作为键路径。注意，**add**()函数要求数据库中不存在具有相同键的对象。如果您试图修改一个现有的条目，或者您不关心是否已经存在一个条目，那么您可以使用**put**()函数，如下面的更新数据库中的条目部分所示。
+
+**2)数据库删除数据**
+
+```js
+const request = db
+  .transaction(["customers"], "readwrite")
+  .objectStore("customers")
+  .delete("444-44-4444");
+request.onsuccess = (event) => {
+  // It's gone!
+};
+```
+
+**3)数据库获取数据**
+
+**4)更新数据库中的条目**
+
+**5)使用游标**
+
+**6)使用索引**
+
+**7)指定游标的范围和方向**
+
+
+
