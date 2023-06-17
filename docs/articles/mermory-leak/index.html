@@ -2,7 +2,7 @@
 <html>
   <head>
     
-    <title>Keep learning and trying</title>
+    <title>内存泄漏专题 | Keep learning and trying</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -761,166 +761,9 @@
     </nav>
     <main class="container mx-auto my-5">
       
-  
-    <div class="row">
-      
-        <div class="col-md-8">
-          
-            
-  <h4
-    class="border-bottom border-primary border-2 text-uppercase mt-5 fw-bold"
-  >Rust学习</h4>
-
-          
-          
-            
-            
-            
-              
-              
-              
-  
+  <h1>内存泄漏专题</h1>
+  <p class="text-muted">
     
-      
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust连接mysql建表测试"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;"
-      rel="bookmark"
-      title="rust连接mysql建表测试"
-    ><b>rust连接mysql建表测试</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  29&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>rust连接mysql建表测试
-前期准备
-
-
-创建一个新的Rust项目
-cargo new web_server_demo
-
-
-
-修改Cargo.toml
-
-添加actix-web依赖，快速构建接口服务。
-添加mysql依赖，连接&#x2F;操作mysql数据库。
-添加serde库依赖，用来序列化结构体实例。
-
-[dependencies]
-actix-web = &amp;quot;4&amp;quot;
-mysql = &amp;quot;*&amp;quot;# 通配符*表示可以使用任何版本，通常会拉取最新版本
-serde = { version = &amp;quot;1.0&amp;quot;, features = [&amp;quot;derive&amp;quot;] }
-
-
-
-创建一个模块mysql_connect目录结构为
-
-
-src
-|--mysql_connect
-	|--mod.rs
-	|--database_test.rs
-|--main.rs
-
-mod.rs的内容
-&#x2F;&#x2F;导出模块database_test
-pub mod database_test;
-&#x2F;&#x2F;导入模块database_test所有函数
-pub use database_test::*;
-
-
-接下是模块database_test.rs的内容
-
-use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
-use mysql::{PooledConn, prelude::Queryable};
-use serde::Deserialize;
-const DATA_SOURCE_URL:&amp;amp;str = &amp;quot;mysql:&#x2F;&#x2F;root:lgq1995@localhost:3306&#x2F;example&amp;quot;;
-&#x2F;&#x2F; #[derive(Debug)]
-#[derive(Deserialize,Debug)]
-struct Info{
-    name:String
-}
-&#x2F;&#x2F;建表接口
-#[get(&amp;quot;&#x2F;create_table&amp;quot;)]
-async fn create_table(info:web::Query&amp;lt;Info&amp;gt;) -&amp;gt; impl Responder{
-    println!(&amp;quot;name:{:?}&amp;quot;,info.name);
- ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-    
-      
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust学习(一)基础概念"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;"
-      rel="bookmark"
-      title="rust学习(一)基础概念"
-    ><b>rust学习(一)基础概念</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
   
   
     
@@ -932,739 +775,99 @@ async fn create_table(info:web::Query&amp;lt;Info&amp;gt;) -&amp;gt; impl Respon
    - 
   13&#x2F;05&#x2F;2023
 
-    </small>
   </p>
-
-          
-          
-  <p class="card-text text-muted">
+  
+  <p>
     
-      <small>Rust相关知识的思维导图
-
-浅入Rust基础
-目标：首先总结归纳Rust的基本内容，接着每天回顾一个了解过的rust基础
-常用语法
-变量和可变性
-
-
-变量的声明 
-&#x2F;&#x2F;let 变量名:变量类型 = 变量值
-let x = 5
-
-
-
-常量的声明
-&#x2F;&#x2F;const 常量名:常量类型 = 常量值
-const THE_X:U32 = 60*3;
-
-
-
-变量的可变性标记
-&#x2F;&#x2F;变量的可变性标记 mut
-let mut x = 5;
-x = 6;
-
-其他说明：
-
-
-可变变量重新声明成常态变量后，可变性会被覆盖掉，同时也会有相应的错误提示。
-let mut x = 5;
-let x = x+1;
-x = x+2; &#x2F;&#x2F;cannot mutate immutable variable `x`
-
-
-
-
-
-变量的封闭性
-变量的封闭性可以理解成，声明同名变量，会将上一个声明覆盖，直到下一个同名变量被声明，或者作用域结束。
-fn variablie(){
-    let x = 5;
-    let x = x...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-    
-  
-
-            
-          
-        </div>
-      
-        <div class="col-md-4">
-          
-            
-  <h4
-    class="border-bottom border-primary border-2 text-uppercase mt-5 fw-bold"
-  >杂活博客</h4>
-
-          
-          
-            
-            
-            
-              
-              
-              
-  
-    
-      
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;hashmap&#x2F;hash.jpg"
-    class="img-fluid m-auto d-block "
-    alt="hashMap"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;hashmap&#x2F;"
-      rel="bookmark"
-      title="hashMap"
-    ><b>hashMap</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  17&#x2F;06&#x2F;2023
-
-    </small>
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-    
-      
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;leet-code-try&#x2F;leetcode_one.jpg"
-    class="img-fluid m-auto d-block "
-    alt="leetCode刷题"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;leet-code-try&#x2F;"
-      rel="bookmark"
-      title="leetCode刷题"
-    ><b>leetCode刷题</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  13&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-    
-      
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;mermory-leak&#x2F;leak.jpg"
-    class="img-fluid m-auto d-block "
-    alt="内存泄漏专题"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;mermory-leak&#x2F;"
-      rel="bookmark"
-      title="内存泄漏专题"
-    ><b>内存泄漏专题</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  13&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-    
-      
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;brain-storm&#x2F;brain.jpg"
-    class="img-fluid m-auto d-block "
-    alt="小李很爱瞎想想"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;brain-storm&#x2F;"
-      rel="bookmark"
-      title="小李很爱瞎想想"
-    ><b>小李很爱瞎想想</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  12&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-    
-  
-
-            
-          
-        </div>
-      
-    </div>
-  
-    <div class="row">
-      
-        <div class="col-md-12">
-          
-            
-  <h4
-    class="border-bottom border-primary border-2 text-uppercase mt-5 fw-bold"
-  >区块链</h4>
-
-          
-          
-            
-            
-            
-              
-              
-              
-  
-    <div class="row">
-    
-    
-      <div class="col-md">
-        
-  
-    <div class="card p-3 border-0">
-      
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;consensus&#x2F;..&#x2F;blockchain_one.jpg"
-    class="img-fluid m-auto d-block card-img-top"
-    alt="拜占庭问题"
-  />
-
-      <div class="card-body">
-        
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;consensus&#x2F;"
-      rel="bookmark"
-      title="拜占庭问题"
-    ><b>拜占庭问题</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  30&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-      </div>
-    </div>
-  
-
-      </div>
-    
-    
-      <div class="col-md">
-        
-  
-    <div class="card p-3 border-0">
-      
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;classic-modern-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
-    class="img-fluid m-auto d-block card-img-top"
-    alt="经典区块链和现代区块链"
-  />
-
-      <div class="card-body">
-        
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;classic-modern-blockchain&#x2F;"
-      rel="bookmark"
-      title="经典区块链和现代区块链"
-    ><b>经典区块链和现代区块链</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-      </div>
-    </div>
-  
-
-      </div>
-    
-    </div>
-  
-
-            
-          
-        </div>
-      
-    </div>
-  
-    <div class="row">
-      
-        <div class="col-md-4">
-          
-            
-  <h4
-    class="border-bottom border-primary border-2 text-uppercase mt-5 fw-bold"
-  >js相关博客</h4>
-
-          
-          
-            
-            
-            
-              
-              
-              
-  
-    
-  
-    
-    <div
-       id="bs-carousel-47456999"
-       class="carousel slide"
-       data-bs-ride="carousel"
-    >
-      <div class="carousel-inner">
-        
-          <div class="carousel-item active">
-            <img
-              src="https://dorname.github.io/js_learning/section-25-client-storage/../js_logo.png"
-              class="d-block w-100"
-              alt="js学习笔记(25)"
-            >
-            <div class="carousel-caption d-none d-md-block">
-              <h5>js学习笔记(25)</h5>
-              <p>
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  23&#x2F;05&#x2F;2023
-</p>
-            </div>
-          </div>
-        
-          <div class="carousel-item">
-            <img
-              src="https://dorname.github.io/js_learning/section-27-worker-thread/../js_logo.png"
-              class="d-block w-100"
-              alt="js学习笔记(27)"
-            >
-            <div class="carousel-caption d-none d-md-block">
-              <h5>js学习笔记(27)</h5>
-              <p>
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  23&#x2F;05&#x2F;2023
-</p>
-            </div>
-          </div>
-        
-      </div>
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#bs-carousel-47456999"
-        data-bs-slide="prev"
+      <a
+        href="https://dorname.github.io/tags/memory-leak/"
+        class="badge bg-dark text-decoration-none link-light me-1"
       >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#bs-carousel-47456999"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-  
-
-  
-
-            
-          
-        </div>
-      
-        <div class="col-md-8">
-          
-            
-  <h4
-    class="border-bottom border-primary border-2 text-uppercase mt-5 fw-bold"
-  >wasm实验</h4>
-
-          
-          
-            
-            
-            
-              
-              
-                
-                
-                
-  
-    <div class="row">
+        Memory leak
+      </a>
     
+  </p>
+  
+  <div class="content">
+    <h1 id="nei-cun-xie-lou">内存泄漏</h1>
+<h2 id="shi-yao-shi-nei-cun-xie-lou">什么是内存泄漏？</h2>
+<p>内存泄漏指的是在计算机程序中动态分配的内存空间在不再被使用时没有被正确释放或回收的情况。当发生内存泄漏时，程序持续占用着一部分内存，而这些内存无法被其他部分或其他程序使用，从而导致系统的可用内存逐渐减少。</p>
+<p>内存泄漏可能由以下情况引起：</p>
+<ol>
+<li>动态内存分配未释放：在程序中使用诸如malloc、new等函数或操作符分配内存空间时，如果没有及时调用对应的释放函数或操作符，就会导致内存泄漏。例如，在C++中使用new操作符分配对象的内存，如果没有使用delete操作符释放内存，就会发生内存泄漏。</li>
+<li>数据结构中的循环引用：在某些情况下，数据结构中的对象之间可能存在循环引用关系，即对象A引用对象B，对象B又引用对象A，而且这些对象都不再被程序使用。这种情况下，即使这些对象不再需要，由于彼此之间存在引用关系，它们无法被垃圾回收器正确回收，从而导致内存泄漏。</li>
+<li>文件或资源未关闭：在使用文件、网络连接、数据库连接等外部资源时，如果没有正确关闭或释放这些资源，就会导致内存泄漏。即使程序不再使用这些资源，但操作系统或底层库可能仍然保持着相关的内存空间。</li>
+</ol>
+<p>内存泄漏会导致程序运行时占用的内存不断增加，最终可能导致系统的内存耗尽或程序性能下降。为了避免内存泄漏，开发者应当注意及时释放动态分配的内存，处理对象之间的引用关系，以及正确关闭文件和其他资源。使用合适的内存管理技术和工具，例如自动垃圾回收（Garbage Collection）或智能指针，也可以帮助减少内存泄漏的风险。</p>
+<h2 id="jszhong-de-nei-cun-xie-lou">js中的内存泄漏</h2>
+<p>在JavaScript中，内存泄漏是指无用的对象仍然被占用内存，而无法被垃圾回收器释放的情况。JavaScript中的内存泄漏通常是由以下情况引起的：</p>
+<ol>
+<li>未及时清理定时器和事件监听器：在JavaScript中使用定时器（setTimeout或setInterval）或事件监听器（addEventListener）时，如果没有及时清理它们，即使它们不再需要，它们仍然保留对回调函数的引用，导致相关对象无法被垃圾回收。</li>
+<li>循环引用：如果存在对象之间的循环引用，即对象A引用了对象B，而对象B又引用了对象A，并且没有其他部分引用这些对象，就会发生内存泄漏。即使这些对象已经不再被程序使用，但由于它们之间的引用关系，垃圾回收器无法正确回收它们所占用的内存。</li>
+<li>未释放的DOM元素引用：在JavaScript中，如果在页面中创建了DOM元素的引用，但在后续不再需要时未及时释放，就会发生内存泄漏。即使从页面中删除了这些元素，它们仍然被引用，无法被垃圾回收器回收。</li>
+<li>闭包引用：JavaScript中的闭包函数可以访问其外部作用域的变量，如果在闭包函数中引用了外部作用域的变量，而闭包函数本身又没有被及时释放，就会导致引用的变量无法被垃圾回收。</li>
+<li>未释放的资源：在JavaScript中涉及到外部资源的操作，如网络请求、数据库连接等，如果没有正确释放这些资源，就会导致内存泄漏。这些资源可能占用系统内存或浏览器资源，而没有被及时释放。</li>
+</ol>
+<p>为了避免JavaScript中的内存泄漏问题，开发者可以采取以下措施：</p>
+<ul>
+<li>及时清理定时器和事件监听器，确保不再需要时将其移除。</li>
+<li>避免循环引用的产生，特别是在对象之间相互引用时要小心处理。</li>
+<li>在不再需要时释放对DOM元素的引用，尽量避免保留过多不必要的引用。</li>
+<li>在使用闭包函数时，注意及时释放不再需要的闭包函数和外部作用域的变量。</li>
+<li>对涉及到外部资源的操作，如网络请求、数据库连接等，要确保及时关闭或释放这些资源。</li>
+<li>使用现代的开发工具和浏览器提供的开发者工具进行内存泄漏的检测和分析，以及优化代码和内存使用。</li>
+</ul>
+
+  </div>
+  
     
-      <div class="col-md">
+  
+  <div class="card my-5">
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center">
         
-  
-    <div class="card border-0 text-white">
-      
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;lab-one&#x2F;..&#x2F;new.jpg"
-    class="img-fluid m-auto d-block card-img"
-    alt="WebAssembly Rust and ExtJs 实验(一)"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;harry.jpg"
+    class="img-fluid m-auto d-block rounded-circle"
+    alt="Li Guangqiao"
   />
 
-      <div class="card-img-overlay">
-        
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;lab-one&#x2F;"
-      rel="bookmark"
-      title="WebAssembly Rust and ExtJs 实验(一)"
-    ><b>WebAssembly Rust and ExtJs 实验(一)</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  29&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
       </div>
-    </div>
-  
-
-      </div>
-    
-    
-      <div class="col-md">
-        
-  
-    <div class="card border-0 text-white">
-      
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;preview&#x2F;..&#x2F;new.jpg"
-    class="img-fluid m-auto d-block card-img"
-    alt="WebAssembly Rust and ExtJs 实验"
-  />
-
-      <div class="card-img-overlay">
-        
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;preview&#x2F;"
-      rel="bookmark"
-      title="WebAssembly Rust and ExtJs 实验"
-    ><b>WebAssembly Rust and ExtJs 实验</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  02&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-      </div>
-    </div>
-  
-
-      </div>
-    
-    </div>
-  
-
-                
-              
-                
-                
-                
-  
-    <div class="row">
-    
-    </div>
-  
-
-                
-              
-            
-          
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a
+              class="text-decoration-none text-reset"
+              href="https://dorname.github.io/authors/liguangqiao/"
+            >Li Guangqiao</a>
+          </h5>
+          <p class="card-text"><p>一个正在转rust的ExtJs前端工程师。迷信rust的整体发展，十分相信rust在各个领域都能发光发热，至少目前rust在很多领域上验证了其安全性、易维护性。但说实话对于我这种菜鸡也是真的难上手哈哈哈~~。
+思路总结：</p>
+<ul>
+<li>万物诞生都会有一个需求来源，每一个改变都是为了解决某个问题，最后应该考虑如何去做</li>
+<li>学会掌握一些宏观的知识和理论：系统论、还原论</li>
+<li>工程化思想，如何描述整体，从整体架构到模块关联等
+故学习东西应该像看地图一样，先看整体了解整体的结构，然后再聚焦每一个模块，对于模块的学习，思考三个问题，“是什么？”、“为什么？”、“怎么做？”；那么设计一个东西时也应该去考虑整体性和关联性。</li>
+</ul>
+<p>有关于未来的发展，以下是鄙人的粗浅的观点：</p>
+<ul>
+<li>编程语言未来应该是每个人必备的工具</li>
+<li>未来的交互方式应该会以语言交互为主流</li>
+<li>下一个去中心化的技术方案出来之前，区块链依然是web3建立价值体系的基础技术方案，如何将现实价值和虚拟价值联通是进入数字世界的一个大难题。</li>
+<li>未来注定是AI的世界。AI的进化会伴随绝大部分人的退化，届时除了尖端人才，人们学习的重心会放在何处？</li>
+</ul>
+</p>
         </div>
-      
+      </div>
     </div>
-  
-  
-  
-  
-	
-  
-  
+  </div>
 
-  
-    
-  <h4
-    class="border-bottom border-primary border-2 text-uppercase mt-5 fw-bold"
-  >标签主题</h4>
-
-    
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;blockchain&#x2F;"
-      >blockchain</a> | 
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;database&#x2F;"
-      >DataBase</a> | 
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;dioxus&#x2F;"
-      >dioxus</a> | 
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;extjs&#x2F;"
-      >ExtJs</a> | 
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;hashmap&#x2F;"
-      >hashMap</a> | 
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;js&#x2F;"
-      >js</a> | 
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;memory-leak&#x2F;"
-      >Memory leak</a> | 
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;mysql&#x2F;"
-      >MySql</a> | 
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;one-mind&#x2F;"
-      >One Mind</a> | 
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;pbft&#x2F;"
-      >pbft</a> | 
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;rust&#x2F;"
-      >Rust</a> | 
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;tauri&#x2F;"
-      >tauri</a> | 
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;webssembly&#x2F;"
-      >Webssembly</a> | 
-    
-      <a
-        class="text-decoration-none text-reset"
-        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;yew&#x2F;"
-      >yew</a> | 
-    
   
 
     </main>
     
-    
+  
+
     
     <footer class="
       mt-auto p-5

@@ -22,11 +22,22 @@
         <lastmod>2023-05-03</lastmod>
     </url>
     <url>
+        <loc>https://dorname.github.io/articles/hashmap/</loc>
+        <lastmod>2023-06-17</lastmod>
+    </url>
+    <url>
         <loc>https://dorname.github.io/articles/leet-code-try/</loc>
         <lastmod>2023-05-13</lastmod>
     </url>
     <url>
+        <loc>https://dorname.github.io/articles/mermory-leak/</loc>
+        <lastmod>2023-05-13</lastmod>
+    </url>
+    <url>
         <loc>https://dorname.github.io/articles/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/articles/page/2/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/articles/principle-of-blockchain/</loc>
@@ -117,10 +128,22 @@
         <loc>https://dorname.github.io/tags/extjs/page/1/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/tags/hashmap/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/hashmap/page/1/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/tags/js/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/js/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/memory-leak/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/memory-leak/page/1/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/mysql/</loc>
