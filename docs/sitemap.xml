@@ -59,6 +59,9 @@
         <loc>https://dorname.github.io/authors/liguangqiao/page/3/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/authors/liguangqiao/page/4/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/blockchain/</loc>
     </url>
     <url>
@@ -85,6 +88,10 @@
     <url>
         <loc>https://dorname.github.io/js_learning/section-27-worker-thread/</loc>
         <lastmod>2023-05-23</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/js_learning/section-9-reflection-proxy/</loc>
+        <lastmod>2023-06-27</lastmod>
     </url>
     <url>
         <loc>https://dorname.github.io/rust/</loc>
