@@ -888,6 +888,21 @@
 </span><span>    println!(&quot;</span><span style="color:#d08770;">{:?}</span><span>&quot;,w);
 </span><span>}
 </span></code></pre>
+<p>多个<em>trait</em>绑定到一起:</p>
+<p>第一种是使用'+'为泛型限定多个<em>trait</em></p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">some_func</span><span>&lt;T:trait1+trait2,U:trait1&gt;(</span><span style="color:#bf616a;">x</span><span>:T,</span><span style="color:#bf616a;">y</span><span>:U){
+</span><span>    </span><span style="color:#65737e;">//DO SOMETHING
+</span><span>}
+</span></code></pre>
+<p>第二种使用where为泛型限定多个<em>trait</em></p>
+<pre data-lang="RUST" style="background-color:#2b303b;color:#c0c5ce;" class="language-RUST "><code class="language-RUST" data-lang="RUST"><span style="color:#65737e;">//Where 语法
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">some_func</span><span>&lt;T,U&gt;(</span><span style="color:#bf616a;">x</span><span>:T,</span><span style="color:#bf616a;">y</span><span>:U)
+</span><span style="color:#b48ead;">where</span><span> T:trait1+trait2
+</span><span>	  U:trait1
+</span><span>{
+</span><span>    </span><span style="color:#65737e;">//DO SOMETHING
+</span><span>}
+</span></code></pre>
 
   </div>
   

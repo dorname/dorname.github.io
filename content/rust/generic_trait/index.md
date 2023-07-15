@@ -120,6 +120,30 @@ fn test(){
 }
 ```
 
+多个*trait*绑定到一起:
+
+第一种是使用'+'为泛型限定多个*trait*
+
+```rust
+fn some_func<T:trait1+trait2,U:trait1>(x:T,y:U){
+    //DO SOMETHING
+}
+```
+
+第二种使用where为泛型限定多个*trait*
+
+```RUST
+//Where 语法
+fn some_func<T,U>(x:T,y:U)
+where T:trait1+trait2
+	  U:trait1
+{
+    //DO SOMETHING
+}
+```
+
+
+
 
 
 
