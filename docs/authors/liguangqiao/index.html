@@ -815,6 +815,84 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;generic-trait&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="rust学习(三)泛型和特征对象"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;generic-trait&#x2F;"
+      rel="bookmark"
+      title="rust学习(三)泛型和特征对象"
+    ><b>rust学习(三)泛型和特征对象</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  15&#x2F;07&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>泛型和特征对象
+泛型解决了多种数据类型可共用一个方法的问题，而特征对象（trait）则提供一种定义和限制泛型行为的方法，特征对象(trait)中封装各类型共享的方法
+泛型例子：
+use std::ops::Add;
+
+fn add_i8(a:i8,b:i8) -&amp;gt; i8 {
+    a+b
+}
+fn add_i16(a:i16,b:i16) -&amp;gt; i16 {
+    a+b
+}
+fn add_i32(a:i32,b:i32) -&amp;gt; i32 {
+    a+b
+}
+fn add&amp;lt;T:std::ops::Add + Add&amp;lt;Output = T&amp;gt;&amp;gt;(a:T,b:T) -&amp;gt; T {
+    a+b
+}
+fn add_test(){
+    println!(&amp;quot;{}&amp;quot;,add_i8(1,2));
+    println!(&amp;quot;{}&amp;quot;,add_i16(1,2));
+   ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;ownership&#x2F;..&#x2F;rust.jpg"
     class="img-fluid m-auto d-block "
     alt="rust学习(二)所有权和生命周期"
@@ -1107,117 +1185,6 @@ IC2 如果指挥官是忠诚的，那么每个忠诚的中尉都会服从他的�
 
 不可能的结果
 拜占庭将军问题看似简单。令人惊讶的事实表明，如果将军们只能发出口头信息，那么除非超过三分之二的将军是忠诚的，否则任何解决方案都不会奏效。特别是，在只有三个将军的情况下，在一个叛徒面前，任何解决方案都不可能奏效。口头信息的内容完全在发送者的控制之下，所以一个叛逆的发送者可以传递任何可能的信息。**这样的消息与计算机通常相互发送的消息类型相对应。在第4节中，我们考虑了签名的、书面的消息，但这是不正确的。（Such a message corresponds to the type of message that computers normally send to one another. In Section 4 we consider signed, written messages, for which this is not true....</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust连接mysql建表测试"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;"
-      rel="bookmark"
-      title="rust连接mysql建表测试"
-    ><b>rust连接mysql建表测试</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  29&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>rust连接mysql建表测试
-前期准备
-
-
-创建一个新的Rust项目
-cargo new web_server_demo
-
-
-
-修改Cargo.toml
-
-添加actix-web依赖，快速构建接口服务。
-添加mysql依赖，连接&#x2F;操作mysql数据库。
-添加serde库依赖，用来序列化结构体实例。
-
-[dependencies]
-actix-web = &amp;quot;4&amp;quot;
-mysql = &amp;quot;*&amp;quot;# 通配符*表示可以使用任何版本，通常会拉取最新版本
-serde = { version = &amp;quot;1.0&amp;quot;, features = [&amp;quot;derive&amp;quot;] }
-
-
-
-创建一个模块mysql_connect目录结构为
-
-
-src
-|--mysql_connect
-	|--mod.rs
-	|--database_test.rs
-|--main.rs
-
-mod.rs的内容
-&#x2F;&#x2F;导出模块database_test
-pub mod database_test;
-&#x2F;&#x2F;导入模块database_test所有函数
-pub use database_test::*;
-
-
-接下是模块database_test.rs的内容
-
-use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
-use mysql::{PooledConn, prelude::Queryable};
-use serde::Deserialize;
-const DATA_SOURCE_URL:&amp;amp;str = &amp;quot;mysql:&#x2F;&#x2F;root:lgq1995@localhost:3306&#x2F;example&amp;quot;;
-&#x2F;&#x2F; #[derive(Debug)]
-#[derive(Deserialize,Debug)]
-struct Info{
-    name:String
-}
-&#x2F;&#x2F;建表接口
-#[get(&amp;quot;&#x2F;create_table&amp;quot;)]
-async fn create_table(info:web::Query&amp;lt;Info&amp;gt;) -&amp;gt; impl Responder{
-    println!(&amp;quot;name:{:?}&amp;quot;,info.name);
- ...</small>
     
   </p>
 

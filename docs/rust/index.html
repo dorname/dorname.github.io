@@ -778,6 +778,84 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;generic-trait&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="rust学习(三)泛型和特征对象"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;generic-trait&#x2F;"
+      rel="bookmark"
+      title="rust学习(三)泛型和特征对象"
+    ><b>rust学习(三)泛型和特征对象</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  15&#x2F;07&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>泛型和特征对象
+泛型解决了多种数据类型可共用一个方法的问题，而特征对象（trait）则提供一种定义和限制泛型行为的方法，特征对象(trait)中封装各类型共享的方法
+泛型例子：
+use std::ops::Add;
+
+fn add_i8(a:i8,b:i8) -&amp;gt; i8 {
+    a+b
+}
+fn add_i16(a:i16,b:i16) -&amp;gt; i16 {
+    a+b
+}
+fn add_i32(a:i32,b:i32) -&amp;gt; i32 {
+    a+b
+}
+fn add&amp;lt;T:std::ops::Add + Add&amp;lt;Output = T&amp;gt;&amp;gt;(a:T,b:T) -&amp;gt; T {
+    a+b
+}
+fn add_test(){
+    println!(&amp;quot;{}&amp;quot;,add_i8(1,2));
+    println!(&amp;quot;{}&amp;quot;,add_i16(1,2));
+   ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;ownership&#x2F;..&#x2F;rust.jpg"
     class="img-fluid m-auto d-block "
     alt="rust学习(二)所有权和生命周期"

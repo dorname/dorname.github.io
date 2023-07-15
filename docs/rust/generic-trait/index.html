@@ -2,9 +2,7 @@
 <html>
   <head>
     
-    <title>
-	Keep learning and trying - tags: Rust
-</title>
+    <title>rust学习(三)泛型和特征对象 | Keep learning and trying</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -763,37 +761,9 @@
     </nav>
     <main class="container mx-auto my-5">
       
-  <h1>Posts by Topic: Rust</h1>
-	
+  <h1>rust学习(三)泛型和特征对象</h1>
+  <p class="text-muted">
     
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust学习(一)基础概念"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;"
-      rel="bookmark"
-      title="rust学习(一)基础概念"
-    ><b>rust学习(一)基础概念</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
   
   
     
@@ -803,310 +773,172 @@
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  13&#x2F;05&#x2F;2023
+  15&#x2F;07&#x2F;2023
 
-    </small>
   </p>
-
-          
-          
-  <p class="card-text text-muted">
+  
+  <p>
     
-      <small>Rust相关知识的思维导图
-
-浅入Rust基础
-目标：首先总结归纳Rust的基本内容，接着每天回顾一个了解过的rust基础
-常用语法
-变量和可变性
-
-
-变量的声明 
-&#x2F;&#x2F;let 变量名:变量类型 = 变量值
-let x = 5
-
-
-
-常量的声明
-&#x2F;&#x2F;const 常量名:常量类型 = 常量值
-const THE_X:U32 = 60*3;
-
-
-
-变量的可变性标记
-&#x2F;&#x2F;变量的可变性标记 mut
-let mut x = 5;
-x = 6;
-
-其他说明：
-
-
-可变变量重新声明成常态变量后，可变性会被覆盖掉，同时也会有相应的错误提示。
-let mut x = 5;
-let x = x+1;
-x = x+2; &#x2F;&#x2F;cannot mutate immutable variable `x`
-
-
-
-
-
-变量的封闭性
-变量的封闭性可以理解成，声明同名变量，会将上一个声明覆盖，直到下一个同名变量被声明，或者作用域结束。
-fn variablie(){
-    let x = 5;
-    let x = x...</small>
+      <a
+        href="https://dorname.github.io/tags/rust/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        Rust
+      </a>
     
   </p>
-
-          
-        </div>
-      </div>
-    </div>
   
+  <div class="content">
+    <h1 id="fan-xing-he-te-zheng-dui-xiang"><strong>泛型和特征对象</strong></h1>
+<p><em><strong>泛型解决了多种数据类型可共用一个方法的问题，而特征对象（trait）则提供一种定义和限制泛型行为的方法，特征对象(trait)中封装各类型共享的方法</strong></em></p>
+<p>泛型例子：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::ops::Add;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">add_i8</span><span>(</span><span style="color:#bf616a;">a</span><span>:</span><span style="color:#b48ead;">i8</span><span>,</span><span style="color:#bf616a;">b</span><span>:</span><span style="color:#b48ead;">i8</span><span>) -&gt; </span><span style="color:#b48ead;">i8 </span><span>{
+</span><span>    a+b
+</span><span>}
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">add_i16</span><span>(</span><span style="color:#bf616a;">a</span><span>:</span><span style="color:#b48ead;">i16</span><span>,</span><span style="color:#bf616a;">b</span><span>:</span><span style="color:#b48ead;">i16</span><span>) -&gt; </span><span style="color:#b48ead;">i16 </span><span>{
+</span><span>    a+b
+</span><span>}
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">add_i32</span><span>(</span><span style="color:#bf616a;">a</span><span>:</span><span style="color:#b48ead;">i32</span><span>,</span><span style="color:#bf616a;">b</span><span>:</span><span style="color:#b48ead;">i32</span><span>) -&gt; </span><span style="color:#b48ead;">i32 </span><span>{
+</span><span>    a+b
+</span><span>}
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">add</span><span>&lt;T:std::ops::Add + Add&lt;Output = T&gt;&gt;(</span><span style="color:#bf616a;">a</span><span>:T,</span><span style="color:#bf616a;">b</span><span>:T) -&gt; T {
+</span><span>    a+b
+</span><span>}
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">add_test</span><span>(){
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;,</span><span style="color:#96b5b4;">add_i8</span><span>(</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>));
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;,</span><span style="color:#96b5b4;">add_i16</span><span>(</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>));
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;,</span><span style="color:#96b5b4;">add_i32</span><span>(</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>));
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;,</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>));
+</span><span>}
+</span><span>#[</span><span style="color:#bf616a;">test</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test</span><span>() {
+</span><span>    </span><span style="color:#96b5b4;">add_test</span><span>();
+</span><span>
+</span><span>}
+</span></code></pre>
+<p><strong>注意：</strong> 一个<em>trait</em>只能由方法、类型、常量三部分组成，它描述了一种抽象接口。接口的使用方式，实现<em>trait</em>，默认为类型实现公共方法。</p>
+<p>例如：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::fmt;
+</span><span style="color:#65737e;">//定义一个工人结构体
+</span><span style="color:#b48ead;">struct </span><span>worker{
+</span><span>    </span><span style="color:#bf616a;">name</span><span>:String,
+</span><span>    </span><span style="color:#bf616a;">workerId</span><span>:</span><span style="color:#b48ead;">i32</span><span>,
+</span><span>    
+</span><span>}
+</span><span style="color:#65737e;">//实现调试打印特征
+</span><span style="color:#b48ead;">impl </span><span>fmt::Debug </span><span style="color:#b48ead;">for </span><span>worker {
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">fmt</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">f</span><span>: &amp;</span><span style="color:#b48ead;">mut </span><span>fmt::Formatter&lt;&#39;_&gt;) -&gt; fmt::Result {
+</span><span>        f.</span><span style="color:#96b5b4;">debug_struct</span><span>(&quot;</span><span style="color:#a3be8c;">Worker</span><span>&quot;)
+</span><span>            .</span><span style="color:#96b5b4;">field</span><span>(&quot;</span><span style="color:#a3be8c;">name</span><span>&quot;, &amp;</span><span style="color:#bf616a;">self</span><span>.name)
+</span><span>            .</span><span style="color:#96b5b4;">field</span><span>(&quot;</span><span style="color:#a3be8c;">workerId</span><span>&quot;, &amp;</span><span style="color:#bf616a;">self</span><span>.workerId)
+</span><span>            .</span><span style="color:#96b5b4;">finish</span><span>()
+</span><span>    }
+</span><span>}
+</span><span style="color:#65737e;">//实现worker自我介绍方法
+</span><span style="color:#b48ead;">impl  </span><span>worker {
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">self_produce</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>){
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;,</span><span style="color:#bf616a;">self</span><span>.name);
+</span><span>    }
+</span><span>    
+</span><span>}
+</span><span style="color:#65737e;">//定义行为特征
+</span><span style="color:#b48ead;">trait </span><span>behavior{
+</span><span>    </span><span style="color:#65737e;">//新类型
+</span><span>    </span><span style="color:#b48ead;">type </span><span>Tool;
+</span><span>    </span><span style="color:#65737e;">//常量
+</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#d08770;">YEAR</span><span>:</span><span style="color:#b48ead;">i32 </span><span>= </span><span style="color:#d08770;">2023</span><span>;
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">start</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>) {
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">start working!!!</span><span>&quot;);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">work</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>){
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">coding</span><span>&quot;);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">end</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>){
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">end working!!!</span><span>&quot;);
+</span><span>    }
+</span><span>    </span><span style="color:#65737e;">//泛型例子，仅实现了fmt::Debug特征的类型可使用此函数
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">talking_shit</span><span>&lt;T:fmt::Debug&gt;(&amp;</span><span style="color:#bf616a;">self</span><span>,</span><span style="color:#bf616a;">name</span><span>: &amp;T,</span><span style="color:#bf616a;">msg</span><span>: &amp;T){
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{:?}</span><span style="color:#a3be8c;">is ^*** </span><span style="color:#d08770;">{:?}</span><span>&quot;,name,msg);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">init_tool</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>,</span><span style="color:#bf616a;">x</span><span>: </span><span style="color:#b48ead;">Self::</span><span>Tool);
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">impl </span><span>behavior </span><span style="color:#b48ead;">for </span><span>worker{
+</span><span>    </span><span style="color:#65737e;">// 确认新类型
+</span><span>    </span><span style="color:#b48ead;">type </span><span>Tool = String;
+</span><span>  	</span><span style="color:#65737e;">//重载方法
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">init_tool</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>,</span><span style="color:#bf616a;">x</span><span>: </span><span style="color:#b48ead;">Self::</span><span>Tool){
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{:?}</span><span style="color:#a3be8c;">,</span><span style="color:#d08770;">{:?}</span><span>&quot;,</span><span style="color:#b48ead;">Self</span><span>::</span><span style="color:#d08770;">YEAR</span><span>,x);
+</span><span>    }
+</span><span>}
+</span><span>#[</span><span style="color:#bf616a;">test</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">let</span><span> w = worker{
+</span><span>        name:String::from(&quot;</span><span style="color:#a3be8c;">mengzhongshadouyou</span><span>&quot;),
+</span><span>        workerId:</span><span style="color:#d08770;">123
+</span><span>    };
+</span><span>    w.</span><span style="color:#96b5b4;">init_tool</span><span>(String::from(&quot;</span><span style="color:#a3be8c;">getting keybroad</span><span>&quot;));
+</span><span>    w.</span><span style="color:#96b5b4;">start</span><span>();
+</span><span>    w.</span><span style="color:#96b5b4;">work</span><span>();
+</span><span>    w.</span><span style="color:#96b5b4;">end</span><span>();
+</span><span>    w.</span><span style="color:#96b5b4;">self_produce</span><span>();
+</span><span>    w.</span><span style="color:#96b5b4;">talking_shit</span><span>(&amp;String::from(&quot;</span><span style="color:#a3be8c;">boss</span><span>&quot;), &amp;String::from(&quot;</span><span style="color:#a3be8c;">idiot</span><span>&quot;));
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{:?}</span><span>&quot;,w);
+</span><span>}
+</span></code></pre>
 
-	
+  </div>
+  
     
   
-    <div class="card p-3 border-0">
-      <div class="row g-5">
+  <div class="card my-5">
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center">
         
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;database-lab&#x2F;database.jpg"
-    class="img-fluid m-auto d-block "
-    alt="数据库学习"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;harry.jpg"
+    class="img-fluid m-auto d-block rounded-circle"
+    alt="Li Guangqiao"
   />
 
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;database-lab&#x2F;"
-      rel="bookmark"
-      title="数据库学习"
-    ><b>数据库学习</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>TODO
-学习和了解mysql、redis
-同时学习分布式数据库、时序数据库原理。
-...</small>
-    
-  </p>
-
-          
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a
+              class="text-decoration-none text-reset"
+              href="https://dorname.github.io/authors/liguangqiao/"
+            >Li Guangqiao</a>
+          </h5>
+          <p class="card-text"><p>一个正在转rust的ExtJs前端工程师。迷信rust的整体发展，十分相信rust在各个领域都能发光发热，至少目前rust在很多领域上验证了其安全性、易维护性。但说实话对于我这种菜鸡也是真的难上手哈哈哈~~。
+思路总结：</p>
+<ul>
+<li>万物诞生都会有一个需求来源，每一个改变都是为了解决某个问题，最后应该考虑如何去做</li>
+<li>学会掌握一些宏观的知识和理论：系统论、还原论</li>
+<li>工程化思想，如何描述整体，从整体架构到模块关联等
+故学习东西应该像看地图一样，先看整体了解整体的结构，然后再聚焦每一个模块，对于模块的学习，思考三个问题，“是什么？”、“为什么？”、“怎么做？”；那么设计一个东西时也应该去考虑整体性和关联性。</li>
+</ul>
+<p>有关于未来的发展，以下是鄙人的粗浅的观点：</p>
+<ul>
+<li>编程语言未来应该是每个人必备的工具</li>
+<li>未来的交互方式应该会以语言交互为主流</li>
+<li>下一个去中心化的技术方案出来之前，区块链依然是web3建立价值体系的基础技术方案，如何将现实价值和虚拟价值联通是进入数字世界的一个大难题。</li>
+<li>未来注定是AI的世界。AI的进化会伴随绝大部分人的退化，届时除了尖端人才，人们学习的重心会放在何处？</li>
+</ul>
+</p>
         </div>
       </div>
     </div>
+  </div>
+
   
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;front-base-rust&#x2F;front.jpg"
-    class="img-fluid m-auto d-block "
-    alt="基于rust的前端框架"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;front-base-rust&#x2F;"
-      rel="bookmark"
-      title="基于rust的前端框架"
-    ><b>基于rust的前端框架</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>相关框架
-Dioxus
-一个类React风格的前端框架。
-web的实现——基于wasm帮助rust和js实现通信
-yew
-组件式开发框架，目前的判断类似于Ext。
-tauri
-轻量级跨平台前端框架
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;preview&#x2F;..&#x2F;new.jpg"
-    class="img-fluid m-auto d-block "
-    alt="WebAssembly Rust and ExtJs 实验"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;preview&#x2F;"
-      rel="bookmark"
-      title="WebAssembly Rust and ExtJs 实验"
-    ><b>WebAssembly Rust and ExtJs 实验</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  02&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>突发奇想:利用WebAssembly、Rust去将前端重器框架ExtJs进行迁移重构
-
-思路1：从根拔起，利用wasm实现rust和js之间通信直接重写一边Ext.Base、Ext.Event等基础设施
-思路2：初步简单整合，外部引入ext-all-debug.js框架，利用wasm实现rust和js之间通信获取Ext命名空间，然后逐个复写Ext函数
-
-ExtJs重构实验
-重构目标
-
-学习ExtJs背后的设计思路和实现原理。
-ExtJs的性能优化。
-ExtJs可以使用ES6以及之上的特性。
-ExtJs的轻量化。
-后续计划对比vue、react框架设计思路、实现方式的区别。
-后续计划结合wasm和rust技术栈尝试设计一个全新的前端js框架。
-
-
-ExtJs框架的总体架构
-TODO
-Ext基础底层模块
-Ext.Base
-Ext.Base的思考
-
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-  
-  
-  <nav>
-    <ul class="pagination">
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;rust&#x2F;"
-            
-          >1</a>
-        </li>
-      
-        <li class="
-          page-item
-          active
-        ">
-          <a
-            class="page-link"
-            
-            
-          >2</a>
-        </li>
-      
-    </ul>
-  </nav>
-  
-
 
     </main>
     
-    
+  
+
     
     <footer class="
       mt-auto p-5
