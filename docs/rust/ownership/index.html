@@ -2,9 +2,7 @@
 <html>
   <head>
     
-    <title>
-	Keep learning and trying - authors: liguangqiao
-</title>
+    <title>rust学习(二)所有权和生命周期 | Keep learning and trying</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -763,7 +761,91 @@
     </nav>
     <main class="container mx-auto my-5">
       
+  <h1>rust学习(二)所有权和生命周期</h1>
+  <p class="text-muted">
+    
   
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  15&#x2F;07&#x2F;2023
+
+  </p>
+  
+  <p>
+    
+      <a
+        href="https://dorname.github.io/tags/rust/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        Rust
+      </a>
+    
+  </p>
+  
+  <div class="content">
+    <h1 id="rustsuo-you-quan-ji-zhi">Rust所有权机制</h1>
+<h2 id="rustyu-yan-yin-ru-suo-you-quan-ji-zhi-de-mu-biao">Rust语言引入所有权机制的目标</h2>
+<p>主要为解决复杂系统中的资源管理和悬吊引用问题。</p>
+<p><strong>所有权系统</strong>是<em><strong>Rust</strong></em>中用于管理内存的手段。</p>
+<p>所有权规则总结归纳：</p>
+<ul>
+<li>每个值（变量）都有一个所有者</li>
+<li>值在任意时刻都只有一个所有者</li>
+<li>当所有离开作用域时，其值将被丢弃(相当于执行垃圾回收)</li>
+</ul>
+<p>结论：<em><strong>Rust</strong></em>的值被唯一的对象管理着，一旦不使用，内存就会立刻释放。</p>
+<p>所有权简单实验</p>
+<ol>
+<li>
+<p>借用</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> x = String::from(&quot;</span><span style="color:#a3be8c;">hello</span><span>&quot;);
+</span><span style="color:#b48ead;">let</span><span> y = &amp;x;
+</span></code></pre>
+</li>
+<li>
+<p>克隆</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> x = </span><span style="color:#d08770;">10</span><span>;
+</span><span style="color:#b48ead;">let</span><span> y = x;
+</span><span>println!(&quot;</span><span style="color:#a3be8c;">测试通过</span><span style="color:#d08770;">{x}</span><span style="color:#a3be8c;">,</span><span style="color:#d08770;">{y}</span><span>&quot;);
+</span><span style="color:#65737e;">//测试通过10，10
+</span><span style="color:#b48ead;">let</span><span> a = &quot;</span><span style="color:#a3be8c;">hello</span><span>&quot;;
+</span><span style="color:#b48ead;">let</span><span> b = a;
+</span><span>println!(&quot;</span><span style="color:#a3be8c;">测试通过</span><span style="color:#d08770;">{x}</span><span style="color:#a3be8c;">,</span><span style="color:#d08770;">{y}</span><span>&quot;);
+</span><span style="color:#b48ead;">let</span><span> c = (</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2 </span><span>as </span><span style="color:#b48ead;">f64</span><span>,&quot;</span><span style="color:#a3be8c;">hello</span><span>&quot;);
+</span><span style="color:#b48ead;">let</span><span> d = c;
+</span><span>println!(&quot;</span><span style="color:#a3be8c;">测试:</span><span style="color:#d08770;">{:?}</span><span style="color:#a3be8c;">,</span><span style="color:#d08770;">{:?}</span><span>&quot;,c,d);
+</span><span style="color:#b48ead;">let</span><span> g = d.</span><span style="color:#96b5b4;">clone</span><span>();
+</span></code></pre>
+</li>
+</ol>
+<p>生命周期</p>
+<p>静态生命周期***'static<em><strong>和动态生命周期</strong></em>'a***</p>
+<p>静态生命周期在整个程序中期间存活</p>
+<p>动态生命周期，相关参数的生命周期以相对长生命周期的引用为准</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">lifetime_test_one</span><span>() -&gt; &amp;String{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> x= &quot;</span><span style="color:#a3be8c;">hello</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>();
+</span><span>        print!(&quot;</span><span style="color:#d08770;">{x}</span><span>&quot;);
+</span><span>        &amp;x
+</span><span>}
+</span><span style="color:#65737e;">//error missing liftime...
+</span><span style="color:#65737e;">//改成使用一个生命周期都声明为&#39;a的参数y来承接x的值
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">lifetime_test_one</span><span>&lt;</span><span style="color:#b48ead;">&#39;a</span><span>&gt;(</span><span style="color:#bf616a;">y</span><span>:&amp;</span><span style="color:#b48ead;">&#39;a mut</span><span> String) -&gt; &amp;String{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> x:String = String::from(&quot;</span><span style="color:#a3be8c;">hello</span><span>&quot;);
+</span><span>        print!(&quot;</span><span style="color:#d08770;">{x}</span><span>&quot;);
+</span><span>        *y = x;
+</span><span>        y
+</span><span>}
+</span></code></pre>
+
+  </div>
+  
+    
   
   <div class="card my-5">
     <div class="row g-0">
@@ -805,209 +887,12 @@
     </div>
   </div>
 
-	
-    
   
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;classic-modern-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
-    class="img-fluid m-auto d-block "
-    alt="经典区块链和现代区块链"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;classic-modern-blockchain&#x2F;"
-      rel="bookmark"
-      title="经典区块链和现代区块链"
-    ><b>经典区块链和现代区块链</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>TODO
-经典区块链：比特币和以太坊
-现代区块链：near和solana
-商用联盟区块链：蚂蚁链、长安链和FISCO链
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;preview&#x2F;..&#x2F;new.jpg"
-    class="img-fluid m-auto d-block "
-    alt="WebAssembly Rust and ExtJs 实验"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;preview&#x2F;"
-      rel="bookmark"
-      title="WebAssembly Rust and ExtJs 实验"
-    ><b>WebAssembly Rust and ExtJs 实验</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  02&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>突发奇想:利用WebAssembly、Rust去将前端重器框架ExtJs进行迁移重构
-
-思路1：从根拔起，利用wasm实现rust和js之间通信直接重写一边Ext.Base、Ext.Event等基础设施
-思路2：初步简单整合，外部引入ext-all-debug.js框架，利用wasm实现rust和js之间通信获取Ext命名空间，然后逐个复写Ext函数
-
-ExtJs重构实验
-重构目标
-
-学习ExtJs背后的设计思路和实现原理。
-ExtJs的性能优化。
-ExtJs可以使用ES6以及之上的特性。
-ExtJs的轻量化。
-后续计划对比vue、react框架设计思路、实现方式的区别。
-后续计划结合wasm和rust技术栈尝试设计一个全新的前端js框架。
-
-
-ExtJs框架的总体架构
-TODO
-Ext基础底层模块
-Ext.Base
-Ext.Base的思考
-
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-  
-  
-  <nav>
-    <ul class="pagination">
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;"
-            
-          >1</a>
-        </li>
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;2"
-            
-          >2</a>
-        </li>
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;3"
-            
-          >3</a>
-        </li>
-      
-        <li class="
-          page-item
-          active
-        ">
-          <a
-            class="page-link"
-            
-            
-          >4</a>
-        </li>
-      
-    </ul>
-  </nav>
-  
-
 
     </main>
     
-    
+  
+
     
     <footer class="
       mt-auto p-5
