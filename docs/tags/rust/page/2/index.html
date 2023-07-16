@@ -774,6 +774,237 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="rust连接mysql建表测试"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;"
+      rel="bookmark"
+      title="rust连接mysql建表测试"
+    ><b>rust连接mysql建表测试</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  29&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>rust连接mysql建表测试
+前期准备
+
+
+创建一个新的Rust项目
+cargo new web_server_demo
+
+
+
+修改Cargo.toml
+
+添加actix-web依赖，快速构建接口服务。
+添加mysql依赖，连接&#x2F;操作mysql数据库。
+添加serde库依赖，用来序列化结构体实例。
+
+[dependencies]
+actix-web = &amp;quot;4&amp;quot;
+mysql = &amp;quot;*&amp;quot;# 通配符*表示可以使用任何版本，通常会拉取最新版本
+serde = { version = &amp;quot;1.0&amp;quot;, features = [&amp;quot;derive&amp;quot;] }
+
+
+
+创建一个模块mysql_connect目录结构为
+
+
+src
+|--mysql_connect
+	|--mod.rs
+	|--database_test.rs
+|--main.rs
+
+mod.rs的内容
+&#x2F;&#x2F;导出模块database_test
+pub mod database_test;
+&#x2F;&#x2F;导入模块database_test所有函数
+pub use database_test::*;
+
+
+接下是模块database_test.rs的内容
+
+use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+use mysql::{PooledConn, prelude::Queryable};
+use serde::Deserialize;
+const DATA_SOURCE_URL:&amp;amp;str = &amp;quot;mysql:&#x2F;&#x2F;root:lgq1995@localhost:3306&#x2F;example&amp;quot;;
+&#x2F;&#x2F; #[derive(Debug)]
+#[derive(Deserialize,Debug)]
+struct Info{
+    name:String
+}
+&#x2F;&#x2F;建表接口
+#[get(&amp;quot;&#x2F;create_table&amp;quot;)]
+async fn create_table(info:web::Query&amp;lt;Info&amp;gt;) -&amp;gt; impl Responder{
+    println!(&amp;quot;name:{:?}&amp;quot;,info.name);
+ ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;lab-one&#x2F;..&#x2F;new.jpg"
+    class="img-fluid m-auto d-block "
+    alt="WebAssembly Rust and ExtJs 实验(一)"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;lab-one&#x2F;"
+      rel="bookmark"
+      title="WebAssembly Rust and ExtJs 实验(一)"
+    ><b>WebAssembly Rust and ExtJs 实验(一)</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  29&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;leet-code-try&#x2F;leetcode_one.jpg"
+    class="img-fluid m-auto d-block "
+    alt="leetCode刷题"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;leet-code-try&#x2F;"
+      rel="bookmark"
+      title="leetCode刷题"
+    ><b>leetCode刷题</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  13&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>LeetCode
+88.合并两个有序数组
+思路：先无差别合到一个数组里，再对数组进行排序。
+这里使用了rust元素的排序方法
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;..&#x2F;rust.jpg"
     class="img-fluid m-auto d-block "
     alt="rust学习(一)基础概念"
@@ -925,152 +1156,6 @@ fn variablie(){
   
 
 	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;front-base-rust&#x2F;front.jpg"
-    class="img-fluid m-auto d-block "
-    alt="基于rust的前端框架"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;front-base-rust&#x2F;"
-      rel="bookmark"
-      title="基于rust的前端框架"
-    ><b>基于rust的前端框架</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>相关框架
-Dioxus
-一个类React风格的前端框架。
-web的实现——基于wasm帮助rust和js实现通信
-yew
-组件式开发框架，目前的判断类似于Ext。
-tauri
-轻量级跨平台前端框架
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;preview&#x2F;..&#x2F;new.jpg"
-    class="img-fluid m-auto d-block "
-    alt="WebAssembly Rust and ExtJs 实验"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;preview&#x2F;"
-      rel="bookmark"
-      title="WebAssembly Rust and ExtJs 实验"
-    ><b>WebAssembly Rust and ExtJs 实验</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  02&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>突发奇想:利用WebAssembly、Rust去将前端重器框架ExtJs进行迁移重构
-
-思路1：从根拔起，利用wasm实现rust和js之间通信直接重写一边Ext.Base、Ext.Event等基础设施
-思路2：初步简单整合，外部引入ext-all-debug.js框架，利用wasm实现rust和js之间通信获取Ext命名空间，然后逐个复写Ext函数
-
-ExtJs重构实验
-重构目标
-
-学习ExtJs背后的设计思路和实现原理。
-ExtJs的性能优化。
-ExtJs可以使用ES6以及之上的特性。
-ExtJs的轻量化。
-后续计划对比vue、react框架设计思路、实现方式的区别。
-后续计划结合wasm和rust技术栈尝试设计一个全新的前端js框架。
-
-
-ExtJs框架的总体架构
-TODO
-Ext基础底层模块
-Ext.Base
-Ext.Base的思考
-
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
   
   
   <nav>
@@ -1097,6 +1182,18 @@ Ext.Base的思考
             
             
           >2</a>
+        </li>
+      
+        <li class="
+          page-item
+          
+        ">
+          <a
+            class="page-link"
+            
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;rust&#x2F;page&#x2F;3"
+            
+          >3</a>
         </li>
       
     </ul>

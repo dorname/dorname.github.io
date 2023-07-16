@@ -2,9 +2,7 @@
 <html>
   <head>
     
-    <title>
-	Keep learning and trying - authors: liguangqiao
-</title>
+    <title>rust学习(六)智能指针 | Keep learning and trying</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -763,7 +761,202 @@
     </nav>
     <main class="container mx-auto my-5">
       
+  <h1>rust学习(六)智能指针</h1>
+  <p class="text-muted">
+    
   
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  16&#x2F;07&#x2F;2023
+
+  </p>
+  
+  <p>
+    
+      <a
+        href="https://dorname.github.io/tags/rust/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        Rust
+      </a>
+    
+  </p>
+  
+  <div class="content">
+    <h1 id="zhi-neng-zhi-zhen"><strong>智能指针</strong></h1>
+<h2 id="gai-nian">概念</h2>
+<ul>
+<li>
+<p>指针是包含内存地址的变量，用于引用或只想其他的数据。</p>
+</li>
+<li>
+<p><em><strong>Rust</strong></em>中最常见的指针是引用，而引用只是一种普通指针，除了引用数据之外，没有其他功能，</p>
+</li>
+<li>
+<p>智能指针则是一种数据结构，其行为类似于指针，含有元数据，且在大部分情况下拥有指向的数据，提供内存管理或者绑定检查等附加功能，如管理文件句柄和网络连接。例如<em><strong>Rust</strong></em>中的<em><strong>Vec、String</strong></em>都可以看作智能指针。</p>
+<p><em><strong>Rust</strong></em>语言为智能指针封装了两大<em><strong>Trait</strong></em>，当变量实现了这两个<em><strong>Trait</strong></em>后就不再是普通变量：</p>
+<ul>
+<li>
+<p><em><strong>Deref</strong></em></p>
+<p>实现了<em><strong>Deref</strong></em>后，变量重载了解引用运算符**“*”**,可以当作普通引用来使用，必要时可以自动或手动实现解引用。</p>
+</li>
+<li>
+<p><em><strong>Drop</strong></em></p>
+<p>实现<em><strong>Drop</strong></em>后，变量在超出作用域时会自动从堆中释放，当然还可以自定义实现其他功能，如释放文件或网络连接。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="te-zheng">特征</h2>
+<ul>
+<li>智能指针在大部分情况下具有其所指向数据的所有权</li>
+<li>智能指针是一种数据结构，一般使用结构体来实现</li>
+<li>智能指针实现了Deref和Drop两个大trait</li>
+</ul>
+<table><thead><tr><th>名称</th><th>描述</th><th>实际作用</th></tr></thead><tbody>
+<tr><td><em><strong>Box<T></strong></em></td><td>一种独占所有权的智能指针</td><td>指向存储在堆上且类型为T的数据</td></tr>
+<tr><td><em><strong>Rc<T></strong></em></td><td>一种共享所有权的计数智能指针</td><td>用于记录存储在堆上的值的引用数</td></tr>
+<tr><td><em><strong>Arc<T></strong></em></td><td>一种线程安全的共享所有权的计数智能指针</td><td>可用于多线程</td></tr>
+<tr><td><em><strong>Cell<T></strong></em></td><td>一种提供内部可变性的容器，不是智能指针</td><td>允许借用可变数据，编译时检查，参数T要求实现<em><strong>Copy trait</strong></em></td></tr>
+<tr><td><em><strong>RefCell<T></strong></em></td><td>一种提供内部可变性的容器，不是智能指针</td><td>允许借用可变数据，运行时检查，参数T不要求实现<em><strong>Copy trait</strong></em></td></tr>
+<tr><td><em><strong>Weak<T></strong></em></td><td>一种与***Rc<T>***对应的弱引用类型</td><td>用于解决***RefCell<T>***中出现的循环引用。</td></tr>
+<tr><td><em><strong>Cow<T></strong></em></td><td>是一种写时复制的枚举体智能指针</td><td>我们使用***Cow<T>***主要是为了减少内存分配和复制，***Cow<T>***适用于读多写少的场景。</td></tr>
+</tbody></table>
+<h2 id="zi-ding-yi-zhi-neng-zhi-zhen">自定义智能指针</h2>
+<ol>
+<li>
+<p>定义一个结构体MYBOX</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::ops::Deref;
+</span><span style="color:#65737e;">//定义一个泛型参数的元组结构体
+</span><span style="color:#b48ead;">struct </span><span>MYBOX&lt;T&gt;(T);
+</span><span style="color:#65737e;">//为元组结构体实现一个创建实例的方法
+</span><span style="color:#b48ead;">impl</span><span>&lt;T&gt; MYBOX&lt;T&gt;  {
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">new</span><span>(</span><span style="color:#bf616a;">x</span><span>:T) -&gt; </span><span style="color:#b48ead;">Self</span><span>{
+</span><span>        </span><span style="color:#b48ead;">Self</span><span>(x)
+</span><span>    }
+</span><span>}
+</span></code></pre>
+</li>
+<li>
+<p>结构体实现<em><strong>Deref</strong></em>特征</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">impl</span><span>&lt;T&gt; Deref </span><span style="color:#b48ead;">for </span><span>MYBOX&lt;T&gt; {
+</span><span>    </span><span style="color:#b48ead;">type </span><span>Target = T;
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">deref</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>) -&gt; &amp;</span><span style="color:#b48ead;">Self::</span><span>Target {
+</span><span>        &amp;</span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#d08770;">0
+</span><span>    }
+</span><span>}
+</span></code></pre>
+</li>
+<li>
+<p>测试解引用</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">test</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">let</span><span> x = </span><span style="color:#d08770;">MYBOX</span><span>::new(</span><span style="color:#d08770;">21</span><span>);
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{:?}</span><span>&quot;,*x);
+</span><span>}
+</span></code></pre>
+</li>
+<li>
+<p>结构体实现<em><strong>Drop</strong></em>特征</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">impl </span><span>&lt;T&gt; Drop </span><span style="color:#b48ead;">for </span><span>MYBOX&lt;T&gt; {
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">drop</span><span>(&amp;</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">self</span><span>) {
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">ALREADY DROP</span><span>&quot;)
+</span><span>    }
+</span><span>}
+</span></code></pre>
+</li>
+</ol>
+<h2 id="yin-yong-ji-shu-zhi-neng-zhi-zhen"><strong>引用计数智能指针</strong></h2>
+<p><strong>所有权系统规则规定了一个值在任意时刻只能有一个所有者，但在有些场景下，我们又需要让值具有多个所有者</strong></p>
+<p>故为了应对这种情况，所以<em><strong>Rust</strong></em>提供了<em><strong>Rc</strong></em>智能指针，<em><strong>Rc</strong></em>是一种可共享的引用计数智能指针，能产生多所有权值。
+<em><strong>引用计数意味着通过记录值得引用数来判断值是否仍在使用，如果引用数时0，就表示值可以被清理</strong></em></p>
+<p>所有权共享可以理解成教室里的灯，最后离开教室的人负责关灯，同理，在<em><strong>Rc</strong></em>的各个使用者中，只有最后一个使用者会清理数据。克隆<em><strong>Rc</strong></em>会增加引用计数，就像教师里新来了一个人一样。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">// 创建一个 Rc 实例 one，包装整数值 1
+</span><span style="color:#b48ead;">let</span><span> one = Rc::new(</span><span style="color:#d08770;">1</span><span>); 
+</span><span style="color:#65737e;">// 克隆 Rc 实例 one，创建另一个指向同一资源的 Rc 实例 another_one
+</span><span style="color:#b48ead;">let</span><span> another_one = one.</span><span style="color:#96b5b4;">clone</span><span>(); 
+</span><span style="color:#65737e;">// 打印引用计数的值
+</span><span>println!(&quot;</span><span style="color:#a3be8c;">count: </span><span style="color:#d08770;">{}</span><span>&quot;, Rc::strong_count(&amp;another_one)); 
+</span><span style="color:#65737e;">//count: 2
+</span></code></pre>
+<p><em><strong>注意：Rc可以共享所有权但进限制于单进程环境，为了解决多进程情况下所有权机制共享问题于是诞生了Arc（原子引用计数）</strong></em></p>
+<h2 id="yuan-zi-yin-yong-ji-shu-zhi-neng-zhi-zhen"><strong>原子引用计数智能指针</strong></h2>
+<p><em><strong>Arc（原子引用计数智能指针）<em><strong>实际上是</strong></em>Rust</strong></em>提供的线程安全的<em><strong>Rc</strong></em>版本</p>
+<p><em><strong>Arc特点：</strong></em></p>
+<ul>
+<li><em><strong>Arc</strong></em>在堆上分配了一个共享所有权的<em><strong>T</strong></em>类型</li>
+<li>在<em><strong>Arc</strong></em>上调用clone函数会产生一个新的<em><strong>Arc</strong></em>，它指向与原<em><strong>Arc</strong></em>相同的堆，同时增加引用计数。</li>
+<li><em><strong>Arc</strong></em>默认是不可变的，要想在多个线程间修改<em><strong>Arc</strong></em>，就需要配合锁机制，如<em><strong>Mutex</strong></em>。</li>
+</ul>
+<p><em><strong>注意：Rc和Arc默认不能改变内部值，但有时修改内部值又是必需的，为了解决此问题 Rust提供了两个具有内部可变性的容器Cell和RefCell。内部可变性是Rust中的一个设计模式，允许在拥有不可变引用时修改数据，但通常这是不被借用规则允许的，为此该模式必须通过UnSafe Rust实现，在unsafe块内执行</strong></em></p>
+<h2 id="cellhe-refcell"><em><strong>Cell<T>和RefCell<T></strong></em></h2>
+<p><em><strong>Cell的方法特点：</strong></em></p>
+<ul>
+<li>对于实现了<em><strong>Copy特性</strong></em>的内部值类型，<em>get</em>方法可以直接查看内部值</li>
+<li>对于实现了<em><strong>Default</strong></em>特性的数据类型，<em>take</em>方法会用默认值替换内部值</li>
+<li>对于所有数据类型，<em>replace</em>方法会替换并返回被替换的值</li>
+<li><em><strong>into_inner</strong></em>方法则消费<em><strong>Cell</strong></em>并返回内部值</li>
+</ul>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> a = Cell::new(</span><span style="color:#d08770;">2</span><span>);
+</span><span>	println!(&quot;</span><span style="color:#a3be8c;">get:</span><span style="color:#d08770;">{}</span><span>&quot;,a.</span><span style="color:#96b5b4;">get</span><span>());
+</span><span>    a.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#d08770;">6</span><span>);
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">get:</span><span style="color:#d08770;">{}</span><span>&quot;,a.</span><span style="color:#96b5b4;">get</span><span>());
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">take out:</span><span style="color:#d08770;">{}</span><span>&quot;,a.</span><span style="color:#96b5b4;">take</span><span>());
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">take in:</span><span style="color:#d08770;">{}</span><span>&quot;,a.</span><span style="color:#96b5b4;">get</span><span>());
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">replace out:</span><span style="color:#d08770;">{}</span><span>&quot;,a.</span><span style="color:#96b5b4;">replace</span><span>(</span><span style="color:#d08770;">5</span><span>));
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">replace in:</span><span style="color:#d08770;">{}</span><span>&quot;,a.</span><span style="color:#96b5b4;">get</span><span>());
+</span><span>    </span><span style="color:#65737e;">//into_inner()会把a move掉
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">into_inner:</span><span style="color:#d08770;">{}</span><span>&quot;,a.</span><span style="color:#96b5b4;">into_inner</span><span>());
+</span></code></pre>
+<p><em><strong>Cell</strong></em>相当于在不可变结构体<em>Fields</em>上开了一个后门，从而能够改变内部的某些字段。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::cell::Cell;
+</span><span style="color:#b48ead;">use </span><span>std::ops::Deref;
+</span><span style="color:#b48ead;">struct </span><span>Grid {
+</span><span>    </span><span style="color:#bf616a;">width</span><span>:</span><span style="color:#b48ead;">i32</span><span>,
+</span><span>    </span><span style="color:#bf616a;">height</span><span>:Cell&lt;</span><span style="color:#b48ead;">i32</span><span>&gt;
+</span><span>}
+</span><span style="color:#b48ead;">impl </span><span>Grid {
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">new</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>,</span><span style="color:#bf616a;">w</span><span>:</span><span style="color:#b48ead;">i32</span><span>,</span><span style="color:#bf616a;">h</span><span>:</span><span style="color:#b48ead;">i32</span><span>) -&gt; </span><span style="color:#b48ead;">Self</span><span>{
+</span><span>        </span><span style="color:#b48ead;">Self</span><span>{
+</span><span>            width:w,
+</span><span>            height:Cell::new(h)
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>}
+</span><span style="color:#b48ead;">impl </span><span>Deref </span><span style="color:#b48ead;">for </span><span>Grid {
+</span><span>    </span><span style="color:#b48ead;">type </span><span>Target = (</span><span style="color:#b48ead;">i32</span><span>,</span><span style="color:#b48ead;">i32</span><span>);
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">deref</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>) -&gt; &amp;</span><span style="color:#b48ead;">Self::</span><span>Target {
+</span><span>    </span><span style="color:#65737e;">// &amp;(self.width, self.height)  cannot return reference to temporary value returns a reference to data owned by the current function
+</span><span>        Box::leak(Box::new((</span><span style="color:#bf616a;">self</span><span>.width, </span><span style="color:#bf616a;">self</span><span>.height.</span><span style="color:#96b5b4;">get</span><span>())))
+</span><span>    }
+</span><span>}
+</span><span>#[</span><span style="color:#bf616a;">test</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test</span><span>(){
+</span><span>    
+</span><span>    </span><span style="color:#b48ead;">let</span><span> grid =  Grid{
+</span><span>        width:</span><span style="color:#d08770;">100</span><span>,
+</span><span>        height:Cell::new(</span><span style="color:#d08770;">200</span><span>)
+</span><span>    };
+</span><span>    grid.height.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#d08770;">600</span><span>);
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{:?}</span><span>&quot;,*grid);
+</span><span>}
+</span></code></pre>
+<p><em><strong>中间遇到了为Grid实现解引用的问题：cannot return reference to temporary value returns a reference to data owned by the current function</strong></em></p>
+<p>由于 <em><strong>Deref trait</strong></em> 的要求，我们不能返回对临时值的引用，而在 <em><strong>deref</strong></em> 方法中返回的是对临时元组*** (self.width, self.height)*** 的引用，这导致了错误。</p>
+<p>如果希望在解引用 <em><strong>defGrid</strong></em> 时打印出元组，一种可行的方法是创建一个新的元组并将其返回，而不是返回对临时值的引用。</p>
+<p>我们在deref方法中使用 <em><strong>Box::new((self.width, self.height))</strong></em> 创建一个新的元组，并使用 <em><strong>Box::leak</strong></em> 来将其转换为静态引用。这样，我们可以返回对元组的引用，而不是对临时值的引用。</p>
+<p>请注意，使用 <em><strong>Box::leak</strong></em> 来转换为静态引用时需要小心，因为它会泄漏内存。在这个例子中，由于元组是一个非常简单的数据结构，我们可以安全地使用 <em><strong>Box::leak</strong></em>。</p>
+
+  </div>
+  
+    
   
   <div class="card my-5">
     <div class="row g-0">
@@ -805,388 +998,12 @@
     </div>
   </div>
 
-	
-    
   
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;brain-storm&#x2F;brain.jpg"
-    class="img-fluid m-auto d-block "
-    alt="小李很爱瞎想想"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;brain-storm&#x2F;"
-      rel="bookmark"
-      title="小李很爱瞎想想"
-    ><b>小李很爱瞎想想</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  12&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>做一套适用于所有view框架的数据缓存管理
-灵感来源：我基于Ext的store做了一套缓存机制，实现了列表翻页缓存、为翻页新增提供了支撑。
-想法：做一个纯js的前台数据管理机制，快速接入前端的各种view框架。
-希望以黑盒的模式提供接口、达到可插拔的特性。
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;database-lab&#x2F;database.jpg"
-    class="img-fluid m-auto d-block "
-    alt="数据库学习"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;database-lab&#x2F;"
-      rel="bookmark"
-      title="数据库学习"
-    ><b>数据库学习</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>TODO
-学习和了解mysql、redis
-同时学习分布式数据库、时序数据库原理。
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;front-base-rust&#x2F;front.jpg"
-    class="img-fluid m-auto d-block "
-    alt="基于rust的前端框架"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;front-base-rust&#x2F;"
-      rel="bookmark"
-      title="基于rust的前端框架"
-    ><b>基于rust的前端框架</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>相关框架
-Dioxus
-一个类React风格的前端框架。
-web的实现——基于wasm帮助rust和js实现通信
-yew
-组件式开发框架，目前的判断类似于Ext。
-tauri
-轻量级跨平台前端框架
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;principle-of-blockchain&#x2F;blockchain.jpg"
-    class="img-fluid m-auto d-block "
-    alt="区块链原理"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;principle-of-blockchain&#x2F;"
-      rel="bookmark"
-      title="区块链原理"
-    ><b>区块链原理</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;classic-modern-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
-    class="img-fluid m-auto d-block "
-    alt="经典区块链和现代区块链"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;classic-modern-blockchain&#x2F;"
-      rel="bookmark"
-      title="经典区块链和现代区块链"
-    ><b>经典区块链和现代区块链</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>TODO
-经典区块链：比特币和以太坊
-现代区块链：near和solana
-商用联盟区块链：蚂蚁链、长安链和FISCO链
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-  
-  
-  <nav>
-    <ul class="pagination">
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;"
-            
-          >1</a>
-        </li>
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;2"
-            
-          >2</a>
-        </li>
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;3"
-            
-          >3</a>
-        </li>
-      
-        <li class="
-          page-item
-          active
-        ">
-          <a
-            class="page-link"
-            
-            
-          >4</a>
-        </li>
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;5"
-            
-          >5</a>
-        </li>
-      
-    </ul>
-  </nav>
-  
-
 
     </main>
     
-    
+  
+
     
     <footer class="
       mt-auto p-5

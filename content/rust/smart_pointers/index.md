@@ -1,0 +1,197 @@
+---
+title: rust学习(六)智能指针
+date: 2023-07-16
+extra:
+    image: ../rust.jpg
+taxonomies:
+  tags:
+    - Rust
+  authors:
+    - liguangqiao  
+---
+
+# **智能指针**
+
+## 概念
+
+- 指针是包含内存地址的变量，用于引用或只想其他的数据。
+
+- ***Rust***中最常见的指针是引用，而引用只是一种普通指针，除了引用数据之外，没有其他功能，
+
+- 智能指针则是一种数据结构，其行为类似于指针，含有元数据，且在大部分情况下拥有指向的数据，提供内存管理或者绑定检查等附加功能，如管理文件句柄和网络连接。例如***Rust***中的***Vec、String***都可以看作智能指针。
+
+  ***Rust***语言为智能指针封装了两大***Trait***，当变量实现了这两个***Trait***后就不再是普通变量：
+
+  - ***Deref***
+
+    实现了***Deref***后，变量重载了解引用运算符**“*”**,可以当作普通引用来使用，必要时可以自动或手动实现解引用。
+
+  - ***Drop***
+
+    实现***Drop***后，变量在超出作用域时会自动从堆中释放，当然还可以自定义实现其他功能，如释放文件或网络连接。
+
+## 特征
+
+- 智能指针在大部分情况下具有其所指向数据的所有权
+- 智能指针是一种数据结构，一般使用结构体来实现
+- 智能指针实现了Deref和Drop两个大trait
+
+| 名称             | 描述                                   | 实际作用                                                     |
+| ---------------- | -------------------------------------- | ------------------------------------------------------------ |
+| ***Box<T>***     | 一种独占所有权的智能指针               | 指向存储在堆上且类型为T的数据                                |
+| ***Rc<T>***      | 一种共享所有权的计数智能指针           | 用于记录存储在堆上的值的引用数                               |
+| ***Arc<T>***     | 一种线程安全的共享所有权的计数智能指针 | 可用于多线程                                                 |
+| ***Cell<T>***    | 一种提供内部可变性的容器，不是智能指针 | 允许借用可变数据，编译时检查，参数T要求实现***Copy trait***  |
+| ***RefCell<T>*** | 一种提供内部可变性的容器，不是智能指针 | 允许借用可变数据，运行时检查，参数T不要求实现***Copy trait*** |
+| ***Weak<T>***    | 一种与***Rc<T>***对应的弱引用类型      | 用于解决***RefCell<T>***中出现的循环引用。                   |
+| ***Cow<T>***     | 是一种写时复制的枚举体智能指针         | 我们使用***Cow<T>***主要是为了减少内存分配和复制，***Cow<T>***适用于读多写少的场景。 |
+
+## 自定义智能指针
+
+1. 定义一个结构体MYBOX
+
+   ```rust
+   use std::ops::Deref;
+   //定义一个泛型参数的元组结构体
+   struct MYBOX<T>(T);
+   //为元组结构体实现一个创建实例的方法
+   impl<T> MYBOX<T>  {
+       fn new(x:T) -> Self{
+           Self(x)
+       }
+   }
+   ```
+
+2. 结构体实现***Deref***特征
+
+   ```rust
+   impl<T> Deref for MYBOX<T> {
+       type Target = T;
+       fn deref(&self) -> &Self::Target {
+           &self.0
+       }
+   }
+   ```
+
+3. 测试解引用
+
+   ```rust
+   #[test]
+   fn test(){
+       let x = MYBOX::new(21);
+       println!("{:?}",*x);
+   }
+   ```
+
+4. 结构体实现***Drop***特征
+
+   ```rust
+   impl <T> Drop for MYBOX<T> {
+       fn drop(&mut self) {
+           println!("ALREADY DROP")
+       }
+   }
+   ```
+
+## **引用计数智能指针**
+
+**所有权系统规则规定了一个值在任意时刻只能有一个所有者，但在有些场景下，我们又需要让值具有多个所有者**
+
+故为了应对这种情况，所以***Rust***提供了***Rc***智能指针，***Rc***是一种可共享的引用计数智能指针，能产生多所有权值。
+***引用计数意味着通过记录值得引用数来判断值是否仍在使用，如果引用数时0，就表示值可以被清理***
+
+所有权共享可以理解成教室里的灯，最后离开教室的人负责关灯，同理，在***Rc***的各个使用者中，只有最后一个使用者会清理数据。克隆***Rc***会增加引用计数，就像教师里新来了一个人一样。
+
+```rust
+// 创建一个 Rc 实例 one，包装整数值 1
+let one = Rc::new(1); 
+// 克隆 Rc 实例 one，创建另一个指向同一资源的 Rc 实例 another_one
+let another_one = one.clone(); 
+// 打印引用计数的值
+println!("count: {}", Rc::strong_count(&another_one)); 
+//count: 2
+```
+
+***注意：Rc可以共享所有权但进限制于单进程环境，为了解决多进程情况下所有权机制共享问题于是诞生了Arc（原子引用计数）***
+
+## **原子引用计数智能指针**
+
+***Arc（原子引用计数智能指针）***实际上是***Rust***提供的线程安全的***Rc***版本
+
+***Arc特点：***
+
+- ***Arc***在堆上分配了一个共享所有权的***T***类型
+- 在***Arc***上调用clone函数会产生一个新的***Arc***，它指向与原***Arc***相同的堆，同时增加引用计数。
+- ***Arc***默认是不可变的，要想在多个线程间修改***Arc***，就需要配合锁机制，如***Mutex***。
+
+***注意：Rc和Arc默认不能改变内部值，但有时修改内部值又是必需的，为了解决此问题 Rust提供了两个具有内部可变性的容器Cell和RefCell。内部可变性是Rust中的一个设计模式，允许在拥有不可变引用时修改数据，但通常这是不被借用规则允许的，为此该模式必须通过UnSafe Rust实现，在unsafe块内执行***
+
+## ***Cell<T>和RefCell<T>***
+
+***Cell的方法特点：***
+
+- 对于实现了***Copy特性***的内部值类型，*get*方法可以直接查看内部值
+- 对于实现了***Default***特性的数据类型，*take*方法会用默认值替换内部值
+- 对于所有数据类型，*replace*方法会替换并返回被替换的值
+- ***into_inner***方法则消费***Cell***并返回内部值
+
+```rust
+let a = Cell::new(2);
+	println!("get:{}",a.get());
+    a.set(6);
+    println!("get:{}",a.get());
+    println!("take out:{}",a.take());
+    println!("take in:{}",a.get());
+    println!("replace out:{}",a.replace(5));
+    println!("replace in:{}",a.get());
+    //into_inner()会把a move掉
+    println!("into_inner:{}",a.into_inner());
+```
+
+***Cell***相当于在不可变结构体*Fields*上开了一个后门，从而能够改变内部的某些字段。
+
+```rust
+use std::cell::Cell;
+use std::ops::Deref;
+struct Grid {
+    width:i32,
+    height:Cell<i32>
+}
+impl Grid {
+    fn new(&self,w:i32,h:i32) -> Self{
+        Self{
+            width:w,
+            height:Cell::new(h)
+        }
+    }
+
+}
+impl Deref for Grid {
+    type Target = (i32,i32);
+    fn deref(&self) -> &Self::Target {
+    // &(self.width, self.height)  cannot return reference to temporary value returns a reference to data owned by the current function
+        Box::leak(Box::new((self.width, self.height.get())))
+    }
+}
+#[test]
+fn test(){
+    
+    let grid =  Grid{
+        width:100,
+        height:Cell::new(200)
+    };
+    grid.height.set(600);
+    println!("{:?}",*grid);
+}
+```
+
+***中间遇到了为Grid实现解引用的问题：cannot return reference to temporary value returns a reference to data owned by the current function***
+
+由于 ***Deref trait*** 的要求，我们不能返回对临时值的引用，而在 ***deref*** 方法中返回的是对临时元组*** (self.width, self.height)*** 的引用，这导致了错误。
+
+如果希望在解引用 ***defGrid*** 时打印出元组，一种可行的方法是创建一个新的元组并将其返回，而不是返回对临时值的引用。
+
+我们在deref方法中使用 ***Box::new((self.width, self.height))*** 创建一个新的元组，并使用 ***Box::leak*** 来将其转换为静态引用。这样，我们可以返回对元组的引用，而不是对临时值的引用。
+
+请注意，使用 ***Box::leak*** 来转换为静态引用时需要小心，因为它会泄漏内存。在这个例子中，由于元组是一个非常简单的数据结构，我们可以安全地使用 ***Box::leak***。
+
