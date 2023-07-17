@@ -953,6 +953,81 @@
 <p>如果希望在解引用 <em><strong>defGrid</strong></em> 时打印出元组，一种可行的方法是创建一个新的元组并将其返回，而不是返回对临时值的引用。</p>
 <p>我们在deref方法中使用 <em><strong>Box::new((self.width, self.height))</strong></em> 创建一个新的元组，并使用 <em><strong>Box::leak</strong></em> 来将其转换为静态引用。这样，我们可以返回对元组的引用，而不是对临时值的引用。</p>
 <p>请注意，使用 <em><strong>Box::leak</strong></em> 来转换为静态引用时需要小心，因为它会泄漏内存。在这个例子中，由于元组是一个非常简单的数据结构，我们可以安全地使用 <em><strong>Box::leak</strong></em>。</p>
+<p><em><strong>RefCell<T></strong></em></p>
+<p><em><strong>RefCell</strong></em>与<em><strong>Cell</strong></em>的区别和<em><strong>Ref</strong></em>有关。<em><strong>RefCell</strong></em>不是用<em>get</em>和<em>set</em>方法，而是直接通过获取可变引用来修改内部数据。</p>
+<p>实验过程中遇到了获取不可变引用和可变引用的无法同时使用的问题</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>  </span><span style="color:#b48ead;">let</span><span> rc = RefCell::new(</span><span style="color:#d08770;">4</span><span>);
+</span><span>    </span><span style="color:#65737e;">// 使用 borrow 方法获取不可变引用，注意先获取不可变引用，由于借用规则，不可再通过rc获取可变引用
+</span><span>    </span><span style="color:#b48ead;">let</span><span> rc_data = rc.</span><span style="color:#96b5b4;">borrow</span><span>();
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">first try: </span><span style="color:#d08770;">{}</span><span>&quot;, *rc_data);
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// 在内部作用域中获取可变引用,想法是做隔离，然而事实上rc仍处于被借用状态
+</span><span>    {
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> mutable_data = rc.</span><span style="color:#96b5b4;">borrow_mut</span><span>();
+</span><span>        *mutable_data += </span><span style="color:#d08770;">10</span><span>;
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">The updated value is: </span><span style="color:#d08770;">{}</span><span>&quot;, *mutable_data);
+</span><span>    } 
+</span><span>
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>thread &#39;smart_points::ref_cell::test&#39; panicked at &#39;already borrowed: BorrowMutError&#39;
+</span></code></pre>
+<p>要想代码运行成功，事实证明应该包在内部作用域的是获取不可变引用的逻辑</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span> </span><span style="color:#b48ead;">let</span><span> rc = RefCell::new(</span><span style="color:#d08770;">4</span><span>);
+</span><span>    </span><span style="color:#65737e;">// 使用 borrow 方法获取不可变引用，注意先获取不可变引用，由于借用规则，不可再通过rc获取可变引用
+</span><span>    {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> rc_data = rc.</span><span style="color:#96b5b4;">borrow</span><span>();
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">first try: </span><span style="color:#d08770;">{}</span><span>&quot;, *rc_data);
+</span><span>    }
+</span><span>    </span><span style="color:#65737e;">// 在内部作用域中获取可变引用
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> mutable_data = rc.</span><span style="color:#96b5b4;">borrow_mut</span><span>();
+</span><span>    *mutable_data += </span><span style="color:#d08770;">10</span><span>;
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">The updated value is: </span><span style="color:#d08770;">{}</span><span>&quot;, *mutable_data);
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>running 1 test
+</span><span>first try: 4
+</span><span>The updated value is: 14
+</span><span>test smart_points::ref_cell::test ... ok
+</span></code></pre>
+<p>然而下一步实验证明若是同一个作用域内，先执行获取可变引用再执行不可变引用同样会引起借用恐慌。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    </span><span style="color:#b48ead;">let</span><span> rc = RefCell::new(</span><span style="color:#d08770;">4</span><span>);
+</span><span>    {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> rc_data = rc.</span><span style="color:#96b5b4;">borrow</span><span>();
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">first try: </span><span style="color:#d08770;">{}</span><span>&quot;, *rc_data);
+</span><span>    }
+</span><span>    </span><span style="color:#65737e;">// 在内部作用域中获取可变引用
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> mutable_data = rc.</span><span style="color:#96b5b4;">borrow_mut</span><span>();
+</span><span>    *mutable_data += </span><span style="color:#d08770;">10</span><span>;
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">The updated value is: </span><span style="color:#d08770;">{}</span><span>&quot;, *mutable_data);
+</span><span>    
+</span><span>    </span><span style="color:#b48ead;">let</span><span> rc_data_one = rc.</span><span style="color:#96b5b4;">borrow</span><span>();
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">final try: </span><span style="color:#d08770;">{}</span><span>&quot;, *rc_data_one);
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>first try: 4
+</span><span>The updated value is: 14
+</span><span>thread &#39;smart_points::ref_cell::test&#39; panicked at &#39;already mutably borrowed: BorrowError&#39;
+</span></code></pre>
+<p>修正后</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>	</span><span style="color:#b48ead;">let</span><span> rc = RefCell::new(</span><span style="color:#d08770;">4</span><span>);
+</span><span>    </span><span style="color:#65737e;">// 在内部作用域中获取不可变引用
+</span><span>    {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> rc_data = rc.</span><span style="color:#96b5b4;">borrow</span><span>();
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">first try: </span><span style="color:#d08770;">{}</span><span>&quot;, *rc_data);
+</span><span>    }
+</span><span>    </span><span style="color:#65737e;">// 在内部作用域中获取可变引用
+</span><span>    {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> mutable_data = rc.</span><span style="color:#96b5b4;">borrow_mut</span><span>();
+</span><span>    *mutable_data += </span><span style="color:#d08770;">10</span><span>;
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">The updated value is: </span><span style="color:#d08770;">{}</span><span>&quot;, *mutable_data);
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#b48ead;">let</span><span> rc_data_one = rc.</span><span style="color:#96b5b4;">borrow</span><span>();
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">final try: </span><span style="color:#d08770;">{}</span><span>&quot;, *rc_data_one);
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>first try: 4
+</span><span>The updated value is: 14
+</span><span>final try: 14
+</span><span>test smart_points::ref_cell::test ... ok
+</span></code></pre>
 
   </div>
   

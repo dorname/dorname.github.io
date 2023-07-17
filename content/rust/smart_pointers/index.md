@@ -195,3 +195,99 @@ fn test(){
 
 请注意，使用 ***Box::leak*** 来转换为静态引用时需要小心，因为它会泄漏内存。在这个例子中，由于元组是一个非常简单的数据结构，我们可以安全地使用 ***Box::leak***。
 
+***RefCell<T>***
+
+***RefCell***与***Cell***的区别和***Ref***有关。***RefCell***不是用*get*和*set*方法，而是直接通过获取可变引用来修改内部数据。
+
+实验过程中遇到了获取不可变引用和可变引用的无法同时使用的问题
+
+```rust
+  let rc = RefCell::new(4);
+    // 使用 borrow 方法获取不可变引用，注意先获取不可变引用，由于借用规则，不可再通过rc获取可变引用
+    let rc_data = rc.borrow();
+    println!("first try: {}", *rc_data);
+
+    // 在内部作用域中获取可变引用,想法是做隔离，然而事实上rc仍处于被借用状态
+    {
+        let mut mutable_data = rc.borrow_mut();
+        *mutable_data += 10;
+        println!("The updated value is: {}", *mutable_data);
+    } 
+
+```
+
+```
+thread 'smart_points::ref_cell::test' panicked at 'already borrowed: BorrowMutError'
+```
+
+要想代码运行成功，事实证明应该包在内部作用域的是获取不可变引用的逻辑
+
+```rust
+ let rc = RefCell::new(4);
+    // 使用 borrow 方法获取不可变引用，注意先获取不可变引用，由于借用规则，不可再通过rc获取可变引用
+    {
+        let rc_data = rc.borrow();
+        println!("first try: {}", *rc_data);
+    }
+    // 在内部作用域中获取可变引用
+    let mut mutable_data = rc.borrow_mut();
+    *mutable_data += 10;
+    println!("The updated value is: {}", *mutable_data);
+```
+
+```
+running 1 test
+first try: 4
+The updated value is: 14
+test smart_points::ref_cell::test ... ok
+```
+
+然而下一步实验证明若是同一个作用域内，先执行获取可变引用再执行不可变引用同样会引起借用恐慌。
+
+```rust
+    let rc = RefCell::new(4);
+    {
+        let rc_data = rc.borrow();
+        println!("first try: {}", *rc_data);
+    }
+    // 在内部作用域中获取可变引用
+    let mut mutable_data = rc.borrow_mut();
+    *mutable_data += 10;
+    println!("The updated value is: {}", *mutable_data);
+    
+    let rc_data_one = rc.borrow();
+    println!("final try: {}", *rc_data_one);
+```
+
+```
+first try: 4
+The updated value is: 14
+thread 'smart_points::ref_cell::test' panicked at 'already mutably borrowed: BorrowError'
+```
+
+修正后
+```rust
+	let rc = RefCell::new(4);
+    // 在内部作用域中获取不可变引用
+    {
+        let rc_data = rc.borrow();
+        println!("first try: {}", *rc_data);
+    }
+    // 在内部作用域中获取可变引用
+    {
+    let mut mutable_data = rc.borrow_mut();
+    *mutable_data += 10;
+    println!("The updated value is: {}", *mutable_data);
+    }
+    
+    let rc_data_one = rc.borrow();
+    println!("final try: {}", *rc_data_one);
+```
+
+```
+first try: 4
+The updated value is: 14
+final try: 14
+test smart_points::ref_cell::test ... ok
+```
+
