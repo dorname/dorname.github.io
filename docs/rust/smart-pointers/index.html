@@ -1028,6 +1028,15 @@
 </span><span>final try: 14
 </span><span>test smart_points::ref_cell::test ... ok
 </span></code></pre>
+<p><em><strong>Cell和RefCell的区别：</strong></em></p>
+<ul>
+<li><em><strong>Cell</strong></em>直接通过替换值来进行修改，<em><strong>RefCell</strong></em>则通过可变引用来进行修改。</li>
+<li><em><strong>Cell</strong></em>需要替换和移动值，故<em><strong>Cell</strong></em>适合实现了<em><strong>Copy</strong></em>的数据类型。</li>
+<li><em><strong>RefCell</strong></em>并不移动数据，所以<em><strong>RefCell</strong></em>适合未实现<em><strong>Copy</strong></em>的数据类型。</li>
+<li>另外，<em><strong>Cell</strong></em>在编译时做检查，<em><strong>RefCell</strong></em>在运行时做检查，使用不当会产生<em><strong>Panic</strong></em>异常。</li>
+</ul>
+<p><em><strong>Rust</strong></em>本身提供了内存安全的保证，这意味着很难发生内存泄漏，然而<em><strong>RefCell</strong></em>有可能会造成循环引用，进而导致内存泄漏。</p>
+<p><em><strong>故为了解决循环引用问题，Rust提供了Weak智能指针</strong></em></p>
 
   </div>
   
