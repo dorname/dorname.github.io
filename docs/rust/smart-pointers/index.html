@@ -804,7 +804,7 @@
 <ul>
 <li>
 <p><em><strong>Deref</strong></em></p>
-<p>实现了<em><strong>Deref</strong></em>后，变量重载了解引用运算符**“*”**,可以当作普通引用来使用，必要时可以自动或手动实现解引用。</p>
+<p>实现了<em><strong>Deref</strong></em>后，变量重载了解引用运算符*****,可以当作普通引用来使用，必要时可以自动或手动实现解引用。</p>
 </li>
 <li>
 <p><em><strong>Drop</strong></em></p>
@@ -821,12 +821,13 @@
 </ul>
 <table><thead><tr><th>名称</th><th>描述</th><th>实际作用</th></tr></thead><tbody>
 <tr><td><em><strong>Box&lt;T&gt;</strong></em></td><td>一种独占所有权的智能指针</td><td>指向存储在堆上且类型为T的数据</td></tr>
-<tr><td><em><strong>Rc<T></strong></em></td><td>一种共享所有权的计数智能指针</td><td>用于记录存储在堆上的值的引用数</td></tr>
-<tr><td><em><strong>Arc<T></strong></em></td><td>一种线程安全的共享所有权的计数智能指针</td><td>可用于多线程</td></tr>
-<tr><td><em><strong>Cell<T></strong></em></td><td>一种提供内部可变性的容器，不是智能指针</td><td>允许借用可变数据，编译时检查，参数T要求实现<em><strong>Copy trait</strong></em></td></tr>
-<tr><td><em><strong>RefCell<T></strong></em></td><td>一种提供内部可变性的容器，不是智能指针</td><td>允许借用可变数据，运行时检查，参数T不要求实现<em><strong>Copy trait</strong></em></td></tr>
-<tr><td><em><strong>Weak<T></strong></em></td><td>一种与***Rc<T>***对应的弱引用类型</td><td>用于解决***RefCell<T>***中出现的循环引用。</td></tr>
-<tr><td><em><strong>Cow<T></strong></em></td><td>是一种写时复制的枚举体智能指针</td><td>我们使用***Cow<T>***主要是为了减少内存分配和复制，***Cow<T>***适用于读多写少的场景。</td></tr>
+<tr><td><em><strong>Rc&lt;T&gt;</strong></em></td><td>一种共享所有权的计数智能指针</td><td>用于记录存储在堆上的值的引用数</td></tr>
+<tr><td><em><strong>Arc&lt;T&gt;</strong></em></td><td>一种线程安全的共享所有权的计数智能指针</td><td>可用于多线程</td></tr>
+<tr><td><em><strong>Cell&lt;T&gt;</strong></em></td><td>一种提供内部可变性的容器，不是智能指针</td><td>允许借用可变数据，编译时检查，参数T要求实现<em><strong>Copy trait</strong></em></td></tr>
+<tr><td><em><strong>RefCell&lt;T&gt;</strong></em></td><td>一种提供内部可变性的容器，不是智能指针</td><td>允许借用可变数据，运行时检查，参数T不要求实现<em><strong>Copy trait</strong></em></td></tr>
+<tr><td><em><strong>Weak&lt;T&gt;</strong></em></td><td>一种与***Rc&lt;T&gt;***对应的弱引用类型</td><td>用于解决***RefCell&lt;T&gt;***中出现的循环引用。</td></tr>
+<tr><td><em><strong>Cow&lt;T&gt;</strong></em></td><td>是一种写时复制的枚举体智能指针</td><td>我们使用***Cow&lt;T&gt;***主要是为了减少内存分配和复制，***Cow&lt;T&gt;***适用于读多写少的场景。</td></tr>
+<tr><td><em><strong>Pin&lt;T&gt;</strong></em></td><td>Rust 标准库中的另一种智能指针类型</td><td>用于解决在异步编程和使用不稳定的 <em><strong>APIs</strong></em> 时，对象被移动的问题。<em><strong>Pin</strong></em> 可以用于固定***（pin）***一个对象的内存地址，确保它不会被移动。</td></tr>
 </tbody></table>
 <h2 id="zi-ding-yi-zhi-neng-zhi-zhen">自定义智能指针</h2>
 <ol>
@@ -895,7 +896,7 @@
 <li><em><strong>Arc</strong></em>默认是不可变的，要想在多个线程间修改<em><strong>Arc</strong></em>，就需要配合锁机制，如<em><strong>Mutex</strong></em>。</li>
 </ul>
 <p><em><strong>注意：Rc和Arc默认不能改变内部值，但有时修改内部值又是必需的，为了解决此问题 Rust提供了两个具有内部可变性的容器Cell和RefCell。内部可变性是Rust中的一个设计模式，允许在拥有不可变引用时修改数据，但通常这是不被借用规则允许的，为此该模式必须通过UnSafe Rust实现，在unsafe块内执行</strong></em></p>
-<h2 id="cellhe-refcell"><em><strong>Cell<T>和RefCell<T></strong></em></h2>
+<h2 id="cell-t-he-refcell-t"><em><strong>Cell&lt;T&gt;和RefCell&lt;T&gt;</strong></em></h2>
 <p><em><strong>Cell的方法特点：</strong></em></p>
 <ul>
 <li>对于实现了<em><strong>Copy特性</strong></em>的内部值类型，<em>get</em>方法可以直接查看内部值</li>
@@ -953,7 +954,7 @@
 <p>如果希望在解引用 <em><strong>defGrid</strong></em> 时打印出元组，一种可行的方法是创建一个新的元组并将其返回，而不是返回对临时值的引用。</p>
 <p>我们在deref方法中使用 <em><strong>Box::new((self.width, self.height))</strong></em> 创建一个新的元组，并使用 <em><strong>Box::leak</strong></em> 来将其转换为静态引用。这样，我们可以返回对元组的引用，而不是对临时值的引用。</p>
 <p>请注意，使用 <em><strong>Box::leak</strong></em> 来转换为静态引用时需要小心，因为它会泄漏内存。在这个例子中，由于元组是一个非常简单的数据结构，我们可以安全地使用 <em><strong>Box::leak</strong></em>。</p>
-<p><em><strong>RefCell<T></strong></em></p>
+<p><em><strong>RefCell&lt;T&gt;</strong></em></p>
 <p><em><strong>RefCell</strong></em>与<em><strong>Cell</strong></em>的区别和<em><strong>Ref</strong></em>有关。<em><strong>RefCell</strong></em>不是用<em>get</em>和<em>set</em>方法，而是直接通过获取可变引用来修改内部数据。</p>
 <p>实验过程中遇到了获取不可变引用和可变引用的无法同时使用的问题</p>
 <pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>  </span><span style="color:#b48ead;">let</span><span> rc = RefCell::new(</span><span style="color:#d08770;">4</span><span>);
@@ -1042,6 +1043,131 @@
 <li><em><strong>Rc</strong></em>每次克隆时都会增加实例的强引用计数<em>strong_count</em>的值，只有<em>strong_count</em>的值为0值，只有<em>strong_count</em>为0时实例才会被清理。循环引用中的<em>strong_count</em>的值永远不会为0。</li>
 <li><em><strong>Weak</strong></em>智能指针不增加<em>strong_count</em>的值，而是增加<em>weak_count</em>的值。<em>weak_count</em>无须为0就能清理数据。以此解决循环引用的问题。</li>
 </ul>
+<p><em><strong>Weak</strong></em> 是 <em><strong>Rust</strong></em> 标准库中的智能指针类型之一，用于解决循环引用***（Circular reference）***问题。循环引用指的是两个或多个对象之间形成了一个环状的引用关系，<em><strong>即 A 引用了 B，B 又引用了 A</strong></em>。如果使用普通的 <em><strong>Rc</strong></em>（引用计数智能指针）来管理对象之间的引用关系，循环引用会导致内存泄漏，因为对象的引用计数永远不会变为零。</p>
+<p><em><strong>Weak</strong></em>的特点是：它允许你创建一个弱引用，而不会增加引用计数。这意味着当你使用<em><strong>Weak</strong></em>来建立对象之间的引用关系时，对象之间的循环引用不会导致内存泄漏。当<em><strong>Rc</strong></em> 中的所有强引用都离开作用域时，对象会被正确释放，而不会因为循环引用而造成资源泄漏。</p>
+<p><em><strong>Weak</strong></em> 的生命周期是独立于引用计数的，它不会影响对象的引用计数。因此，你需要小心处理 <em><strong>Weak</strong></em>引用，因为当你尝试通过 <em><strong>Weak</strong></em>获取对象的强引用时，对象可能已经被释放，此时获取的值是 <em><strong>None</strong></em>。</p>
+<p><em><strong>Weak</strong></em> 智能指针的主要方法有：</p>
+<ol>
+<li><em><strong>upgrade</strong></em>: 用于尝试将弱引用升级为强引用。它返回 <em><strong>Option&lt;Rc&lt;T&gt;&gt;</strong></em>，如果对象还未被释放，会返回 <em><strong>Some(Rc&lt;T&gt;)</strong></em>，否则返回 <em><strong>None</strong></em>。</li>
+<li><em><strong>ptr_eq</strong></em>: 检查两个<em><strong>Weak</strong></em> 引用是否指向相同的对象。</li>
+<li><em><strong>strong_count</strong></em>: 获取<em><strong>Weak</strong></em>  引用关联的<em><strong>Rc</strong></em> 引用的数量，即共享指针的引用计数。</li>
+<li><em><strong>weak_count</strong></em>: 获取 <em><strong>Weak</strong></em>  引用关联的<em><strong>Rc</strong></em> 引用的弱引用计数。</li>
+<li><em><strong>downgrade</strong></em> 方法接收一个 <em><strong>Rc</strong></em> 智能指针作为参数，并返回一个与之关联的 <em><strong>Weak</strong></em>引用。<em><strong>Rc::downgrade</strong></em> 方法不会增加引用计数，因为它创建的是一个弱引用，弱引用不会增加引用计数，也不会阻止对象的释放。这样，当所有<em><strong>Rc</strong></em> 引用离开作用域时，对象的引用计数可能会变为零，并在接下来的垃圾回收过程中被释放</li>
+</ol>
+<p>在实际使用中，<em><strong>Weak</strong></em>  智能指针通常与 <em><strong>Rc</strong></em>智能指针配合使用，用来构建可循环引用的数据结构，并防止内存泄漏。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::borrow::BorrowMut;
+</span><span style="color:#b48ead;">use </span><span>std::cell::RefCell;
+</span><span style="color:#b48ead;">use </span><span>std::rc::{Rc,Weak};
+</span><span style="color:#b48ead;">struct </span><span>Car{
+</span><span>    </span><span style="color:#bf616a;">name</span><span>:String,
+</span><span>    </span><span style="color:#bf616a;">wheels</span><span>:RefCell&lt;Vec&lt;Weak&lt;Wheel&gt;&gt;&gt;
+</span><span>}
+</span><span style="color:#b48ead;">struct </span><span>Wheel{
+</span><span>    </span><span style="color:#bf616a;">id</span><span>:</span><span style="color:#b48ead;">i32</span><span>,
+</span><span>    </span><span style="color:#bf616a;">car</span><span>:Rc&lt;Car&gt;
+</span><span>}
+</span><span>#[</span><span style="color:#bf616a;">test</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">let</span><span> car:Rc&lt;Car&gt; = Rc::new(
+</span><span>        Car {
+</span><span>            name: &quot;</span><span style="color:#a3be8c;">Changcheng</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>            wheels:RefCell::new(vec![])
+</span><span>        }
+</span><span>    );
+</span><span>    </span><span style="color:#b48ead;">let</span><span> wheel_one:Rc&lt;Wheel&gt;= Rc::new(Wheel{id:</span><span style="color:#d08770;">1</span><span>,car:Rc::clone(&amp;car)});
+</span><span>    </span><span style="color:#b48ead;">let</span><span> wheel_two:Rc&lt;Wheel&gt; = Rc::new(Wheel { id: (</span><span style="color:#d08770;">2</span><span>), car: (Rc::clone(&amp;car)) }); 
+</span><span>    </span><span style="color:#65737e;">//可变借用赋值放在内部代码块中可避免与后续的不可变借用产生冲突
+</span><span>    { 
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> wheels = car.wheels.</span><span style="color:#96b5b4;">borrow_mut</span><span>();
+</span><span>    wheels.</span><span style="color:#96b5b4;">push</span><span>(Rc::downgrade(&amp;wheel_one));
+</span><span>    wheels.</span><span style="color:#96b5b4;">push</span><span>(Rc::downgrade(&amp;wheel_two));
+</span><span>    }
+</span><span>    </span><span style="color:#65737e;">// println!(&quot;{}&quot;,car.name);
+</span><span>    </span><span style="color:#65737e;">//不可变借用car.wheels.borrow()
+</span><span>    </span><span style="color:#b48ead;">for</span><span> wheel_weak in car.wheels.</span><span style="color:#96b5b4;">borrow</span><span>().</span><span style="color:#96b5b4;">iter</span><span>() {
+</span><span>    </span><span style="color:#65737e;">// for wheel_weak in wheels.iter() {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> wl = wheel_weak.</span><span style="color:#96b5b4;">upgrade</span><span>().</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">车轮id</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">,车名name</span><span style="color:#d08770;">{}</span><span>&quot;,wl.id,wl.car.name);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;,Rc::downgrade(&amp;wheel_one).</span><span style="color:#96b5b4;">weak_count</span><span>());
+</span><span>}
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;">*我们通过 Rc::downgrade 创建了弱引用，并使用 upgrade 方法尝试将弱引*用升级为强引用。这样就避免了循环引用导致的内存泄漏。
+</span><span style="color:#65737e;">*/
+</span></code></pre>
+<h2 id="cow-copy-on-write-xie-shi-de-fu-zhi-zhi-zhen">***Cow(copy on write)***写时的复制指针</h2>
+<p><em><strong>Cow</strong></em>不是严格意义上的智能指针，而是一个封装好的枚举类型、</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">pub enum </span><span>Cow&lt;&#39;a,B&gt; where B: a&#39;+ ToOwned +&#39;a + ?Sized{
+</span><span>    Borrowed(&amp;</span><span style="color:#b48ead;">&#39;a</span><span> B), </span><span style="color:#65737e;">//包裹引用
+</span><span>    Owned(&lt;B as ToOwned&gt;::Owned) </span><span style="color:#65737e;">//包裹所有者
+</span><span>}
+</span></code></pre>
+<ul>
+<li>Borrowed的含义是以不可变的方式访问借用内容</li>
+<li>Owned的含义是需要可变借用或所有权时克隆一份数据。</li>
+</ul>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//写一个过滤字符串空格的函数
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">filter_space</span><span>(</span><span style="color:#bf616a;">src</span><span>: &amp;</span><span style="color:#b48ead;">str</span><span>) -&gt; String {
+</span><span>    </span><span style="color:#65737e;">//使用with_capacity函数预置一个src长度大小内存空间，空间具有伸展性，随着字符串的溢出而伸展
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> target = String::with_capacity(src.</span><span style="color:#96b5b4;">len</span><span>());
+</span><span>    </span><span style="color:#b48ead;">for</span><span> c in src.</span><span style="color:#96b5b4;">chars</span><span>() {
+</span><span>        </span><span style="color:#b48ead;">if </span><span>&#39; &#39; != c {
+</span><span>            target.</span><span style="color:#96b5b4;">push</span><span>(c);
+</span><span>        }
+</span><span>    }
+</span><span>    target
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">//使用枚举智能指针cow
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">filter_space_cow</span><span>&lt;</span><span style="color:#b48ead;">&#39;a</span><span>&gt;(</span><span style="color:#bf616a;">src</span><span>: &amp;</span><span style="color:#b48ead;">&#39;a str</span><span>) -&gt; Cow&lt;</span><span style="color:#b48ead;">&#39;a</span><span>, </span><span style="color:#b48ead;">str</span><span>&gt; {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> target = String::with_capacity(src.</span><span style="color:#96b5b4;">len</span><span>());
+</span><span>    </span><span style="color:#b48ead;">if</span><span> src.</span><span style="color:#96b5b4;">contains</span><span>(&#39; &#39;) {
+</span><span>        </span><span style="color:#b48ead;">for</span><span> c in src.</span><span style="color:#96b5b4;">chars</span><span>() {
+</span><span>            </span><span style="color:#b48ead;">if </span><span>&#39; &#39; != c {
+</span><span>                target.</span><span style="color:#96b5b4;">push</span><span>(c);
+</span><span>            }
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">return </span><span>Cow::Owned(target);
+</span><span>    }
+</span><span>    Cow::Borrowed(src)
+</span><span>}
+</span></code></pre>
+<p>现阶段循环调用测试一下两个函数花费的时间，根据目前接触书本理论的结果，使用<em><strong>Cow</strong></em>的优越性比较高，后续会借助专业的库和工具，从内存消耗和执行时间两个层面去比较。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">compare</span><span>() {
+</span><span>   
+</span><span>    </span><span style="color:#b48ead;">let</span><span> input = &quot;</span><span style="color:#a3be8c;">Hello, Rust! This is a test string with spaces.</span><span>&quot;;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> iterations = </span><span style="color:#d08770;">1000000</span><span>;
+</span><span>  
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// 使用 Cow 智能指针函数性能测试
+</span><span>    </span><span style="color:#b48ead;">let</span><span> start = Instant::now();
+</span><span>    </span><span style="color:#b48ead;">for </span><span>_ in </span><span style="color:#d08770;">0</span><span>..iterations {
+</span><span>        </span><span style="color:#96b5b4;">filter_space_cow</span><span>(input);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let</span><span> duration = start.</span><span style="color:#96b5b4;">elapsed</span><span>();
+</span><span>    println!(
+</span><span>        &quot;</span><span style="color:#a3be8c;">Cow function: </span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;"> microseconds per iteration</span><span>&quot;,
+</span><span>        duration.</span><span style="color:#96b5b4;">as_micros</span><span>() as </span><span style="color:#b48ead;">f64 </span><span>/ iterations as </span><span style="color:#b48ead;">f64
+</span><span>    );
+</span><span>
+</span><span>     </span><span style="color:#65737e;">// 原始函数性能测试
+</span><span>    </span><span style="color:#b48ead;">let</span><span> start = Instant::now();
+</span><span>    </span><span style="color:#b48ead;">for </span><span>_ in </span><span style="color:#d08770;">0</span><span>..iterations {
+</span><span>        </span><span style="color:#96b5b4;">filter_space</span><span>(input);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let</span><span> duration = start.</span><span style="color:#96b5b4;">elapsed</span><span>();
+</span><span>    println!(
+</span><span>        &quot;</span><span style="color:#a3be8c;">Original function: </span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;"> microseconds per iteration</span><span>&quot;,
+</span><span>        duration.</span><span style="color:#96b5b4;">as_micros</span><span>() as </span><span style="color:#b48ead;">f64 </span><span>/ iterations as </span><span style="color:#b48ead;">f64
+</span><span>    );
+</span><span>}
+</span></code></pre>
+<p>测试结果如下：似乎没有太大的区别，甚至Cow消耗平均时间要多一些。但由于个人的测试函数比较草率，测试结果仅供参考。</p>
+<p><img src="https://dorname.github.io/rust/smart-pointers/compare.png" alt="image-20230722160207775" /></p>
+<h2 id="pin-t"><em><strong>Pin&lt;T&gt;</strong></em></h2>
+<p>是 <em><strong>Rust</strong></em> 标准库中的另一种智能指针类型，它用于解决在异步编程和使用不稳定的*** APIs*** 时，对象被移动（<em><strong>Drop</strong></em>）的问题。它在内存管理方面与其他智能指针类型有所不同</p>
+<p>当我们使用 <em><strong>async/await</strong></em> 和 <em><strong>Future</strong></em> 来进行异步编程时，经常需要将 <em><strong>Future</strong></em> 固定在内存中，以确保它在异步执行时不会被移动。这就是 <em><strong>Pin</strong></em> 指针的典型应用场景。</p>
+<p>TODO等待后续学习完异步的内容进行实验补充</p>
 
   </div>
   

@@ -943,7 +943,7 @@ Rust语言为智能指针封装了两大Trait，当变量实现了这两个Trait
 
 
 Deref
-实现了Deref后，变量重载了解引用运算符**“*”**,可以当作普通引用来使用，必要时可以自动或手动实现解引用。
+实现了Deref后，变量重载了解引用运算符*****,可以当作普通引用来使用，必要时可以自动或手动实现解引用。
 
 
 Drop
@@ -960,12 +960,13 @@ Drop
 
 名称描述实际作用
 Box&amp;lt;T&amp;gt;一种独占所有权的智能指针指向存储在堆上且类型为T的数据
-Rc一种共享所有权的计数智能指针用于记录存储在堆上的值的引用数
-Arc一种线程安全的共享所有权的计数智能指针可用于多线程
-Cell一种提供内部可变性的容器，不是智能指针允许借用可变数据，编译时检查，参数T要求实现Copy trait
-RefCell一种提供内部可变性的容器，不是智能指针允许借用可变数据，运行时检查，参数T不要求实现Copy trait
-Weak一种与***Rc***对应的弱引用类型用于解决***RefCell***中出现的循环引用。
-Cow是一种写时复制的枚举体智能指针我们使用***Cow***主要是为了减少内存分配和复制，***Cow***适用于读多写少的场景。
+Rc&amp;lt;T&amp;gt;一种共享所有权的计数智能指针用于记录存储在堆上的值的引用数
+Arc&amp;lt;T&amp;gt;一种线程安全的共享所有权的计数智能指针可用于多线程
+Cell&amp;lt;T&amp;gt;一种提供内部可变性的容器，不是智能指针允许借用可变数据，编译时检查，参数T要求实现Copy trait
+RefCell&amp;lt;T&amp;gt;一种提供内部可变性的容器，不是智能指针允许借用可变数据，运行时检查，参数T不要求实现Copy trait
+Weak&amp;lt;T&amp;gt;一种与***Rc&amp;lt;T&amp;gt;***对应的弱引用类型用于解决***RefCell&amp;lt;T&amp;gt;***中出现的循环引用。
+Cow&amp;lt;T&amp;gt;是一种写时复制的枚举体智能指针我们使用***Cow&amp;lt;T&amp;gt;***主要是为了减少内存分配和复制，***Cow&amp;lt;T&amp;gt;***适用于读多写少的场景。
+Pin&amp;lt;T&amp;gt;Rust 标准库中的另一种智能指针类型用于解决在异步编程和使用不稳定的 APIs 时，对象被移动的问题。Pin 可以用于固定***（pin）***一个对象的内存地址，确保它不会被移动。
 
 自定义智能指针
 
@@ -987,7 +988,7 @@ impl&amp;lt;T&amp;gt; MYBOX&amp;lt;T&amp;gt;  {
 impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
     type Target = T;
     fn deref(&amp;amp;self) -&amp;gt; &amp;amp;Self::Target {
-    ...</small>
+...</small>
     
   </p>
 

@@ -45,6 +45,7 @@ taxonomies:
 | ***RefCell&lt;T&gt;*** | 一种提供内部可变性的容器，不是智能指针 | 允许借用可变数据，运行时检查，参数T不要求实现***Copy trait*** |
 | ***Weak&lt;T&gt;***    | 一种与***Rc&lt;T&gt;***对应的弱引用类型      | 用于解决***RefCell&lt;T&gt;***中出现的循环引用。                   |
 | ***Cow&lt;T&gt;***     | 是一种写时复制的枚举体智能指针         | 我们使用***Cow&lt;T&gt;***主要是为了减少内存分配和复制，***Cow&lt;T&gt;***适用于读多写少的场景。 |
+| ***Pin&lt;T&gt;*** | Rust 标准库中的另一种智能指针类型 | 用于解决在异步编程和使用不稳定的 ***APIs*** 时，对象被移动的问题。***Pin*** 可以用于固定***（pin）***一个对象的内存地址，确保它不会被移动。 |
 
 ## 自定义智能指针
 
@@ -306,3 +307,148 @@ test smart_points::ref_cell::test ... ok
 
 - ***Rc***每次克隆时都会增加实例的强引用计数*strong_count*的值，只有*strong_count*的值为0值，只有*strong_count*为0时实例才会被清理。循环引用中的*strong_count*的值永远不会为0。
 - ***Weak***智能指针不增加*strong_count*的值，而是增加*weak_count*的值。*weak_count*无须为0就能清理数据。以此解决循环引用的问题。
+
+***Weak*** 是 ***Rust*** 标准库中的智能指针类型之一，用于解决循环引用***（Circular reference）***问题。循环引用指的是两个或多个对象之间形成了一个环状的引用关系，***即 A 引用了 B，B 又引用了 A***。如果使用普通的 ***Rc***（引用计数智能指针）来管理对象之间的引用关系，循环引用会导致内存泄漏，因为对象的引用计数永远不会变为零。
+
+***Weak***的特点是：它允许你创建一个弱引用，而不会增加引用计数。这意味着当你使用***Weak***来建立对象之间的引用关系时，对象之间的循环引用不会导致内存泄漏。当***Rc*** 中的所有强引用都离开作用域时，对象会被正确释放，而不会因为循环引用而造成资源泄漏。
+
+***Weak*** 的生命周期是独立于引用计数的，它不会影响对象的引用计数。因此，你需要小心处理 ***Weak***引用，因为当你尝试通过 ***Weak***获取对象的强引用时，对象可能已经被释放，此时获取的值是 ***None***。
+
+***Weak*** 智能指针的主要方法有：
+
+1. ***upgrade***: 用于尝试将弱引用升级为强引用。它返回 ***Option<Rc&lt;T&gt;>***，如果对象还未被释放，会返回 ***Some(Rc&lt;T&gt;)***，否则返回 ***None***。
+2. ***ptr_eq***: 检查两个***Weak*** 引用是否指向相同的对象。
+3. ***strong_count***: 获取***Weak***  引用关联的***Rc*** 引用的数量，即共享指针的引用计数。
+4. ***weak_count***: 获取 ***Weak***  引用关联的***Rc*** 引用的弱引用计数。
+5. ***downgrade*** 方法接收一个 ***Rc*** 智能指针作为参数，并返回一个与之关联的 ***Weak***引用。***Rc::downgrade*** 方法不会增加引用计数，因为它创建的是一个弱引用，弱引用不会增加引用计数，也不会阻止对象的释放。这样，当所有***Rc*** 引用离开作用域时，对象的引用计数可能会变为零，并在接下来的垃圾回收过程中被释放
+
+在实际使用中，***Weak***  智能指针通常与 ***Rc***智能指针配合使用，用来构建可循环引用的数据结构，并防止内存泄漏。
+
+```rust
+use std::borrow::BorrowMut;
+use std::cell::RefCell;
+use std::rc::{Rc,Weak};
+struct Car{
+    name:String,
+    wheels:RefCell<Vec<Weak<Wheel>>>
+}
+struct Wheel{
+    id:i32,
+    car:Rc<Car>
+}
+#[test]
+fn test(){
+    let car:Rc<Car> = Rc::new(
+        Car {
+            name: "Changcheng".to_string(),
+            wheels:RefCell::new(vec![])
+        }
+    );
+    let wheel_one:Rc<Wheel>= Rc::new(Wheel{id:1,car:Rc::clone(&car)});
+    let wheel_two:Rc<Wheel> = Rc::new(Wheel { id: (2), car: (Rc::clone(&car)) }); 
+    //可变借用赋值放在内部代码块中可避免与后续的不可变借用产生冲突
+    { 
+    let mut wheels = car.wheels.borrow_mut();
+    wheels.push(Rc::downgrade(&wheel_one));
+    wheels.push(Rc::downgrade(&wheel_two));
+    }
+    // println!("{}",car.name);
+    //不可变借用car.wheels.borrow()
+    for wheel_weak in car.wheels.borrow().iter() {
+    // for wheel_weak in wheels.iter() {
+        let wl = wheel_weak.upgrade().unwrap();
+        println!("车轮id{},车名name{}",wl.id,wl.car.name);
+    }
+    println!("{}",Rc::downgrade(&wheel_one).weak_count());
+}
+/**
+*我们通过 Rc::downgrade 创建了弱引用，并使用 upgrade 方法尝试将弱引*用升级为强引用。这样就避免了循环引用导致的内存泄漏。
+*/
+```
+
+## ***Cow(copy on write)***写时的复制指针
+
+***Cow***不是严格意义上的智能指针，而是一个封装好的枚举类型、
+
+```rust
+pub enum Cow<'a,B> where B: a'+ ToOwned +'a + ?Sized{
+    Borrowed(&'a B), //包裹引用
+    Owned(<B as ToOwned>::Owned) //包裹所有者
+}
+```
+
+- Borrowed的含义是以不可变的方式访问借用内容
+- Owned的含义是需要可变借用或所有权时克隆一份数据。
+
+```rust
+//写一个过滤字符串空格的函数
+fn filter_space(src: &str) -> String {
+    //使用with_capacity函数预置一个src长度大小内存空间，空间具有伸展性，随着字符串的溢出而伸展
+    let mut target = String::with_capacity(src.len());
+    for c in src.chars() {
+        if ' ' != c {
+            target.push(c);
+        }
+    }
+    target
+}
+
+//使用枚举智能指针cow
+fn filter_space_cow<'a>(src: &'a str) -> Cow<'a, str> {
+    let mut target = String::with_capacity(src.len());
+    if src.contains(' ') {
+        for c in src.chars() {
+            if ' ' != c {
+                target.push(c);
+            }
+        }
+        return Cow::Owned(target);
+    }
+    Cow::Borrowed(src)
+}
+```
+
+现阶段循环调用测试一下两个函数花费的时间，根据目前接触书本理论的结果，使用***Cow***的优越性比较高，后续会借助专业的库和工具，从内存消耗和执行时间两个层面去比较。
+
+```rust
+fn compare() {
+   
+    let input = "Hello, Rust! This is a test string with spaces.";
+    let iterations = 1000000;
+  
+
+    // 使用 Cow 智能指针函数性能测试
+    let start = Instant::now();
+    for _ in 0..iterations {
+        filter_space_cow(input);
+    }
+    let duration = start.elapsed();
+    println!(
+        "Cow function: {} microseconds per iteration",
+        duration.as_micros() as f64 / iterations as f64
+    );
+
+     // 原始函数性能测试
+    let start = Instant::now();
+    for _ in 0..iterations {
+        filter_space(input);
+    }
+    let duration = start.elapsed();
+    println!(
+        "Original function: {} microseconds per iteration",
+        duration.as_micros() as f64 / iterations as f64
+    );
+}
+```
+
+测试结果如下：似乎没有太大的区别，甚至Cow消耗平均时间要多一些。但由于个人的测试函数比较草率，测试结果仅供参考。
+
+![image-20230722160207775](compare.png)
+
+## ***Pin&lt;T&gt;***
+
+是 ***Rust*** 标准库中的另一种智能指针类型，它用于解决在异步编程和使用不稳定的*** APIs*** 时，对象被移动（***Drop***）的问题。它在内存管理方面与其他智能指针类型有所不同
+
+当我们使用 ***async/await*** 和 ***Future*** 来进行异步编程时，经常需要将 ***Future*** 固定在内存中，以确保它在异步执行时不会被移动。这就是 ***Pin*** 指针的典型应用场景。
+
+TODO等待后续学习完异步的内容进行实验补充
