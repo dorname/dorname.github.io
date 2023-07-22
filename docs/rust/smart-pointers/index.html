@@ -1095,7 +1095,7 @@
 </span><span style="color:#65737e;">*我们通过 Rc::downgrade 创建了弱引用，并使用 upgrade 方法尝试将弱引*用升级为强引用。这样就避免了循环引用导致的内存泄漏。
 </span><span style="color:#65737e;">*/
 </span></code></pre>
-<h2 id="cow-copy-on-write-xie-shi-de-fu-zhi-zhi-zhen">***Cow(copy on write)***写时的复制指针</h2>
+<h2 id="cow-copy-on-write-xie-shi-de-fu-zhi-zhi-zhen"><em><strong>Cow</strong></em>(<em><strong>copy on write</strong></em>)写时的复制指针</h2>
 <p><em><strong>Cow</strong></em>不是严格意义上的智能指针，而是一个封装好的枚举类型、</p>
 <pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">pub enum </span><span>Cow&lt;&#39;a,B&gt; where B: a&#39;+ ToOwned +&#39;a + ?Sized{
 </span><span>    Borrowed(&amp;</span><span style="color:#b48ead;">&#39;a</span><span> B), </span><span style="color:#65737e;">//包裹引用
