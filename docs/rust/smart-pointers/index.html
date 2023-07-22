@@ -820,7 +820,7 @@
 <li>智能指针实现了Deref和Drop两个大trait</li>
 </ul>
 <table><thead><tr><th>名称</th><th>描述</th><th>实际作用</th></tr></thead><tbody>
-<tr><td><em><strong>Box<T></strong></em></td><td>一种独占所有权的智能指针</td><td>指向存储在堆上且类型为T的数据</td></tr>
+<tr><td><em><strong>Box&lt;T&gt;</strong></em></td><td>一种独占所有权的智能指针</td><td>指向存储在堆上且类型为T的数据</td></tr>
 <tr><td><em><strong>Rc<T></strong></em></td><td>一种共享所有权的计数智能指针</td><td>用于记录存储在堆上的值的引用数</td></tr>
 <tr><td><em><strong>Arc<T></strong></em></td><td>一种线程安全的共享所有权的计数智能指针</td><td>可用于多线程</td></tr>
 <tr><td><em><strong>Cell<T></strong></em></td><td>一种提供内部可变性的容器，不是智能指针</td><td>允许借用可变数据，编译时检查，参数T要求实现<em><strong>Copy trait</strong></em></td></tr>
@@ -1037,6 +1037,11 @@
 </ul>
 <p><em><strong>Rust</strong></em>本身提供了内存安全的保证，这意味着很难发生内存泄漏，然而<em><strong>RefCell</strong></em>有可能会造成循环引用，进而导致内存泄漏。</p>
 <p><em><strong>故为了解决循环引用问题，Rust提供了Weak智能指针</strong></em></p>
+<p>通过与<em><strong>Rc</strong></em>对比加强对<em><strong>Weak</strong></em>智能指针的理解：</p>
+<ul>
+<li><em><strong>Rc</strong></em>每次克隆时都会增加实例的强引用计数<em>strong_count</em>的值，只有<em>strong_count</em>的值为0值，只有<em>strong_count</em>为0时实例才会被清理。循环引用中的<em>strong_count</em>的值永远不会为0。</li>
+<li><em><strong>Weak</strong></em>智能指针不增加<em>strong_count</em>的值，而是增加<em>weak_count</em>的值。<em>weak_count</em>无须为0就能清理数据。以此解决循环引用的问题。</li>
+</ul>
 
   </div>
   
