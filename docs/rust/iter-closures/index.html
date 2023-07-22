@@ -789,7 +789,151 @@
   </p>
   
   <div class="content">
-    
+    <h1 id="han-shu-shi-bian-cheng"><strong>函数式编程</strong></h1>
+<p><em><strong>Rust</strong></em>不像其他面向对象编程语言那样喜欢通过类来解决问题，而是推崇函数式编程。</p>
+<h2 id="shi-yao-shi-han-shu-shi-bian-cheng">什么是函数式编程</h2>
+<p>函数式编程是指将函数作为参数值或其他函数的返回值，在将函数赋值给变量之后执行。其中函数式编程的两个重要构件，分别是闭包和迭代器。</p>
+<h3 id="bi-bao"><strong>闭包</strong></h3>
+<p>闭包是一种可以保存变量或者作为参数传递给其他函数使用的匿名函数。闭包可以在一处创建，然后在不同的上下文中执行。与普通函数不同，闭包允许捕获调用者作用域中的值，闭包特别适合用来定义那些只使用一次的函数。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//伪代码
+</span><span style="color:#65737e;">//定义普通函数
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">func_name</span><span>(func_parameter) -&gt; func_return_type{
+</span><span>    code_body;
+</span><span>    return_type
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">//定义闭包
+</span><span>|func_parameter| {
+</span><span>    code_body;
+</span><span>    return_value
+</span><span>}
+</span></code></pre>
+<p>注意：</p>
+<p>闭包也可能没有参数，同时返回值也可写可不写。<em><strong>Rust</strong></em>会自动推断闭包的参数类型和返回值类型，所以参数和返回值类型都可以不写。为了使用闭包，只需要将其赋值给变量，然后像调用函数一样调用它即可。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>   </span><span style="color:#b48ead;">let </span><span style="color:#8fa1b3;">count </span><span>= |</span><span style="color:#bf616a;">x</span><span>:</span><span style="color:#b48ead;">i32</span><span>|-&gt;</span><span style="color:#b48ead;">i32 </span><span>{
+</span><span>        x+</span><span style="color:#d08770;">1
+</span><span>    };
+</span><span>    </span><span style="color:#b48ead;">let</span><span> num = </span><span style="color:#d08770;">3</span><span>;
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{num}</span><span style="color:#a3be8c;">,</span><span style="color:#d08770;">{}</span><span>&quot;,</span><span style="color:#96b5b4;">count</span><span>(num));
+</span><span>   </span><span style="color:#65737e;">/*
+</span><span style="color:#65737e;">   *下面这种写法，入参类型和返回值类型都依赖上下文自动推断
+</span><span style="color:#65737e;">   */
+</span><span>   </span><span style="color:#65737e;">// let count = |x|{
+</span><span>    </span><span style="color:#65737e;">//     x
+</span><span>    </span><span style="color:#65737e;">// };
+</span><span>    </span><span style="color:#65737e;">// let num = 3;
+</span><span>    </span><span style="color:#65737e;">// println!(&quot;{num},{}&quot;,count(num));
+</span></code></pre>
+<p>闭包同样可以使用外部变量</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>  </span><span style="color:#b48ead;">let</span><span> span = </span><span style="color:#d08770;">6</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#8fa1b3;">count </span><span>= |</span><span style="color:#bf616a;">x</span><span>:</span><span style="color:#b48ead;">i32</span><span>|-&gt;</span><span style="color:#b48ead;">i32 </span><span>{
+</span><span>        x+span
+</span><span>    };
+</span><span>    </span><span style="color:#b48ead;">let</span><span> num = </span><span style="color:#d08770;">3</span><span>;
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{num}</span><span style="color:#a3be8c;">,</span><span style="color:#d08770;">{}</span><span>&quot;,</span><span style="color:#96b5b4;">count</span><span>(num));
+</span></code></pre>
+<p>闭包捕获外部变量存在三种可能的目标：</p>
+<ul>
+<li>获取外部变量的所有权</li>
+<li>获取普通引用</li>
+<li>获取可变引用</li>
+</ul>
+<p>于是<em><strong>Rust</strong></em>针对三种目标分别提供3个特征对象<em><strong>Trait</strong></em></p>
+<ul>
+<li><em><strong>FnOnce</strong></em>：会消费从周围作用域捕获的变量，即闭包会并获取外部变量的所有权并在定义闭包时将其移仅闭包内，<em><strong>Once</strong></em>代表这种闭包只能被调用一次。</li>
+<li><em><strong>FnMut</strong></em>：会获取可变的借用值，因此可以改变外部变量。</li>
+<li><em><strong>Fn</strong></em>：获取不可变的借用值</li>
+</ul>
+<p>相当于实现了所有权系统的所有权移动、可变引用和普通引用。理解一下诞生思路：</p>
+<ul>
+<li>由于所有闭包都可以被调用一次，因此所有闭包都实现了<em><strong>FnOne</strong></em>特征</li>
+<li>没有移动变量所有权到闭包内而只使用可变引用的闭包，实现了<em><strong>FnMut</strong></em></li>
+<li>不需要对其变量进行可变访问的闭包实现<em><strong>Fn</strong></em></li>
+</ul>
+<h4 id="move"><em><strong>move</strong></em></h4>
+<p>如果希望强制将外部变量的所有权移动到闭包内，可以使用<em><strong>move</strong></em>关键字。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let mut</span><span> span = </span><span style="color:#d08770;">6</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> num = </span><span style="color:#d08770;">3</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> count = </span><span style="color:#b48ead;">move </span><span>|x:</span><span style="color:#b48ead;">i32</span><span>| {
+</span><span>        </span><span style="color:#65737e;">//span 的所有权移动到闭包内了，但是从结果来看对于这种基础类型i32更多的是在闭包内复制了一个span不影响外部使用
+</span><span>        </span><span style="color:#65737e;">//这里仅仅是通过复制的效果，实现了移动span所有权，注意可变特性使用FnMut
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">closure span:</span><span style="color:#d08770;">{}</span><span>&quot;,span);
+</span><span>        x+span
+</span><span>    };
+</span><span>    span += </span><span style="color:#d08770;">2</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> result = </span><span style="color:#96b5b4;">count</span><span>(</span><span style="color:#d08770;">10</span><span>);
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">num:</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">,span:</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">,result:</span><span style="color:#d08770;">{}</span><span>&quot;,num,span,result);
+</span></code></pre>
+<p>测试结果</p>
+<p><img src="https://dorname.github.io/rust/iter-closures/result.png" alt="result" /></p>
+<h2 id="die-dai-qi"><strong>迭代器</strong></h2>
+<p>迭代器允许对一个序列进行某些处理，并且会遍历这个序列中的每一项以决定何时结束。迭代器默认都要实现<strong>Iterator trait</strong>。而<strong>Iterator trait</strong>有两个方法：</p>
+<p><strong>iter()和next()</strong></p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>iter()//返回一个迭代器
+</span><span>next()//返回迭代器中的下一项
+</span></code></pre>
+<p>迭代器通常有三种:</p>
+<table><thead><tr><th>方法名</th><th>描述</th></tr></thead><tbody>
+<tr><td><strong>iter()</strong></td><td>返回只读可重入迭代器，元素类型为&amp;T</td></tr>
+<tr><td><strong>iter_mut()</strong></td><td>返回可修改可重入迭代器，元素类型位&amp;mut T</td></tr>
+<tr><td><strong>into_iter()</strong></td><td>返回只读不可重入迭代器，元素类型为T</td></tr>
+</tbody></table>
+<p><strong>即：</strong></p>
+<ul>
+<li>
+<p>如果只读取值，实现iter()</p>
+</li>
+<li>
+<p>如果还需要修改原始数据，实现iter_mut()</p>
+</li>
+<li>
+<p>如果原始数据直接转换为迭代器，实现into_iter()，以获取原始数据所有权并返回一个迭代器</p>
+<p>实验如下：</p>
+</li>
+</ul>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">iter_test</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">let</span><span> nums = vec![</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>,</span><span style="color:#d08770;">3</span><span>,</span><span style="color:#d08770;">4</span><span>,</span><span style="color:#d08770;">5</span><span>,</span><span style="color:#d08770;">6</span><span>,</span><span style="color:#d08770;">7</span><span>,</span><span style="color:#d08770;">8</span><span>];
+</span><span>    </span><span style="color:#b48ead;">for</span><span> num in nums.</span><span style="color:#96b5b4;">iter</span><span>(){
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">num:</span><span style="color:#d08770;">{}</span><span>&quot;,num+</span><span style="color:#d08770;">1</span><span>);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">nums:</span><span style="color:#d08770;">{:?}</span><span>&quot;,nums);
+</span><span>}
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">iter_mut_test</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> nums = vec![</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>,</span><span style="color:#d08770;">3</span><span>,</span><span style="color:#d08770;">4</span><span>,</span><span style="color:#d08770;">5</span><span>,</span><span style="color:#d08770;">6</span><span>,</span><span style="color:#d08770;">7</span><span>,</span><span style="color:#d08770;">8</span><span>];
+</span><span>    </span><span style="color:#b48ead;">for</span><span> num in nums.</span><span style="color:#96b5b4;">iter_mut</span><span>(){
+</span><span>        *num = *num+</span><span style="color:#d08770;">2</span><span>;
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">num:</span><span style="color:#d08770;">{}</span><span>&quot;,num);
+</span><span>    }
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">nums:</span><span style="color:#d08770;">{:?}</span><span>&quot;,nums);
+</span><span>}
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">into_iter_test</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">let</span><span> nums = vec![</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>,</span><span style="color:#d08770;">3</span><span>,</span><span style="color:#d08770;">4</span><span>,</span><span style="color:#d08770;">5</span><span>,</span><span style="color:#d08770;">6</span><span>,</span><span style="color:#d08770;">7</span><span>,</span><span style="color:#d08770;">8</span><span>];
+</span><span>    </span><span style="color:#b48ead;">for</span><span> num in nums.</span><span style="color:#96b5b4;">into_iter</span><span>(){
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">num:</span><span style="color:#d08770;">{}</span><span>&quot;,num);
+</span><span>    }
+</span><span>    </span><span style="color:#65737e;">// 等价于
+</span><span>    </span><span style="color:#65737e;">// for num in nums.into_iter(){
+</span><span>    </span><span style="color:#65737e;">//     println!(&quot;num:{}&quot;,num);
+</span><span>    </span><span style="color:#65737e;">// }
+</span><span>    </span><span style="color:#65737e;">// println!(&quot;nums:{:?}&quot;,nums); //borrow of moved value: `nums` ,value borrowed here after move
+</span><span>}
+</span></code></pre>
+<p>迭代器除了转移原始数据所有权之外，迭代器本身也可以被消费或再生成迭代器。</p>
+<p><strong>消费（消费者）</strong>：消费是迭代器上的一种特殊操作，目标是将迭代器转换成其他类型的值而非另一个迭代器。<strong>sum、collect、nth、find、next、fold</strong>都是消费者，它们会对迭代器执行操作得到最终值。</p>
+<p><strong>适配（生产者）</strong>：迭代器的生成者就是适配器，就是对迭代器进行遍历生成一个增强约束的迭代器，<strong>注意，新迭代器一定是原始迭代器的子集</strong>，其中，<strong>take、skip、rev、filter、map、zip、enumerate</strong>都是适配器。其实迭代器本身也是适配器。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>  </span><span style="color:#b48ead;">let</span><span> nums = vec![</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>,</span><span style="color:#d08770;">3</span><span>,</span><span style="color:#d08770;">4</span><span>,</span><span style="color:#d08770;">5</span><span>,</span><span style="color:#d08770;">6</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let</span><span> total = nums.</span><span style="color:#96b5b4;">iter</span><span>().sum::&lt;</span><span style="color:#b48ead;">i32</span><span>&gt;();
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">total:</span><span style="color:#d08770;">{total}</span><span>&quot;);
+</span><span>
+</span><span>    </span><span style="color:#65737e;">//收集0..100的偶数
+</span><span>    </span><span style="color:#b48ead;">let</span><span> nums_even:Vec&lt;</span><span style="color:#b48ead;">i32</span><span>&gt; = (</span><span style="color:#d08770;">0</span><span>..</span><span style="color:#d08770;">100</span><span>).</span><span style="color:#96b5b4;">filter</span><span>(|</span><span style="color:#bf616a;">n</span><span>| {</span><span style="color:#d08770;">0</span><span>== n%</span><span style="color:#d08770;">2</span><span>}).</span><span style="color:#96b5b4;">collect</span><span>();</span><span style="color:#65737e;">//collect是适配器
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{:?}</span><span>&quot;,nums_even);
+</span><span>
+</span><span>    </span><span style="color:#65737e;">//求小于1000的能被3整除或5整除的所有整数之和
+</span><span>    </span><span style="color:#b48ead;">let</span><span> sum:</span><span style="color:#b48ead;">i32 </span><span>= (</span><span style="color:#d08770;">0</span><span>..</span><span style="color:#d08770;">1000</span><span>).</span><span style="color:#96b5b4;">filter</span><span>(|</span><span style="color:#bf616a;">n</span><span>|{</span><span style="color:#d08770;">0</span><span>==n%</span><span style="color:#d08770;">3</span><span>||</span><span style="color:#d08770;">0</span><span>==n%</span><span style="color:#d08770;">5</span><span>}).sum::&lt;</span><span style="color:#b48ead;">i32</span><span>&gt;();
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;,sum);
+</span></code></pre>
+
   </div>
   
     

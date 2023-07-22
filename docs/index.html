@@ -886,7 +886,32 @@
           
   <p class="card-text text-muted">
     
-      <small>...</small>
+      <small>函数式编程
+Rust不像其他面向对象编程语言那样喜欢通过类来解决问题，而是推崇函数式编程。
+什么是函数式编程
+函数式编程是指将函数作为参数值或其他函数的返回值，在将函数赋值给变量之后执行。其中函数式编程的两个重要构件，分别是闭包和迭代器。
+闭包
+闭包是一种可以保存变量或者作为参数传递给其他函数使用的匿名函数。闭包可以在一处创建，然后在不同的上下文中执行。与普通函数不同，闭包允许捕获调用者作用域中的值，闭包特别适合用来定义那些只使用一次的函数。
+&#x2F;&#x2F;伪代码
+&#x2F;&#x2F;定义普通函数
+fn func_name(func_parameter) -&amp;gt; func_return_type{
+    code_body;
+    return_type
+}
+
+&#x2F;&#x2F;定义闭包
+|func_parameter| {
+    code_body;
+    return_value
+}
+
+注意：
+闭包也可能没有参数，同时返回值也可写可不写。Rust会自动推断闭包的参数类型和返回值类型，所以参数和返回值类型都可以不写。为了使用闭包，只需要将其赋值给变量，然后像调用函数一样调用它即可。
+   let count = |x:i32|-&amp;gt;i32 {
+        x+1
+    };
+    let num = 3;
+   ...</small>
     
   </p>
 
@@ -1465,7 +1490,7 @@ fn add_test(){
   
     
     <div
-       id="bs-carousel-81681652"
+       id="bs-carousel-597971871"
        class="carousel slide"
        data-bs-ride="carousel"
     >
@@ -1544,7 +1569,7 @@ fn add_test(){
       <button
         class="carousel-control-prev"
         type="button"
-        data-bs-target="#bs-carousel-81681652"
+        data-bs-target="#bs-carousel-597971871"
         data-bs-slide="prev"
       >
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -1553,7 +1578,7 @@ fn add_test(){
       <button
         class="carousel-control-next"
         type="button"
-        data-bs-target="#bs-carousel-81681652"
+        data-bs-target="#bs-carousel-597971871"
         data-bs-slide="next"
       >
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
