@@ -2,9 +2,7 @@
 <html>
   <head>
     
-    <title>
-	Keep learning and trying - authors: liguangqiao
-</title>
+    <title>js学习笔记(8)——对象、类与面向对象编程 | Keep learning and trying</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -763,7 +761,76 @@
     </nav>
     <main class="container mx-auto my-5">
       
+  <h1>js学习笔记(8)——对象、类与面向对象编程</h1>
+  <p class="text-muted">
+    
   
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  31&#x2F;07&#x2F;2023
+
+  </p>
+  
+  <p>
+    
+      <a
+        href="https://dorname.github.io/tags/js/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        js
+      </a>
+    
+  </p>
+  
+  <div class="content">
+    <h1 id="dui-xiang-lei-yu-mian-xiang-dui-xiang-bian-cheng"><strong>对象、类与面向对象编程</strong></h1>
+<h2 id="li-jie-dui-xiang">理解对象</h2>
+<p>创建自定义对象的通常方式是创建<strong>Object</strong>的一个新实例：</p>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">person </span><span>= new Object(); 
+</span><span style="color:#bf616a;">person</span><span>.name = &quot;</span><span style="color:#a3be8c;">Nicholas</span><span>&quot;; 
+</span><span style="color:#bf616a;">person</span><span>.</span><span style="color:#bf616a;">age </span><span>= </span><span style="color:#d08770;">29</span><span>; 
+</span><span style="color:#bf616a;">person</span><span>.</span><span style="color:#bf616a;">job </span><span>= &quot;</span><span style="color:#a3be8c;">Software Engineer</span><span>&quot;; 
+</span><span style="color:#bf616a;">person</span><span>.</span><span style="color:#8fa1b3;">sayName </span><span>= </span><span style="color:#b48ead;">function</span><span>() { 
+</span><span> </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">this</span><span>.name); 
+</span><span>};
+</span><span>
+</span><span style="color:#65737e;">//前面的例子
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">person </span><span>= { 
+</span><span>name: &quot;</span><span style="color:#a3be8c;">Nicholas</span><span>&quot;, 
+</span><span>age: </span><span style="color:#d08770;">29</span><span>, 
+</span><span>job: &quot;</span><span style="color:#a3be8c;">Software Engineer</span><span>&quot;, 
+</span><span style="color:#8fa1b3;">sayName</span><span>() { 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">this</span><span>.name); 
+</span><span>} 
+</span><span>};
+</span></code></pre>
+<h2 id="shu-xing-de-lei-xing">属性的类型</h2>
+<h3 id="shu-ju-shu-xing">数据属性</h3>
+<ul>
+<li><code>[[Configurable]]</code>:表示属性是否可以通过<code>delete</code>删除并重新定义，是否可以修改它的特性,以及是否可以把它改为访问器属性。注：默认所有直接定义在对象的属性的这个特性都是true。</li>
+<li><code>[[Enumberable]]</code>:表示属性是否可以通过<code>for-in</code>循环返回。默认情况下，所有直接定义在对象上的属性的这个特性都是true。</li>
+<li><code>[[Writable]]</code>:表示属性的值是否可以被修改。默认情况下，所以直接定义在对象上的属性的，这个特性都是true。</li>
+<li><code>[[Value]]</code>:包含属性实际的值。这就是前面提到的那个读取和写入属性值的位置。这个特性的默认值为<code>undefined</code>。</li>
+</ul>
+<p>查看对象属性的方式：<code>Object.getOwnPropertyDescriptor</code>方法</p>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">var </span><span style="color:#bf616a;">obj </span><span>= {
+</span><span>    &quot;</span><span style="color:#a3be8c;">name</span><span>&quot;:&quot;</span><span style="color:#a3be8c;">test</span><span>&quot;
+</span><span>};
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#ebcb8b;">Object</span><span>.</span><span style="color:#8fa1b3;">getOwnPropertyDescriptor</span><span>(</span><span style="color:#bf616a;">obj</span><span>, &#39;</span><span style="color:#a3be8c;">name</span><span>&#39;))
+</span><span>
+</span><span style="color:#65737e;">//output
+</span><span style="color:#65737e;">//{ value: &#39;test&#39;, writable: true, enumerable: true, configurable: true }
+</span></code></pre>
+
+  </div>
+  
+    
   
   <div class="card my-5">
     <div class="row g-0">
@@ -805,510 +872,12 @@
     </div>
   </div>
 
-	
-    
   
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-8-object&#x2F;..&#x2F;js_logo.png"
-    class="img-fluid m-auto d-block "
-    alt="js学习笔记(8)——对象、类与面向对象编程"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-8-object&#x2F;"
-      rel="bookmark"
-      title="js学习笔记(8)——对象、类与面向对象编程"
-    ><b>js学习笔记(8)——对象、类与面向对象编程</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  31&#x2F;07&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>对象、类与面向对象编程
-理解对象
-创建自定义对象的通常方式是创建Object的一个新实例：
-let person = new Object(); 
-person.name = &amp;quot;Nicholas&amp;quot;; 
-person.age = 29; 
-person.job = &amp;quot;Software Engineer&amp;quot;; 
-person.sayName = function() { 
- console.log(this.name); 
-};
-
-&#x2F;&#x2F;前面的例子
-let person = { 
-name: &amp;quot;Nicholas&amp;quot;, 
-age: 29, 
-job: &amp;quot;Software Engineer&amp;quot;, 
-sayName() { 
-console.log(this.name); 
-} 
-};
-
-属性的类型
-数据属性
-
-[[Configurable]]:表示属性是否可以通过delete删除并重新定义，是否可以修改它的特性,以及是否可以把它改为访问器属性。注：默认所有直接定义在对象的属性的这个特性都是true。
-[[Enumberable]]:表示属性是否可以通过for-in循环返回。默认情况下，所有直接定义在对象上的属性的这个特性都是true。
-[[Writable]]:表示属性的值是否可以被修改。默认情况下，所以直接定义在对象上的属性的，这个特性都是true。
-[[Value]]:包含属性实际的值。这就是前面提到的那个读取和写入属性值的位置。这个特性的默认值为undefined。
-
-查看对象属性的方式：Object.getOwnPropertyDescriptor方法
-var obj = {
-    &amp;quot;name&amp;quot;:&amp;quot;test&amp;quot;
-};
-console.log(Object.getOwnPropertyDescriptor(obj, &amp;#39;name&amp;#39;))
-
-&#x2F;&#x2F;output
-&#x2F;&#x2F;{ value: &amp;#39;test&amp;#39;, writable: true, enumerable:...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;enum-patten&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust学习(四)枚举和模式匹配"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;enum-patten&#x2F;"
-      rel="bookmark"
-      title="rust学习(四)枚举和模式匹配"
-    ><b>rust学习(四)枚举和模式匹配</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  16&#x2F;07&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;iter-closures&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust学习(五)迭代器和闭包"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;iter-closures&#x2F;"
-      rel="bookmark"
-      title="rust学习(五)迭代器和闭包"
-    ><b>rust学习(五)迭代器和闭包</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  16&#x2F;07&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>函数式编程
-Rust不像其他面向对象编程语言那样喜欢通过类来解决问题，而是推崇函数式编程。
-什么是函数式编程
-函数式编程是指将函数作为参数值或其他函数的返回值，在将函数赋值给变量之后执行。其中函数式编程的两个重要构件，分别是闭包和迭代器。
-闭包
-闭包是一种可以保存变量或者作为参数传递给其他函数使用的匿名函数。闭包可以在一处创建，然后在不同的上下文中执行。与普通函数不同，闭包允许捕获调用者作用域中的值，闭包特别适合用来定义那些只使用一次的函数。
-&#x2F;&#x2F;伪代码
-&#x2F;&#x2F;定义普通函数
-fn func_name(func_parameter) -&amp;gt; func_return_type{
-    code_body;
-    return_type
-}
-
-&#x2F;&#x2F;定义闭包
-|func_parameter| {
-    code_body;
-    return_value
-}
-
-注意：
-闭包也可能没有参数，同时返回值也可写可不写。Rust会自动推断闭包的参数类型和返回值类型，所以参数和返回值类型都可以不写。为了使用闭包，只需要将其赋值给变量，然后像调用函数一样调用它即可。
-   let count = |x:i32|-&amp;gt;i32 {
-        x+1
-    };
-    let num = 3;
-   ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;smart-pointers&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust学习(六)智能指针"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;smart-pointers&#x2F;"
-      rel="bookmark"
-      title="rust学习(六)智能指针"
-    ><b>rust学习(六)智能指针</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  16&#x2F;07&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>智能指针
-概念
-
-
-指针是包含内存地址的变量，用于引用或只想其他的数据。
-
-
-Rust中最常见的指针是引用，而引用只是一种普通指针，除了引用数据之外，没有其他功能，
-
-
-智能指针则是一种数据结构，其行为类似于指针，含有元数据，且在大部分情况下拥有指向的数据，提供内存管理或者绑定检查等附加功能，如管理文件句柄和网络连接。例如Rust中的Vec、String都可以看作智能指针。
-Rust语言为智能指针封装了两大Trait，当变量实现了这两个Trait后就不再是普通变量：
-
-
-Deref
-实现了Deref后，变量重载了解引用运算符*****,可以当作普通引用来使用，必要时可以自动或手动实现解引用。
-
-
-Drop
-实现Drop后，变量在超出作用域时会自动从堆中释放，当然还可以自定义实现其他功能，如释放文件或网络连接。
-
-
-
-
-特征
-
-智能指针在大部分情况下具有其所指向数据的所有权
-智能指针是一种数据结构，一般使用结构体来实现
-智能指针实现了Deref和Drop两个大trait
-
-名称描述实际作用
-Box&amp;lt;T&amp;gt;一种独占所有权的智能指针指向存储在堆上且类型为T的数据
-Rc&amp;lt;T&amp;gt;一种共享所有权的计数智能指针用于记录存储在堆上的值的引用数
-Arc&amp;lt;T&amp;gt;一种线程安全的共享所有权的计数智能指针可用于多线程
-Cell&amp;lt;T&amp;gt;一种提供内部可变性的容器，不是智能指针允许借用可变数据，编译时检查，参数T要求实现Copy trait
-RefCell&amp;lt;T&amp;gt;一种提供内部可变性的容器，不是智能指针允许借用可变数据，运行时检查，参数T不要求实现Copy trait
-Weak&amp;lt;T&amp;gt;一种与***Rc&amp;lt;T&amp;gt;***对应的弱引用类型用于解决***RefCell&amp;lt;T&amp;gt;***中出现的循环引用。
-Cow&amp;lt;T&amp;gt;是一种写时复制的枚举体智能指针我们使用***Cow&amp;lt;T&amp;gt;***主要是为了减少内存分配和复制，***Cow&amp;lt;T&amp;gt;***适用于读多写少的场景。
-Pin&amp;lt;T&amp;gt;Rust 标准库中的另一种智能指针类型用于解决在异步编程和使用不稳定的 APIs 时，对象被移动的问题。Pin 可以用于固定***（pin）***一个对象的内存地址，确保它不会被移动。
-
-自定义智能指针
-
-
-定义一个结构体MYBOX
-use std::ops::Deref;
-&#x2F;&#x2F;定义一个泛型参数的元组结构体
-struct MYBOX&amp;lt;T&amp;gt;(T);
-&#x2F;&#x2F;为元组结构体实现一个创建实例的方法
-impl&amp;lt;T&amp;gt; MYBOX&amp;lt;T&amp;gt;  {
-    fn new(x:T) -&amp;gt; Self{
-        Self(x)
-    }
-}
-
-
-
-结构体实现Deref特征
-impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
-    type Target = T;
-    fn deref(&amp;amp;self) -&amp;gt; &amp;amp;Self::Target {
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;generic-trait&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust学习(三)泛型和特征对象"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;generic-trait&#x2F;"
-      rel="bookmark"
-      title="rust学习(三)泛型和特征对象"
-    ><b>rust学习(三)泛型和特征对象</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  15&#x2F;07&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>泛型和特征对象
-泛型解决了多种数据类型可共用一个方法的问题，而特征对象（trait）则提供一种定义和限制泛型行为的方法，特征对象(trait)中封装各类型共享的方法
-泛型例子：
-use std::ops::Add;
-
-fn add_i8(a:i8,b:i8) -&amp;gt; i8 {
-    a+b
-}
-fn add_i16(a:i16,b:i16) -&amp;gt; i16 {
-    a+b
-}
-fn add_i32(a:i32,b:i32) -&amp;gt; i32 {
-    a+b
-}
-fn add&amp;lt;T:std::ops::Add + Add&amp;lt;Output = T&amp;gt;&amp;gt;(a:T,b:T) -&amp;gt; T {
-    a+b
-}
-fn add_test(){
-    println!(&amp;quot;{}&amp;quot;,add_i8(1,2));
-    println!(&amp;quot;{}&amp;quot;,add_i16(1,2));
-   ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-  
-  
-  <nav>
-    <ul class="pagination">
-      
-        <li class="
-          page-item
-          active
-        ">
-          <a
-            class="page-link"
-            
-            
-          >1</a>
-        </li>
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;2"
-            
-          >2</a>
-        </li>
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;3"
-            
-          >3</a>
-        </li>
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;4"
-            
-          >4</a>
-        </li>
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;5"
-            
-          >5</a>
-        </li>
-      
-    </ul>
-  </nav>
-  
-
 
     </main>
     
-    
+  
+
     
     <footer class="
       mt-auto p-5

@@ -778,6 +778,100 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-8-object&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block "
+    alt="js学习笔记(8)——对象、类与面向对象编程"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-8-object&#x2F;"
+      rel="bookmark"
+      title="js学习笔记(8)——对象、类与面向对象编程"
+    ><b>js学习笔记(8)——对象、类与面向对象编程</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  31&#x2F;07&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>对象、类与面向对象编程
+理解对象
+创建自定义对象的通常方式是创建Object的一个新实例：
+let person = new Object(); 
+person.name = &amp;quot;Nicholas&amp;quot;; 
+person.age = 29; 
+person.job = &amp;quot;Software Engineer&amp;quot;; 
+person.sayName = function() { 
+ console.log(this.name); 
+};
+
+&#x2F;&#x2F;前面的例子
+let person = { 
+name: &amp;quot;Nicholas&amp;quot;, 
+age: 29, 
+job: &amp;quot;Software Engineer&amp;quot;, 
+sayName() { 
+console.log(this.name); 
+} 
+};
+
+属性的类型
+数据属性
+
+[[Configurable]]:表示属性是否可以通过delete删除并重新定义，是否可以修改它的特性,以及是否可以把它改为访问器属性。注：默认所有直接定义在对象的属性的这个特性都是true。
+[[Enumberable]]:表示属性是否可以通过for-in循环返回。默认情况下，所有直接定义在对象上的属性的这个特性都是true。
+[[Writable]]:表示属性的值是否可以被修改。默认情况下，所以直接定义在对象上的属性的，这个特性都是true。
+[[Value]]:包含属性实际的值。这就是前面提到的那个读取和写入属性值的位置。这个特性的默认值为undefined。
+
+查看对象属性的方式：Object.getOwnPropertyDescriptor方法
+var obj = {
+    &amp;quot;name&amp;quot;:&amp;quot;test&amp;quot;
+};
+console.log(Object.getOwnPropertyDescriptor(obj, &amp;#39;name&amp;#39;))
+
+&#x2F;&#x2F;output
+&#x2F;&#x2F;{ value: &amp;#39;test&amp;#39;, writable: true, enumerable:...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-9-reflection-proxy&#x2F;..&#x2F;js_logo.png"
     class="img-fluid m-auto d-block "
     alt="js学习笔记(9)——反射和代理"
