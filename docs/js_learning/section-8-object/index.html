@@ -827,6 +827,115 @@
 </span><span style="color:#65737e;">//output
 </span><span style="color:#65737e;">//{ value: &#39;test&#39;, writable: true, enumerable: true, configurable: true }
 </span></code></pre>
+<p>修改属性的默认特性：<code>Object.defineProperty</code>方法，参数1：对象实例；参数2：属性名称；参数3：描述数据特性的对象</p>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">var </span><span style="color:#bf616a;">obj </span><span>= {
+</span><span>    &quot;</span><span style="color:#a3be8c;">name</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">test</span><span>&quot;
+</span><span>};
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#ebcb8b;">Object</span><span>.</span><span style="color:#8fa1b3;">getOwnPropertyDescriptor</span><span>(</span><span style="color:#bf616a;">obj</span><span>, &#39;</span><span style="color:#a3be8c;">name</span><span>&#39;))
+</span><span style="color:#ebcb8b;">Object</span><span>.</span><span style="color:#8fa1b3;">defineProperty</span><span>(</span><span style="color:#bf616a;">obj</span><span>,&quot;</span><span style="color:#a3be8c;">name</span><span>&quot;,{
+</span><span>    writable:</span><span style="color:#d08770;">false</span><span>,
+</span><span>    value:&quot;</span><span style="color:#a3be8c;">can&#39;t write</span><span>&quot;
+</span><span>});
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#ebcb8b;">Object</span><span>.</span><span style="color:#8fa1b3;">getOwnPropertyDescriptor</span><span>(</span><span style="color:#bf616a;">obj</span><span>, &#39;</span><span style="color:#a3be8c;">name</span><span>&#39;))
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">1:</span><span>&quot;,</span><span style="color:#bf616a;">obj</span><span>.name);
+</span><span style="color:#bf616a;">obj</span><span>.name = &quot;</span><span style="color:#a3be8c;">test</span><span>&quot;;
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">2:</span><span>&quot;,</span><span style="color:#bf616a;">obj</span><span>.name);
+</span><span style="color:#ebcb8b;">Object</span><span>.</span><span style="color:#8fa1b3;">defineProperty</span><span>(</span><span style="color:#bf616a;">obj</span><span>,&quot;</span><span style="color:#a3be8c;">name</span><span>&quot;,{
+</span><span>    configurable:</span><span style="color:#d08770;">false</span><span>,
+</span><span>    value:&quot;</span><span style="color:#a3be8c;">can&#39;t delete</span><span>&quot;
+</span><span>});
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#ebcb8b;">Object</span><span>.</span><span style="color:#8fa1b3;">getOwnPropertyDescriptor</span><span>(</span><span style="color:#bf616a;">obj</span><span>, &#39;</span><span style="color:#a3be8c;">name</span><span>&#39;))
+</span><span>delete </span><span style="color:#bf616a;">obj</span><span>.name;</span><span style="color:#65737e;">//严格模式下会抛出错误
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">3:</span><span>&quot;,</span><span style="color:#bf616a;">obj</span><span>.name);
+</span><span>
+</span><span style="color:#65737e;">//output
+</span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;">{value: &#39;test&#39;, writable: true, enumerable: true, configurable: true}
+</span><span style="color:#65737e;">
+</span><span style="color:#65737e;">{value: &#39;can&#39;t write&#39;, writable: false, enumerable: true, configurable: true}
+</span><span style="color:#65737e;">
+</span><span style="color:#65737e;">1: can&#39;t write
+</span><span style="color:#65737e;">
+</span><span style="color:#65737e;">2: can&#39;t write
+</span><span style="color:#65737e;">
+</span><span style="color:#65737e;">{value: &#39;can&#39;t delete&#39;, writable: false, enumerable: true, configurable: false}
+</span><span style="color:#65737e;">
+</span><span style="color:#65737e;">3: can&#39;t delete
+</span><span style="color:#65737e;">*/
+</span></code></pre>
+<p><strong>注意：一个属性被定义为不可配置之后就不能再变会可配置的属性，再次调用<code>Object.defineProperty()</code>去修改非<code>writable</code>属性会导致错误</strong></p>
+<p>实际实验中，<code>wriable</code>修改同样会导致错误，故不确定是文档问题还是vscode的运行环境问题。</p>
+<h3 id="fang-wen-qi-shu-xing">访问器属性</h3>
+<p>访问器属性不包含数据值。相反，它们包含一个获取（<code>getter</code>）函数和一个设置（<code>setter</code>）函数，不过这两个函数不是必需的。在读取访问器属性时，会调用获取函数，这个函数的责任就是返回一个有效的值。在写入访问器属性时，会调用设置函数并传入新值，这个函数必须决定对数据做出什么修改。访问器属性有 4 个特性描述它们的行为</p>
+<ul>
+<li><code>[[Configurable]]</code>:表示属性是否可以通过<code>delete</code>删除并重新定义，是否可以修改它的特性，以及是否可以把它改为数据属性。默认情况下，所有直接定义在对象上的属性的这个特性都是<code>true</code>。</li>
+<li><code>[[Enumberable]]</code>:表示属性是否可以通过<code>for-in</code>循环返回。默认情况下对象上的属性的这个特性都是<code>true</code>。</li>
+<li><code>[[Get]]</code>:获取函数，在读取属性时调用。默认值为<code>undefined</code>。</li>
+<li><code>[[Set]]</code>:设置函数，在写入属性时调用。默认值为<code>undefined</code>。</li>
+</ul>
+<p>访问器属性是不能直接定义的，必须使用<code>Object.defineProperty()</code></p>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">age </span><span>= {
+</span><span>    fakeAge:</span><span style="color:#d08770;">27</span><span>,
+</span><span>    realAge_:</span><span style="color:#d08770;">28
+</span><span>};
+</span><span style="color:#ebcb8b;">Object</span><span>.</span><span style="color:#8fa1b3;">defineProperty</span><span>(</span><span style="color:#bf616a;">age</span><span>,&quot;</span><span style="color:#a3be8c;">realAge</span><span>&quot;,{
+</span><span>    </span><span style="color:#8fa1b3;">get</span><span>(){
+</span><span>        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">realAge_</span><span>;
+</span><span>    },
+</span><span>    </span><span style="color:#8fa1b3;">set</span><span>(</span><span style="color:#bf616a;">newValue</span><span>){
+</span><span>        </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">realAge_ </span><span>= </span><span style="color:#bf616a;">newValue</span><span>;
+</span><span>        </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">fakeAge </span><span>= </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">realAge_</span><span>-</span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>});
+</span><span style="color:#bf616a;">age</span><span>.</span><span style="color:#bf616a;">realAge </span><span>= </span><span style="color:#d08770;">29</span><span>;
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">age</span><span>,</span><span style="color:#bf616a;">age</span><span>.</span><span style="color:#bf616a;">realAge</span><span>,</span><span style="color:#bf616a;">age</span><span>.</span><span style="color:#bf616a;">fakeAge</span><span>);
+</span><span>
+</span><span style="color:#65737e;">//output
+</span><span style="color:#65737e;">//{fakeAge: 28, realAge_: 29, realAge: &lt;accessor&gt;} 29 28
+</span></code></pre>
+<p>**注意：**获取函数和设置函数不一定都要定义。</p>
+<ul>
+<li>只定义获取函数意味着属性是只读的，尝试修改属性会被忽略。在严格模式下，尝试写入只定义了获取函数的属性会抛出错误。</li>
+</ul>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">age </span><span>= {
+</span><span>    fakeAge:</span><span style="color:#d08770;">27</span><span>,
+</span><span>    realAge_:</span><span style="color:#d08770;">28
+</span><span>};
+</span><span style="color:#ebcb8b;">Object</span><span>.</span><span style="color:#8fa1b3;">defineProperty</span><span>(</span><span style="color:#bf616a;">age</span><span>,&quot;</span><span style="color:#a3be8c;">realAge</span><span>&quot;,{
+</span><span>    </span><span style="color:#8fa1b3;">get</span><span>(){
+</span><span>        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">realAge_</span><span>;
+</span><span>    },
+</span><span>    </span><span style="color:#65737e;">// set(newValue){
+</span><span>    </span><span style="color:#65737e;">//     this.realAge_ = newValue;
+</span><span>    </span><span style="color:#65737e;">//     this.fakeAge = this.realAge_-1;
+</span><span>    </span><span style="color:#65737e;">// }
+</span><span>});
+</span><span style="color:#bf616a;">age</span><span>.</span><span style="color:#bf616a;">realAge </span><span>= </span><span style="color:#d08770;">29</span><span>;
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">age</span><span>.</span><span style="color:#bf616a;">realAge</span><span>,</span><span style="color:#bf616a;">age</span><span>.</span><span style="color:#bf616a;">fakeAge</span><span>);
+</span><span>
+</span><span style="color:#65737e;">//output
+</span><span style="color:#65737e;">//28 27
+</span></code></pre>
+<ul>
+<li>类似地，只有一个设置函数的属性是不能读取的，非严格模式下读取会返回 undefined，严格模式下会抛出错误。</li>
+</ul>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">age </span><span>= {
+</span><span>    fakeAge:</span><span style="color:#d08770;">27</span><span>,
+</span><span>    realAge_:</span><span style="color:#d08770;">28
+</span><span>};
+</span><span style="color:#ebcb8b;">Object</span><span>.</span><span style="color:#8fa1b3;">defineProperty</span><span>(</span><span style="color:#bf616a;">age</span><span>,&quot;</span><span style="color:#a3be8c;">realAge</span><span>&quot;,{
+</span><span>    </span><span style="color:#65737e;">// get(){
+</span><span>    </span><span style="color:#65737e;">//     return this.realAge_;
+</span><span>    </span><span style="color:#65737e;">// },
+</span><span>    </span><span style="color:#8fa1b3;">set</span><span>(</span><span style="color:#bf616a;">newValue</span><span>){
+</span><span>        </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">realAge_ </span><span>= </span><span style="color:#bf616a;">newValue</span><span>;
+</span><span>        </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">fakeAge </span><span>= </span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">realAge_</span><span>-</span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>});
+</span><span style="color:#bf616a;">age</span><span>.</span><span style="color:#bf616a;">realAge </span><span>= </span><span style="color:#d08770;">29</span><span>;
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">age</span><span>.</span><span style="color:#bf616a;">realAge</span><span>,</span><span style="color:#bf616a;">age</span><span>.</span><span style="color:#bf616a;">fakeAge</span><span>);
+</span><span style="color:#65737e;">//undefined 28
+</span></code></pre>
 
   </div>
   
