@@ -778,6 +778,105 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;ownership&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="rust学习(二)所有权和生命周期"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;ownership&#x2F;"
+      rel="bookmark"
+      title="rust学习(二)所有权和生命周期"
+    ><b>rust学习(二)所有权和生命周期</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  15&#x2F;07&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Rust所有权机制
+Rust语言引入所有权机制的目标
+主要为解决复杂系统中的资源管理和悬吊引用问题。
+所有权系统是Rust中用于管理内存的手段。
+所有权规则总结归纳：
+
+每个值（变量）都有一个所有者
+值在任意时刻都只有一个所有者
+当所有离开作用域时，其值将被丢弃(相当于执行垃圾回收)
+
+结论：Rust的值被唯一的对象管理着，一旦不使用，内存就会立刻释放。
+所有权简单实验
+
+
+借用
+let x = String::from(&amp;quot;hello&amp;quot;);
+let y = &amp;amp;x;
+
+
+
+克隆
+let x = 10;
+let y = x;
+println!(&amp;quot;测试通过{x},{y}&amp;quot;);
+&#x2F;&#x2F;测试通过10，10
+let a = &amp;quot;hello&amp;quot;;
+let b = a;
+println!(&amp;quot;测试通过{x},{y}&amp;quot;);
+let c = (1,2 as f64,&amp;quot;hello&amp;quot;);
+let d = c;
+println!(&amp;quot;测试:{:?},{:?}&amp;quot;,c,d);
+let g = d.clone();
+
+
+
+生命周期
+静态生命周期***&#x27;static和动态生命周期&#x27;a***
+静态生命周期在整个程序中期间存活
+动态生命周期，相关参数的生命周期以相对长生命周期的引用为准
+fn lifetime_test_one() -&amp;gt; &amp;amp;String{
+        let x= &amp;quot;hello&amp;quot;.to_string();
+       ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;..&#x2F;rust.jpg"
     class="img-fluid m-auto d-block "
     alt="rust连接mysql建表测试"

@@ -2,7 +2,7 @@
 <html>
   <head>
     
-    <title>Keep learning and trying - tags</title>
+    <title>rust实现栈数据结构 | Keep learning and trying</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -761,124 +761,254 @@
     </nav>
     <main class="container mx-auto my-5">
       
-  <h1>标签主题</h1>
+  <h1>rust实现栈数据结构</h1>
+  <p class="text-muted">
+    
   
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;blockchain&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      blockchain
-      <span class="badge bg-secondary">3</span>
-    </a>
   
+    
     <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;database&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      DataBase
-      <span class="badge bg-secondary">2</span>
-    </a>
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  06&#x2F;08&#x2F;2023
+
+  </p>
   
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;dioxus&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      dioxus
-      <span class="badge bg-secondary">1</span>
-    </a>
+  <p>
+    
+      <a
+        href="https://dorname.github.io/tags/rust/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        Rust
+      </a>
+    
+  </p>
   
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;extjs&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      ExtJs
-      <span class="badge bg-secondary">2</span>
-    </a>
+  <div class="content">
+    <h1 id="rustshi-xian-zhan-shu-ju-jie-gou"><strong><em>Rust</em>实现栈数据结构</strong></h1>
+<h2 id="shu-ju-jie-gou-stack-de-gai-nian">数据结构(<em>stack</em>)的概念</h2>
+<p>栈就是一种线性数据结构，可用于函数调用、网页数据记录等。</p>
+<p><strong>栈的特性：元素先进后出，后进先出</strong></p>
+<p><img src="https://dorname.github.io/rust/stack/stack.png" alt="栈结构示例" /></p>
+<h2 id="xu-qiu-lai-yuan">需求来源：</h2>
+<p>了解栈数据结构和结构特性。</p>
+<h2 id="mu-biao">目标：</h2>
+<ul>
+<li>
+<p>语言：<strong>Rust</strong></p>
+</li>
+<li>
+<p>实现一个数据存储结构栈：<code>Stack</code></p>
+<p>栈具有存储数据先进后出、后进先出的特性。</p>
+</li>
+</ul>
+<h2 id="gong-neng-xu-qiu">功能需求：</h2>
+<ul>
+<li>
+<p>开辟一个栈结构的存储空间</p>
+</li>
+<li>
+<p>存储数据的基本操作：</p>
+<ol>
+<li>数据查询</li>
+<li>数据添加</li>
+<li>数据删除</li>
+<li>数据插入</li>
+</ol>
+</li>
+<li>
+<p>方便性工具方法</p>
+<ol>
+<li>空栈判断方法</li>
+<li>栈长度方法</li>
+<li>快速返回第一个入栈数据</li>
+<li>快速返回最后一个出栈数据</li>
+</ol>
+</li>
+</ul>
+<h2 id="zong-ti-gong-neng-mo-kuai-tu">总体功能模块图</h2>
+<p>无</p>
+<p>**注意：**只有当前需求属于产品设计、系统设计或者模块设计时，此图意义存在。</p>
+<p>目标是为了考虑到系统、产品或者模块新增了什么内容，与之相关的内容有哪些</p>
+<h2 id="gong-neng-mo-kuai-guan-lian-tu">功能模块关联图</h2>
+<p>无</p>
+<p><strong>注意：</strong></p>
+<p>章节目标描述当前需求、产品以及其他系统模块之间的关联关系。</p>
+<h2 id="zong-ti-gong-neng-jie-gou-tu">总体功能结构图</h2>
+<p><img src="https://dorname.github.io/rust/stack/stack_featrue.png" alt="功能结构图" /></p>
+<h2 id="ji-chu-neng-li">基础能力</h2>
+<h3 id="shu-ju-cha-xun-gong-neng">数据查询功能</h3>
+<p>查询栈中的所有元素及其数据存储位置</p>
+<ul>
+<li>数据查询要素</li>
+</ul>
+<p><img src="https://dorname.github.io/rust/stack/query_item.png" alt="查询要素" /></p>
+<ul>
+<li>
+<p>数据查询功能结构图</p>
+<p>无</p>
+</li>
+<li>
+<p>数据查询功能流程图</p>
+<p><img src="https://dorname.github.io/rust/stack/query_flow.png" alt="数据查询流程" /></p>
+</li>
+</ul>
+<h3 id="shu-ju-shan-chu-gong-neng">数据删除功能</h3>
+<p>删除指定的存储数据</p>
+<ul>
+<li>
+<p>数据删除要素</p>
+<p><img src="https://dorname.github.io/rust/stack/delete_items.png" alt="" /></p>
+</li>
+<li>
+<p>数据删除功能结构图</p>
+<p><img src="https://dorname.github.io/rust/stack/delete_arc.png" alt="" /></p>
+</li>
+<li>
+<p>数据删除功能流程图</p>
+<p><img src="https://dorname.github.io/rust/stack/delete_flow.png" alt="" /></p>
+</li>
+</ul>
+<h3 id="shu-ju-xin-zeng-gong-neng-shu-ju-ru-zhan">数据新增功能/数据入栈</h3>
+<p>数据新增实际为入栈方法，即添加到栈顶</p>
+<ul>
+<li>
+<p>数据新增要素</p>
+<p>待入栈的数据</p>
+</li>
+<li>
+<p>数据新增功能结构图</p>
+<p>无</p>
+</li>
+<li>
+<p>数据新增功能流程图</p>
+<p>无</p>
+</li>
+</ul>
+<h3 id="shu-ju-cha-ru-gong-neng">数据插入功能</h3>
+<p>数据插入根据指定位置插入栈中</p>
+<ul>
+<li>
+<p>数据插入要素</p>
+<p><img src="https://dorname.github.io/rust/stack/inert_item.png" alt="" /></p>
+</li>
+<li>
+<p>数据插入功能结构图</p>
+<p>无</p>
+</li>
+<li>
+<p>数据插入功能流程图</p>
+<p><img src="https://dorname.github.io/rust/stack/insert_item.png" alt="" /></p>
+</li>
+</ul>
+<h3 id="chu-zhan-fang-fa">出栈方法</h3>
+<p>移除栈顶元素</p>
+<ul>
+<li>
+<p>出栈要素</p>
+<p>栈顶位置top</p>
+</li>
+<li>
+<p>出栈功能结构图</p>
+<p>无</p>
+</li>
+<li>
+<p>出栈功能流程图</p>
+</li>
+<li>
+<p>无</p>
+</li>
+</ul>
+<h2 id="fang-bian-xing-neng-li">方便性能力</h2>
+<h3 id="kong-zhan-pan-duan-fang-fa">空栈判断方法</h3>
+<ul>
+<li>空栈判断要素</li>
+<li>空栈判断方法功能流程图</li>
+</ul>
+<h3 id="zhan-chang-du-fang-fa">栈长度方法</h3>
+<ul>
+<li>栈长度方法</li>
+</ul>
+<h3 id="huo-qu-di-yi-ge-ru-zhan-shu-ju-fang-fa">获取第一个入栈数据方法</h3>
+<ul>
+<li>返回栈底元素</li>
+</ul>
+<h3 id="huo-qu-zui-hou-yi-ge-ru-zhan-shu-ju-fang-fa">获取最后一个入栈数据方法</h3>
+<ul>
+<li>返回栈顶元素</li>
+</ul>
+<h2 id="cheng-xu-jie-gou-tu">程序结构图</h2>
+<p><img src="https://dorname.github.io/rust/stack/program.png" alt="" /></p>
+<h2 id="cheng-xu-chu-li-liu-cheng-tu">程序处理流程图</h2>
+<p>TODO</p>
+<ul>
+<li><code>query</code>查询方法</li>
+<li><code>remove</code>删除方法</li>
+<li><code>push</code>入栈方法</li>
+<li><code>insert</code>插入方法</li>
+<li><code>pop</code>出栈方法</li>
+<li><code>is_empty</code>空栈判断方法</li>
+<li><code>get_size</code>获取栈大小的方法</li>
+<li><code>first</code>返回栈底数据</li>
+<li><code>last</code>返回栈顶数据</li>
+</ul>
+<h2 id="cheng-xu-shi-xian">程序实现</h2>
+<p>TODO</p>
+
+  </div>
   
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;hashmap&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      hashMap
-      <span class="badge bg-secondary">1</span>
-    </a>
+    
   
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;js&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      js
-      <span class="badge bg-secondary">4</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;memory-leak&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      Memory leak
-      <span class="badge bg-secondary">1</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;mysql&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      MySql
-      <span class="badge bg-secondary">1</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;one-mind&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      One Mind
-      <span class="badge bg-secondary">1</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;pbft&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      pbft
-      <span class="badge bg-secondary">1</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;rust&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      Rust
-      <span class="badge bg-secondary">13</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;tauri&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      tauri
-      <span class="badge bg-secondary">1</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;webssembly&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      Webssembly
-      <span class="badge bg-secondary">2</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;yew&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      yew
-      <span class="badge bg-secondary">1</span>
-    </a>
+  <div class="card my-5">
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center">
+        
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;harry.jpg"
+    class="img-fluid m-auto d-block rounded-circle"
+    alt="Li Guangqiao"
+  />
+
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a
+              class="text-decoration-none text-reset"
+              href="https://dorname.github.io/authors/liguangqiao/"
+            >Li Guangqiao</a>
+          </h5>
+          <p class="card-text"><p>一个正在转rust的ExtJs前端工程师。迷信rust的整体发展，十分相信rust在各个领域都能发光发热，至少目前rust在很多领域上验证了其安全性、易维护性。但说实话对于我这种菜鸡也是真的难上手哈哈哈~~。
+思路总结：</p>
+<ul>
+<li>万物诞生都会有一个需求来源，每一个改变都是为了解决某个问题，最后应该考虑如何去做</li>
+<li>学会掌握一些宏观的知识和理论：系统论、还原论</li>
+<li>工程化思想，如何描述整体，从整体架构到模块关联等
+故学习东西应该像看地图一样，先看整体了解整体的结构，然后再聚焦每一个模块，对于模块的学习，思考三个问题，“是什么？”、“为什么？”、“怎么做？”；那么设计一个东西时也应该去考虑整体性和关联性。</li>
+</ul>
+<p>有关于未来的发展，以下是鄙人的粗浅的观点：</p>
+<ul>
+<li>编程语言未来应该是每个人必备的工具</li>
+<li>未来的交互方式应该会以语言交互为主流</li>
+<li>下一个去中心化的技术方案出来之前，区块链依然是web3建立价值体系的基础技术方案，如何将现实价值和虚拟价值联通是进入数字世界的一个大难题。</li>
+<li>未来注定是AI的世界。AI的进化会伴随绝大部分人的退化，届时除了尖端人才，人们学习的重心会放在何处？</li>
+</ul>
+</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   
 
     </main>
     
-    
+  
+
     
     <footer class="
       mt-auto p-5
