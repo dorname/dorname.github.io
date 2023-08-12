@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <title>js学习笔记(6)——集合类型 | Keep learning and trying</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          
+          id="default"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/cerulean/bootstrap.min.css"
+          
+          id="cerulean"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/cosmo/bootstrap.min.css"
+          
+          id="cosmo"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet"
+          
+          href="https://bootswatch.com/5/cyborg/bootstrap.min.css"
+          
+          id="cyborg"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/darkly/bootstrap.min.css"
+          
+          id="darkly"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/flatly/bootstrap.min.css"
+          
+          id="flatly"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/journal/bootstrap.min.css"
+          
+          id="journal"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/litera/bootstrap.min.css"
+          
+          id="litera"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/lumen/bootstrap.min.css"
+          
+          id="lumen"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/lux/bootstrap.min.css"
+          
+          id="lux"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/materia/bootstrap.min.css"
+          
+          id="materia"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/minty/bootstrap.min.css"
+          
+          id="minty"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/morph/bootstrap.min.css"
+          
+          id="morph"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/pulse/bootstrap.min.css"
+          
+          id="pulse"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/quartz/bootstrap.min.css"
+          
+          id="quartz"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/sandstone/bootstrap.min.css"
+          
+          id="sandstone"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/simplex/bootstrap.min.css"
+          
+          id="simplex"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/sketchy/bootstrap.min.css"
+          
+          id="sketchy"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/slate/bootstrap.min.css"
+          
+          id="slate"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/solar/bootstrap.min.css"
+          
+          id="solar"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/spacelab/bootstrap.min.css"
+          
+          id="spacelab"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/superhero/bootstrap.min.css"
+          
+          id="superhero"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/united/bootstrap.min.css"
+          
+          id="united"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/vapor/bootstrap.min.css"
+          
+          id="vapor"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/yeti/bootstrap.min.css"
+          
+          id="yeti"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/zephyr/bootstrap.min.css"
+          
+          id="zephyr"
+          class="alternate"
+        >
+      
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
+    <script src="https://dorname.github.io/js/topic.js"></script>
+    
+    
+    <script src="https://dorname.github.io/js/theme.js"></script>
+    
+    
+    <script src="https://dorname.github.io/js/scheme.js"></script>
+    
+    <script src="https://dorname.github.io/js/blockquote.js"></script>
+    <script src="https://dorname.github.io/js/img.js"></script>
+    
+    <script defer src="https://dorname.github.io/elasticlunr.min.js"></script>
+    <script defer src="https://dorname.github.io/search_index.en.js"></script>
+    <script src="https://dorname.github.io/js/search.js"></script>
+    
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>    
+    <!-- <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>   -->
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    
+      <div class="w-100">
+        <img src="https://dorname.github.io/img/banner.jpeg" class="w-100" />
+      </div>
+    
+    
+    
+    
+    <nav class="
+      navbar
+      navbar-expand-lg
+      navbar-dark
+      bg-dark
+    ">
+      <div class="container-fluid">
+        <a class="navbar-brand"
+          href="https:&#x2F;&#x2F;dorname.github.io&#x2F;"
+          title="主页"
+        >Keep learning and trying</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarColor02"
+          aria-controls="navbarColor02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav me-auto">
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors"
+                >作者</a>
+              </li>
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;dorname.github.io&#x2F;about"
+                >关于</a>
+              </li>
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags"
+                >相关主题</a>
+              </li>
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;github.com&#x2F;dorname?tab=repositories"
+                >Github</a>
+              </li>
+            
+            
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  博客分类
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust"
+                        onclick="switchTopic('Rust学习')"
+                      >Rust学习</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles"
+                        onclick="switchTopic('未分类博客')"
+                      >未分类博客</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning"
+                        onclick="switchTopic('js学习')"
+                      >Js学习</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab"
+                        onclick="switchTopic('Extjs&#x2F;Rust&#x2F;WASM实验')"
+                      >Extjs&#x2F;rust&#x2F;wasm实验</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain"
+                        onclick="switchTopic('区块链')"
+                      >区块链</a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+            
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  选择一个主题
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('default')"
+                      >Default</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('cerulean')"
+                      >Cerulean</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('cosmo')"
+                      >Cosmo</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('cyborg')"
+                      >Cyborg</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('darkly')"
+                      >Darkly</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('flatly')"
+                      >Flatly</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('journal')"
+                      >Journal</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('litera')"
+                      >Litera</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('lumen')"
+                      >Lumen</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('lux')"
+                      >Lux</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('materia')"
+                      >Materia</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('minty')"
+                      >Minty</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('morph')"
+                      >Morph</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('pulse')"
+                      >Pulse</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('quartz')"
+                      >Quartz</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('sandstone')"
+                      >Sandstone</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('simplex')"
+                      >Simplex</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('sketchy')"
+                      >Sketchy</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('slate')"
+                      >Slate</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('solar')"
+                      >Solar</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('spacelab')"
+                      >Spacelab</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('superhero')"
+                      >Superhero</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('united')"
+                      >United</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('vapor')"
+                      >Vapor</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('yeti')"
+                      >Yeti</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('zephyr')"
+                      >Zephyr</a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+            
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  选择一个Scheme颜色
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('dark')"
+                      >Dark</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('light')"
+                      >Light</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('primary')"
+                      >Primary</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('primary inverted')"
+                      >Primary inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('secondary')"
+                      >Secondary</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('secondary inverted')"
+                      >Secondary inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('success')"
+                      >Success</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('success inverted')"
+                      >Success inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('danger')"
+                      >Danger</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('danger inverted')"
+                      >Danger inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('warning')"
+                      >Warning</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('warning inverted')"
+                      >Warning inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('info')"
+                      >Info</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('info inverted')"
+                      >Info inverted</a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+          </ul>
+          
+          <form class="d-flex" onsubmit="return goSearch(event)">
+            <input
+              class="form-control me-sm-2"
+              type="text"
+              placeholder="搜索"
+            />
+            <button
+              class="btn btn-secondary my-2 my-sm-0"
+              type="submit"
+            ><i class="fas fa-search"></i></button>
+          </form>
+          
+        </div>
+      </div>
+    </nav>
+    <main class="container mx-auto my-5">
+      
+  <h1>js学习笔记(6)——集合类型</h1>
+  <p class="text-muted">
+    
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  12&#x2F;08&#x2F;2023
+
+  </p>
+  
+  <p>
+    
+      <a
+        href="https://dorname.github.io/tags/js/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        js
+      </a>
+    
+  </p>
+  
+  <div class="content">
+    <h1 id="ji-he-yin-yong-lei-xing"><strong>集合引用类型</strong></h1>
+<h2 id="object"><em><strong>Object</strong></em></h2>
+<p><code>Object</code>很适合存储和在应用程序间交换数据。</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">//声明方式
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">obj </span><span>= new Object();
+</span><span style="color:#bf616a;">obj</span><span>.</span><span style="color:#bf616a;">age </span><span>= </span><span style="color:#d08770;">1</span><span>;
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">obj_one </span><span>= {
+</span><span>    age:</span><span style="color:#d08770;">1
+</span><span>};
+</span><span style="color:#65737e;">//属性访问
+</span><span style="color:#65737e;">//点语法
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">obj</span><span>.</span><span style="color:#bf616a;">age</span><span>);
+</span><span style="color:#65737e;">//变量语法
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">obj</span><span>[&quot;</span><span style="color:#a3be8c;">age</span><span>&quot;]);
+</span></code></pre>
+<p><code>Object</code>不管是实验和生产环境中都很常用所以这里不做过多的阐述</p>
+<h2 id="array"><em><strong>Array</strong></em></h2>
+<p><code>Array</code>同样是<code>js</code>中常用的引用类型。</p>
+<p><code>js</code>的数组不同于其他编程语言，其每一个槽位都可以存储任意类型的数据。</p>
+<h3 id="shu-zu-chuang-jian">数组创建</h3>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">//长度为20的空数组
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors </span><span>= new Array(</span><span style="color:#d08770;">20</span><span>);
+</span><span style="color:#65737e;">//成员为&quot;1&quot;,&quot;2&quot;的数组
+</span><span style="color:#bf616a;">colors </span><span>= new Array(&quot;</span><span style="color:#a3be8c;">1</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">2</span><span>&quot;);
+</span><span style="color:#bf616a;">colors </span><span>= [&quot;</span><span style="color:#a3be8c;">1</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">2</span><span>&quot;];
+</span></code></pre>
+<p><strong>ES6中还有两个创建数组的方法</strong></p>
+<ul>
+<li>通过<code>from</code>方法去创建数组</li>
+</ul>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">// 字符串会被拆分为单字符数组
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(&quot;</span><span style="color:#a3be8c;">Matt</span><span>&quot;)); </span><span style="color:#65737e;">// [&quot;M&quot;, &quot;a&quot;, &quot;t&quot;, &quot;t&quot;]
+</span><span>
+</span><span style="color:#65737e;">// 可以使用 from()将集合和映射转换为一个新数组
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">m </span><span>= new Map().</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>) 
+</span><span> .</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>); 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">s </span><span>= new Set().</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#d08770;">1</span><span>) 
+</span><span> .</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#d08770;">2</span><span>) 
+</span><span> .</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#d08770;">3</span><span>) 
+</span><span> .</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#d08770;">4</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(</span><span style="color:#bf616a;">m</span><span>)); </span><span style="color:#65737e;">// [[1, 2], [3, 4]] 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(</span><span style="color:#bf616a;">s</span><span>)); </span><span style="color:#65737e;">// [1, 2, 3, 4]
+</span><span>
+</span><span style="color:#65737e;">// Array.from()对现有数组执行浅复制
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">a1 </span><span>= [</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>]; 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">a2 </span><span>= </span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(</span><span style="color:#bf616a;">a1</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">a1</span><span>); </span><span style="color:#65737e;">// [1, 2, 3, 4] 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">a1 </span><span>=== </span><span style="color:#bf616a;">a2</span><span>); </span><span style="color:#65737e;">// false
+</span><span>
+</span><span style="color:#65737e;">// 可以使用任何可迭代对象
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">iter </span><span>= { 
+</span><span> </span><span style="color:#b48ead;">*</span><span>[</span><span style="color:#ebcb8b;">Symbol</span><span>.</span><span style="color:#bf616a;">iterator</span><span>]() { 
+</span><span> </span><span style="color:#b48ead;">yield </span><span style="color:#d08770;">1</span><span>; 
+</span><span> </span><span style="color:#b48ead;">yield </span><span style="color:#d08770;">2</span><span>; 
+</span><span> </span><span style="color:#b48ead;">yield </span><span style="color:#d08770;">3</span><span>; 
+</span><span> </span><span style="color:#b48ead;">yield </span><span style="color:#d08770;">4</span><span>; 
+</span><span> } 
+</span><span>}; 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(</span><span style="color:#bf616a;">iter</span><span>)); </span><span style="color:#65737e;">// [1, 2, 3, 4]
+</span><span>
+</span><span style="color:#65737e;">// arguments 对象可以被轻松地转换为数组
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">getArgsArray</span><span>() { 
+</span><span> </span><span style="color:#b48ead;">return </span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(</span><span style="color:#bf616a;">arguments</span><span>); 
+</span><span>} 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#8fa1b3;">getArgsArray</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>)); </span><span style="color:#65737e;">// [1, 2, 3, 4] 
+</span><span style="color:#65737e;">// from()也能转换带有必要属性的自定义对象
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">arrayLikeObject </span><span>= { 
+</span><span> </span><span style="color:#d08770;">0</span><span>: </span><span style="color:#d08770;">1</span><span>, 
+</span><span> </span><span style="color:#d08770;">1</span><span>: </span><span style="color:#d08770;">2</span><span>, 
+</span><span> </span><span style="color:#d08770;">2</span><span>: </span><span style="color:#d08770;">3</span><span>, 
+</span><span> </span><span style="color:#d08770;">3</span><span>: </span><span style="color:#d08770;">4</span><span>, 
+</span><span> length: </span><span style="color:#d08770;">4 
+</span><span>}; 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(</span><span style="color:#bf616a;">arrayLikeObject</span><span>)); </span><span style="color:#65737e;">// [1, 2, 3, 4]
+</span></code></pre>
+<ul>
+<li>
+<p><code>Array.from</code>还有两个参数，</p>
+<p>第二个参数是可选的映射函数，用于增强新数组的值</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>([</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>,</span><span style="color:#d08770;">3</span><span>,</span><span style="color:#d08770;">4</span><span>],(</span><span style="color:#bf616a;">item</span><span>)</span><span style="color:#b48ead;">=&gt;</span><span style="color:#bf616a;">item</span><span>+</span><span style="color:#d08770;">1</span><span>);</span><span style="color:#65737e;">//[2,3,4,5]
+</span><span style="color:#65737e;">//等价于
+</span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>([</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>,</span><span style="color:#d08770;">3</span><span>,</span><span style="color:#d08770;">4</span><span>]).</span><span style="color:#8fa1b3;">map</span><span>((</span><span style="color:#bf616a;">item</span><span>)</span><span style="color:#b48ead;">=&gt;</span><span style="color:#bf616a;">item</span><span>+</span><span style="color:#d08770;">1</span><span>);</span><span style="color:#65737e;">//[2,3,4,5]
+</span></code></pre>
+<p>第三个参数指定映射函数中的上下文this，固定作用域和调用者</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>([</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">2</span><span>,</span><span style="color:#d08770;">3</span><span>,</span><span style="color:#d08770;">4</span><span>],</span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">item</span><span>){
+</span><span>    </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">this</span><span>);
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">item</span><span>+</span><span style="color:#bf616a;">this</span><span>.</span><span style="color:#bf616a;">num</span><span>;
+</span><span>},{id:&quot;</span><span style="color:#a3be8c;">test</span><span>&quot;,num:</span><span style="color:#d08770;">2</span><span>});
+</span></code></pre>
+</li>
+<li>
+<p>通过<code>of</code>方法去创建数组</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">/*Array.of()可以把一组参数转换为数组。这个方法用于替代在 ES6之前常用的 Array.prototype. 
+</span><span style="color:#65737e;">slice.call(arguments)，一种异常笨拙的将 arguments 对象转换为数组的写法：*/
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">of</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>)); </span><span style="color:#65737e;">// [1, 2, 3, 4] 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">of</span><span>(</span><span style="color:#d08770;">undefined</span><span>)); </span><span style="color:#65737e;">// [undefined]
+</span></code></pre>
+</li>
+</ul>
+<h3 id="shu-zu-kong-wei">数组空位</h3>
+<p>生产环境数组空位会有诸多隐患故暂时不做过多的了解。</p>
+<h3 id="shu-zu-suo-yin">数组索引</h3>
+<p>常规的数组索引与其他语言保持一致，本小节重点将放在数组的<code>length</code>属性上。</p>
+<ul>
+<li>
+<p><code>length</code>并非只读属性，可修改</p>
+</li>
+<li>
+<p>通过修改<code>length</code>属性可新增和删除数组元素。</p>
+<ul>
+<li>
+<p>新增</p>
+<p>直接增加数组长度，会新增多个空的<code>undefined</code>元素</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors </span><span>= [&quot;</span><span style="color:#a3be8c;">r</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">g</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">b</span><span>&quot;];
+</span><span style="color:#bf616a;">colors</span><span>.length = </span><span style="color:#d08770;">4</span><span>;
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors</span><span>[</span><span style="color:#d08770;">3</span><span>]); </span><span style="color:#65737e;">//undefined
+</span></code></pre>
+<p>对<code>length</code>位置进行赋值</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors </span><span>= [&quot;</span><span style="color:#a3be8c;">r</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">g</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">b</span><span>&quot;];
+</span><span style="color:#bf616a;">colors</span><span>[</span><span style="color:#d08770;">3</span><span>] = &quot;</span><span style="color:#a3be8c;">y</span><span>&quot;;
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors</span><span>[</span><span style="color:#d08770;">3</span><span>]); </span><span style="color:#65737e;">//&quot;y&quot;
+</span></code></pre>
+</li>
+<li>
+<p>删除</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors </span><span>= [&quot;</span><span style="color:#a3be8c;">r</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">g</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">b</span><span>&quot;];
+</span><span style="color:#bf616a;">colors</span><span>.length = </span><span style="color:#d08770;">2</span><span>;
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors</span><span>[</span><span style="color:#d08770;">2</span><span>]); </span><span style="color:#65737e;">// undefined
+</span></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="shu-zu-jian-ce">数组检测</h3>
+<ul>
+<li>
+<p>单页应用</p>
+<p>使用<code>instanceof</code>进行数组类型的判断</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>([] instanceof Array); </span><span style="color:#65737e;">//true
+</span></code></pre>
+</li>
+<li>
+<p>多页应用</p>
+<p>使用<code>Array.isArray()</code>方法进行数组类型判断</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">isArray</span><span>([]);
+</span></code></pre>
+</li>
+</ul>
+<h3 id="die-dai-qi-fang-fa">迭代器方法</h3>
+<p><strong>ES6</strong>中Array的原型暴露了3个数组检索方法</p>
+<ul>
+<li>
+<p><code>keys()</code></p>
+</li>
+<li>
+<p><code>values()</code></p>
+</li>
+<li>
+<p><code>entries()</code></p>
+</li>
+</ul>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">a </span><span>= [&quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">bar</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">baz</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">qux</span><span>&quot;]; 
+</span><span style="color:#65737e;">// 因为这些方法都返回迭代器，所以可以将它们的内容
+</span><span style="color:#65737e;">// 通过 Array.from()直接转换为数组实例
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">aKeys </span><span>= </span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(</span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#96b5b4;">keys</span><span>()); 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">aValues </span><span>= </span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(</span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#96b5b4;">values</span><span>()); 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">aEntries </span><span>= </span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(</span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#96b5b4;">entries</span><span>()); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">aKeys</span><span>); </span><span style="color:#65737e;">// [0, 1, 2, 3] 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">aValues</span><span>); </span><span style="color:#65737e;">// [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;, &quot;qux&quot;] 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">aEntries</span><span>); </span><span style="color:#65737e;">// [[0, &quot;foo&quot;], [1, &quot;bar&quot;], [2, &quot;baz&quot;], [3, &quot;qux&quot;]]
+</span></code></pre>
+<p>使用 <strong>ES6</strong> 的解构可以非常容易地在循环中拆分键/值对：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">a </span><span>= [&quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">bar</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">baz</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">qux</span><span>&quot;]; 
+</span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span>[</span><span style="color:#bf616a;">idx</span><span>, </span><span style="color:#bf616a;">element</span><span>] of </span><span style="color:#bf616a;">a</span><span>.</span><span style="color:#96b5b4;">entries</span><span>()) { 
+</span><span> </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">idx</span><span>); 
+</span><span> </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">element</span><span>); 
+</span><span>} 
+</span><span style="color:#65737e;">// 0 
+</span><span style="color:#65737e;">// foo 
+</span><span style="color:#65737e;">// 1 
+</span><span style="color:#65737e;">// bar 
+</span><span style="color:#65737e;">// 2 
+</span><span style="color:#65737e;">// baz 
+</span><span style="color:#65737e;">// 3 
+</span><span style="color:#65737e;">// qux
+</span></code></pre>
+<h3 id="fu-zhi-he-tian-chong-fang-fa">复制和填充方法</h3>
+<p><strong>ES6</strong> 新增了两个方法：批量复制方法 <code>copyWithin()</code>，以及填充数组方法 <code>fill()</code>。这两个方法的函数签名类似，都需要指定既有数组实例上的一个范围，包含开始索引，不包含结束索引。使用这个方法不会改变数组的大小。</p>
+<ul>
+<li>
+<p><code>fill()</code>拥有三个参数，参数1填充值、参数2开始索引和参数3结束索引</p>
+<p>使用 <code>fill()</code>方法可以向一个已有的数组中插入全部或部分相同的值。开始索引用于指定开始填充的位置，它是可选的。如果不提供结束索引，则一直填充到数组末尾。负值索引从数组末尾开始计算。也可以将负索引想象成数组长度加上它得到的一个正索引：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">zeroes </span><span>= [</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>]; 
+</span><span style="color:#65737e;">// 用 5 填充整个数组
+</span><span style="color:#bf616a;">zeroes</span><span>.</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">5</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">zeroes</span><span>); </span><span style="color:#65737e;">// [5, 5, 5, 5, 5] 
+</span><span style="color:#bf616a;">zeroes</span><span>.</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">0</span><span>); </span><span style="color:#65737e;">// 重置
+</span><span style="color:#65737e;">// 用 6 填充索引大于等于 3 的元素
+</span><span style="color:#bf616a;">zeroes</span><span>.</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">6</span><span>, </span><span style="color:#d08770;">3</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">zeroes</span><span>); </span><span style="color:#65737e;">// [0, 0, 0, 6, 6] 
+</span><span style="color:#bf616a;">zeroes</span><span>.</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">0</span><span>); </span><span style="color:#65737e;">// 重置
+</span><span style="color:#65737e;">// 用 7 填充索引大于等于 1 且小于 3 的元素
+</span><span style="color:#bf616a;">zeroes</span><span>.</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">7</span><span>, </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">3</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">zeroes</span><span>); </span><span style="color:#65737e;">// [0, 7, 7, 0, 0]; 
+</span><span style="color:#bf616a;">zeroes</span><span>.</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">0</span><span>); </span><span style="color:#65737e;">// 重置
+</span><span style="color:#65737e;">// 用 8 填充索引大于等于 1 且小于 4 的元素
+</span><span style="color:#65737e;">// (-4 + zeroes.length = 1) 
+</span><span style="color:#65737e;">// (-1 + zeroes.length = 4) 
+</span><span style="color:#bf616a;">zeroes</span><span>.</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">8</span><span>, -</span><span style="color:#d08770;">4</span><span>, -</span><span style="color:#d08770;">1</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">zeroes</span><span>); </span><span style="color:#65737e;">// [0, 8, 8, 8, 0]; 
+</span><span style="color:#8fa1b3;">fill</span><span>()</span><span style="color:#bf616a;">静默忽略超出数组边界</span><span>、</span><span style="color:#bf616a;">零长度及方向相反的索引范围</span><span>：
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">zeroes </span><span>= [</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>]; 
+</span><span style="color:#65737e;">// 索引过低，忽略
+</span><span style="color:#65737e;">// (-10 + zeroes.length = -5) 
+</span><span style="color:#65737e;">// (-6 + zeroes.length = -1) 
+</span><span style="color:#bf616a;">zeroes</span><span>.</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">1</span><span>, -</span><span style="color:#d08770;">10</span><span>, -</span><span style="color:#d08770;">6</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">zeroes</span><span>); </span><span style="color:#65737e;">// [0, 0, 0, 0, 0] 
+</span><span style="color:#65737e;">// 索引过高，忽略
+</span><span style="color:#65737e;">// (10 &gt; zeroes.length) 
+</span><span style="color:#65737e;">// (15 &gt; zeroes.length) 
+</span><span style="color:#bf616a;">zeroes</span><span>.</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">10</span><span>, </span><span style="color:#d08770;">15</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">zeroes</span><span>); </span><span style="color:#65737e;">// [0, 0, 0, 0, 0] 
+</span><span style="color:#65737e;">// 索引反向，忽略
+</span><span style="color:#bf616a;">zeroes</span><span>.</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">2</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">zeroes</span><span>); </span><span style="color:#65737e;">// [0, 0, 0, 0, 0] 
+</span><span style="color:#65737e;">// 索引部分可用，填充可用部分
+</span><span style="color:#bf616a;">zeroes</span><span>.</span><span style="color:#8fa1b3;">fill</span><span>(</span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">10</span><span>) 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">zeroes</span><span>); </span><span style="color:#65737e;">// [0, 0, 0, 4, 4]
+</span></code></pre>
+</li>
+<li>
+<p><code>copyWithin()</code></p>
+<p>与 <code>fill()</code>不同，<code>copyWithin()</code>会按照指定范围浅复制数组中的部分内容，然后将它们插入到指定索引开始的位置。开始索引和结束索引则与 <code>fill()</code>使用同样的计算方法：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ints</span><span>, 
+</span><span> </span><span style="color:#8fa1b3;">reset </span><span>= () </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">ints </span><span>= [</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>, </span><span style="color:#d08770;">6</span><span>, </span><span style="color:#d08770;">7</span><span>, </span><span style="color:#d08770;">8</span><span>, </span><span style="color:#d08770;">9</span><span>]; 
+</span><span style="color:#8fa1b3;">reset</span><span>(); 
+</span><span style="color:#65737e;">// 从 ints 中复制索引 0 开始的内容，插入到索引 5 开始的位置
+</span><span style="color:#65737e;">// 在源索引或目标索引到达数组边界时停止
+</span><span style="color:#bf616a;">ints</span><span>.</span><span style="color:#8fa1b3;">copyWithin</span><span>(</span><span style="color:#d08770;">5</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">ints</span><span>); </span><span style="color:#65737e;">// [0, 1, 2, 3, 4, 0, 1, 2, 3, 4] 
+</span><span style="color:#8fa1b3;">reset</span><span>(); 
+</span><span style="color:#65737e;">// 从 ints 中复制索引 5 开始的内容，插入到索引 0 开始的位置
+</span><span style="color:#bf616a;">ints</span><span>.</span><span style="color:#8fa1b3;">copyWithin</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">5</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">ints</span><span>); </span><span style="color:#65737e;">// [5, 6, 7, 8, 9, 5, 6, 7, 8, 9]
+</span><span style="color:#8fa1b3;">reset</span><span>();
+</span><span style="color:#65737e;">// 从 ints 中复制索引 0 开始到索引 3 结束的内容
+</span><span style="color:#65737e;">// 插入到索引 4 开始的位置
+</span><span style="color:#bf616a;">ints</span><span>.</span><span style="color:#8fa1b3;">copyWithin</span><span>(</span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">3</span><span>); 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">ints</span><span>); </span><span style="color:#65737e;">// [0, 1, 2, 3, 0, 1, 2, 7, 8, 9] 
+</span><span style="color:#8fa1b3;">reset</span><span>(); 
+</span><span style="color:#65737e;">// JavaScript 引擎在插值前会完整复制范围内的值
+</span><span style="color:#65737e;">// 因此复制期间不存在重写的风险
+</span><span style="color:#bf616a;">ints</span><span>.</span><span style="color:#8fa1b3;">copyWithin</span><span>(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">6</span><span>); 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">ints</span><span>); </span><span style="color:#65737e;">// [0, 1, 0, 1, 2, 3, 4, 5, 8, 9] 
+</span><span style="color:#8fa1b3;">reset</span><span>(); 
+</span><span style="color:#65737e;">// 支持负索引值，与 fill()相对于数组末尾计算正向索引的过程是一样的
+</span><span style="color:#bf616a;">ints</span><span>.</span><span style="color:#8fa1b3;">copyWithin</span><span>(-</span><span style="color:#d08770;">4</span><span>, -</span><span style="color:#d08770;">7</span><span>, -</span><span style="color:#d08770;">3</span><span>); 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">ints</span><span>); </span><span style="color:#65737e;">// [0, 1, 2, 3, 4, 5, 3, 4, 5, 6] 
+</span><span style="color:#8fa1b3;">copyWithin</span><span>()</span><span style="color:#bf616a;">静默忽略超出数组边界</span><span>、</span><span style="color:#bf616a;">零长度及方向相反的索引范围</span><span>：
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">ints</span><span>, 
+</span><span> </span><span style="color:#8fa1b3;">reset </span><span>= () </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">ints </span><span>= [</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>, </span><span style="color:#d08770;">6</span><span>, </span><span style="color:#d08770;">7</span><span>, </span><span style="color:#d08770;">8</span><span>, </span><span style="color:#d08770;">9</span><span>]; 
+</span><span style="color:#8fa1b3;">reset</span><span>(); 
+</span><span style="color:#65737e;">// 索引过低，忽略
+</span><span style="color:#bf616a;">ints</span><span>.</span><span style="color:#8fa1b3;">copyWithin</span><span>(</span><span style="color:#d08770;">1</span><span>, -</span><span style="color:#d08770;">15</span><span>, -</span><span style="color:#d08770;">12</span><span>); 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">ints</span><span>); </span><span style="color:#65737e;">// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; 
+</span><span style="color:#8fa1b3;">reset</span><span>() 
+</span><span style="color:#65737e;">// 索引过高，忽略
+</span><span style="color:#bf616a;">ints</span><span>.</span><span style="color:#8fa1b3;">copyWithin</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">12</span><span>, </span><span style="color:#d08770;">15</span><span>); 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">ints</span><span>); </span><span style="color:#65737e;">// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; 
+</span><span style="color:#8fa1b3;">reset</span><span>(); 
+</span><span style="color:#65737e;">// 索引反向，忽略
+</span><span style="color:#bf616a;">ints</span><span>.</span><span style="color:#8fa1b3;">copyWithin</span><span>(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">2</span><span>); 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">ints</span><span>); </span><span style="color:#65737e;">// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; 
+</span><span style="color:#8fa1b3;">reset</span><span>(); 
+</span><span style="color:#65737e;">// 索引部分可用，复制、填充可用部分
+</span><span style="color:#bf616a;">ints</span><span>.</span><span style="color:#8fa1b3;">copyWithin</span><span>(</span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">7</span><span>, </span><span style="color:#d08770;">10</span><span>) 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">ints</span><span>); </span><span style="color:#65737e;">// [0, 1, 2, 3, 7, 8, 9, 7, 8, 9];
+</span></code></pre>
+</li>
+</ul>
+<h3 id="zhuan-huan-fang-fa">转换方法</h3>
+<p>所有对象都会有三个转换方法：</p>
+<ul>
+<li>
+<p><code>toLocaleString</code></p>
+<p>返回一个逗号分隔的数组值的字符串。它与另外两个方法唯一的区别是，为了得到最终的字符串，会调用数组每个值的 <code>toLocaleString()</code>方法，而不是<code>toString()</code>方法。</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">person1 </span><span>= { 
+</span><span> </span><span style="color:#8fa1b3;">toLocaleString</span><span>() { 
+</span><span> </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#a3be8c;">Nikolaos</span><span>&quot;; 
+</span><span> }, 
+</span><span> </span><span style="color:#8fa1b3;">toString</span><span>() { 
+</span><span> </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#a3be8c;">Nicholas</span><span>&quot;; 
+</span><span> } 
+</span><span>}; 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">person2 </span><span>= { 
+</span><span> </span><span style="color:#8fa1b3;">toLocaleString</span><span>() { 
+</span><span> </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#a3be8c;">Grigorios</span><span>&quot;; 
+</span><span> }, 
+</span><span> </span><span style="color:#8fa1b3;">toString</span><span>() { 
+</span><span> </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#a3be8c;">Greg</span><span>&quot;; 
+</span><span> } 
+</span><span>}; 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">people </span><span>= [</span><span style="color:#bf616a;">person1</span><span>, </span><span style="color:#bf616a;">person2</span><span>]; 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">people</span><span>); </span><span style="color:#65737e;">// Nicholas,Greg 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">people</span><span>.</span><span style="color:#96b5b4;">toString</span><span>()); </span><span style="color:#65737e;">// Nicholas,Greg 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">people</span><span>.</span><span style="color:#96b5b4;">toLocaleString</span><span>()); </span><span style="color:#65737e;">// Nikolaos,Grigorios
+</span></code></pre>
+<p>这里定义了两个对象<code> person1</code> 和<code> person2</code>，它们都定义了 <code>toString()</code>和 <code>toLocaleString()</code>方法，而且返回不同的值。然后又创建了一个包含这两个对象的数组 <code>people</code>。在将数组传给 <code>alert()</code>时，输出的是<code>&quot;Nicholas,Greg&quot;</code>，这是因为会在数组每一项上调用 toString()方法（与下一行显式调用<code>toString()</code>方法结果一样）。而在调用数组的 <code>toLocaleString()</code>方法时，结果变成了<code>&quot;Nikolaos, Grigorios&quot;</code>，这是因为调用了数组每一项的 <code>toLocaleString()</code>方法。</p>
+</li>
+<li>
+<p><code>toString</code> 返回由数组中每个值的等效字符串拼接而成的一个逗号分隔的字符串。也就是说，对数组的每个值都会调用其 <code>toString()</code>方法，以得到最终的字符串。</p>
+</li>
+<li>
+<p><code>valueOf</code> 返回的还是数组本身。</p>
+<p>继承的方法 <code>toLocaleString()</code>以及 <code>toString()</code>都返回数组值的逗号分隔的字符串。如果想使用不同的分隔符，则可以使用 <code>join()</code>方法。<code>join()</code>方法接收一个参数，即字符串分隔符，返回包含所有项的字符串。来看下面的例子：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors </span><span>= [&quot;</span><span style="color:#a3be8c;">red</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">green</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">blue</span><span>&quot;]; 
+</span><span>
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">colors</span><span>.</span><span style="color:#96b5b4;">join</span><span>(&quot;</span><span style="color:#a3be8c;">,</span><span>&quot;)); </span><span style="color:#65737e;">// red,green,blue 
+</span><span>
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">colors</span><span>.</span><span style="color:#96b5b4;">join</span><span>(&quot;</span><span style="color:#a3be8c;">||</span><span>&quot;)); </span><span style="color:#65737e;">// red||green||blue 
+</span></code></pre>
+<p>这里在 <code>colors</code> 数组上调用了 <code>join()</code>方法，得到了与调<code>toString()</code>方法相同的结果。传入逗号，结果就是逗号分隔的字符串。最后一行给 <code>join()</code> 传入了双竖线，得到了字符串<code>&quot;red||green||blue&quot;</code>。如果不给 <code>join()</code>传入任何参数，或者传入 <code>undefined</code>，则仍然使用逗号作为分隔符。</p>
+</li>
+</ul>
+<p><strong>注意：如果数组中某一项是 <code>null</code> 或<code> undefined</code>，则在 <code>join()</code> 、<code>toLocaleString()</code>、<code>toString()</code>和<code> valueOf()</code>返回的结果中会以空字符串表示 。</strong></p>
+<h3 id="zhan-fang-fa">栈方法</h3>
+<p><strong>LIFO(Last-In-First-Out)</strong></p>
+<ul>
+<li><code>push</code>： 数组末尾插入一个新的数据项（入栈方法）。</li>
+<li><code>pop</code>：函数数组最后一项（出栈方法）。</li>
+</ul>
+<h3 id="dui-lie-fang-fa">队列方法</h3>
+<p><strong>FIFO(First-In-First-Out)</strong></p>
+<ul>
+<li><code>shift</code> 获取数组的第一项数据项，并将其移出数组。</li>
+<li><code>unshift</code> 在数组添加任意多的值，然后返回新的数组长度。</li>
+</ul>
+<h3 id="pai-xu-fang-fa">排序方法</h3>
+<ul>
+<li>
+<p><code>reverse</code> 反向排序</p>
+</li>
+<li>
+<p><code>sort</code> 排序结果默认为字符串升序。可以传入自定义的排序策略函数。比较函数就是要返回小于 0、0 和大于 0 的数值，因此减法操作完全可以满足要求。</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">compare</span><span>(</span><span style="color:#bf616a;">value1</span><span>, </span><span style="color:#bf616a;">value2</span><span>) { 
+</span><span> </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">value1 </span><span>&lt; </span><span style="color:#bf616a;">value2</span><span>) { 
+</span><span> </span><span style="color:#b48ead;">return </span><span>-</span><span style="color:#d08770;">1</span><span>; 
+</span><span> } </span><span style="color:#b48ead;">else if </span><span>(</span><span style="color:#bf616a;">value1 </span><span>&gt; </span><span style="color:#bf616a;">value2</span><span>) { 
+</span><span> </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span>; 
+</span><span> } </span><span style="color:#b48ead;">else </span><span>{ 
+</span><span> </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>; 
+</span><span> } 
+</span><span>}
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">values </span><span>= [</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">5</span><span>, </span><span style="color:#d08770;">10</span><span>, </span><span style="color:#d08770;">15</span><span>]; 
+</span><span style="color:#bf616a;">values</span><span>.</span><span style="color:#96b5b4;">sort</span><span>(</span><span style="color:#bf616a;">compare</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">values</span><span>); </span><span style="color:#65737e;">// 0,1,5,10,15
+</span></code></pre>
+</li>
+</ul>
+<p><strong>注意：reverse和sort都返回调用它们的数组引用</strong></p>
+<h3 id="cao-zuo-fang-fa">操作方法</h3>
+<ul>
+<li>
+<p><code>concat</code></p>
+<p><code>concat</code>方法可以在现有数组全部元素基础上创建一个新数组。</p>
+<ol>
+<li>首先创建数组副本。</li>
+<li>方法参数添加到数组副本末尾。</li>
+<li>返回副本数组。</li>
+</ol>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors </span><span>= [&quot;</span><span style="color:#a3be8c;">red</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">green</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">blue</span><span>&quot;]; 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors2 </span><span>= </span><span style="color:#bf616a;">colors</span><span>.</span><span style="color:#96b5b4;">concat</span><span>(&quot;</span><span style="color:#a3be8c;">yellow</span><span>&quot;, [&quot;</span><span style="color:#a3be8c;">black</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">brown</span><span>&quot;]); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors</span><span>); </span><span style="color:#65737e;">// [&quot;red&quot;, &quot;green&quot;,&quot;blue&quot;] 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors2</span><span>); </span><span style="color:#65737e;">// [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;yellow&quot;, &quot;black&quot;, &quot;brown&quot;]
+</span></code></pre>
+<p>打平数组参数的行为可以重写，方法是在参数数组上指定一个特殊的符号：<code>Symbol.isConcatSpreadable</code>。这个符号能够阻止 <code>concat()</code>打平参数数组。相反，把这个值设置为 true 可以强制打平类数组对象：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors </span><span>= [&quot;</span><span style="color:#a3be8c;">red</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">green</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">blue</span><span>&quot;]; 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">newColors </span><span>= [&quot;</span><span style="color:#a3be8c;">black</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">brown</span><span>&quot;]; 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">moreNewColors </span><span>= { 
+</span><span> [</span><span style="color:#ebcb8b;">Symbol</span><span>.</span><span style="color:#bf616a;">isConcatSpreadable</span><span>]: </span><span style="color:#d08770;">true</span><span>, 
+</span><span> length: </span><span style="color:#d08770;">2</span><span>, 
+</span><span> </span><span style="color:#d08770;">0</span><span>: &quot;</span><span style="color:#a3be8c;">pink</span><span>&quot;, 
+</span><span> </span><span style="color:#d08770;">1</span><span>: &quot;</span><span style="color:#a3be8c;">cyan</span><span>&quot; 
+</span><span>}; 
+</span><span style="color:#bf616a;">newColors</span><span>[</span><span style="color:#ebcb8b;">Symbol</span><span>.</span><span style="color:#bf616a;">isConcatSpreadable</span><span>] = </span><span style="color:#d08770;">false</span><span>; 
+</span><span style="color:#65737e;">// 强制不打平数组
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors2 </span><span>= </span><span style="color:#bf616a;">colors</span><span>.</span><span style="color:#96b5b4;">concat</span><span>(&quot;</span><span style="color:#a3be8c;">yellow</span><span>&quot;, </span><span style="color:#bf616a;">newColors</span><span>); 
+</span><span style="color:#65737e;">// 强制打平类数组对象
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors3 </span><span>= </span><span style="color:#bf616a;">colors</span><span>.</span><span style="color:#96b5b4;">concat</span><span>(</span><span style="color:#bf616a;">moreNewColors</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors</span><span>); </span><span style="color:#65737e;">// [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;] 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors2</span><span>); </span><span style="color:#65737e;">// [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;yellow&quot;, [&quot;black&quot;, &quot;brown&quot;]] 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors3</span><span>); </span><span style="color:#65737e;">// [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;pink&quot;, &quot;cyan&quot;]
+</span></code></pre>
+</li>
+<li>
+<p><code>slice</code></p>
+<p><code>slice</code>方法用于创建一个包含原有数组中一个或者多个元素的新数组。<code>slice</code>方法可以接受一个或者两个参数：返回元素的开始索引和结束索引。如果只有一个参数，则<code>slice</code>会返回该索引到数组末尾的所有元素。如果有两个参数，则<code>slice</code>返回从开始索引到结束索引对应的所有元素，其中不包含结束索引对应的元素。此操作不会影响原始数组。</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors </span><span>= [&quot;</span><span style="color:#a3be8c;">red</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">green</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">blue</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">yellow</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">purple</span><span>&quot;]; 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors2 </span><span>= </span><span style="color:#bf616a;">colors</span><span>.</span><span style="color:#96b5b4;">slice</span><span>(</span><span style="color:#d08770;">1</span><span>); 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors3 </span><span>= </span><span style="color:#bf616a;">colors</span><span>.</span><span style="color:#96b5b4;">slice</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">4</span><span>); 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors4 </span><span>= </span><span style="color:#bf616a;">colors</span><span>.</span><span style="color:#96b5b4;">slice</span><span>(</span><span style="color:#d08770;">1</span><span>,-</span><span style="color:#d08770;">1</span><span>);
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors2</span><span>); </span><span style="color:#65737e;">// green,blue,yellow,purple 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors3</span><span>); </span><span style="color:#65737e;">// green,blue,yellow
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors4</span><span>); </span><span style="color:#65737e;">// green,blue,yellow
+</span></code></pre>
+<p><strong>注意：如果<code>slice()</code>的参数有负值，那么就以数值长度加上这个负值的结果确定位置。比如，在包含 5 个元素的数组上调用 <code>slice(-2,-1)</code>，就相当于调用 <code>slice(3,4)</code>。如果结束位置小于开始位置，则返回空数组。</strong></p>
+</li>
+<li>
+<p><code>splice</code></p>
+<p><code>splice</code>的主要目的是在数组中间插入元素。</p>
+<ol>
+<li>
+<p>删除。需要给<code>splice</code>传2个参数：要删除的第一个元素的位置和要删除的元素数量。</p>
+</li>
+<li>
+<p>插入。需要给<code>splice</code>传3个参数：开始位置、要删除的元素数量和要插入的元素，可以在数组中指定的位置插入元素。第三个参数之后还可以传第四个、第五个参数，乃至任意多个要插入的元素。</p>
+<p>比如：<code>splice(2,0,&quot;red&quot;,&quot;green&quot;)</code>会从数组位置2开始插入字符串<code>&quot;red&quot;</code>和<code>&quot;green&quot;</code>。</p>
+</li>
+<li>
+<p>替换。<code>splice()</code>在删除元素的同时可以在指定位置插入新元素，同样要传入 3 个参数：开始位置、要删除元素的数量和要插入的任意多个元素。要插入的元素数量不一定跟删除的元素数量一致。比如，<code>splice(2, 1, &quot;red&quot;, &quot;green&quot;)</code>会在位置 2 删除一个元素，然后从该位置开始向数组中插入<code>&quot;red&quot;</code>和<code>&quot;green&quot;</code>。</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors </span><span>= [&quot;</span><span style="color:#a3be8c;">red</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">green</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">blue</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">yellow</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">purple</span><span>&quot;]; 
+</span><span style="color:#bf616a;">colors</span><span>.</span><span style="color:#96b5b4;">splice</span><span>(</span><span style="color:#d08770;">2</span><span>,</span><span style="color:#d08770;">1</span><span>,&quot;</span><span style="color:#a3be8c;">black</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">gray</span><span>&quot;);
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors</span><span>,&quot;</span><span style="color:#a3be8c;">&lt;&lt;&lt;</span><span>&quot;);
+</span><span style="color:#65737e;">//(6) [&#39;red&#39;, &#39;green&#39;, &#39;black&#39;, &#39;gray&#39;, &#39;yellow&#39;, &#39;purple&#39;] &lt;&lt;&lt;
+</span></code></pre>
+</li>
+</ol>
+<p><strong>注意：<code>splice()</code>方法始终返回这样一个数组，它包含从数组中被删除的元素（如果没有删除元素，则返回空数组）。</strong></p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">colors </span><span>= [&quot;</span><span style="color:#a3be8c;">red</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">green</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">blue</span><span>&quot;]; 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">removed </span><span>= </span><span style="color:#bf616a;">colors</span><span>.</span><span style="color:#96b5b4;">splice</span><span>(</span><span style="color:#d08770;">0</span><span>,</span><span style="color:#d08770;">1</span><span>); </span><span style="color:#65737e;">// 删除第一项
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors</span><span>); </span><span style="color:#65737e;">// green,blue 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">removed</span><span>); </span><span style="color:#65737e;">// red，只有一个元素的数组
+</span><span style="color:#bf616a;">removed </span><span>= </span><span style="color:#bf616a;">colors</span><span>.</span><span style="color:#96b5b4;">splice</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>, &quot;</span><span style="color:#a3be8c;">yellow</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">orange</span><span>&quot;); </span><span style="color:#65737e;">// 在位置 1 插入两个元素
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors</span><span>); </span><span style="color:#65737e;">// green,yellow,orange,blue 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">removed</span><span>); </span><span style="color:#65737e;">// 空数组
+</span><span style="color:#bf616a;">removed </span><span>= </span><span style="color:#bf616a;">colors</span><span>.</span><span style="color:#96b5b4;">splice</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">1</span><span>, &quot;</span><span style="color:#a3be8c;">red</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">purple</span><span>&quot;); </span><span style="color:#65737e;">// 插入两个值，删除一个元素
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">colors</span><span>); </span><span style="color:#65737e;">// green,red,purple,orange,blue 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">removed</span><span>); </span><span style="color:#65737e;">// yellow，只有一个元素的数组
+</span></code></pre>
+</li>
+</ul>
+<h3 id="sou-suo-he-wei-zhi-fang-fa">搜索和位置方法</h3>
+<p><strong>ES提供两类搜索数组方法：</strong></p>
+<ul>
+<li>
+<p>严格相等搜索，以下方法都接受两个参数：要查找的元素和一个可选的起始搜索位置。</p>
+<ol>
+<li>
+<p><code>indexOf</code></p>
+</li>
+<li>
+<p><code>lastIndexOf</code></p>
+<p><code>indexOf()</code>和 <code>lastIndexOf()</code>都返回要查找的元素在数组中的位置，如果没找到则返回-1。</p>
+</li>
+<li>
+<p><code>includes</code>(<strong>ES7</strong>新增方法)</p>
+<p>返回布尔值，表示是否至少找到一个与指定元素匹配的项。在比较第一个参数跟数组每一项时，会使用全等（===）比较，也就是说两项必须严格相等</p>
+</li>
+</ol>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">numbers </span><span>= [</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">1</span><span>]; 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">numbers</span><span>.</span><span style="color:#96b5b4;">indexOf</span><span>(</span><span style="color:#d08770;">4</span><span>)); </span><span style="color:#65737e;">// 3 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">numbers</span><span>.</span><span style="color:#96b5b4;">lastIndexOf</span><span>(</span><span style="color:#d08770;">4</span><span>)); </span><span style="color:#65737e;">// 5 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">numbers</span><span>.</span><span style="color:#8fa1b3;">includes</span><span>(</span><span style="color:#d08770;">4</span><span>)); </span><span style="color:#65737e;">// true 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">numbers</span><span>.</span><span style="color:#96b5b4;">indexOf</span><span>(</span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">4</span><span>)); </span><span style="color:#65737e;">// 5 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">numbers</span><span>.</span><span style="color:#96b5b4;">lastIndexOf</span><span>(</span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">4</span><span>)); </span><span style="color:#65737e;">// 3 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">numbers</span><span>.</span><span style="color:#8fa1b3;">includes</span><span>(</span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">7</span><span>)); </span><span style="color:#65737e;">// false 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">person </span><span>= { name: &quot;</span><span style="color:#a3be8c;">Nicholas</span><span>&quot; }; 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">people </span><span>= [{ name: &quot;</span><span style="color:#a3be8c;">Nicholas</span><span>&quot; }]; 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">morePeople </span><span>= [</span><span style="color:#bf616a;">person</span><span>]; 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">people</span><span>.</span><span style="color:#96b5b4;">indexOf</span><span>(</span><span style="color:#bf616a;">person</span><span>)); </span><span style="color:#65737e;">// -1 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">morePeople</span><span>.</span><span style="color:#96b5b4;">indexOf</span><span>(</span><span style="color:#bf616a;">person</span><span>)); </span><span style="color:#65737e;">// 0 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">people</span><span>.</span><span style="color:#8fa1b3;">includes</span><span>(</span><span style="color:#bf616a;">person</span><span>)); </span><span style="color:#65737e;">// false 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">morePeople</span><span>.</span><span style="color:#8fa1b3;">includes</span><span>(</span><span style="color:#bf616a;">person</span><span>)); </span><span style="color:#65737e;">// true
+</span></code></pre>
+</li>
+<li>
+<p>按断言函数搜索</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">people </span><span>= [ 
+</span><span>    { 
+</span><span>    name: &quot;</span><span style="color:#a3be8c;">Matt</span><span>&quot;, 
+</span><span>    age: </span><span style="color:#d08770;">27 
+</span><span>    }, 
+</span><span>    { 
+</span><span>    name: &quot;</span><span style="color:#a3be8c;">Nicholas</span><span>&quot;, 
+</span><span>    age: </span><span style="color:#d08770;">29 
+</span><span>    } 
+</span><span>   ]; 
+</span><span>   </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">people</span><span>.</span><span style="color:#96b5b4;">find</span><span>((</span><span style="color:#bf616a;">element</span><span>, </span><span style="color:#bf616a;">index</span><span>, </span><span style="color:#bf616a;">array</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">element</span><span>.</span><span style="color:#bf616a;">age </span><span>&lt; </span><span style="color:#d08770;">28</span><span>)); 
+</span><span>   </span><span style="color:#65737e;">// {name: &quot;Matt&quot;, age: 27} 
+</span><span>   </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">people</span><span>.</span><span style="color:#8fa1b3;">findIndex</span><span>((</span><span style="color:#bf616a;">element</span><span>, </span><span style="color:#bf616a;">index</span><span>, </span><span style="color:#bf616a;">array</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">element</span><span>.</span><span style="color:#bf616a;">age </span><span>&lt; </span><span style="color:#d08770;">28</span><span>)); 
+</span><span>   </span><span style="color:#65737e;">// 0
+</span><span>
+</span><span>   </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">people</span><span>.</span><span style="color:#96b5b4;">find</span><span>((</span><span style="color:#bf616a;">element</span><span>, </span><span style="color:#bf616a;">index</span><span>, </span><span style="color:#bf616a;">array</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">element</span><span>.</span><span style="color:#bf616a;">age </span><span>== </span><span style="color:#d08770;">28</span><span>));
+</span><span>   </span><span style="color:#65737e;">// undefined
+</span><span>   </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">people</span><span>.</span><span style="color:#8fa1b3;">findIndex</span><span>((</span><span style="color:#bf616a;">element</span><span>, </span><span style="color:#bf616a;">index</span><span>, </span><span style="color:#bf616a;">array</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">element</span><span>.</span><span style="color:#bf616a;">age </span><span>== </span><span style="color:#d08770;">28</span><span>)); 
+</span><span>   </span><span style="color:#65737e;">// -1
+</span></code></pre>
+</li>
+</ul>
+<h3 id="die-dai-fang-fa">迭代方法</h3>
+<p><strong>ES</strong>为数组定义了5个迭代方法。每个方法接受两个参数：以每一项为参数运行的函数、可选的作为函数运行上下文的作用域对象（调整函数中的<code>this</code>指向）。传递每个方法的函数接受3个参数：数组元素、元素索引和数组本身。</p>
+<ul>
+<li>
+<p><code>every</code></p>
+<p>对数组每一项都运行传入的函数，如果对每一项函数都返回 <code>true</code>，则这个方法返回 <code>true</code>。</p>
+</li>
+<li>
+<p><code>filter</code></p>
+<p>对数组每一项都运行传入的函数，函数返回 <code>true</code> 的项会组成数组之后返回。</p>
+</li>
+<li>
+<p><code>forEach</code></p>
+<p>对数组每一项都运行传入的函数，没有返回值。</p>
+</li>
+<li>
+<p><code>map</code></p>
+<p>对数组每一项都运行传入的函数，返回由每次函数调用的结果构成的数组。</p>
+</li>
+<li>
+<p><code>some</code></p>
+<p>对数组每一项都运行传入的函数，如果有一项函数返回 <code>true</code>，则这个方法返回 <code>true</code>。这些方法都不改变调用它们的数组。</p>
+</li>
+</ul>
+<h3 id="gui-bing-fang-fa">归并方法</h3>
+<p>​	<strong>ES</strong> 为数组提供了两个归并方法：<code>reduce()</code>和 <code>reduceRight()</code>。这两个方法都会迭代数组的所有项，并在此基础上构建一个最终返回值。<code>reduce()</code>方法从数组第一项开始遍历到最后一项。而 <code>reduceRight()</code>从最后一项开始遍历至第一项。</p>
+<p>​	这两个方法都接收两个参数：对每一项都会运行的归并函数，以及可选的以之为归并起点的初始值。传给 <code>reduce()</code>和 <code>reduceRight()</code>的函数接收 4 个参数：上一个归并值、当前项、当前项的索引和数组本身。这个函数返回的任何值都会作为下一次调用同一个函数的第一个参数。如果没有给这两个方法传入可选的第二个参数（作为归并起点值），则第一次迭代将从数组的第二项开始，因此传给归并函数的第一个参数是数组的第一项，第二个参数是数组的第二项。</p>
+<p>​	可以使用 <code>reduce()</code>函数执行累加数组中所有数值的操作，比如：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">values </span><span>= [</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>]; 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">sum </span><span>= </span><span style="color:#bf616a;">values</span><span>.</span><span style="color:#8fa1b3;">reduce</span><span>((</span><span style="color:#bf616a;">prev</span><span>, </span><span style="color:#bf616a;">cur</span><span>, </span><span style="color:#bf616a;">index</span><span>, </span><span style="color:#bf616a;">array</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span style="color:#bf616a;">prev </span><span>+ </span><span style="color:#bf616a;">cur</span><span>); 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">sum</span><span>); </span><span style="color:#65737e;">// 15
+</span></code></pre>
+<p>第一次执行归并函数时，<code>prev</code> 是 1，<code>cur</code> 是 2。第二次执行时，<code>prev</code> 是 3（1 + 2），<code>cur</code> 是 3（数组第三项）。如此递进，直到把所有项都遍历一次，最后返回归并结果。</p>
+<p><code>reduceRight()</code>方法与之类似，只是方向相反。来看下面的例子：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">values </span><span>= [</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>]; 
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">sum </span><span>= </span><span style="color:#bf616a;">values</span><span>.</span><span style="color:#8fa1b3;">reduceRight</span><span>(</span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">prev</span><span>, </span><span style="color:#bf616a;">cur</span><span>, </span><span style="color:#bf616a;">index</span><span>, </span><span style="color:#bf616a;">array</span><span>){ 
+</span><span> </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">prev </span><span>+ </span><span style="color:#bf616a;">cur</span><span>; 
+</span><span>}); 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">sum</span><span>); </span><span style="color:#65737e;">// 15
+</span></code></pre>
+<h2 id="ding-xing-shu-zu">定型数组</h2>
+<p>TODO</p>
+<h2 id="map"><em><strong>Map</strong></em></h2>
+<p>TODO</p>
+<h2 id="weakmap"><em><strong>WeakMap</strong></em></h2>
+<p>TODO</p>
+<h2 id="set"><em><strong>Set</strong></em></h2>
+<p>TODO</p>
+<h2 id="weakset"><em><strong>WeakSet</strong></em></h2>
+<p>TODO</p>
+<h2 id="die-dai-yu-kuo-zhan-cao-zuo">迭代与扩展操作</h2>
+<p>TODO</p>
+
+  </div>
+  
+    
+  
+  <div class="card my-5">
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center">
+        
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;harry.jpg"
+    class="img-fluid m-auto d-block rounded-circle"
+    alt="Li Guangqiao"
+  />
+
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a
+              class="text-decoration-none text-reset"
+              href="https://dorname.github.io/authors/liguangqiao/"
+            >Li Guangqiao</a>
+          </h5>
+          <p class="card-text"><p>一个正在转rust的ExtJs前端工程师。迷信rust的整体发展，十分相信rust在各个领域都能发光发热，至少目前rust在很多领域上验证了其安全性、易维护性。但说实话对于我这种菜鸡也是真的难上手哈哈哈~~。
+思路总结：</p>
+<ul>
+<li>万物诞生都会有一个需求来源，每一个改变都是为了解决某个问题，最后应该考虑如何去做</li>
+<li>学会掌握一些宏观的知识和理论：系统论、还原论</li>
+<li>工程化思想，如何描述整体，从整体架构到模块关联等
+故学习东西应该像看地图一样，先看整体了解整体的结构，然后再聚焦每一个模块，对于模块的学习，思考三个问题，“是什么？”、“为什么？”、“怎么做？”；那么设计一个东西时也应该去考虑整体性和关联性。</li>
+</ul>
+<p>有关于未来的发展，以下是鄙人的粗浅的观点：</p>
+<ul>
+<li>编程语言未来应该是每个人必备的工具</li>
+<li>未来的交互方式应该会以语言交互为主流</li>
+<li>下一个去中心化的技术方案出来之前，区块链依然是web3建立价值体系的基础技术方案，如何将现实价值和虚拟价值联通是进入数字世界的一个大难题。</li>
+<li>未来注定是AI的世界。AI的进化会伴随绝大部分人的退化，届时除了尖端人才，人们学习的重心会放在何处？</li>
+</ul>
+</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+    </main>
+    
+  
+
+    
+    <footer class="
+      mt-auto p-5
+      bg-dark
+      text-center
+      text-white
+    ">
+      
+      <a
+        href="mailto:lgqfighting@163.com"
+        class="text-reset text-decoration-none"
+      >lgqfighting@163.com</a>
+      
+      
+      <div class="mt-2">
+        
+          <a
+            class="text-reset mx-1 bg-transparent"
+            href="https:&#x2F;&#x2F;chat.openai.com&#x2F;"
+            title="chatGPT"
+          ><i class="fab fa-glide-g"></i></a>
+        
+          <a
+            class="text-reset mx-1 bg-transparent"
+            href="https:&#x2F;&#x2F;wx.qq.com&#x2F;"
+            title="微信"
+          ><i class="fab fa-weixin"></i></a>
+        
+          <a
+            class="text-reset mx-1 bg-transparent"
+            href="https:&#x2F;&#x2F;www.google.com&#x2F;"
+            title="谷歌"
+          ><i class="fab fa-google"></i></a>
+        
+      </div>
+      
+    </footer>
+    
+  </body>
+</html>
