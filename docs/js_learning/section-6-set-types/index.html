@@ -1329,7 +1329,356 @@
 </span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">sum</span><span>); </span><span style="color:#65737e;">// 15
 </span></code></pre>
 <h2 id="ding-xing-shu-zu">定型数组</h2>
-<p>TODO</p>
+<h3 id="mu-biao">目标</h3>
+<p>​	定型数组（Typed Arrays）是为了解决在JavaScript中进行二进制数据处理时所遇到的一些问题而引入的。JavaScript原生的数组虽然非常强大，但在处理二进制数据方面存在一些限制和性能问题。这些问题包括：</p>
+<ol>
+<li><strong>数据类型问题：</strong> JavaScript中的普通数组是动态类型的，一个数组可以包含不同类型的数据。但在处理二进制数据时，需要确保数据类型的一致性，以避免解释错误的二进制值。</li>
+<li><strong>性能问题：</strong> 对于大量的二进制数据，JavaScript数组的处理效率相对较低。因为普通数组是动态的，包含了很多附加信息，而在处理二进制数据时，我们希望能够更紧凑地存储数据。</li>
+<li><strong>内存问题：</strong> 普通数组在存储数字时占用较多的内存，因为它们需要支持动态类型和其他功能。对于大型的二进制数据，这可能导致内存占用问题。</li>
+</ol>
+<p>​	定型数组通过引入固定数据类型和更紧凑的内存表示，解决了这些问题。它们提供了一种高性能的方式来操作和处理二进制数据，特别适用于需要进行低级别的二进制计算、图像处理、音视频编解码等任务。通过定型数组，开发人员可以更直接地访问和操作二进制数据，从而提高性能并减少内存占用。</p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>
+<p><code>ArrayBuffer</code>分配的内存不能超过<code>Number.MAX_SAFE_INTEGER</code></p>
+<p>即
+$$
+2^{53}-1
+$$</p>
+</li>
+<li>
+<p>声明<code>ArrayBuffer</code>则会将所有二进制位初始化  为0。 </p>
+</li>
+<li>
+<p>声明<code>ArrayBuffer</code>的堆内存可以被当成垃圾回收，不用手动释放。</p>
+</li>
+</ol>
+<p>​	实际上我们无法直接对<code>ArrayBuffer</code>进行内容的读写操作。要读写必须通过视图进行操作。</p>
+<h3 id="shi-tu">视图</h3>
+<h4 id="dataview">DataView</h4>
+<p><code>DataView </code>可以让你以各种不同的数据类型和字节顺序来读取和写入 <code>ArrayBuffer</code> 中的数据，从而更灵活地处理二进制数据。</p>
+<p><code>DataView</code> 适用于以下情况：</p>
+<ol>
+<li><strong>跨数据类型操作：</strong> 如果需要在同一个 ArrayBuffer 中以不同的数据类型进行读写操作，<code>DataView</code> 更适合，因为它可以手动指定数据类型。</li>
+<li><strong>精确控制字节顺序：</strong> <code>DataView</code> 允许你指定字节顺序，这在处理与不同机器端序（Big Endian 或 Little Endian）有关的数据时非常有用。</li>
+<li><strong>处理定制格式的二进制数据：</strong> 对于一些特殊格式的二进制数据，如网络通信协议、文件格式等，<code>DataView</code> 更容易进行灵活的解析和构建。</li>
+</ol>
+<p><code>DataView</code>的主要方法：</p>
+<ul>
+<li>
+<p><strong>创建DataView</strong></p>
+<p>使用 <code>new DataView(buffer, byteOffset, byteLength)</code> 来创建一个 DataView。<code>buffer</code> 是一个 ArrayBuffer 对象，<code>byteOffset</code> 是从哪个字节开始，<code>byteLength</code> 是要处理的字节数。</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">buf </span><span>= new ArrayBuffer(</span><span style="color:#d08770;">16</span><span>); 
+</span><span style="color:#65737e;">// DataView 默认使用整个 ArrayBuffer 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">fullDataView </span><span>= new DataView(</span><span style="color:#bf616a;">buf</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">fullDataView</span><span>.</span><span style="color:#bf616a;">byteOffset</span><span>); </span><span style="color:#65737e;">// 0 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">fullDataView</span><span>.</span><span style="color:#bf616a;">byteLength</span><span>); </span><span style="color:#65737e;">// 16 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">fullDataView</span><span>.</span><span style="color:#bf616a;">buffer </span><span>=== </span><span style="color:#bf616a;">buf</span><span>); </span><span style="color:#65737e;">// true
+</span></code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">buf </span><span>= new ArrayBuffer(</span><span style="color:#d08770;">16</span><span>); 
+</span><span style="color:#65737e;">// DataView 默认使用整个 ArrayBuffer 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">fullDataView </span><span>= new DataView(</span><span style="color:#bf616a;">buf</span><span>,</span><span style="color:#d08770;">1</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">fullDataView</span><span>.</span><span style="color:#bf616a;">byteOffset</span><span>); </span><span style="color:#65737e;">// 1
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">fullDataView</span><span>.</span><span style="color:#bf616a;">byteLength</span><span>); </span><span style="color:#65737e;">// 15 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">fullDataView</span><span>.</span><span style="color:#bf616a;">buffer </span><span>=== </span><span style="color:#bf616a;">buf</span><span>); </span><span style="color:#65737e;">// true
+</span></code></pre>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">buf </span><span>= new ArrayBuffer(</span><span style="color:#d08770;">16</span><span>); 
+</span><span style="color:#65737e;">// DataView 默认使用整个 ArrayBuffer 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">fullDataView </span><span>= new DataView(</span><span style="color:#bf616a;">buf</span><span>,</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">4</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">fullDataView</span><span>.</span><span style="color:#bf616a;">byteOffset</span><span>); </span><span style="color:#65737e;">// 1
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">fullDataView</span><span>.</span><span style="color:#bf616a;">byteLength</span><span>); </span><span style="color:#65737e;">// 4 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">fullDataView</span><span>.</span><span style="color:#bf616a;">buffer </span><span>=== </span><span style="color:#bf616a;">buf</span><span>); </span><span style="color:#65737e;">// true
+</span></code></pre>
+<ol>
+<li>元素类型</li>
+</ol>
+<table><thead><tr><th>元素类型</th><th>字节</th><th>说明</th><th>等价的C类型</th><th>值范围</th></tr></thead><tbody>
+<tr><td>Int8</td><td>1</td><td>8位有符号整数</td><td>signed char</td><td>-128~127</td></tr>
+<tr><td>Uint8</td><td>1</td><td>8位无符号整数</td><td>unsigned char</td><td>0~255</td></tr>
+<tr><td>Int16</td><td>2</td><td>16位有符号整数</td><td>short</td><td>-32768~32767</td></tr>
+<tr><td>Uint16</td><td>2</td><td>16位无符号整数</td><td>unsigned short</td><td>0~65535</td></tr>
+<tr><td>Int32</td><td>4</td><td>32位有符号整数</td><td>int</td><td>-2 147 483 648~2 147 483 647</td></tr>
+<tr><td>Uint32</td><td>4</td><td>32位无符号整数</td><td>unsigned int</td><td>0~4 294 967 295</td></tr>
+<tr><td>Float32</td><td>4</td><td>32位IEEE-754浮点数</td><td>float</td><td>-3.4e+38~+3.4e+38</td></tr>
+<tr><td>Float64</td><td>8</td><td>64位IEEE-754浮点数</td><td>double</td><td>-1.7e+308~+1.7e+308</td></tr>
+</tbody></table>
+</li>
+<li>
+<p><strong>读写数据</strong></p>
+<p><code>DataView</code> 为上表中的每种类型都暴露了 <code>get</code> 和<code> set</code> 方法，这些方法使用 <code>byteOffset</code>（字节偏移量）定位要读取或写入值的位置。</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span>
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">buf </span><span>= new ArrayBuffer(</span><span style="color:#d08770;">2</span><span>); 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">view </span><span>= new DataView(</span><span style="color:#bf616a;">buf</span><span>); 
+</span><span style="color:#65737e;">// 说明整个缓冲确实所有二进制位都是 0 
+</span><span style="color:#65737e;">// 检查第一个和第二个字符
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getInt8</span><span>(</span><span style="color:#d08770;">0</span><span>)); </span><span style="color:#65737e;">// 0 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getInt8</span><span>(</span><span style="color:#d08770;">1</span><span>)); </span><span style="color:#65737e;">// 0  
+</span><span style="color:#65737e;">//使用 setUint8() 方法分别将 buf 中第一个字节和第二个字节设置为 255。在这里，setUint8(0, 255) 和 setUint8(1, 0xFF) 是等效的，因为 0xFF 也是 255 的十进制表示。
+</span><span style="color:#65737e;">// 检查整个缓冲
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getInt16</span><span>(</span><span style="color:#d08770;">0</span><span>)); </span><span style="color:#65737e;">// 0 使用 view.getInt16(0) 尝试读取第一个字节和第二个字节合并成的 16 位整数。
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">setUint8</span><span>(</span><span style="color:#d08770;">0</span><span>,</span><span style="color:#d08770;">255</span><span>);</span><span style="color:#65737e;">//1111111100000000
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getInt16</span><span>(</span><span style="color:#d08770;">0</span><span>)); </span><span style="color:#65737e;">// -256
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">setUint8</span><span>(</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">0xFF</span><span>);</span><span style="color:#65737e;">//11111111 11111111
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getInt16</span><span>(</span><span style="color:#d08770;">0</span><span>)); </span><span style="color:#65737e;">// -1
+</span></code></pre>
+</li>
+<li>
+<p><strong>字节顺序</strong></p>
+<p>“字节序”指的是计算系统维护的一种字节顺序的约定。<code>DataView</code> 只支持两种约定：大端字节序和小端字节序。<code>JavaScript</code> 运行时所在系统的原生字节序决定了如何读取或写入字节，但 <code>DataView</code> 并不遵守这个约定。对一段内存而言，<code>DataView</code> 是一个中立接口，它会遵循你指定的字节序。<code>DataView</code> 的所有<code>API</code>方法都以大端字节序作为默认值，但接收一个可选的布尔值参数，设置为<code> true</code> 即可启用小端字节序。</p>
+<ul>
+<li>大端字节序也称为“网络字节序”，意思是最高有效位保存在第一个字节，而最低有效位保存在最后一个字节。</li>
+<li>小端字节序正好相反，即最低有效位保存在第一个字节，最高有效位保存在最后一个字节。</li>
+</ul>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">// 在内存中分配两个字节并声明一个 DataView 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">buf </span><span>= new ArrayBuffer(</span><span style="color:#d08770;">2</span><span>); 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">view </span><span>= new DataView(</span><span style="color:#bf616a;">buf</span><span>); 
+</span><span style="color:#65737e;">// 填充缓冲，让第一位和最后一位都是 1 
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">setUint8</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0x80</span><span>); </span><span style="color:#65737e;">// 设置最左边的位等于 1 
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">setUint8</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0x01</span><span>); </span><span style="color:#65737e;">// 设置最右边的位等于 1 
+</span><span style="color:#65737e;">// 缓冲内容（为方便阅读，人为加了空格）
+</span><span style="color:#65737e;">// 0x8 0x0 0x0 0x1 
+</span><span style="color:#65737e;">// 1000 0000 0000 0001 
+</span><span style="color:#65737e;">// 按大端字节序读取 Uint16 
+</span><span style="color:#65737e;">// 0x80 是高字节，0x01 是低字节
+</span><span style="color:#65737e;">// 0x8001 = 2^15 + 2^0 = 32768 + 1 = 32769 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getUint16</span><span>(</span><span style="color:#d08770;">0</span><span>)); </span><span style="color:#65737e;">// 32769 
+</span><span style="color:#65737e;">// 按小端字节序读取 Uint16 
+</span><span style="color:#65737e;">// 0x01 是高字节，0x80 是低字节
+</span><span style="color:#65737e;">// 0x0180 = 2^8 + 2^7 = 256 + 128 = 384 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getUint16</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">true</span><span>)); </span><span style="color:#65737e;">// 384 
+</span><span style="color:#65737e;">// 按大端字节序写入 Uint16 
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">setUint16</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0x0004</span><span>); 
+</span><span style="color:#65737e;">// 缓冲内容（为方便阅读，人为加了空格）
+</span><span style="color:#65737e;">// 0x0 0x0 0x0 0x4 
+</span><span style="color:#65737e;">// 0000 0000 0000 0100 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getUint8</span><span>(</span><span style="color:#d08770;">0</span><span>)); </span><span style="color:#65737e;">// 0 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getUint8</span><span>(</span><span style="color:#d08770;">1</span><span>)); </span><span style="color:#65737e;">// 4 
+</span><span style="color:#65737e;">// 按小端字节序写入 Uint16 
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">setUint16</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0x0002</span><span>, </span><span style="color:#d08770;">true</span><span>); 
+</span><span style="color:#65737e;">// 缓冲内容（为方便阅读，人为加了空格）
+</span><span style="color:#65737e;">// 0x0 0x2 0x0 0x0 
+</span><span style="color:#65737e;">// 0000 0010 0000 0000 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getUint8</span><span>(</span><span style="color:#d08770;">0</span><span>)); </span><span style="color:#65737e;">// 2 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getUint8</span><span>(</span><span style="color:#d08770;">1</span><span>)); </span><span style="color:#65737e;">// 0
+</span></code></pre>
+</li>
+<li>
+<p><strong>边界情形</strong></p>
+<p><code>DataView</code> 完成读、写操作的前提是必须有充足的缓冲区，否则就会抛出 <code>RangeError</code>：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">buf </span><span>= new ArrayBuffer(</span><span style="color:#d08770;">6</span><span>); 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">view </span><span>= new DataView(</span><span style="color:#bf616a;">buf</span><span>); 
+</span><span style="color:#65737e;">// 尝试读取部分超出缓冲范围的值
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getInt32</span><span>(</span><span style="color:#d08770;">4</span><span>); 
+</span><span style="color:#65737e;">// RangeError 
+</span><span style="color:#65737e;">// 尝试读取超出缓冲范围的值
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getInt32</span><span>(</span><span style="color:#d08770;">8</span><span>); 
+</span><span style="color:#65737e;">// RangeError 
+</span><span style="color:#65737e;">// 尝试读取超出缓冲范围的值
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getInt32</span><span>(-</span><span style="color:#d08770;">1</span><span>); 
+</span><span style="color:#65737e;">// RangeError 
+</span><span style="color:#65737e;">// 尝试写入超出缓冲范围的值
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">setInt32</span><span>(</span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">123</span><span>); 
+</span><span style="color:#65737e;">// RangeError
+</span></code></pre>
+<p><code>DataView</code> 在写入缓冲里会尽最大努力把一个值转换为适当的类型，后备为 0。如果无法转换，则抛出错误：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">buf </span><span>= new ArrayBuffer(</span><span style="color:#d08770;">1</span><span>); 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">view </span><span>= new DataView(</span><span style="color:#bf616a;">buf</span><span>); 
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">setInt8</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1.5</span><span>); 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getInt8</span><span>(</span><span style="color:#d08770;">0</span><span>)); </span><span style="color:#65737e;">// 1 
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">setInt8</span><span>(</span><span style="color:#d08770;">0</span><span>, [</span><span style="color:#d08770;">4</span><span>]); 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getInt8</span><span>(</span><span style="color:#d08770;">0</span><span>)); </span><span style="color:#65737e;">// 4 
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">setInt8</span><span>(</span><span style="color:#d08770;">0</span><span>, &#39;</span><span style="color:#a3be8c;">f</span><span>&#39;); 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">getInt8</span><span>(</span><span style="color:#d08770;">0</span><span>)); </span><span style="color:#65737e;">// 0 
+</span><span style="color:#bf616a;">view</span><span>.</span><span style="color:#8fa1b3;">setInt8</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#ebcb8b;">Symbol</span><span>()); 
+</span><span style="color:#65737e;">// TypeError
+</span></code></pre>
+</li>
+</ul>
+<h3 id="ding-xing-shu-zu-1">定型数组</h3>
+<p>JavaScript提供了以下几种类型的定型数组：</p>
+<ol>
+<li>
+<p><code>Int8Array</code>, <code>Uint8Array</code>, <code>Uint8ClampedArray</code>: 8位整数数组，分别表示带符号整数、无符号整数和用于图像处理的无符号整数（值范围在0-255之间）。</p>
+</li>
+<li>
+<p><code>Int16Array</code>, <code>Uint16Array</code>: 16位整数数组，分别表示带符号整数和无符号整数。</p>
+</li>
+<li>
+<p><code>Int32Array</code>, <code>Uint32Array</code>: 32位整数数组，分别表示带符号整数和无符号整数。</p>
+</li>
+<li>
+<p><code>Float32Array</code>, <code>Float64Array</code>: 32位和64位浮点数数组，分别表示单精度和双精度浮点数。</p>
+</li>
+<li>
+<p>如果定型数组没有用任何值初始化，则其关联的缓冲会以 0 填充：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">ints </span><span>= new Int32Array(</span><span style="color:#d08770;">4</span><span>); 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">ints</span><span>[</span><span style="color:#d08770;">0</span><span>]); </span><span style="color:#65737e;">// 0 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">ints</span><span>[</span><span style="color:#d08770;">1</span><span>]); </span><span style="color:#65737e;">// 0 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">ints</span><span>[</span><span style="color:#d08770;">2</span><span>]); </span><span style="color:#65737e;">// 0 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">ints</span><span>[</span><span style="color:#d08770;">3</span><span>]); </span><span style="color:#65737e;">// 0
+</span></code></pre>
+</li>
+</ol>
+<p>定型数组的构造函数和实例都有一个<code> BYTES_PER_ELEMENT</code> 属性，返回该类型数组中每个元素的大小:</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#ebcb8b;">Int16Array</span><span>.</span><span style="color:#bf616a;">BYTES_PER_ELEMENT</span><span>); </span><span style="color:#65737e;">// 2 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#ebcb8b;">Int32Array</span><span>.</span><span style="color:#bf616a;">BYTES_PER_ELEMENT</span><span>); </span><span style="color:#65737e;">// 4 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">ints </span><span>= new Int32Array(</span><span style="color:#d08770;">1</span><span>), 
+</span><span style="color:#bf616a;">floats </span><span>= new Float64Array(</span><span style="color:#d08770;">1</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">ints</span><span>.</span><span style="color:#bf616a;">BYTES_PER_ELEMENT</span><span>); </span><span style="color:#65737e;">// 4 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">floats</span><span>.</span><span style="color:#bf616a;">BYTES_PER_ELEMENT</span><span>); </span><span style="color:#65737e;">// 8
+</span></code></pre>
+<p>定型数组方法基本与普通数组一致。其中需要注意的是：</p>
+<ul>
+<li>
+<p>返回新数组的方法也会返回包含同样元素类型（element type）的新定型数组：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">ints </span><span>= new Int16Array([</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>]); 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">doubleints </span><span>= </span><span style="color:#bf616a;">ints</span><span>.</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#bf616a;">x </span><span style="color:#b48ead;">=&gt; </span><span style="color:#d08770;">2</span><span>*</span><span style="color:#bf616a;">x</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">doubleints </span><span>instanceof Int16Array); </span><span style="color:#65737e;">// true
+</span></code></pre>
+</li>
+<li>
+<p>定型数组有一个 <code>Symbol.iterator</code> 符号属性，因此可以通过 <code>for..of</code> 循环和扩展操作符来操作：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">ints </span><span>= new Int16Array([</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>]); 
+</span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">int </span><span>of </span><span style="color:#bf616a;">ints</span><span>) { 
+</span><span> </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">int</span><span>); 
+</span><span>} 
+</span><span style="color:#65737e;">// 1 
+</span><span style="color:#65737e;">// 2 
+</span><span style="color:#65737e;">// 3 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(Math.</span><span style="color:#96b5b4;">max</span><span>(...</span><span style="color:#bf616a;">ints</span><span>)); </span><span style="color:#65737e;">// 3
+</span></code></pre>
+</li>
+<li>
+<p>定型数组同样使用数组缓冲来存储数据，而数组缓冲无法调整大小。因此，下列方法不适用于定型数组：</p>
+<ol>
+<li><code>concat</code></li>
+<li><code>pop</code></li>
+<li><code>push</code></li>
+<li><code>shift</code></li>
+<li><code>splice</code></li>
+<li><code>unshift</code></li>
+</ol>
+</li>
+<li>
+<p>定型数组也提供了两个新方法，可以快速向外或向内复制数据：</p>
+<ol>
+<li>
+<p><code>set</code></p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">// 创建长度为 8 的 int16 数组
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">container </span><span>= new Int16Array(</span><span style="color:#d08770;">8</span><span>); 
+</span><span style="color:#65737e;">// 把定型数组复制为前 4 个值
+</span><span style="color:#65737e;">// 偏移量默认为索引 0 
+</span><span style="color:#bf616a;">container</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#ebcb8b;">Int8Array</span><span>.</span><span style="color:#8fa1b3;">of</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>)); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">container</span><span>); </span><span style="color:#65737e;">// [1,2,3,4,0,0,0,0] 
+</span><span style="color:#65737e;">// 把普通数组复制为后 4 个值
+</span><span style="color:#65737e;">// 偏移量 4 表示从索引 4 开始插入
+</span><span style="color:#bf616a;">container</span><span>.</span><span style="color:#96b5b4;">set</span><span>([</span><span style="color:#d08770;">5</span><span>,</span><span style="color:#d08770;">6</span><span>,</span><span style="color:#d08770;">7</span><span>,</span><span style="color:#d08770;">8</span><span>], </span><span style="color:#d08770;">4</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">container</span><span>); </span><span style="color:#65737e;">// [1,2,3,4,5,6,7,8] 
+</span><span style="color:#65737e;">// 溢出会抛出错误
+</span><span style="color:#bf616a;">container</span><span>.</span><span style="color:#96b5b4;">set</span><span>([</span><span style="color:#d08770;">5</span><span>,</span><span style="color:#d08770;">6</span><span>,</span><span style="color:#d08770;">7</span><span>,</span><span style="color:#d08770;">8</span><span>], </span><span style="color:#d08770;">7</span><span>); 
+</span><span style="color:#65737e;">// RangeError
+</span></code></pre>
+</li>
+<li>
+<p><code>subarray</code></p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">source </span><span>= </span><span style="color:#ebcb8b;">Int16Array</span><span>.</span><span style="color:#8fa1b3;">of</span><span>(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">6</span><span>, </span><span style="color:#d08770;">8</span><span>); 
+</span><span style="color:#65737e;">// 把整个数组复制为一个同类型的新数组
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">fullCopy </span><span>= </span><span style="color:#bf616a;">source</span><span>.</span><span style="color:#8fa1b3;">subarray</span><span>(); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">fullCopy</span><span>); </span><span style="color:#65737e;">// [2, 4, 6, 8] 
+</span><span style="color:#65737e;">// 从索引 2 开始复制数组
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">halfCopy </span><span>= </span><span style="color:#bf616a;">source</span><span>.</span><span style="color:#8fa1b3;">subarray</span><span>(</span><span style="color:#d08770;">2</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">halfCopy</span><span>); </span><span style="color:#65737e;">// [6, 8] 
+</span><span style="color:#65737e;">// 从索引 1 开始复制到索引 3 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">partialCopy </span><span>= </span><span style="color:#bf616a;">source</span><span>.</span><span style="color:#8fa1b3;">subarray</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">3</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">partialCopy</span><span>); </span><span style="color:#65737e;">// [4, 6]
+</span></code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p>定型数组没有原生的拼接能力，但使用定型数组 API 提供的很多工具可以手动构建：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">// 第一个参数是应该返回的数组类型 
+</span><span style="color:#65737e;">// 其余参数是应该拼接在一起的定型数组
+</span><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">typedArrayConcat</span><span>(</span><span style="color:#bf616a;">typedArrayConstructor</span><span>, ...</span><span style="color:#bf616a;">typedArrays</span><span>) { 
+</span><span> </span><span style="color:#65737e;">// 计算所有数组中包含的元素总数
+</span><span> </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">numElements </span><span>= </span><span style="color:#bf616a;">typedArrays</span><span>.</span><span style="color:#8fa1b3;">reduce</span><span>((</span><span style="color:#bf616a;">x</span><span>,</span><span style="color:#bf616a;">y</span><span>) </span><span style="color:#b48ead;">=&gt; </span><span>(</span><span style="color:#bf616a;">x</span><span>.length || </span><span style="color:#bf616a;">x</span><span>) + </span><span style="color:#bf616a;">y</span><span>.length); 
+</span><span> </span><span style="color:#65737e;">// 按照提供的类型创建一个数组，为所有元素留出空间
+</span><span> </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">resultArray </span><span>= new typedArrayConstructor(</span><span style="color:#bf616a;">numElements</span><span>); 
+</span><span> </span><span style="color:#65737e;">// 依次转移数组
+</span><span> </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">currentOffset </span><span>= </span><span style="color:#d08770;">0</span><span>; 
+</span><span> </span><span style="color:#bf616a;">typedArrays</span><span>.</span><span style="color:#8fa1b3;">map</span><span>(</span><span style="color:#bf616a;">x </span><span style="color:#b48ead;">=&gt; </span><span>{ 
+</span><span> </span><span style="color:#bf616a;">resultArray</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#bf616a;">x</span><span>, </span><span style="color:#bf616a;">currentOffset</span><span>); 
+</span><span> </span><span style="color:#bf616a;">currentOffset </span><span>+= </span><span style="color:#bf616a;">x</span><span>.length; 
+</span><span> }); 
+</span><span> </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">resultArray</span><span>; 
+</span><span>} 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">concatArray </span><span>= </span><span style="color:#8fa1b3;">typedArrayConcat</span><span>(</span><span style="color:#ebcb8b;">Int32Array</span><span>, 
+</span><span> </span><span style="color:#ebcb8b;">Int8Array</span><span>.</span><span style="color:#8fa1b3;">of</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>), 
+</span><span> </span><span style="color:#ebcb8b;">Int16Array</span><span>.</span><span style="color:#8fa1b3;">of</span><span>(</span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>, </span><span style="color:#d08770;">6</span><span>), 
+</span><span> </span><span style="color:#ebcb8b;">Float32Array</span><span>.</span><span style="color:#8fa1b3;">of</span><span>(</span><span style="color:#d08770;">7</span><span>, </span><span style="color:#d08770;">8</span><span>, </span><span style="color:#d08770;">9</span><span>)); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">concatArray</span><span>); </span><span style="color:#65737e;">// [1, 2, 3, 4, 5, 6, 7, 8, 9] 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">concatArray </span><span>instanceof Int32Array); </span><span style="color:#65737e;">// true
+</span></code></pre>
+</li>
+<li>
+<p><strong>下溢和上溢</strong></p>
+<p>定型数组中值的下溢和上溢不会影响到其他索引，但仍然需要考虑数组的元素应该是什么类型。定型数组对于可以存储的每个索引只接受一个相关位，而不考虑它们对实际数值的影响。以下代码演示了如何处理下溢和上溢：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">// 长度为 2 的有符号整数数组
+</span><span style="color:#65737e;">// 每个索引保存一个二补数形式的有符号整数
+</span><span style="color:#65737e;">// 范围是-128（-1 * 2^7）~127（2^7 - 1）
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">ints </span><span>= new Int8Array(</span><span style="color:#d08770;">2</span><span>); 
+</span><span style="color:#65737e;">// 长度为 2 的无符号整数数组
+</span><span style="color:#65737e;">// 每个索引保存一个无符号整数
+</span><span style="color:#65737e;">// 范围是 0~255（2^7 - 1）
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">unsignedInts </span><span>= new Uint8Array(</span><span style="color:#d08770;">2</span><span>); 
+</span><span style="color:#65737e;">// 上溢的位不会影响相邻索引
+</span><span style="color:#65737e;">// 索引只取最低有效位上的 8 位
+</span><span style="color:#bf616a;">unsignedInts</span><span>[</span><span style="color:#d08770;">1</span><span>] = </span><span style="color:#d08770;">256</span><span>; </span><span style="color:#65737e;">// 0x100 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">unsignedInts</span><span>); </span><span style="color:#65737e;">// [0, 0] 
+</span><span style="color:#bf616a;">unsignedInts</span><span>[</span><span style="color:#d08770;">1</span><span>] = </span><span style="color:#d08770;">511</span><span>; </span><span style="color:#65737e;">// 0x1FF 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">unsignedInts</span><span>); </span><span style="color:#65737e;">// [0, 255] 
+</span><span style="color:#65737e;">// 下溢的位会被转换为其无符号的等价值
+</span><span style="color:#65737e;">// 0xFF 是以二补数形式表示的-1（截取到 8 位）, 
+</span><span style="color:#65737e;">// 但 255 是一个无符号整数
+</span><span style="color:#bf616a;">unsignedInts</span><span>[</span><span style="color:#d08770;">1</span><span>] = -</span><span style="color:#d08770;">1 </span><span style="color:#65737e;">// 0xFF (truncated to 8 bits) 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">unsignedInts</span><span>); </span><span style="color:#65737e;">// [0, 255] 
+</span><span style="color:#65737e;">// 上溢自动变成二补数形式
+</span><span style="color:#65737e;">// 0x80 是无符号整数的 128，是二补数形式的-128 
+</span><span style="color:#bf616a;">ints</span><span>[</span><span style="color:#d08770;">1</span><span>] = </span><span style="color:#d08770;">128</span><span>; </span><span style="color:#65737e;">// 0x80 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">ints</span><span>); </span><span style="color:#65737e;">// [0, -128] 
+</span><span style="color:#65737e;">// 下溢自动变成二补数形式
+</span><span style="color:#65737e;">// 0xFF 是无符号整数的 255，是二补数形式的-1 
+</span><span style="color:#bf616a;">ints</span><span>[</span><span style="color:#d08770;">1</span><span>] = </span><span style="color:#d08770;">255</span><span>; </span><span style="color:#65737e;">// 0xFF 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">ints</span><span>); </span><span style="color:#65737e;">// [0, -1]
+</span></code></pre>
+</li>
+<li>
+<p>除了 8 种元素类型，还有一种“夹板”数组类型：<code>Uint8ClampedArray</code>，不允许任何方向溢出。超出最大值 255 的值会被向下舍入为 255，而小于最小值 0 的值会被向上舍入为 0。</p>
+</li>
+</ul>
+<p>定型数组的简单例子</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">// 创建一个大小为 16 字节的 ArrayBuffer
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">buffer </span><span>= new ArrayBuffer(</span><span style="color:#d08770;">16</span><span>);
+</span><span>
+</span><span style="color:#65737e;">// 创建一个 Int32Array 视图，表示整个 ArrayBuffer
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">intArray </span><span>= new Int32Array(</span><span style="color:#bf616a;">buffer</span><span>);
+</span><span>
+</span><span style="color:#65737e;">// 在 Int32Array 中设置值
+</span><span style="color:#bf616a;">intArray</span><span>[</span><span style="color:#d08770;">0</span><span>] = </span><span style="color:#d08770;">42</span><span>;
+</span><span style="color:#bf616a;">intArray</span><span>[</span><span style="color:#d08770;">3</span><span>] = </span><span style="color:#d08770;">36</span><span>;
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">intArray</span><span>);</span><span style="color:#65737e;">//Int32Array(4) [42, 0, 0, 36, buffer: ArrayBuffer(16), byteLength: 16, byteOffset: 0, length: 4]
+</span><span>
+</span><span>
+</span><span style="color:#65737e;">// 创建一个 Uint8Array 视图，表示 ArrayBuffer 中的一部分
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">byteView </span><span>= new Uint8Array(</span><span style="color:#bf616a;">buffer</span><span>); </span><span style="color:#65737e;">// 从第 8 个字节开始，长度为 4 字节
+</span><span>
+</span><span style="color:#65737e;">// 在 Uint8Array 中查看数据
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">byteView</span><span>); </span><span style="color:#65737e;">// Uint8Array(16) [42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 36, 0, 0, 0, buffer: ArrayBuffer(16), byteLength: 16, byteOffset: 0, length: 16]
+</span></code></pre>
+<ul>
+<li><code>Int32Array</code>：每个成员占据 4 个字节，所以在一个 16 字节的 <code>ArrayBuffer</code> 中，只能容纳 16 / 4 = 4 个 <code>Int32</code> 类型的成员。</li>
+<li><code>Uint8Array</code>：每个成员占据 1 个字节，所以在一个 16 字节的 <code>ArrayBuffer</code> 中，可以容纳 16 个 <code>Uint8</code> 类型的成员。</li>
+</ul>
 <h2 id="map"><em><strong>Map</strong></em></h2>
 <p>TODO</p>
 <h2 id="weakmap"><em><strong>WeakMap</strong></em></h2>

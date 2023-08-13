@@ -607,7 +607,373 @@ alert(sum); // 15
 
 ## 定型数组
 
-TODO
+### 目标 
+
+​	定型数组（Typed Arrays）是为了解决在JavaScript中进行二进制数据处理时所遇到的一些问题而引入的。JavaScript原生的数组虽然非常强大，但在处理二进制数据方面存在一些限制和性能问题。这些问题包括：
+
+1. **数据类型问题：** JavaScript中的普通数组是动态类型的，一个数组可以包含不同类型的数据。但在处理二进制数据时，需要确保数据类型的一致性，以避免解释错误的二进制值。
+2. **性能问题：** 对于大量的二进制数据，JavaScript数组的处理效率相对较低。因为普通数组是动态的，包含了很多附加信息，而在处理二进制数据时，我们希望能够更紧凑地存储数据。
+3. **内存问题：** 普通数组在存储数字时占用较多的内存，因为它们需要支持动态类型和其他功能。对于大型的二进制数据，这可能导致内存占用问题。
+
+​	定型数组通过引入固定数据类型和更紧凑的内存表示，解决了这些问题。它们提供了一种高性能的方式来操作和处理二进制数据，特别适用于需要进行低级别的二进制计算、图像处理、音视频编解码等任务。通过定型数组，开发人员可以更直接地访问和操作二进制数据，从而提高性能并减少内存占用。
+
+**注意：**
+
+1. `ArrayBuffer`分配的内存不能超过`Number.MAX_SAFE_INTEGER`
+
+   即
+   $$
+   2^{53}-1
+   $$
+
+2. 声明`ArrayBuffer`则会将所有二进制位初始化  为0。 
+
+3. 声明`ArrayBuffer`的堆内存可以被当成垃圾回收，不用手动释放。
+
+​	实际上我们无法直接对`ArrayBuffer`进行内容的读写操作。要读写必须通过视图进行操作。
+
+### 视图
+
+#### DataView
+
+`DataView `可以让你以各种不同的数据类型和字节顺序来读取和写入 `ArrayBuffer` 中的数据，从而更灵活地处理二进制数据。
+
+`DataView` 适用于以下情况：
+
+1. **跨数据类型操作：** 如果需要在同一个 ArrayBuffer 中以不同的数据类型进行读写操作，`DataView` 更适合，因为它可以手动指定数据类型。
+2. **精确控制字节顺序：** `DataView` 允许你指定字节顺序，这在处理与不同机器端序（Big Endian 或 Little Endian）有关的数据时非常有用。
+3. **处理定制格式的二进制数据：** 对于一些特殊格式的二进制数据，如网络通信协议、文件格式等，`DataView` 更容易进行灵活的解析和构建。
+
+`DataView`的主要方法：
+
+- **创建DataView**
+
+   使用 `new DataView(buffer, byteOffset, byteLength)` 来创建一个 DataView。`buffer` 是一个 ArrayBuffer 对象，`byteOffset` 是从哪个字节开始，`byteLength` 是要处理的字节数。
+
+  ```js
+  const buf = new ArrayBuffer(16); 
+  // DataView 默认使用整个 ArrayBuffer 
+  const fullDataView = new DataView(buf); 
+  console.log(fullDataView.byteOffset); // 0 
+  console.log(fullDataView.byteLength); // 16 
+  console.log(fullDataView.buffer === buf); // true
+  ```
+
+  ```js
+  const buf = new ArrayBuffer(16); 
+  // DataView 默认使用整个 ArrayBuffer 
+  const fullDataView = new DataView(buf,1); 
+  console.log(fullDataView.byteOffset); // 1
+  console.log(fullDataView.byteLength); // 15 
+  console.log(fullDataView.buffer === buf); // true
+  ```
+
+  ```js
+  const buf = new ArrayBuffer(16); 
+  // DataView 默认使用整个 ArrayBuffer 
+  const fullDataView = new DataView(buf,1,4); 
+  console.log(fullDataView.byteOffset); // 1
+  console.log(fullDataView.byteLength); // 4 
+  console.log(fullDataView.buffer === buf); // true
+  ```
+
+  1. 元素类型
+
+  | 元素类型 | 字节 | 说明               | 等价的C类型    | 值范围                       |
+  | -------- | ---- | ------------------ | -------------- | ---------------------------- |
+  | Int8     | 1    | 8位有符号整数      | signed char    | -128~127                     |
+  | Uint8    | 1    | 8位无符号整数      | unsigned char  | 0~255                        |
+  | Int16    | 2    | 16位有符号整数     | short          | -32768~32767                 |
+  | Uint16   | 2    | 16位无符号整数     | unsigned short | 0~65535                      |
+  | Int32    | 4    | 32位有符号整数     | int            | -2 147 483 648~2 147 483 647 |
+  | Uint32   | 4    | 32位无符号整数     | unsigned int   | 0~4 294 967 295              |
+  | Float32  | 4    | 32位IEEE-754浮点数 | float          | -3.4e+38~+3.4e+38            |
+  | Float64  | 8    | 64位IEEE-754浮点数 | double         | -1.7e+308~+1.7e+308          |
+
+- **读写数据**
+
+  `DataView` 为上表中的每种类型都暴露了 `get` 和` set` 方法，这些方法使用 `byteOffset`（字节偏移量）定位要读取或写入值的位置。
+
+  ```js
+  
+  const buf = new ArrayBuffer(2); 
+  const view = new DataView(buf); 
+  // 说明整个缓冲确实所有二进制位都是 0 
+  // 检查第一个和第二个字符
+  console.log(view.getInt8(0)); // 0 
+  console.log(view.getInt8(1)); // 0  
+  //使用 setUint8() 方法分别将 buf 中第一个字节和第二个字节设置为 255。在这里，setUint8(0, 255) 和 setUint8(1, 0xFF) 是等效的，因为 0xFF 也是 255 的十进制表示。
+  // 检查整个缓冲
+  console.log(view.getInt16(0)); // 0 使用 view.getInt16(0) 尝试读取第一个字节和第二个字节合并成的 16 位整数。
+  view.setUint8(0,255);//1111111100000000
+  console.log(view.getInt16(0)); // -256
+  view.setUint8(1,0xFF);//11111111 11111111
+  console.log(view.getInt16(0)); // -1
+  ```
+
+- **字节顺序**
+
+  “字节序”指的是计算系统维护的一种字节顺序的约定。`DataView` 只支持两种约定：大端字节序和小端字节序。`JavaScript` 运行时所在系统的原生字节序决定了如何读取或写入字节，但 `DataView` 并不遵守这个约定。对一段内存而言，`DataView` 是一个中立接口，它会遵循你指定的字节序。`DataView` 的所有` API `方法都以大端字节序作为默认值，但接收一个可选的布尔值参数，设置为` true` 即可启用小端字节序。
+
+  - 大端字节序也称为“网络字节序”，意思是最高有效位保存在第一个字节，而最低有效位保存在最后一个字节。
+  - 小端字节序正好相反，即最低有效位保存在第一个字节，最高有效位保存在最后一个字节。
+
+  ```js
+  // 在内存中分配两个字节并声明一个 DataView 
+  const buf = new ArrayBuffer(2); 
+  const view = new DataView(buf); 
+  // 填充缓冲，让第一位和最后一位都是 1 
+  view.setUint8(0, 0x80); // 设置最左边的位等于 1 
+  view.setUint8(1, 0x01); // 设置最右边的位等于 1 
+  // 缓冲内容（为方便阅读，人为加了空格）
+  // 0x8 0x0 0x0 0x1 
+  // 1000 0000 0000 0001 
+  // 按大端字节序读取 Uint16 
+  // 0x80 是高字节，0x01 是低字节
+  // 0x8001 = 2^15 + 2^0 = 32768 + 1 = 32769 
+  console.log(view.getUint16(0)); // 32769 
+  // 按小端字节序读取 Uint16 
+  // 0x01 是高字节，0x80 是低字节
+  // 0x0180 = 2^8 + 2^7 = 256 + 128 = 384 
+  console.log(view.getUint16(0, true)); // 384 
+  // 按大端字节序写入 Uint16 
+  view.setUint16(0, 0x0004); 
+  // 缓冲内容（为方便阅读，人为加了空格）
+  // 0x0 0x0 0x0 0x4 
+  // 0000 0000 0000 0100 
+  console.log(view.getUint8(0)); // 0 
+  console.log(view.getUint8(1)); // 4 
+  // 按小端字节序写入 Uint16 
+  view.setUint16(0, 0x0002, true); 
+  // 缓冲内容（为方便阅读，人为加了空格）
+  // 0x0 0x2 0x0 0x0 
+  // 0000 0010 0000 0000 
+  console.log(view.getUint8(0)); // 2 
+  console.log(view.getUint8(1)); // 0
+  ```
+
+- **边界情形**
+
+  `DataView` 完成读、写操作的前提是必须有充足的缓冲区，否则就会抛出 `RangeError`：
+
+  ```js
+  const buf = new ArrayBuffer(6); 
+  const view = new DataView(buf); 
+  // 尝试读取部分超出缓冲范围的值
+  view.getInt32(4); 
+  // RangeError 
+  // 尝试读取超出缓冲范围的值
+  view.getInt32(8); 
+  // RangeError 
+  // 尝试读取超出缓冲范围的值
+  view.getInt32(-1); 
+  // RangeError 
+  // 尝试写入超出缓冲范围的值
+  view.setInt32(4, 123); 
+  // RangeError
+  ```
+
+  `DataView` 在写入缓冲里会尽最大努力把一个值转换为适当的类型，后备为 0。如果无法转换，则抛出错误：
+
+  ```js
+  const buf = new ArrayBuffer(1); 
+  const view = new DataView(buf); 
+  view.setInt8(0, 1.5); 
+  alert(view.getInt8(0)); // 1 
+  view.setInt8(0, [4]); 
+  alert(view.getInt8(0)); // 4 
+  view.setInt8(0, 'f'); 
+  alert(view.getInt8(0)); // 0 
+  view.setInt8(0, Symbol()); 
+  // TypeError
+  ```
+
+### 定型数组
+
+JavaScript提供了以下几种类型的定型数组：
+
+1. `Int8Array`, `Uint8Array`, `Uint8ClampedArray`: 8位整数数组，分别表示带符号整数、无符号整数和用于图像处理的无符号整数（值范围在0-255之间）。
+
+2. `Int16Array`, `Uint16Array`: 16位整数数组，分别表示带符号整数和无符号整数。
+
+3. `Int32Array`, `Uint32Array`: 32位整数数组，分别表示带符号整数和无符号整数。
+
+4. `Float32Array`, `Float64Array`: 32位和64位浮点数数组，分别表示单精度和双精度浮点数。
+
+5. 如果定型数组没有用任何值初始化，则其关联的缓冲会以 0 填充：
+
+   ```js
+   const ints = new Int32Array(4); 
+   alert(ints[0]); // 0 
+   alert(ints[1]); // 0 
+   alert(ints[2]); // 0 
+   alert(ints[3]); // 0
+   ```
+
+定型数组的构造函数和实例都有一个` BYTES_PER_ELEMENT` 属性，返回该类型数组中每个元素的大小:
+
+```js
+console.log(Int16Array.BYTES_PER_ELEMENT); // 2 
+console.log(Int32Array.BYTES_PER_ELEMENT); // 4 
+const ints = new Int32Array(1), 
+floats = new Float64Array(1); 
+console.log(ints.BYTES_PER_ELEMENT); // 4 
+console.log(floats.BYTES_PER_ELEMENT); // 8
+```
+
+定型数组方法基本与普通数组一致。其中需要注意的是：
+
+- 返回新数组的方法也会返回包含同样元素类型（element type）的新定型数组：
+
+  ```js
+  const ints = new Int16Array([1, 2, 3]); 
+  const doubleints = ints.map(x => 2*x); 
+  console.log(doubleints instanceof Int16Array); // true
+  ```
+
+- 定型数组有一个 `Symbol.iterator` 符号属性，因此可以通过 `for..of` 循环和扩展操作符来操作：
+
+  ```js
+  const ints = new Int16Array([1, 2, 3]); 
+  for (const int of ints) { 
+   console.log(int); 
+  } 
+  // 1 
+  // 2 
+  // 3 
+  console.log(Math.max(...ints)); // 3
+  ```
+
+- 定型数组同样使用数组缓冲来存储数据，而数组缓冲无法调整大小。因此，下列方法不适用于定型数组：
+
+  1. `concat`
+  2. `pop`
+  3. `push`
+  4. `shift`
+  5. `splice`
+  6. `unshift`
+
+- 定型数组也提供了两个新方法，可以快速向外或向内复制数据：
+
+  1. `set`
+
+     ```js
+     // 创建长度为 8 的 int16 数组
+     const container = new Int16Array(8); 
+     // 把定型数组复制为前 4 个值
+     // 偏移量默认为索引 0 
+     container.set(Int8Array.of(1, 2, 3, 4)); 
+     console.log(container); // [1,2,3,4,0,0,0,0] 
+     // 把普通数组复制为后 4 个值
+     // 偏移量 4 表示从索引 4 开始插入
+     container.set([5,6,7,8], 4); 
+     console.log(container); // [1,2,3,4,5,6,7,8] 
+     // 溢出会抛出错误
+     container.set([5,6,7,8], 7); 
+     // RangeError
+     ```
+
+  2. `subarray`
+
+     ```js
+     const source = Int16Array.of(2, 4, 6, 8); 
+     // 把整个数组复制为一个同类型的新数组
+     const fullCopy = source.subarray(); 
+     console.log(fullCopy); // [2, 4, 6, 8] 
+     // 从索引 2 开始复制数组
+     const halfCopy = source.subarray(2); 
+     console.log(halfCopy); // [6, 8] 
+     // 从索引 1 开始复制到索引 3 
+     const partialCopy = source.subarray(1, 3); 
+     console.log(partialCopy); // [4, 6]
+     ```
+
+- 定型数组没有原生的拼接能力，但使用定型数组 API 提供的很多工具可以手动构建：
+
+  ```js
+  // 第一个参数是应该返回的数组类型 
+  // 其余参数是应该拼接在一起的定型数组
+  function typedArrayConcat(typedArrayConstructor, ...typedArrays) { 
+   // 计算所有数组中包含的元素总数
+   const numElements = typedArrays.reduce((x,y) => (x.length || x) + y.length); 
+   // 按照提供的类型创建一个数组，为所有元素留出空间
+   const resultArray = new typedArrayConstructor(numElements); 
+   // 依次转移数组
+   let currentOffset = 0; 
+   typedArrays.map(x => { 
+   resultArray.set(x, currentOffset); 
+   currentOffset += x.length; 
+   }); 
+   return resultArray; 
+  } 
+  const concatArray = typedArrayConcat(Int32Array, 
+   Int8Array.of(1, 2, 3), 
+   Int16Array.of(4, 5, 6), 
+   Float32Array.of(7, 8, 9)); 
+  console.log(concatArray); // [1, 2, 3, 4, 5, 6, 7, 8, 9] 
+  console.log(concatArray instanceof Int32Array); // true
+  ```
+
+- **下溢和上溢**
+
+  定型数组中值的下溢和上溢不会影响到其他索引，但仍然需要考虑数组的元素应该是什么类型。定型数组对于可以存储的每个索引只接受一个相关位，而不考虑它们对实际数值的影响。以下代码演示了如何处理下溢和上溢：
+
+  ```js
+  // 长度为 2 的有符号整数数组
+  // 每个索引保存一个二补数形式的有符号整数
+  // 范围是-128（-1 * 2^7）~127（2^7 - 1）
+  const ints = new Int8Array(2); 
+  // 长度为 2 的无符号整数数组
+  // 每个索引保存一个无符号整数
+  // 范围是 0~255（2^7 - 1）
+  const unsignedInts = new Uint8Array(2); 
+  // 上溢的位不会影响相邻索引
+  // 索引只取最低有效位上的 8 位
+  unsignedInts[1] = 256; // 0x100 
+  console.log(unsignedInts); // [0, 0] 
+  unsignedInts[1] = 511; // 0x1FF 
+  console.log(unsignedInts); // [0, 255] 
+  // 下溢的位会被转换为其无符号的等价值
+  // 0xFF 是以二补数形式表示的-1（截取到 8 位）, 
+  // 但 255 是一个无符号整数
+  unsignedInts[1] = -1 // 0xFF (truncated to 8 bits) 
+  console.log(unsignedInts); // [0, 255] 
+  // 上溢自动变成二补数形式
+  // 0x80 是无符号整数的 128，是二补数形式的-128 
+  ints[1] = 128; // 0x80 
+  console.log(ints); // [0, -128] 
+  // 下溢自动变成二补数形式
+  // 0xFF 是无符号整数的 255，是二补数形式的-1 
+  ints[1] = 255; // 0xFF 
+  console.log(ints); // [0, -1]
+  ```
+
+- 除了 8 种元素类型，还有一种“夹板”数组类型：`Uint8ClampedArray`，不允许任何方向溢出。超出最大值 255 的值会被向下舍入为 255，而小于最小值 0 的值会被向上舍入为 0。
+
+定型数组的简单例子
+
+```js
+// 创建一个大小为 16 字节的 ArrayBuffer
+const buffer = new ArrayBuffer(16);
+
+// 创建一个 Int32Array 视图，表示整个 ArrayBuffer
+const intArray = new Int32Array(buffer);
+
+// 在 Int32Array 中设置值
+intArray[0] = 42;
+intArray[3] = 36;
+console.log(intArray);//Int32Array(4) [42, 0, 0, 36, buffer: ArrayBuffer(16), byteLength: 16, byteOffset: 0, length: 4]
+
+
+// 创建一个 Uint8Array 视图，表示 ArrayBuffer 中的一部分
+const byteView = new Uint8Array(buffer); // 从第 8 个字节开始，长度为 4 字节
+
+// 在 Uint8Array 中查看数据
+console.log(byteView); // Uint8Array(16) [42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 36, 0, 0, 0, buffer: ArrayBuffer(16), byteLength: 16, byteOffset: 0, length: 16]
+```
+
+- `Int32Array`：每个成员占据 4 个字节，所以在一个 16 字节的 `ArrayBuffer` 中，只能容纳 16 / 4 = 4 个 `Int32` 类型的成员。
+- `Uint8Array`：每个成员占据 1 个字节，所以在一个 16 字节的 `ArrayBuffer` 中，可以容纳 16 个 `Uint8` 类型的成员。
 
 ## ***Map***
 
