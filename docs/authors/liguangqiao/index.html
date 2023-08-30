@@ -387,6 +387,14 @@
                       >区块链</a>
                     </li>
                   
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git"
+                        onclick="switchTopic('Mega')"
+                      >Mega</a>
+                    </li>
+                  
                 </ul>
               </li>
             
@@ -815,6 +823,183 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git&#x2F;git&#x2F;..&#x2F;git.png"
+    class="img-fluid m-auto d-block "
+    alt="git原理"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git&#x2F;git&#x2F;"
+      rel="bookmark"
+      title="git原理"
+    ><b>git原理</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  30&#x2F;08&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Git原理学习
+Git对象
+Git是一个内容寻址文件系统。其核心思想就是键值对数据库（key-value data store），其核心行为包括：
+
+通过向 Git 仓库中插入任意类型的内容，它会返回一个唯一的键***(key)***。
+通过该键可以在任意时刻再次取回该内容。
+
+实验出真知
+可以通过底层命令 git hash-object 来演示上述效果——该命令可将任意数据保存于 .git&#x2F;objects 目录（即 对象数据库），并返回指向该数据对象的唯一的键。
+
+
+初始化一个Git仓库
+$ git init git_lab
+
+
+
+检查一下git对象目录(.git&#x2F;objects)生成了哪些文件夹，通过find命令查看所有文件夹（包含子文件夹）
+$ find .git&#x2F;objects&#x2F;
+.git&#x2F;objects&#x2F;
+.git&#x2F;objects&#x2F;info
+.git&#x2F;objects&#x2F;pack
+
+
+
+检查一下.git&#x2F;objects目录下生成了哪些文件，同样通过find+文件路径+类型参数-type f查看所有文件
+$ find .git&#x2F;objects&#x2F; -type f
+&#x2F;&#x2F;无输出表示没有文件
+
+
+
+接下来要开始创建并保存一个文件了，这里简单创建一个文本文件
+echo &amp;quot;git testing&amp;quot; &amp;gt; git_test.txt
+
+
+
+保存到git对象目录（.git&#x2F;objects）。这里使用了git hash-object命令，根据文件git_test.txt的内容生成一串hash值
+git hash-object -w git_test.txt
+34e75148c0aeb4efb212f817606d386b15190525
+
+注意：hash值仅与文件内容有关，与名称无关。
+$ echo &amp;quot;git testing&amp;quot; | git hash-object -w --stdin
+34e75148c0aeb4efb212f817606d386b15190525
+
+
+
+再次查看git对象目录（.git&#x2F;objects）下的所有文件
+$ find .git&#x2F;objects&#x2F; -type f
+.git&#x2F;objects&#x2F;34&#x2F;e75148c0aeb4efb212f817606d386b15190525
+
+其中hash值长度40，前两个字符用于子目录命名，后38个字符用于文件命名。hash算法参考SHA-1
+
+
+文件git_test.txt内容已经存储到对象数据库中，如果需要从git中取回数据，则需要通过cat-file命令实现（个人理解cat实际就是catch的缩写），其中指定 -p 选项可指示该命令自动判断内容的类型，并为我们显示大致的内容
+$ git cat-file -p 34e75148c0aeb4efb212f817606d386b15190525
+git testing
+
+
+
+版本变更实验：更新文件git_test.txt的内容并重新保存
+$ echo &amp;quot;changing&amp;quot;...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git&#x2F;mega&#x2F;..&#x2F;git.png"
+    class="img-fluid m-auto d-block "
+    alt="Mega学习"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git&#x2F;mega&#x2F;"
+      rel="bookmark"
+      title="Mega学习"
+    ><b>Mega学习</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  30&#x2F;08&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Mega(去中心化Git服务)
+Mega是一个去中心化、分布式的开源git项目。它的目标是提供一个更加安全和隐私保护的git服务，同时还可以提供高质量的代码托管和版本控制功能。Mega是完全开源的，任何人都可以自由地使用它，也可以参与到它的开发和维护中来。
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;implicit-conversion&#x2F;..&#x2F;js_logo.png"
     class="img-fluid m-auto d-block "
     alt="js隐式转换"
@@ -1230,158 +1415,6 @@ TODO
   
 
 	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-8-object&#x2F;..&#x2F;js_logo.png"
-    class="img-fluid m-auto d-block "
-    alt="js学习笔记(8)——对象、类与面向对象编程"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-8-object&#x2F;"
-      rel="bookmark"
-      title="js学习笔记(8)——对象、类与面向对象编程"
-    ><b>js学习笔记(8)——对象、类与面向对象编程</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  31&#x2F;07&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>对象、类与面向对象编程
-理解对象
-创建自定义对象的通常方式是创建Object的一个新实例：
-let person = new Object(); 
-person.name = &amp;quot;Nicholas&amp;quot;; 
-person.age = 29; 
-person.job = &amp;quot;Software Engineer&amp;quot;; 
-person.sayName = function() { 
- console.log(this.name); 
-};
-
-&#x2F;&#x2F;前面的例子
-let person = { 
-name: &amp;quot;Nicholas&amp;quot;, 
-age: 29, 
-job: &amp;quot;Software Engineer&amp;quot;, 
-sayName() { 
-console.log(this.name); 
-} 
-};
-
-属性的类型
-数据属性
-
-[[Configurable]]:表示属性是否可以通过delete删除并重新定义，是否可以修改它的特性,以及是否可以把它改为访问器属性。注：默认所有直接定义在对象的属性的这个特性都是true。
-[[Enumberable]]:表示属性是否可以通过for-in循环返回。默认情况下，所有直接定义在对象上的属性的这个特性都是true。
-[[Writable]]:表示属性的值是否可以被修改。默认情况下，所以直接定义在对象上的属性的，这个特性都是true。
-[[Value]]:包含属性实际的值。这就是前面提到的那个读取和写入属性值的位置。这个特性的默认值为undefined。
-
-查看对象属性的方式：Object.getOwnPropertyDescriptor方法
-var obj = {
-    &amp;quot;name&amp;quot;:&amp;quot;test&amp;quot;
-};
-console.log(Object.getOwnPropertyDescriptor(obj, &amp;#39;name&amp;#39;))
-
-&#x2F;&#x2F;output
-&#x2F;&#x2F;{ value: &amp;#39;test&amp;#39;, writable: true, enumerable:...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;enum-patten&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust学习(四)枚举和模式匹配"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;enum-patten&#x2F;"
-      rel="bookmark"
-      title="rust学习(四)枚举和模式匹配"
-    ><b>rust学习(四)枚举和模式匹配</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  16&#x2F;07&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
   
   
   <nav>
@@ -1444,6 +1477,18 @@ console.log(Object.getOwnPropertyDescriptor(obj, &amp;#39;name&amp;#39;))
             href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;5"
             
           >5</a>
+        </li>
+      
+        <li class="
+          page-item
+          
+        ">
+          <a
+            class="page-link"
+            
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;6"
+            
+          >6</a>
         </li>
       
     </ul>

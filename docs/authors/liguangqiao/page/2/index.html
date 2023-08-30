@@ -387,6 +387,14 @@
                       >区块链</a>
                     </li>
                   
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git"
+                        onclick="switchTopic('Mega')"
+                      >Mega</a>
+                    </li>
+                  
                 </ul>
               </li>
             
@@ -815,6 +823,158 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-8-object&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block "
+    alt="js学习笔记(8)——对象、类与面向对象编程"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-8-object&#x2F;"
+      rel="bookmark"
+      title="js学习笔记(8)——对象、类与面向对象编程"
+    ><b>js学习笔记(8)——对象、类与面向对象编程</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  31&#x2F;07&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>对象、类与面向对象编程
+理解对象
+创建自定义对象的通常方式是创建Object的一个新实例：
+let person = new Object(); 
+person.name = &amp;quot;Nicholas&amp;quot;; 
+person.age = 29; 
+person.job = &amp;quot;Software Engineer&amp;quot;; 
+person.sayName = function() { 
+ console.log(this.name); 
+};
+
+&#x2F;&#x2F;前面的例子
+let person = { 
+name: &amp;quot;Nicholas&amp;quot;, 
+age: 29, 
+job: &amp;quot;Software Engineer&amp;quot;, 
+sayName() { 
+console.log(this.name); 
+} 
+};
+
+属性的类型
+数据属性
+
+[[Configurable]]:表示属性是否可以通过delete删除并重新定义，是否可以修改它的特性,以及是否可以把它改为访问器属性。注：默认所有直接定义在对象的属性的这个特性都是true。
+[[Enumberable]]:表示属性是否可以通过for-in循环返回。默认情况下，所有直接定义在对象上的属性的这个特性都是true。
+[[Writable]]:表示属性的值是否可以被修改。默认情况下，所以直接定义在对象上的属性的，这个特性都是true。
+[[Value]]:包含属性实际的值。这就是前面提到的那个读取和写入属性值的位置。这个特性的默认值为undefined。
+
+查看对象属性的方式：Object.getOwnPropertyDescriptor方法
+var obj = {
+    &amp;quot;name&amp;quot;:&amp;quot;test&amp;quot;
+};
+console.log(Object.getOwnPropertyDescriptor(obj, &amp;#39;name&amp;#39;))
+
+&#x2F;&#x2F;output
+&#x2F;&#x2F;{ value: &amp;#39;test&amp;#39;, writable: true, enumerable:...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;enum-patten&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="rust学习(四)枚举和模式匹配"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;enum-patten&#x2F;"
+      rel="bookmark"
+      title="rust学习(四)枚举和模式匹配"
+    ><b>rust学习(四)枚举和模式匹配</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  16&#x2F;07&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;iter-closures&#x2F;..&#x2F;rust.jpg"
     class="img-fluid m-auto d-block "
     alt="rust学习(五)迭代器和闭包"
@@ -1085,164 +1245,6 @@ fn add_test(){
   
 
 	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;ownership&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust学习(二)所有权和生命周期"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;ownership&#x2F;"
-      rel="bookmark"
-      title="rust学习(二)所有权和生命周期"
-    ><b>rust学习(二)所有权和生命周期</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  15&#x2F;07&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>Rust所有权机制
-Rust语言引入所有权机制的目标
-主要为解决复杂系统中的资源管理和悬吊引用问题。
-所有权系统是Rust中用于管理内存的手段。
-所有权规则总结归纳：
-
-每个值（变量）都有一个所有者
-值在任意时刻都只有一个所有者
-当所有离开作用域时，其值将被丢弃(相当于执行垃圾回收)
-
-结论：Rust的值被唯一的对象管理着，一旦不使用，内存就会立刻释放。
-所有权简单实验
-
-
-借用
-let x = String::from(&amp;quot;hello&amp;quot;);
-let y = &amp;amp;x;
-
-
-
-克隆
-let x = 10;
-let y = x;
-println!(&amp;quot;测试通过{x},{y}&amp;quot;);
-&#x2F;&#x2F;测试通过10，10
-let a = &amp;quot;hello&amp;quot;;
-let b = a;
-println!(&amp;quot;测试通过{x},{y}&amp;quot;);
-let c = (1,2 as f64,&amp;quot;hello&amp;quot;);
-let d = c;
-println!(&amp;quot;测试:{:?},{:?}&amp;quot;,c,d);
-let g = d.clone();
-
-
-
-生命周期
-静态生命周期***&#x27;static和动态生命周期&#x27;a***
-静态生命周期在整个程序中期间存活
-动态生命周期，相关参数的生命周期以相对长生命周期的引用为准
-fn lifetime_test_one() -&amp;gt; &amp;amp;String{
-        let x= &amp;quot;hello&amp;quot;.to_string();
-       ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-9-reflection-proxy&#x2F;..&#x2F;js_logo.png"
-    class="img-fluid m-auto d-block "
-    alt="js学习笔记(9)——反射和代理"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-9-reflection-proxy&#x2F;"
-      rel="bookmark"
-      title="js学习笔记(9)——反射和代理"
-    ><b>js学习笔记(9)——反射和代理</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  27&#x2F;06&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>todo
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
   
   
   <nav>
@@ -1305,6 +1307,18 @@ fn lifetime_test_one() -&amp;gt; &amp;amp;String{
             href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;5"
             
           >5</a>
+        </li>
+      
+        <li class="
+          page-item
+          
+        ">
+          <a
+            class="page-link"
+            
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;6"
+            
+          >6</a>
         </li>
       
     </ul>

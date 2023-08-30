@@ -387,6 +387,14 @@
                       >区块链</a>
                     </li>
                   
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git"
+                        onclick="switchTopic('Mega')"
+                      >Mega</a>
+                    </li>
+                  
                 </ul>
               </li>
             
@@ -815,6 +823,167 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="rust学习(一)基础概念"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;"
+      rel="bookmark"
+      title="rust学习(一)基础概念"
+    ><b>rust学习(一)基础概念</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  13&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Rust相关知识的思维导图
+
+浅入Rust基础
+目标：首先总结归纳Rust的基本内容，接着每天回顾一个了解过的rust基础
+常用语法
+变量和可变性
+
+
+变量的声明 
+&#x2F;&#x2F;let 变量名:变量类型 = 变量值
+let x = 5
+
+
+
+常量的声明
+&#x2F;&#x2F;const 常量名:常量类型 = 常量值
+const THE_X:U32 = 60*3;
+
+
+
+变量的可变性标记
+&#x2F;&#x2F;变量的可变性标记 mut
+let mut x = 5;
+x = 6;
+
+其他说明：
+
+
+可变变量重新声明成常态变量后，可变性会被覆盖掉，同时也会有相应的错误提示。
+let mut x = 5;
+let x = x+1;
+x = x+2; &#x2F;&#x2F;cannot mutate immutable variable `x`
+
+
+
+
+
+变量的封闭性
+变量的封闭性可以理解成，声明同名变量，会将上一个声明覆盖，直到下一个同名变量被声明，或者作用域结束。
+fn variablie(){
+    let x = 5;
+    let x = x...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;brain-storm&#x2F;brain.jpg"
+    class="img-fluid m-auto d-block "
+    alt="小李很爱瞎想想"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;brain-storm&#x2F;"
+      rel="bookmark"
+      title="小李很爱瞎想想"
+    ><b>小李很爱瞎想想</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  12&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>做一套适用于所有view框架的数据缓存管理
+灵感来源：我基于Ext的store做了一套缓存机制，实现了列表翻页缓存、为翻页新增提供了支撑。
+想法：做一个纯js的前台数据管理机制，快速接入前端的各种view框架。
+希望以黑盒的模式提供接口、达到可插拔的特性。
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;database-lab&#x2F;database.jpg"
     class="img-fluid m-auto d-block "
     alt="数据库学习"
@@ -991,148 +1160,6 @@ tauri
   
 
 	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;classic-modern-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
-    class="img-fluid m-auto d-block "
-    alt="经典区块链和现代区块链"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;classic-modern-blockchain&#x2F;"
-      rel="bookmark"
-      title="经典区块链和现代区块链"
-    ><b>经典区块链和现代区块链</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>TODO
-经典区块链：比特币和以太坊
-现代区块链：near和solana
-商用联盟区块链：蚂蚁链、长安链和FISCO链
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;preview&#x2F;..&#x2F;new.jpg"
-    class="img-fluid m-auto d-block "
-    alt="WebAssembly Rust and ExtJs 实验"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;preview&#x2F;"
-      rel="bookmark"
-      title="WebAssembly Rust and ExtJs 实验"
-    ><b>WebAssembly Rust and ExtJs 实验</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  02&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>突发奇想:利用WebAssembly、Rust去将前端重器框架ExtJs进行迁移重构
-
-思路1：从根拔起，利用wasm实现rust和js之间通信直接重写一边Ext.Base、Ext.Event等基础设施
-思路2：初步简单整合，外部引入ext-all-debug.js框架，利用wasm实现rust和js之间通信获取Ext命名空间，然后逐个复写Ext函数
-
-ExtJs重构实验
-重构目标
-
-学习ExtJs背后的设计思路和实现原理。
-ExtJs的性能优化。
-ExtJs可以使用ES6以及之上的特性。
-ExtJs的轻量化。
-后续计划对比vue、react框架设计思路、实现方式的区别。
-后续计划结合wasm和rust技术栈尝试设计一个全新的前端js框架。
-
-
-ExtJs框架的总体架构
-TODO
-Ext基础底层模块
-Ext.Base
-Ext.Base的思考
-
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
   
   
   <nav>
@@ -1195,6 +1222,18 @@ Ext.Base的思考
             
             
           >5</a>
+        </li>
+      
+        <li class="
+          page-item
+          
+        ">
+          <a
+            class="page-link"
+            
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;6"
+            
+          >6</a>
         </li>
       
     </ul>

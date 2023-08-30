@@ -387,6 +387,14 @@
                       >区块链</a>
                     </li>
                   
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git"
+                        onclick="switchTopic('Mega')"
+                      >Mega</a>
+                    </li>
+                  
                 </ul>
               </li>
             
@@ -815,6 +823,219 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;lab-one&#x2F;..&#x2F;new.jpg"
+    class="img-fluid m-auto d-block "
+    alt="WebAssembly Rust and ExtJs 实验(一)"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;lab-one&#x2F;"
+      rel="bookmark"
+      title="WebAssembly Rust and ExtJs 实验(一)"
+    ><b>WebAssembly Rust and ExtJs 实验(一)</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  29&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-25-client-storage&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block "
+    alt="js学习笔记(25)"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-25-client-storage&#x2F;"
+      rel="bookmark"
+      title="js学习笔记(25)"
+    ><b>js学习笔记(25)</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  23&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Section 25 客户端存储
+js为什么会涉及到客户端存储呢？
+目标：将不常更新、且相对公用的数据存储在客户端中，减少与服务端的交互，提高整体的性能。
+cookie
+原始目标：
+要求HTTP头部包含会话信息。
+cookie具有局限性
+浏览器级别的局限性：
+
+不超过300个cookie
+每个cookie不超过4096字节
+每个域不超过20个cookie
+每个域不超过81920字节。
+
+域级别的局限性：
+浏览器每个域的cookie限制
+Edge不超过50
+Firefox不超过150个
+Opera不超过180个
+Safari和Chrome没有硬性限制
+
+浏览器对于cookie的过限处理：
+如果cookie总数超过了单域上限，浏览器会删除之前设置的cookie。
+
+Opera的处理策略是最少使用删除原则
+Firefox是随机删除原则
+
+cookie构成
+
+
+
+名称：cookie的唯一可标识，且不区分大小写，cookie名称必须经过URL编码。
+
+
+值：存储在cookie里的字符串值，值也必须经过URL编码
+
+
+域：cookie的有效域。发送到这个域的所有请求都会包含对应的cookie
+
+
+路径：请求URL中包含这个路径才会把cookie发送到服务器。
+
+
+过期时间：表示何时删除cookie的时间戳。
+​	删除策略：
+
+默认会话结束后删除cookie
+定时删除cookie
+
+
+
+安全标记：设置之后，只在使用SSL安全连接的情况下才会把cookie发送到服务器。例如:https:&#x2F;&#x2F;www.test.com会发送cookie，而请求http:&#x2F;&#x2F;www.wrox.com则不会。
+
+
+js的cookie
+js中的cookie接口只有*BOM(Brower Object Model)*的document.cookie
+取值过程会获取页面中所有的有效cookie字符串（根据域、路径、过期时间和安全设置），以分号分隔。
+子cookie
+子cookie的机制实际上是利用cookie的机制，将一连串的cookie信息编码成字符串，给cookie的其中一个键上。
+使用cookie的注意事项
+叫做HTTP-only的cookie。Http-only可以在浏览器设置，也可以在服务器设置。但只能在服务器上读取。这种cookie值js无法读取。
+注意：因为所有cookie都会作为请求头部由浏览器发送给服务器，所以在cookie种保存大量信息可能影响特定域浏览器请求的性能。保存的cookie越大，请求完成的时间就越长。即使浏览器对cookie大小有限制，最好还是尽可能只能保存必要信息，避免性能问题。
+对cookie的限制及其特性决定了cookie并不是存储大量数据的理想方式。
+
+Web Storage
+目标：
+Web Storage的规范目标：
+
+提供在cookie之外的存储会话数据的途径
+提供跨会话持久化存储大量数据的机制
+
+Storage类型
+目标：可用于保存键值对数据，直到达到存储控件上限(取决于浏览器)。
+Storage实例的特征方法：
+
+clear():删除所有值，注意在FireBox中没有实现。
+getItem(name):取得给定name的值。
+key(index):取值给定数值位置的名称。
+removeItem(name):删除给定name的键值对。
+
+注意：
+
+通过 length 属性可以确定 Storage 对象中保存了多少名&#x2F;值对。
+
+&#x2F;&#x2F;方法一
+for (let i = 0, len = sessionStorage.length; i &amp;lt; len; i++){ 
+ let key = sessionStorage.key(i); 
+ let value = sessionStorage.getItem(key); 
+    console.log(key,value);
+ } 
+&#x2F;&#x2F;方法二
+for (let key in sessionStorage){ 
+ let value = sessionStorage.getItem(key); 
+ console.log(key,value);
+}
+
+
+Storage...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-27-worker-thread&#x2F;..&#x2F;js_logo.png"
     class="img-fluid m-auto d-block "
     alt="js学习笔记(27)"
@@ -1013,167 +1234,6 @@ js中的内存泄漏
   
 
 	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust学习(一)基础概念"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;"
-      rel="bookmark"
-      title="rust学习(一)基础概念"
-    ><b>rust学习(一)基础概念</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  13&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>Rust相关知识的思维导图
-
-浅入Rust基础
-目标：首先总结归纳Rust的基本内容，接着每天回顾一个了解过的rust基础
-常用语法
-变量和可变性
-
-
-变量的声明 
-&#x2F;&#x2F;let 变量名:变量类型 = 变量值
-let x = 5
-
-
-
-常量的声明
-&#x2F;&#x2F;const 常量名:常量类型 = 常量值
-const THE_X:U32 = 60*3;
-
-
-
-变量的可变性标记
-&#x2F;&#x2F;变量的可变性标记 mut
-let mut x = 5;
-x = 6;
-
-其他说明：
-
-
-可变变量重新声明成常态变量后，可变性会被覆盖掉，同时也会有相应的错误提示。
-let mut x = 5;
-let x = x+1;
-x = x+2; &#x2F;&#x2F;cannot mutate immutable variable `x`
-
-
-
-
-
-变量的封闭性
-变量的封闭性可以理解成，声明同名变量，会将上一个声明覆盖，直到下一个同名变量被声明，或者作用域结束。
-fn variablie(){
-    let x = 5;
-    let x = x...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;brain-storm&#x2F;brain.jpg"
-    class="img-fluid m-auto d-block "
-    alt="小李很爱瞎想想"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;brain-storm&#x2F;"
-      rel="bookmark"
-      title="小李很爱瞎想想"
-    ><b>小李很爱瞎想想</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  12&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>做一套适用于所有view框架的数据缓存管理
-灵感来源：我基于Ext的store做了一套缓存机制，实现了列表翻页缓存、为翻页新增提供了支撑。
-想法：做一个纯js的前台数据管理机制，快速接入前端的各种view框架。
-希望以黑盒的模式提供接口、达到可插拔的特性。
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
   
   
   <nav>
@@ -1236,6 +1296,18 @@ fn variablie(){
             href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;5"
             
           >5</a>
+        </li>
+      
+        <li class="
+          page-item
+          
+        ">
+          <a
+            class="page-link"
+            
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;6"
+            
+          >6</a>
         </li>
       
     </ul>

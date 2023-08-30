@@ -387,6 +387,14 @@
                       >区块链</a>
                     </li>
                   
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git"
+                        onclick="switchTopic('Mega')"
+                      >Mega</a>
+                    </li>
+                  
                 </ul>
               </li>
             
@@ -774,6 +782,183 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git&#x2F;git&#x2F;..&#x2F;git.png"
+    class="img-fluid m-auto d-block "
+    alt="git原理"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git&#x2F;git&#x2F;"
+      rel="bookmark"
+      title="git原理"
+    ><b>git原理</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  30&#x2F;08&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Git原理学习
+Git对象
+Git是一个内容寻址文件系统。其核心思想就是键值对数据库（key-value data store），其核心行为包括：
+
+通过向 Git 仓库中插入任意类型的内容，它会返回一个唯一的键***(key)***。
+通过该键可以在任意时刻再次取回该内容。
+
+实验出真知
+可以通过底层命令 git hash-object 来演示上述效果——该命令可将任意数据保存于 .git&#x2F;objects 目录（即 对象数据库），并返回指向该数据对象的唯一的键。
+
+
+初始化一个Git仓库
+$ git init git_lab
+
+
+
+检查一下git对象目录(.git&#x2F;objects)生成了哪些文件夹，通过find命令查看所有文件夹（包含子文件夹）
+$ find .git&#x2F;objects&#x2F;
+.git&#x2F;objects&#x2F;
+.git&#x2F;objects&#x2F;info
+.git&#x2F;objects&#x2F;pack
+
+
+
+检查一下.git&#x2F;objects目录下生成了哪些文件，同样通过find+文件路径+类型参数-type f查看所有文件
+$ find .git&#x2F;objects&#x2F; -type f
+&#x2F;&#x2F;无输出表示没有文件
+
+
+
+接下来要开始创建并保存一个文件了，这里简单创建一个文本文件
+echo &amp;quot;git testing&amp;quot; &amp;gt; git_test.txt
+
+
+
+保存到git对象目录（.git&#x2F;objects）。这里使用了git hash-object命令，根据文件git_test.txt的内容生成一串hash值
+git hash-object -w git_test.txt
+34e75148c0aeb4efb212f817606d386b15190525
+
+注意：hash值仅与文件内容有关，与名称无关。
+$ echo &amp;quot;git testing&amp;quot; | git hash-object -w --stdin
+34e75148c0aeb4efb212f817606d386b15190525
+
+
+
+再次查看git对象目录（.git&#x2F;objects）下的所有文件
+$ find .git&#x2F;objects&#x2F; -type f
+.git&#x2F;objects&#x2F;34&#x2F;e75148c0aeb4efb212f817606d386b15190525
+
+其中hash值长度40，前两个字符用于子目录命名，后38个字符用于文件命名。hash算法参考SHA-1
+
+
+文件git_test.txt内容已经存储到对象数据库中，如果需要从git中取回数据，则需要通过cat-file命令实现（个人理解cat实际就是catch的缩写），其中指定 -p 选项可指示该命令自动判断内容的类型，并为我们显示大致的内容
+$ git cat-file -p 34e75148c0aeb4efb212f817606d386b15190525
+git testing
+
+
+
+版本变更实验：更新文件git_test.txt的内容并重新保存
+$ echo &amp;quot;changing&amp;quot;...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git&#x2F;mega&#x2F;..&#x2F;git.png"
+    class="img-fluid m-auto d-block "
+    alt="Mega学习"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git&#x2F;mega&#x2F;"
+      rel="bookmark"
+      title="Mega学习"
+    ><b>Mega学习</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  30&#x2F;08&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Mega(去中心化Git服务)
+Mega是一个去中心化、分布式的开源git项目。它的目标是提供一个更加安全和隐私保护的git服务，同时还可以提供高质量的代码托管和版本控制功能。Mega是完全开源的，任何人都可以自由地使用它，也可以参与到它的开发和维护中来。
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;implicit-conversion&#x2F;..&#x2F;js_logo.png"
     class="img-fluid m-auto d-block "
     alt="js隐式转换"
@@ -1054,220 +1239,6 @@ console.log(Object.getOwnPropertyDescriptor(obj, &amp;#39;name&amp;#39;))
 
 &#x2F;&#x2F;output
 &#x2F;&#x2F;{ value: &amp;#39;test&amp;#39;, writable: true, enumerable:...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-9-reflection-proxy&#x2F;..&#x2F;js_logo.png"
-    class="img-fluid m-auto d-block "
-    alt="js学习笔记(9)——反射和代理"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-9-reflection-proxy&#x2F;"
-      rel="bookmark"
-      title="js学习笔记(9)——反射和代理"
-    ><b>js学习笔记(9)——反射和代理</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  27&#x2F;06&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>todo
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-25-client-storage&#x2F;..&#x2F;js_logo.png"
-    class="img-fluid m-auto d-block "
-    alt="js学习笔记(25)"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-25-client-storage&#x2F;"
-      rel="bookmark"
-      title="js学习笔记(25)"
-    ><b>js学习笔记(25)</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  23&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>Section 25 客户端存储
-js为什么会涉及到客户端存储呢？
-目标：将不常更新、且相对公用的数据存储在客户端中，减少与服务端的交互，提高整体的性能。
-cookie
-原始目标：
-要求HTTP头部包含会话信息。
-cookie具有局限性
-浏览器级别的局限性：
-
-不超过300个cookie
-每个cookie不超过4096字节
-每个域不超过20个cookie
-每个域不超过81920字节。
-
-域级别的局限性：
-浏览器每个域的cookie限制
-Edge不超过50
-Firefox不超过150个
-Opera不超过180个
-Safari和Chrome没有硬性限制
-
-浏览器对于cookie的过限处理：
-如果cookie总数超过了单域上限，浏览器会删除之前设置的cookie。
-
-Opera的处理策略是最少使用删除原则
-Firefox是随机删除原则
-
-cookie构成
-
-
-
-名称：cookie的唯一可标识，且不区分大小写，cookie名称必须经过URL编码。
-
-
-值：存储在cookie里的字符串值，值也必须经过URL编码
-
-
-域：cookie的有效域。发送到这个域的所有请求都会包含对应的cookie
-
-
-路径：请求URL中包含这个路径才会把cookie发送到服务器。
-
-
-过期时间：表示何时删除cookie的时间戳。
-​	删除策略：
-
-默认会话结束后删除cookie
-定时删除cookie
-
-
-
-安全标记：设置之后，只在使用SSL安全连接的情况下才会把cookie发送到服务器。例如:https:&#x2F;&#x2F;www.test.com会发送cookie，而请求http:&#x2F;&#x2F;www.wrox.com则不会。
-
-
-js的cookie
-js中的cookie接口只有*BOM(Brower Object Model)*的document.cookie
-取值过程会获取页面中所有的有效cookie字符串（根据域、路径、过期时间和安全设置），以分号分隔。
-子cookie
-子cookie的机制实际上是利用cookie的机制，将一连串的cookie信息编码成字符串，给cookie的其中一个键上。
-使用cookie的注意事项
-叫做HTTP-only的cookie。Http-only可以在浏览器设置，也可以在服务器设置。但只能在服务器上读取。这种cookie值js无法读取。
-注意：因为所有cookie都会作为请求头部由浏览器发送给服务器，所以在cookie种保存大量信息可能影响特定域浏览器请求的性能。保存的cookie越大，请求完成的时间就越长。即使浏览器对cookie大小有限制，最好还是尽可能只能保存必要信息，避免性能问题。
-对cookie的限制及其特性决定了cookie并不是存储大量数据的理想方式。
-
-Web Storage
-目标：
-Web Storage的规范目标：
-
-提供在cookie之外的存储会话数据的途径
-提供跨会话持久化存储大量数据的机制
-
-Storage类型
-目标：可用于保存键值对数据，直到达到存储控件上限(取决于浏览器)。
-Storage实例的特征方法：
-
-clear():删除所有值，注意在FireBox中没有实现。
-getItem(name):取得给定name的值。
-key(index):取值给定数值位置的名称。
-removeItem(name):删除给定name的键值对。
-
-注意：
-
-通过 length 属性可以确定 Storage 对象中保存了多少名&#x2F;值对。
-
-&#x2F;&#x2F;方法一
-for (let i = 0, len = sessionStorage.length; i &amp;lt; len; i++){ 
- let key = sessionStorage.key(i); 
- let value = sessionStorage.getItem(key); 
-    console.log(key,value);
- } 
-&#x2F;&#x2F;方法二
-for (let key in sessionStorage){ 
- let value = sessionStorage.getItem(key); 
- console.log(key,value);
-}
-
-
-Storage...</small>
     
   </p>
 
