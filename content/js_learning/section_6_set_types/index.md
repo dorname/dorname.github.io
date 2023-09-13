@@ -977,20 +977,400 @@ console.log(byteView); // Uint8Array(16) [42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3
 
 ## ***Map***
 
-TODO
+**ES6新特性：**键值对类型***Map***
+
+1. 创建映射***Map***，`size`属性代表映射大小
+
+   ```js
+   let m = new Map();
+   // m = 1;
+   let arr = [1,4,5,6];
+   let m1 = new Map([
+       ['a',1],
+       ['b',2]
+   ]);
+   let m2 = new Map(arr.entries());
+   console.log(m);
+   console.log(m1);
+   console.log(m2);
+   //Map(0) {size: 0}
+   //Map(2) {size: 2, a => 1, b => 2} 
+   //Map(4) {size: 4, 0 => 1, 1 => 4, 2 => 5, 3 => 6}
+   
+   
+   ```
+
+2. `set`方法
+
+   **注意：map类型的键、值可以是任意js数据类型，而object只能是数字、字符串和下划线**
+
+   ```javascript
+   m.set(m1,m2);
+   let a = function(){
+       console.log(1)
+   };
+   m.set(function(){
+       console.log(1)
+   },arr);
+   m.set(a,arr);
+   console.log(m);
+   //Map(3) {size: 3, Map(2) {…} => Map(4) {…}, ƒ () => (4) [1, 4, 5, 6, …], ƒ () => (4) [1, 4, 5, 6, …]}
+   
+   ```
+
+3. `get`取值方法
+
+   ```js
+   
+   console.log(m.get(m1));
+   console.log(m.get(function(){
+       console.log(1)
+   }));
+   console.log(m.get(a));
+   
+   //Map(4) {size: 4, 0 => 1, 1 => 4, 2 => 5, 3 => 6}
+   
+   //undefined
+   
+   //(4) [1, 4, 5, 6]
+   ```
+
+   **注意：键或者值的内部属性、属性值发生变化时，不会影响原本的映射关系例如：**
+
+   ```js
+   arr = [7,8,9];
+   console.log(m.get(a));
+   m1.delete('a');
+   console.log(m1,m.get(m1));
+   //(4) [1, 4, 5, 6]
+   
+   //Map(1) {size: 1, b => 2} Map(4) {size: 4, 0 => 1, 1 => 4, 2 => 5, 3 => 6}
+   ```
+
+4. `delete`删除方法。传入对应的键，删除指定键值对。
+
+5. `clear`清空方法。清空`map`中所有的键值对。
+
+   **注意：Map 内部使用 SameValueZero 比较操作（ECMAScript 规范内部定义，语言中不能使用），基本上相当于使用严格对象相等的标准来检查键的匹配性，SameValueZero 比较也可能导致意想不到的冲突：**
+
+   ```js
+   const m = new Map(); 
+   const a = 0/"", // NaN 
+    b = 0/"", // NaN 
+    pz = +0, 
+    nz = -0; 
+   alert(a === b); // false 
+   alert(pz === nz); // true 
+   m.set(a, "foo"); 
+   m.set(pz, "bar"); 
+   alert(m.get(b)); // foo 
+   alert(m.get(nz)); // bar
+   ```
+
+### **顺序与迭代**
+
+`Map`实例与`Object`实例主要差异是：
+
+`Map`实例会维护键值对插入顺序，因此可以根据插入顺序执行迭代操作。
+
+`Map`同样拥有三个迭代器`keys`、`values`、`entries`，顺序与插入顺序保持一致。
+
+### **Map vs Object**
+
+1. **内存占用：**
+
+   `Object` 和` Map` 的工程级实现在不同浏览器间存在明显差异，但存储单个键/值对所占用的内存数量都会随键的数量线性增加。批量添加或删除键/值对则取决于各浏览器对该类型内存分配的工程实现。不同浏览器的情况不同，但给定固定大小的内存，`Map` 大约可以比 `Object` 多存储 50%的键/值对
+
+2. **插入性能：**
+
+   `Object`和`Map`中插入新键/值对的消耗大致相当，不过插入 Map 在所有浏览器中一般会稍微快一点儿。对这两个类型来说，插入速度并不会随着键/值对数量而线性增加。如果代码涉及大量插入操作，那么显然 Map 的性能更佳。
+
+3. **查找速度：**
+
+   与插入不同，从大型`Object` 和 `Map` 中查找键/值对的性能差异极小，但如果只包含少量键/值对，则 `Object` 有时候速度更快。在把 `Object` 当成数组使用的情况下（比如使用连续整数作为属性），浏览器引擎可以进行优化，在内存中使用更高效的布局。这对 `Map` 来说是不可能的。对这两个类型而言，查找速度不会随着键/值对数量增加而线性增加。如果代码涉及大量查找操作，那么某些情况下可能选择 `Object` 更好一些。
+
+4. **删除性能：**
+
+   使用 `delete` 删除 `Object` 属性的性能一直以来饱受诟病，目前在很多浏览器中仍然如此。为此，出现了一些伪删除对象属性的操作，包括把属性值设置为 `undefined` 或 `null`。但很多时候，这都是一种讨厌的或不适宜的折中。而对大多数浏览器引擎来说，`Map` 的 `delete()`操作都比插入和查找更快。如果代码涉及大量删除操作，那么毫无疑问应该选择 `Map`。
+
+**综上所述：**
+
+大部分应用场景下可以优先使用`Map`类型，但作为长期支持的原始类型`Object`可以用于底层应用开发。
 
 ## ***WeakMap***
 
-TODO
+**注意：弱映射中的键只能是`Object`或者继承自`Object`的子类（`null`除外）尝试使用非对象设置键会抛出`TypeError`。值的类型没有限制。**
+
+```js
+const key1 = {
+    id:1
+},key2 = {
+    id:2
+},key3 = {
+    id:3
+};
+const wm = new WeakMap([
+    [key1,{
+        test_fst:1
+    }],
+    [key2,{
+        test_sec:2
+    }]
+]);
+
+console.log(wm);
+//WeakMap {{id: 2} => {test_sec: 2}, {id: 1} => {test_fst: 1}}
+console.log(wm.get(key1));
+//{test_fst: 1}
+
+wm.set(key3,{
+    test_trd:3
+});
+console.log(wm);
+//WeakMap {{id: 2} => {test_sec: 2}, {id: 3} => {test_trd: 3}, {…} => {test_fst: 1}}
+
+console.log(wm.has(key3));
+//true
+
+console.log(wm.get(key3));
+//{test_trd: 3}
+
+wm.delete(key3);
+console.log(wm.has(key3));
+//false
+
+console.log(wm.get(key3));
+//undefined
+```
+
+`WeakMap` 中`weak`表示弱映射的键是“弱弱地拿着”的。意思就是，这些键不属于正式的引用，不会阻止垃圾回收。进一步理解就是说，如果一个对象作为 `WeakMap` 的键，而且没有其他的引用指向这个对象，那么在下一次垃圾回收时，这个键值对将会被自动移除，从而释放内存。
+
+**注意：`WeakMap`不能遍历，方法同 `get`、`set`、`has`、`delete`**
+
+综上`Map`和`WeakMap`的区别：
+
+- `Map`和`WeakMap`本质上都是键值对集合，前者的键和值都没有限制，而后者的键必须是`object`类型或者继承自`object`的类型其中又除去`null`类型
+- `WeakMap`的键不会阻止键对象被垃圾回收，`Map`的键会阻止键对象被垃圾回收。
+- `WeakMap`不支持迭代方法，`Map`支持迭代方法。
+
+### 弱映射的应用
+
+1. 私有变量
+
+   ```js
+   const wm = new WeakMap(); 
+   class User { 
+    constructor(id) { 
+    this.idProperty = Symbol('id'); 
+    this.setId(id); 
+    } 
+    setPrivate(property, value) { 
+    const privateMembers = wm.get(this) || {}; 
+    privateMembers[property] = value; 
+    wm.set(this, privateMembers); 
+    } 
+    getPrivate(property) { 
+    return wm.get(this)[property]; 
+    } 
+    setId(id) { 
+    this.setPrivate(this.idProperty, id); 
+    } 
+    getId() { 
+    return this.getPrivate(this.idProperty); 
+    } 
+   } 
+   const user = new User(123); 
+   console.log(user.getId()); // 123 
+   user.setId(456); 
+   console.log(user.getId()); // 456 
+   // 并不是真正私有的
+   console.log(wm.get(user)[user.idProperty]); // 456
+   ```
+
+   对于上面的实现，外部代码只需要拿到对象实例的引用和弱映射，就可以取得“私有”变量了。为了避免这种访问，可以用一个闭包把 WeakMap 包装起来，这样就可以把弱映射与外界完全隔离开了：
+
+   ```js
+   const User = (() => {
+       const wm = new WeakMap();
+       class User {
+           constructor(id) {
+               this.idProperty = Symbol('id');
+               this.setId(id);
+           }
+           setPrivate(property, value) {
+               const privateMembers = wm.get(this) || {};
+               privateMembers[property] = value;
+               wm.set(this, privateMembers);
+           }
+           getPrivate(property) {
+               return wm.get(this)[property];
+           }
+           setId(id) {
+               this.setPrivate(this.idProperty, id);
+           }
+           getId(id) {
+               return this.getPrivate(this.idProperty);
+           }
+       }
+       return User;
+   })();
+   const user = new User(123);
+   console.log(user.getId()); // 123 
+   user.setId(456);
+   console.log(user.getId()); // 456
+   ```
+
+   
+
+2. **dom**节点元数据
+
+   因为` WeakMap` 实例不会妨碍垃圾回收，所以非常适合保存关联元数据。来看下面这个例子，其中使用了常规的 `Map`：
+
+   ```js
+   const m = new Map(); 
+   
+   const loginButton = document.querySelector('#login'); 
+   
+   // 给这个节点关联一些元数据
+   
+   m.set(loginButton, {disabled: true}); 
+   ```
+
+   假设在上面的代码执行后，页面被 `JavaScript` 改变了，原来的登录按钮从 `DOM `树中被删掉了。但由于映射中还保存着按钮的引用，所以对应的 `DOM` 节点仍然会逗留在内存中，除非明确将其从映射中
+
+   删除或者等到映射本身被销毁。如果这里使用的是弱映射，如以下代码所示，那么当节点从` DOM` 树中被删除后，垃圾回收程序就
+
+   可以立即释放其内存（假设没有其他地方引用这个对象）：
+
+   ```js
+   const wm = new WeakMap(); 
+   
+   const loginButton = document.querySelector('#login'); 
+   // 给这个节点关联一些元数据
+   wm.set(loginButton, {disabled: true}); 
+   ```
 
 ## ***Set***
 
-TODO
+**ECMAScript 6**新增的` Set` 是一种新集合类型，为这门语言带来集合数据结构。`Set` 在很多方面都像是加强的` Map`，这是因为它们的大多数 **API** 和行为都是共有的。`Set `可以包含任何 JavaScript 数据类型作为值
+
+```js
+const s = new Set();
+let obj_zero = {
+    id:0
+},obj_fst = {
+    id:1
+};
+s.add(obj_zero).add(obj_fst).add({
+    id:3
+});
+console.log(s);
+//Set(3) {size: 3, {id: 0}, {id: 1}, {id: 3}}
+console.log("size:",s.size);
+//size: 3
+console.log("Has obj_first: ",s.has(obj_fst));
+//Has obj_first:  true
+s.delete({
+    id:3
+});
+console.log("After delete: ",s);
+//After delete:  Set(3) {size: 3, {id: 0}, {id: 1}, {id: 3}}
+
+var third;
+for(let i of s.keys()){
+    console.log(i)
+    third = i;
+}
+//{id: 0}
+//{id: 1}
+//{id: 3}
+
+s.delete(third);
+console.log("After delete: ",s);
+//After delete:  Set(2) {size: 2, {id: 0}, {id: 1}}
+
+s.clear();
+console.log("After clear: ",s);
+//After clear:  Set(0) {size: 0}
+
+```
+
+### **迭代方法**
+
+迭代器：`keys`、`values`、`entries`。
+
+迭代方法：`forEach`
+
+1. `forEach`
+
+   ```js
+   s.forEach(function(val,duplicate_val,set){
+       console.log(val,duplicate_val,set);
+   });
+   //{id: 0} {id: 0} Set(2) {size: 2, {id: 0}, {id: 1}}
+   //{id: 1} {id: 1} Set(2) {size: 2, {id: 0}, {id: 1}}
+   ```
+
+2. `keys`
+
+   ```js
+   const keys = s.keys();
+   console.log("keys:",keys);//keys: SetIterator {{id: 0}, {id: 1}}
+   for(let key of keys){
+       console.log("key:",key);
+       //key: {id: 0}
+       //key: {id: 1}
+   }
+   console.log("keys after used: ",keys);//keys after used:  SetIterator
+   
+   let keys_arr = Array.from(s.keys());
+   console.log("keys_arr: ",keys_arr); //keys_arr:  (2) [{id:0}, {id:1}]
+   ```
+
+   **注意：一个迭代器不可重复使用**
+
+3. `values`
+
+   ```js
+   const values = s.values();
+   console.log("values:",values);//values: SetIterator {{id: 0}, {id: 1}}
+   
+   for(let val of values){
+       console.log("val:",val);
+       //val: {id: 0}
+       //val: {id: 1}
+   }
+   console.log("values after used: ",keys);//values after used:  SetIterator
+   
+   let values_arr = Array.from(s.values());
+   console.log("values_arr: ",values_arr); // //values_arr:  (2) [{id:0}, {id:1}]
+   ```
+
+4. `entries`
+
+   ```js
+   const entries = s.entries();
+   console.log("entries:",entries);//entries: SetIterator {{id: 0} => {id: 0}, {id: 1} => {id: 1}}
+   
+   for(let entry of entries){
+       console.log("entry:",entry);
+       //entry: (2) [{id:0}, {id:0}]
+       //entry: (2) [{id:1}, {id:1}]
+   }
+   console.log("entries after used: ",entries);//entries after used:  SetIterator
+   
+   let entries_arr = Array.from(s.entries());
+   console.log("entries_arr: ",entries_arr); //entries_arr:  (2) [[{id:0}, {id:0}], [{id:1}, {id:1}]]
+   ```
 
 ## ***WeakSet***
 
-TODO
+同`WeakMap`，`WeakSet`具有以下特点：
+
+1. 成员都是对象（引用）；
+2. 成员都是弱引用，随时可以消失，不阻止垃圾回收。可以用来保存DOM 节点，不容易造成内存泄露；
+3. 不能遍历，方法有 add、delete、has；
 
 ## 迭代与扩展操作
 
-TODO
+`...`为迭代数据类型的扩展操作符。

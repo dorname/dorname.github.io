@@ -1688,15 +1688,361 @@ $$</p>
 <li><code>Uint8Array</code>：每个成员占据 1 个字节，所以在一个 16 字节的 <code>ArrayBuffer</code> 中，可以容纳 16 个 <code>Uint8</code> 类型的成员。</li>
 </ul>
 <h2 id="map"><em><strong>Map</strong></em></h2>
-<p>TODO</p>
+<p><strong>ES6新特性：<strong>键值对类型</strong><em>Map</em></strong></p>
+<ol>
+<li>
+<p>创建映射<em><strong>Map</strong></em>，<code>size</code>属性代表映射大小</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">m </span><span>= new Map();
+</span><span style="color:#65737e;">// m = 1;
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">arr </span><span>= [</span><span style="color:#d08770;">1</span><span>,</span><span style="color:#d08770;">4</span><span>,</span><span style="color:#d08770;">5</span><span>,</span><span style="color:#d08770;">6</span><span>];
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">m1 </span><span>= new Map([
+</span><span>    [&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;,</span><span style="color:#d08770;">1</span><span>],
+</span><span>    [&#39;</span><span style="color:#a3be8c;">b</span><span>&#39;,</span><span style="color:#d08770;">2</span><span>]
+</span><span>]);
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">m2 </span><span>= new Map(</span><span style="color:#bf616a;">arr</span><span>.</span><span style="color:#96b5b4;">entries</span><span>());
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">m</span><span>);
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">m1</span><span>);
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">m2</span><span>);
+</span><span style="color:#65737e;">//Map(0) {size: 0}
+</span><span style="color:#65737e;">//Map(2) {size: 2, a =&gt; 1, b =&gt; 2} 
+</span><span style="color:#65737e;">//Map(4) {size: 4, 0 =&gt; 1, 1 =&gt; 4, 2 =&gt; 5, 3 =&gt; 6}
+</span><span>
+</span><span>
+</span></code></pre>
+</li>
+<li>
+<p><code>set</code>方法</p>
+<p><strong>注意：map类型的键、值可以是任意js数据类型，而object只能是数字、字符串和下划线</strong></p>
+<pre data-lang="javascript" style="background-color:#2b303b;color:#c0c5ce;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#bf616a;">m</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#bf616a;">m1</span><span>,</span><span style="color:#bf616a;">m2</span><span>);
+</span><span style="color:#b48ead;">let </span><span style="color:#8fa1b3;">a </span><span>= </span><span style="color:#b48ead;">function</span><span>(){
+</span><span>    </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#d08770;">1</span><span>)
+</span><span>};
+</span><span style="color:#bf616a;">m</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#b48ead;">function</span><span>(){
+</span><span>    </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#d08770;">1</span><span>)
+</span><span>},</span><span style="color:#bf616a;">arr</span><span>);
+</span><span style="color:#bf616a;">m</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#bf616a;">a</span><span>,</span><span style="color:#bf616a;">arr</span><span>);
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">m</span><span>);
+</span><span style="color:#65737e;">//Map(3) {size: 3, Map(2) {…} =&gt; Map(4) {…}, ƒ () =&gt; (4) [1, 4, 5, 6, …], ƒ () =&gt; (4) [1, 4, 5, 6, …]}
+</span><span>
+</span></code></pre>
+</li>
+<li>
+<p><code>get</code>取值方法</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span>
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">m</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">m1</span><span>));
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">m</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#b48ead;">function</span><span>(){
+</span><span>    </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#d08770;">1</span><span>)
+</span><span>}));
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">m</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">a</span><span>));
+</span><span>
+</span><span style="color:#65737e;">//Map(4) {size: 4, 0 =&gt; 1, 1 =&gt; 4, 2 =&gt; 5, 3 =&gt; 6}
+</span><span>
+</span><span style="color:#65737e;">//undefined
+</span><span>
+</span><span style="color:#65737e;">//(4) [1, 4, 5, 6]
+</span></code></pre>
+<p><strong>注意：键或者值的内部属性、属性值发生变化时，不会影响原本的映射关系例如：</strong></p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#bf616a;">arr </span><span>= [</span><span style="color:#d08770;">7</span><span>,</span><span style="color:#d08770;">8</span><span>,</span><span style="color:#d08770;">9</span><span>];
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">m</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">a</span><span>));
+</span><span style="color:#bf616a;">m1</span><span>.</span><span style="color:#96b5b4;">delete</span><span>(&#39;</span><span style="color:#a3be8c;">a</span><span>&#39;);
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">m1</span><span>,</span><span style="color:#bf616a;">m</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">m1</span><span>));
+</span><span style="color:#65737e;">//(4) [1, 4, 5, 6]
+</span><span>
+</span><span style="color:#65737e;">//Map(1) {size: 1, b =&gt; 2} Map(4) {size: 4, 0 =&gt; 1, 1 =&gt; 4, 2 =&gt; 5, 3 =&gt; 6}
+</span></code></pre>
+</li>
+<li>
+<p><code>delete</code>删除方法。传入对应的键，删除指定键值对。</p>
+</li>
+<li>
+<p><code>clear</code>清空方法。清空<code>map</code>中所有的键值对。</p>
+<p><strong>注意：Map 内部使用 SameValueZero 比较操作（ECMAScript 规范内部定义，语言中不能使用），基本上相当于使用严格对象相等的标准来检查键的匹配性，SameValueZero 比较也可能导致意想不到的冲突：</strong></p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">m </span><span>= new Map(); 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">a </span><span>= </span><span style="color:#d08770;">0</span><span>/&quot;&quot;, </span><span style="color:#65737e;">// NaN 
+</span><span> </span><span style="color:#bf616a;">b </span><span>= </span><span style="color:#d08770;">0</span><span>/&quot;&quot;, </span><span style="color:#65737e;">// NaN 
+</span><span> </span><span style="color:#bf616a;">pz </span><span>= +</span><span style="color:#d08770;">0</span><span>, 
+</span><span> </span><span style="color:#bf616a;">nz </span><span>= -</span><span style="color:#d08770;">0</span><span>; 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">a </span><span>=== </span><span style="color:#bf616a;">b</span><span>); </span><span style="color:#65737e;">// false 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">pz </span><span>=== </span><span style="color:#bf616a;">nz</span><span>); </span><span style="color:#65737e;">// true 
+</span><span style="color:#bf616a;">m</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#bf616a;">a</span><span>, &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;); 
+</span><span style="color:#bf616a;">m</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#bf616a;">pz</span><span>, &quot;</span><span style="color:#a3be8c;">bar</span><span>&quot;); 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">m</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">b</span><span>)); </span><span style="color:#65737e;">// foo 
+</span><span style="color:#8fa1b3;">alert</span><span>(</span><span style="color:#bf616a;">m</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">nz</span><span>)); </span><span style="color:#65737e;">// bar
+</span></code></pre>
+</li>
+</ol>
+<h3 id="shun-xu-yu-die-dai"><strong>顺序与迭代</strong></h3>
+<p><code>Map</code>实例与<code>Object</code>实例主要差异是：</p>
+<p><code>Map</code>实例会维护键值对插入顺序，因此可以根据插入顺序执行迭代操作。</p>
+<p><code>Map</code>同样拥有三个迭代器<code>keys</code>、<code>values</code>、<code>entries</code>，顺序与插入顺序保持一致。</p>
+<h3 id="map-vs-object"><strong>Map vs Object</strong></h3>
+<ol>
+<li>
+<p><strong>内存占用：</strong></p>
+<p><code>Object</code> 和<code> Map</code> 的工程级实现在不同浏览器间存在明显差异，但存储单个键/值对所占用的内存数量都会随键的数量线性增加。批量添加或删除键/值对则取决于各浏览器对该类型内存分配的工程实现。不同浏览器的情况不同，但给定固定大小的内存，<code>Map</code> 大约可以比 <code>Object</code> 多存储 50%的键/值对</p>
+</li>
+<li>
+<p><strong>插入性能：</strong></p>
+<p><code>Object</code>和<code>Map</code>中插入新键/值对的消耗大致相当，不过插入 Map 在所有浏览器中一般会稍微快一点儿。对这两个类型来说，插入速度并不会随着键/值对数量而线性增加。如果代码涉及大量插入操作，那么显然 Map 的性能更佳。</p>
+</li>
+<li>
+<p><strong>查找速度：</strong></p>
+<p>与插入不同，从大型<code>Object</code> 和 <code>Map</code> 中查找键/值对的性能差异极小，但如果只包含少量键/值对，则 <code>Object</code> 有时候速度更快。在把 <code>Object</code> 当成数组使用的情况下（比如使用连续整数作为属性），浏览器引擎可以进行优化，在内存中使用更高效的布局。这对 <code>Map</code> 来说是不可能的。对这两个类型而言，查找速度不会随着键/值对数量增加而线性增加。如果代码涉及大量查找操作，那么某些情况下可能选择 <code>Object</code> 更好一些。</p>
+</li>
+<li>
+<p><strong>删除性能：</strong></p>
+<p>使用 <code>delete</code> 删除 <code>Object</code> 属性的性能一直以来饱受诟病，目前在很多浏览器中仍然如此。为此，出现了一些伪删除对象属性的操作，包括把属性值设置为 <code>undefined</code> 或 <code>null</code>。但很多时候，这都是一种讨厌的或不适宜的折中。而对大多数浏览器引擎来说，<code>Map</code> 的 <code>delete()</code>操作都比插入和查找更快。如果代码涉及大量删除操作，那么毫无疑问应该选择 <code>Map</code>。</p>
+</li>
+</ol>
+<p><strong>综上所述：</strong></p>
+<p>大部分应用场景下可以优先使用<code>Map</code>类型，但作为长期支持的原始类型<code>Object</code>可以用于底层应用开发。</p>
 <h2 id="weakmap"><em><strong>WeakMap</strong></em></h2>
-<p>TODO</p>
+<p><strong>注意：弱映射中的键只能是<code>Object</code>或者继承自<code>Object</code>的子类（<code>null</code>除外）尝试使用非对象设置键会抛出<code>TypeError</code>。值的类型没有限制。</strong></p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">key1 </span><span>= {
+</span><span>    id:</span><span style="color:#d08770;">1
+</span><span>},</span><span style="color:#bf616a;">key2 </span><span>= {
+</span><span>    id:</span><span style="color:#d08770;">2
+</span><span>},</span><span style="color:#bf616a;">key3 </span><span>= {
+</span><span>    id:</span><span style="color:#d08770;">3
+</span><span>};
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">wm </span><span>= new WeakMap([
+</span><span>    [</span><span style="color:#bf616a;">key1</span><span>,{
+</span><span>        test_fst:</span><span style="color:#d08770;">1
+</span><span>    }],
+</span><span>    [</span><span style="color:#bf616a;">key2</span><span>,{
+</span><span>        test_sec:</span><span style="color:#d08770;">2
+</span><span>    }]
+</span><span>]);
+</span><span>
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">wm</span><span>);
+</span><span style="color:#65737e;">//WeakMap {{id: 2} =&gt; {test_sec: 2}, {id: 1} =&gt; {test_fst: 1}}
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">wm</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">key1</span><span>));
+</span><span style="color:#65737e;">//{test_fst: 1}
+</span><span>
+</span><span style="color:#bf616a;">wm</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#bf616a;">key3</span><span>,{
+</span><span>    test_trd:</span><span style="color:#d08770;">3
+</span><span>});
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">wm</span><span>);
+</span><span style="color:#65737e;">//WeakMap {{id: 2} =&gt; {test_sec: 2}, {id: 3} =&gt; {test_trd: 3}, {…} =&gt; {test_fst: 1}}
+</span><span>
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">wm</span><span>.</span><span style="color:#96b5b4;">has</span><span>(</span><span style="color:#bf616a;">key3</span><span>));
+</span><span style="color:#65737e;">//true
+</span><span>
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">wm</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">key3</span><span>));
+</span><span style="color:#65737e;">//{test_trd: 3}
+</span><span>
+</span><span style="color:#bf616a;">wm</span><span>.</span><span style="color:#96b5b4;">delete</span><span>(</span><span style="color:#bf616a;">key3</span><span>);
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">wm</span><span>.</span><span style="color:#96b5b4;">has</span><span>(</span><span style="color:#bf616a;">key3</span><span>));
+</span><span style="color:#65737e;">//false
+</span><span>
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">wm</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">key3</span><span>));
+</span><span style="color:#65737e;">//undefined
+</span></code></pre>
+<p><code>WeakMap</code> 中<code>weak</code>表示弱映射的键是“弱弱地拿着”的。意思就是，这些键不属于正式的引用，不会阻止垃圾回收。进一步理解就是说，如果一个对象作为 <code>WeakMap</code> 的键，而且没有其他的引用指向这个对象，那么在下一次垃圾回收时，这个键值对将会被自动移除，从而释放内存。</p>
+<p><strong>注意：<code>WeakMap</code>不能遍历，方法同 <code>get</code>、<code>set</code>、<code>has</code>、<code>delete</code></strong></p>
+<p>综上<code>Map</code>和<code>WeakMap</code>的区别：</p>
+<ul>
+<li><code>Map</code>和<code>WeakMap</code>本质上都是键值对集合，前者的键和值都没有限制，而后者的键必须是<code>object</code>类型或者继承自<code>object</code>的类型其中又除去<code>null</code>类型</li>
+<li><code>WeakMap</code>的键不会阻止键对象被垃圾回收，<code>Map</code>的键会阻止键对象被垃圾回收。</li>
+<li><code>WeakMap</code>不支持迭代方法，<code>Map</code>支持迭代方法。</li>
+</ul>
+<h3 id="ruo-ying-she-de-ying-yong">弱映射的应用</h3>
+<ol>
+<li>
+<p>私有变量</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">wm </span><span>= new WeakMap(); 
+</span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">User </span><span style="color:#eff1f5;">{ 
+</span><span style="color:#eff1f5;"> </span><span style="color:#b48ead;">constructor</span><span>(</span><span style="color:#bf616a;">id</span><span>) </span><span style="color:#eff1f5;">{ 
+</span><span style="color:#eff1f5;"> </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">idProperty </span><span>= </span><span style="color:#ebcb8b;">Symbol</span><span style="color:#eff1f5;">(</span><span>&#39;</span><span style="color:#a3be8c;">id</span><span>&#39;</span><span style="color:#eff1f5;">); 
+</span><span style="color:#eff1f5;"> </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#8fa1b3;">setId</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">id</span><span style="color:#eff1f5;">); 
+</span><span style="color:#eff1f5;"> } 
+</span><span style="color:#eff1f5;"> </span><span style="color:#8fa1b3;">setPrivate</span><span>(</span><span style="color:#bf616a;">property</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">value</span><span>) </span><span style="color:#eff1f5;">{ 
+</span><span style="color:#eff1f5;"> </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">privateMembers </span><span>= </span><span style="color:#bf616a;">wm</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">get</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">) </span><span>|| </span><span style="color:#eff1f5;">{}; 
+</span><span style="color:#eff1f5;"> </span><span style="color:#bf616a;">privateMembers</span><span style="color:#eff1f5;">[</span><span style="color:#bf616a;">property</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#bf616a;">value</span><span style="color:#eff1f5;">; 
+</span><span style="color:#eff1f5;"> </span><span style="color:#bf616a;">wm</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">set</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">privateMembers</span><span style="color:#eff1f5;">); 
+</span><span style="color:#eff1f5;"> } 
+</span><span style="color:#eff1f5;"> </span><span style="color:#8fa1b3;">getPrivate</span><span>(</span><span style="color:#bf616a;">property</span><span>) </span><span style="color:#eff1f5;">{ 
+</span><span style="color:#eff1f5;"> </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">wm</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">get</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">)[</span><span style="color:#bf616a;">property</span><span style="color:#eff1f5;">]; 
+</span><span style="color:#eff1f5;"> } 
+</span><span style="color:#eff1f5;"> </span><span style="color:#8fa1b3;">setId</span><span>(</span><span style="color:#bf616a;">id</span><span>) </span><span style="color:#eff1f5;">{ 
+</span><span style="color:#eff1f5;"> </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#8fa1b3;">setPrivate</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">idProperty</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">id</span><span style="color:#eff1f5;">); 
+</span><span style="color:#eff1f5;"> } 
+</span><span style="color:#eff1f5;"> </span><span style="color:#8fa1b3;">getId</span><span>() </span><span style="color:#eff1f5;">{ 
+</span><span style="color:#eff1f5;"> </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#8fa1b3;">getPrivate</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">idProperty</span><span style="color:#eff1f5;">); 
+</span><span style="color:#eff1f5;"> } 
+</span><span style="color:#eff1f5;">} 
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">user </span><span>= new User(</span><span style="color:#d08770;">123</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">user</span><span>.</span><span style="color:#8fa1b3;">getId</span><span>()); </span><span style="color:#65737e;">// 123 
+</span><span style="color:#bf616a;">user</span><span>.</span><span style="color:#8fa1b3;">setId</span><span>(</span><span style="color:#d08770;">456</span><span>); 
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">user</span><span>.</span><span style="color:#8fa1b3;">getId</span><span>()); </span><span style="color:#65737e;">// 456 
+</span><span style="color:#65737e;">// 并不是真正私有的
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">wm</span><span>.</span><span style="color:#96b5b4;">get</span><span>(</span><span style="color:#bf616a;">user</span><span>)[</span><span style="color:#bf616a;">user</span><span>.</span><span style="color:#bf616a;">idProperty</span><span>]); </span><span style="color:#65737e;">// 456
+</span></code></pre>
+<p>对于上面的实现，外部代码只需要拿到对象实例的引用和弱映射，就可以取得“私有”变量了。为了避免这种访问，可以用一个闭包把 WeakMap 包装起来，这样就可以把弱映射与外界完全隔离开了：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">User </span><span>= (() </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">wm </span><span>= new WeakMap();
+</span><span>    </span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">User </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#b48ead;">constructor</span><span>(</span><span style="color:#bf616a;">id</span><span>) </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">idProperty </span><span>= </span><span style="color:#ebcb8b;">Symbol</span><span style="color:#eff1f5;">(</span><span>&#39;</span><span style="color:#a3be8c;">id</span><span>&#39;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#8fa1b3;">setId</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">id</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#8fa1b3;">setPrivate</span><span>(</span><span style="color:#bf616a;">property</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">value</span><span>) </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">privateMembers </span><span>= </span><span style="color:#bf616a;">wm</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">get</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">) </span><span>|| </span><span style="color:#eff1f5;">{};
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">privateMembers</span><span style="color:#eff1f5;">[</span><span style="color:#bf616a;">property</span><span style="color:#eff1f5;">] </span><span>= </span><span style="color:#bf616a;">value</span><span style="color:#eff1f5;">;
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">wm</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">set</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">privateMembers</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#8fa1b3;">getPrivate</span><span>(</span><span style="color:#bf616a;">property</span><span>) </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">wm</span><span style="color:#eff1f5;">.</span><span style="color:#96b5b4;">get</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">)[</span><span style="color:#bf616a;">property</span><span style="color:#eff1f5;">];
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#8fa1b3;">setId</span><span>(</span><span style="color:#bf616a;">id</span><span>) </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#8fa1b3;">setPrivate</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">idProperty</span><span style="color:#eff1f5;">, </span><span style="color:#bf616a;">id</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">        </span><span style="color:#8fa1b3;">getId</span><span>(</span><span style="color:#bf616a;">id</span><span>) </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">            </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#8fa1b3;">getPrivate</span><span style="color:#eff1f5;">(</span><span style="color:#bf616a;">this</span><span style="color:#eff1f5;">.</span><span style="color:#bf616a;">idProperty</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">        }
+</span><span style="color:#eff1f5;">    }
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">User</span><span>;
+</span><span>})();
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">user </span><span>= new User(</span><span style="color:#d08770;">123</span><span>);
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">user</span><span>.</span><span style="color:#8fa1b3;">getId</span><span>()); </span><span style="color:#65737e;">// 123 
+</span><span style="color:#bf616a;">user</span><span>.</span><span style="color:#8fa1b3;">setId</span><span>(</span><span style="color:#d08770;">456</span><span>);
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">user</span><span>.</span><span style="color:#8fa1b3;">getId</span><span>()); </span><span style="color:#65737e;">// 456
+</span></code></pre>
+</li>
+<li>
+<p><strong>dom</strong>节点元数据</p>
+<p>因为<code> WeakMap</code> 实例不会妨碍垃圾回收，所以非常适合保存关联元数据。来看下面这个例子，其中使用了常规的 <code>Map</code>：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">m </span><span>= new Map(); 
+</span><span>
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">loginButton </span><span>= document.</span><span style="color:#96b5b4;">querySelector</span><span>(&#39;</span><span style="color:#a3be8c;">#login</span><span>&#39;); 
+</span><span>
+</span><span style="color:#65737e;">// 给这个节点关联一些元数据
+</span><span>
+</span><span style="color:#bf616a;">m</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#bf616a;">loginButton</span><span>, {disabled: </span><span style="color:#d08770;">true</span><span>}); 
+</span></code></pre>
+<p>假设在上面的代码执行后，页面被 <code>JavaScript</code> 改变了，原来的登录按钮从 <code>DOM </code>树中被删掉了。但由于映射中还保存着按钮的引用，所以对应的 <code>DOM</code> 节点仍然会逗留在内存中，除非明确将其从映射中</p>
+<p>删除或者等到映射本身被销毁。如果这里使用的是弱映射，如以下代码所示，那么当节点从<code> DOM</code> 树中被删除后，垃圾回收程序就</p>
+<p>可以立即释放其内存（假设没有其他地方引用这个对象）：</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">wm </span><span>= new WeakMap(); 
+</span><span>
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">loginButton </span><span>= document.</span><span style="color:#96b5b4;">querySelector</span><span>(&#39;</span><span style="color:#a3be8c;">#login</span><span>&#39;); 
+</span><span style="color:#65737e;">// 给这个节点关联一些元数据
+</span><span style="color:#bf616a;">wm</span><span>.</span><span style="color:#96b5b4;">set</span><span>(</span><span style="color:#bf616a;">loginButton</span><span>, {disabled: </span><span style="color:#d08770;">true</span><span>}); 
+</span></code></pre>
+</li>
+</ol>
 <h2 id="set"><em><strong>Set</strong></em></h2>
-<p>TODO</p>
+<p><strong>ECMAScript 6</strong>新增的<code> Set</code> 是一种新集合类型，为这门语言带来集合数据结构。<code>Set</code> 在很多方面都像是加强的<code> Map</code>，这是因为它们的大多数 <strong>API</strong> 和行为都是共有的。<code>Set </code>可以包含任何 JavaScript 数据类型作为值</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">s </span><span>= new Set();
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">obj_zero </span><span>= {
+</span><span>    id:</span><span style="color:#d08770;">0
+</span><span>},</span><span style="color:#bf616a;">obj_fst </span><span>= {
+</span><span>    id:</span><span style="color:#d08770;">1
+</span><span>};
+</span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#bf616a;">obj_zero</span><span>).</span><span style="color:#96b5b4;">add</span><span>(</span><span style="color:#bf616a;">obj_fst</span><span>).</span><span style="color:#96b5b4;">add</span><span>({
+</span><span>    id:</span><span style="color:#d08770;">3
+</span><span>});
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">s</span><span>);
+</span><span style="color:#65737e;">//Set(3) {size: 3, {id: 0}, {id: 1}, {id: 3}}
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">size:</span><span>&quot;,</span><span style="color:#bf616a;">s</span><span>.size);
+</span><span style="color:#65737e;">//size: 3
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">Has obj_first: </span><span>&quot;,</span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">has</span><span>(</span><span style="color:#bf616a;">obj_fst</span><span>));
+</span><span style="color:#65737e;">//Has obj_first:  true
+</span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">delete</span><span>({
+</span><span>    id:</span><span style="color:#d08770;">3
+</span><span>});
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">After delete: </span><span>&quot;,</span><span style="color:#bf616a;">s</span><span>);
+</span><span style="color:#65737e;">//After delete:  Set(3) {size: 3, {id: 0}, {id: 1}, {id: 3}}
+</span><span>
+</span><span style="color:#b48ead;">var </span><span style="color:#bf616a;">third</span><span>;
+</span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">i </span><span>of </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">keys</span><span>()){
+</span><span>    </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">i</span><span>)
+</span><span>    </span><span style="color:#bf616a;">third </span><span>= </span><span style="color:#bf616a;">i</span><span>;
+</span><span>}
+</span><span style="color:#65737e;">//{id: 0}
+</span><span style="color:#65737e;">//{id: 1}
+</span><span style="color:#65737e;">//{id: 3}
+</span><span>
+</span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">delete</span><span>(</span><span style="color:#bf616a;">third</span><span>);
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">After delete: </span><span>&quot;,</span><span style="color:#bf616a;">s</span><span>);
+</span><span style="color:#65737e;">//After delete:  Set(2) {size: 2, {id: 0}, {id: 1}}
+</span><span>
+</span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">clear</span><span>();
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">After clear: </span><span>&quot;,</span><span style="color:#bf616a;">s</span><span>);
+</span><span style="color:#65737e;">//After clear:  Set(0) {size: 0}
+</span><span>
+</span></code></pre>
+<h3 id="die-dai-fang-fa-1"><strong>迭代方法</strong></h3>
+<p>迭代器：<code>keys</code>、<code>values</code>、<code>entries</code>。</p>
+<p>迭代方法：<code>forEach</code></p>
+<ol>
+<li>
+<p><code>forEach</code></p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">forEach</span><span>(</span><span style="color:#b48ead;">function</span><span>(</span><span style="color:#bf616a;">val</span><span>,</span><span style="color:#bf616a;">duplicate_val</span><span>,</span><span style="color:#bf616a;">set</span><span>){
+</span><span>    </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">val</span><span>,</span><span style="color:#bf616a;">duplicate_val</span><span>,</span><span style="color:#bf616a;">set</span><span>);
+</span><span>});
+</span><span style="color:#65737e;">//{id: 0} {id: 0} Set(2) {size: 2, {id: 0}, {id: 1}}
+</span><span style="color:#65737e;">//{id: 1} {id: 1} Set(2) {size: 2, {id: 0}, {id: 1}}
+</span></code></pre>
+</li>
+<li>
+<p><code>keys</code></p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">keys </span><span>= </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">keys</span><span>();
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">keys:</span><span>&quot;,</span><span style="color:#bf616a;">keys</span><span>);</span><span style="color:#65737e;">//keys: SetIterator {{id: 0}, {id: 1}}
+</span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">key </span><span>of </span><span style="color:#bf616a;">keys</span><span>){
+</span><span>    </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">key:</span><span>&quot;,</span><span style="color:#bf616a;">key</span><span>);
+</span><span>    </span><span style="color:#65737e;">//key: {id: 0}
+</span><span>    </span><span style="color:#65737e;">//key: {id: 1}
+</span><span>}
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">keys after used: </span><span>&quot;,</span><span style="color:#bf616a;">keys</span><span>);</span><span style="color:#65737e;">//keys after used:  SetIterator
+</span><span>
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">keys_arr </span><span>= </span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(</span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">keys</span><span>());
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">keys_arr: </span><span>&quot;,</span><span style="color:#bf616a;">keys_arr</span><span>); </span><span style="color:#65737e;">//keys_arr:  (2) [{id:0}, {id:1}]
+</span></code></pre>
+<p><strong>注意：一个迭代器不可重复使用</strong></p>
+</li>
+<li>
+<p><code>values</code></p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">values </span><span>= </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">values</span><span>();
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">values:</span><span>&quot;,</span><span style="color:#bf616a;">values</span><span>);</span><span style="color:#65737e;">//values: SetIterator {{id: 0}, {id: 1}}
+</span><span>
+</span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">val </span><span>of </span><span style="color:#bf616a;">values</span><span>){
+</span><span>    </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">val:</span><span>&quot;,</span><span style="color:#bf616a;">val</span><span>);
+</span><span>    </span><span style="color:#65737e;">//val: {id: 0}
+</span><span>    </span><span style="color:#65737e;">//val: {id: 1}
+</span><span>}
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">values after used: </span><span>&quot;,</span><span style="color:#bf616a;">keys</span><span>);</span><span style="color:#65737e;">//values after used:  SetIterator
+</span><span>
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">values_arr </span><span>= </span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(</span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">values</span><span>());
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">values_arr: </span><span>&quot;,</span><span style="color:#bf616a;">values_arr</span><span>); </span><span style="color:#65737e;">// //values_arr:  (2) [{id:0}, {id:1}]
+</span></code></pre>
+</li>
+<li>
+<p><code>entries</code></p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">entries </span><span>= </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">entries</span><span>();
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">entries:</span><span>&quot;,</span><span style="color:#bf616a;">entries</span><span>);</span><span style="color:#65737e;">//entries: SetIterator {{id: 0} =&gt; {id: 0}, {id: 1} =&gt; {id: 1}}
+</span><span>
+</span><span style="color:#b48ead;">for</span><span>(</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">entry </span><span>of </span><span style="color:#bf616a;">entries</span><span>){
+</span><span>    </span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">entry:</span><span>&quot;,</span><span style="color:#bf616a;">entry</span><span>);
+</span><span>    </span><span style="color:#65737e;">//entry: (2) [{id:0}, {id:0}]
+</span><span>    </span><span style="color:#65737e;">//entry: (2) [{id:1}, {id:1}]
+</span><span>}
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">entries after used: </span><span>&quot;,</span><span style="color:#bf616a;">entries</span><span>);</span><span style="color:#65737e;">//entries after used:  SetIterator
+</span><span>
+</span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">entries_arr </span><span>= </span><span style="color:#ebcb8b;">Array</span><span>.</span><span style="color:#8fa1b3;">from</span><span>(</span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#96b5b4;">entries</span><span>());
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(&quot;</span><span style="color:#a3be8c;">entries_arr: </span><span>&quot;,</span><span style="color:#bf616a;">entries_arr</span><span>); </span><span style="color:#65737e;">//entries_arr:  (2) [[{id:0}, {id:0}], [{id:1}, {id:1}]]
+</span></code></pre>
+</li>
+</ol>
 <h2 id="weakset"><em><strong>WeakSet</strong></em></h2>
-<p>TODO</p>
+<p>同<code>WeakMap</code>，<code>WeakSet</code>具有以下特点：</p>
+<ol>
+<li>成员都是对象（引用）；</li>
+<li>成员都是弱引用，随时可以消失，不阻止垃圾回收。可以用来保存DOM 节点，不容易造成内存泄露；</li>
+<li>不能遍历，方法有 add、delete、has；</li>
+</ol>
 <h2 id="die-dai-yu-kuo-zhan-cao-zuo">迭代与扩展操作</h2>
-<p>TODO</p>
+<p><code>...</code>为迭代数据类型的扩展操作符。</p>
 
   </div>
   
