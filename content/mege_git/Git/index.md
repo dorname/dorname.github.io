@@ -5,7 +5,7 @@ extra:
     image: ../git.png
 taxonomies:
   tags:
-    - js
+    - git
   authors:
     - liguangqiao  
 ---
