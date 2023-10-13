@@ -776,6 +776,118 @@
   
   
   
+    <div class="content px-3"><h1 id="v8yin-qing-xiang-mu-jie-gou"><strong>v8引擎项目结构</strong></h1>
+<table><thead><tr><th>目录/文件</th><th>描述</th></tr></thead><tbody>
+<tr><td><code>api</code></td><td>包含了 V8 引擎的 C++ API，可以用来在 C++ 代码中调用 JavaScript 代码</td></tr>
+<tr><td>asmjs</td><td><code>asmjs</code> 目录是 V8 引擎的 Asm.js 支持代码所在的目录，包含了 Asm.js 相关的头文件和源文件。Asm.js 是一种 JavaScript 子集，可以通过限制语言特性和语法来提高 JavaScript 代码的性能。V8 引擎通过解析 Asm.js 代码，并将其编译成高效的机器码来提高 JavaScript 代码的性能。<code>asmjs</code> 目录下的代码实现了 Asm.js 相关的解析器、编译器、代码生成器等功能，是 V8 引擎支持 Asm.js 的基础。在 <code>asmjs</code> 目录下，<code>asm-js.cc</code> 文件实现了 Asm.js 相关的函数和类，包括 <code>StdlibMathMember</code> 和 <code>AreStdlibMembersValid</code> 等函数，用于解析和编译 Asm.js 代码。</td></tr>
+<tr><td>ast</td><td><code>ast</code> 目录是 V8 引擎的抽象语法树（AST）相关代码所在的目录，包含了 AST 相关的头文件和源文件。抽象语法树是一种用于表示程序语法结构的树形数据结构，可以用于编译器的语法分析、代码优化和代码生成等过程。在 V8 引擎中，AST 用于表示 JavaScript 代码的语法结构，例如函数、变量、表达式等等。<code>ast</code> 目录下的代码实现了 AST 相关的类和函数，例如 <code>AstNode</code>、<code>AstVisitor</code>、<code>AstBuilder</code> 等等，用于构建和遍历 AST。在 <code>ast</code> 目录下，<code>ast.h</code> 文件是 AST 相关的头文件，定义了 AST 相关的类和函数的接口。<code>ast.cc</code> 文件实现了 AST 相关的函数和类，例如 <code>AstNode</code>、<code>AstVisitor</code>、<code>AstBuilder</code> 等等，用于构建和遍历 AST。</td></tr>
+<tr><td><code>base</code></td><td>包含了 V8 引擎的基础设施代码，例如字符串、数组、哈希表等等</td></tr>
+<tr><td><code>baseline</code></td><td>该目录包含了V8引擎的基准编译器（baseline compiler）相关的代码。基准编译器是V8引擎的一部分，用于将JavaScript代码编译成机器码。在V8引擎的早期版本中，基准编译器是唯一的编译器，但现在已经被优化编译器（optimizing compiler）所取代。基准编译器仍然存在于V8引擎中，用于编译一些不适合优化编译器的JavaScript代码。</td></tr>
+<tr><td><code>bigint</code></td><td>包含了与大整数（big integer）相关的代码。大整数是指超过计算机原生整数范围的整数，通常用于加密、哈希等领域。在JavaScript中，Number类型的范围是有限的，无法表示超出范围的大整数。因此，V8引擎提供了BigInt类型，用于表示大整数。bigint目录下的代码实现了BigInt类型的相关功能，例如BigInt的解析、序列化、加减乘除等运算，以及BigInt与其他类型的转换等。在bigint目录下，bigint.h文件是BigInt类型的头文件，定义了BigInt类型的接口。bigint.cc文件实现了BigInt类型的相关函数和类，例如BigInt的解析、序列化、加减乘除等运算，以及BigInt与其他类型的转换等。</td></tr>
+<tr><td><code>builtins</code></td><td>包含了 V8 引擎的内置函数代码，例如 <code>Array.prototype.map</code>、<code>Object.prototype.toString</code> 等等</td></tr>
+<tr><td><code>codegen</code></td><td>包含了 V8 引擎的代码生成器代码，用于将 JavaScript 代码编译成机器码</td></tr>
+<tr><td><code>common</code></td><td>包含多个工具类：断言、内存验证、代码内存权限控制、全局变量、消息模板、操作类型、指针压缩、高内存分配吞吐量</td></tr>
+<tr><td><code>compiler</code></td><td>包含了 V8 引擎的编译器代码，用于将 JavaScript 代码编译成机器码</td></tr>
+<tr><td><code>compiler-dispatcher</code></td><td>包含了与编译器调度（compiler dispatcher）相关的代码。编译器调度是指在V8引擎中，根据代码的特征和执行环境，选择最优的编译器进行代码编译的过程。在V8引擎中，有多个编译器可供选择，例如解释器、JIT编译器、AOT编译器等等。编译器调度的目的是根据代码的特征和执行环境，选择最优的编译器进行代码编译，以提高代码的执行效率。</td></tr>
+<tr><td><code>d8</code></td><td>包含了一个名为d8的命令行工具。d8工具是一个基于V8引擎的命令行工具，可以用于执行JavaScript脚本、调试JavaScript代码、测试V8引擎的功能等等。d8工具提供了一个交互式的JavaScript解释器，可以方便地进行JavaScript代码的调试和测试</td></tr>
+<tr><td><code>date</code></td><td>包含了与日期（date）相关的代码。日期是指年、月、日、时、分、秒等时间单位的组合，是计算机程序中常见的数据类型之一。在V8引擎中，日期的处理涉及到时区、夏令时等复杂的问题，需要进行精确的计算和处理。</td></tr>
+<tr><td><code>debug</code></td><td>包含了 V8 引擎的调试器代码，用于在运行时调试 JavaScript 代码</td></tr>
+<tr><td><code>deoptimizer</code></td><td>包含了 V8 引擎的反优化器代码，用于将机器码反编译成 JavaScript 代码</td></tr>
+<tr><td><code>diagnostics</code></td><td>包含了与诊断（diagnostics）相关的代码。诊断是指在程序运行时，检测和分析程序的状态和行为，以便发现和解决问题。在V8引擎中，诊断涉及到内存泄漏、性能问题、垃圾回收等方面的问题，需要进行精确的分析和诊断。</td></tr>
+<tr><td><code>execution</code></td><td>包含了与执行（execution）相关的代码。执行是指在程序运行时，执行程序的指令和操作，以实现程序的功能。在V8引擎中，执行涉及到JavaScript代码的解释和编译、函数调用、异常处理等方面的问题，需要进行精确的计算和处理。</td></tr>
+<tr><td><code>extension</code></td><td>包含了与扩展（extension）相关的代码。扩展是指在V8引擎中，通过添加新的API或功能，扩展V8引擎的功能和能力。在extension目录中，包含了一些V8引擎的扩展，例如Node.js的扩展、Chrome扩展等等。</td></tr>
+<tr><td><code>flags</code></td><td>包含了与命令行参数（flags）相关的代码。命令行参数是指在程序运行时，通过命令行传递给程序的参数，用于控制程序的行为和功能。在V8引擎中，命令行参数涉及到垃圾回收、内存管理、调试等方面的问题，需要进行精确的控制和管理</td></tr>
+<tr><td><code>handles</code></td><td>包含了与句柄（handles）相关的代码。句柄是指在V8引擎中，用于管理JavaScript对象的指针，以便进行垃圾回收和内存管理。在handles目录中，包含了一些与句柄相关的类和函数，例如句柄作用域、句柄范围等等。</td></tr>
+<tr><td><code>heap</code></td><td>包含了 V8 引擎的垃圾回收器代码，用于管理 JavaScript 对象的内存</td></tr>
+<tr><td><code>ic</code></td><td>包含了与内联缓存（inline cache，IC）相关的代码。内联缓存是指在V8引擎中，用于优化JavaScript代码的执行速度和效率的一种技术。在ic目录中，包含了一些与内联缓存相关的类和函数，例如内联缓存状态、内联缓存处理等等。</td></tr>
+<tr><td><code>init</code></td><td>包含了与初始化（init）相关的代码。初始化是指在程序运行时，对程序进行初始化和配置，以便程序能够正常运行。在V8引擎中，初始化涉及到堆内存的分配、垃圾回收的策略、内存管理的配置等方面的问题，需要进行精确的计算和处理。</td></tr>
+<tr><td><code>inspector</code></td><td>包含了 V8 引擎的 Inspector 协议实现代码，用于与 Chrome DevTools 进行通信</td></tr>
+<tr><td><code>interpreter</code></td><td>包含了 V8 引擎的解释器代码，用于解释 JavaScript 代码</td></tr>
+<tr><td><code>json</code></td><td>包含了与JSON（JavaScript Object Notation）相关的代码。JSON是一种轻量级的数据交换格式，常用于Web应用程序中，用于传输和存储数据。在json目录中，包含了一些与JSON相关的类和函数，例如JSON解析器、JSON序列化器等等。</td></tr>
+<tr><td><code>libplatform</code></td><td>包含了与平台（platform）相关的代码。平台是指在V8引擎中，用于管理和控制底层资源的一种抽象层。在libplatform目录中，包含了一些与平台相关的类和函数，例如平台初始化、线程管理、任务调度等等。</td></tr>
+<tr><td><code>libsampler</code></td><td>包含了与采样器（sampler）相关的代码。采样器是指在V8引擎中，用于采集程序运行时的性能数据的一种工具。在libsampler目录中，包含了一些与采样器相关的类和函数，例如采样器的初始化、采样器的启动和停止等等。</td></tr>
+<tr><td><code>logging</code></td><td>包含了与日志（logging）相关的代码。日志是指在V8引擎中，用于记录程序运行时的信息和错误的一种工具。在logging目录中，包含了一些与日志相关的类和函数，例如日志记录器、日志输出等等。</td></tr>
+<tr><td><code>maglev</code></td><td>包含了与MagLev（V8的Ruby on Rails扩展）相关的代码。MagLev是一种基于V8引擎的Ruby on Rails扩展，用于提高Ruby on Rails应用程序的性能和可靠性。在maglev目录中，包含了一些与MagLev相关的类和函数，例如MagLev代码生成器、MagLev汇编器等等。</td></tr>
+<tr><td><code>numbers</code></td><td>包含了与数字（numbers）相关的代码。数字是指在V8引擎中，用于表示数值的一种数据类型。在numbers目录中，包含了一些与数字相关的类和函数，例如数字的转换、数字的比较等等。</td></tr>
+<tr><td><code>objects</code></td><td>包含了与对象（objects）相关的代码。对象是指在V8引擎中，用于表示JavaScript中的各种数据类型的一种数据结构。在objects目录中，包含了一些与对象相关的类和函数，例如对象的创建、对象的属性访问、对象的类型判断等等</td></tr>
+<tr><td>`parsing</td><td>包含了与解析（parsing）相关的代码。解析是指在V8引擎中，将JavaScript代码转换为抽象语法树（AST）的过程。在parsing目录中，包含了一些与解析相关的类和函数，例如解析器、词法分析器等等。</td></tr>
+<tr><td><code>profiler</code></td><td>包含了与性能分析（profiling）相关的代码。性能分析是指在V8引擎中，用于分析程序性能的一种工具。在profiler目录中，包含了一些与性能分析相关的类和函数，例如性能分析器、采样器等等。</td></tr>
+<tr><td><code>protobuf</code></td><td>包含了与Protocol Buffers相关的代码。Protocol Buffers是一种轻量级的数据交换格式，可以用于序列化结构化数据。在protobuf目录中，包含了一些与Protocol Buffers相关的类和函数，例如编码器、解码器等等。</td></tr>
+<tr><td><code>regexp</code></td><td>包含了与正则表达式（regular expression）相关的代码。正则表达式是一种用于匹配字符串的模式，可以用于字符串的搜索、替换等操作。在regexp目录中，包含了一些与正则表达式相关的类和函数，例如正则表达式引擎、正则表达式解析器等等。</td></tr>
+<tr><td><code>root</code></td><td>包含了一些与根（root）相关的代码。在root目录中，包含了一些与垃圾回收（garbage collection）相关的类和函数，例如根区域（root region）、根列表（root list）等等。</td></tr>
+<tr><td><code>runtime</code></td><td>包含了 V8 引擎的运行时代码，例如函数调用、异常处理等等</td></tr>
+<tr><td><code>sandbox</code></td><td>沙箱</td></tr>
+<tr><td><code>snapshot</code></td><td>含了 V8 引擎的快照代码，用于将引擎状态保存到磁盘上</td></tr>
+<tr><td><code>strings</code></td><td>包含了与字符串（string）相关的代码。字符串是一种常见的数据类型，用于存储文本信息。在strings目录中，包含了一些与字符串相关的类和函数，例如字符串缓存（string buffer）、字符串构建器（string builder）等等。</td></tr>
+<tr><td><code>tasks</code></td><td>包含了一些与任务（task）相关的代码。在tasks目录中，包含了一些与任务调度器（task scheduler）相关的类和函数，例如任务队列（task queue）、任务执行器（task runner）等等。</td></tr>
+<tr><td><code>temporal</code></td><td>包含了与时间（time）相关的代码。时间是计算机中的一个重要概念，用于表示事件发生的顺序和时间间隔。在temporal目录中，包含了一些与时间相关的类和函数，例如时间对象（temporal object）、时间计算器（temporal calculator）等等。</td></tr>
+<tr><td><code>third_party</code></td><td>包含了 V8 引擎的第三方依赖库，例如 ICU、zlib 等等</td></tr>
+<tr><td><code>torque</code></td><td>Torque是V8引擎中的一种内部语言，用于描述V8引擎的内部实现。Torque语言是一种静态类型语言，具有类C语言的语法和类型系统。在V8引擎中，Torque语言被用于描述V8引擎的内部数据结构、算法和优化等等。</td></tr>
+<tr><td><code>tracing</code></td><td>包含了与跟踪（tracing）相关的代码。跟踪是一种常见的调试技术，用于记录程序的执行过程和状态，以便于分析和调试。在tracing目录中，包含了一些与跟踪相关的类和函数，例如跟踪控制器（tracing controller）、跟踪事件（tracing event）等等。</td></tr>
+<tr><td><code>trap-handler</code></td><td>包含了与陷阱处理（trap handling）相关的代码。陷阱处理是一种常见的调试技术，用于在程序执行过程中捕获和处理异常情况。在trap-handler目录中，包含了一些与陷阱处理相关的类和函数，例如陷阱处理器（trap handler）等等。</td></tr>
+<tr><td><code>utils</code></td><td>包含了 V8 引擎的工具代码，例如生成文档、格式化代码等等</td></tr>
+<tr><td><code>wasm</code></td><td>包含了 V8 引擎的 WebAssembly 支持代码</td></tr>
+</tbody></table>
+</div>
+  
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;v8engine&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block "
+    alt="v8引擎"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;v8engine&#x2F;"
+      rel="bookmark"
+      title="v8引擎"
+    ><b>v8引擎</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  04&#x2F;10&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
 	
     
   
@@ -1125,161 +1237,6 @@ console.log(Object.getOwnPropertyDescriptor(obj, &amp;#39;name&amp;#39;))
     
       <small>todo
 ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-25-client-storage&#x2F;..&#x2F;js_logo.png"
-    class="img-fluid m-auto d-block "
-    alt="js学习笔记(25)"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-25-client-storage&#x2F;"
-      rel="bookmark"
-      title="js学习笔记(25)"
-    ><b>js学习笔记(25)</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  23&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>Section 25 客户端存储
-js为什么会涉及到客户端存储呢？
-目标：将不常更新、且相对公用的数据存储在客户端中，减少与服务端的交互，提高整体的性能。
-cookie
-原始目标：
-要求HTTP头部包含会话信息。
-cookie具有局限性
-浏览器级别的局限性：
-
-不超过300个cookie
-每个cookie不超过4096字节
-每个域不超过20个cookie
-每个域不超过81920字节。
-
-域级别的局限性：
-浏览器每个域的cookie限制
-Edge不超过50
-Firefox不超过150个
-Opera不超过180个
-Safari和Chrome没有硬性限制
-
-浏览器对于cookie的过限处理：
-如果cookie总数超过了单域上限，浏览器会删除之前设置的cookie。
-
-Opera的处理策略是最少使用删除原则
-Firefox是随机删除原则
-
-cookie构成
-
-
-
-名称：cookie的唯一可标识，且不区分大小写，cookie名称必须经过URL编码。
-
-
-值：存储在cookie里的字符串值，值也必须经过URL编码
-
-
-域：cookie的有效域。发送到这个域的所有请求都会包含对应的cookie
-
-
-路径：请求URL中包含这个路径才会把cookie发送到服务器。
-
-
-过期时间：表示何时删除cookie的时间戳。
-​	删除策略：
-
-默认会话结束后删除cookie
-定时删除cookie
-
-
-
-安全标记：设置之后，只在使用SSL安全连接的情况下才会把cookie发送到服务器。例如:https:&#x2F;&#x2F;www.test.com会发送cookie，而请求http:&#x2F;&#x2F;www.wrox.com则不会。
-
-
-js的cookie
-js中的cookie接口只有*BOM(Brower Object Model)*的document.cookie
-取值过程会获取页面中所有的有效cookie字符串（根据域、路径、过期时间和安全设置），以分号分隔。
-子cookie
-子cookie的机制实际上是利用cookie的机制，将一连串的cookie信息编码成字符串，给cookie的其中一个键上。
-使用cookie的注意事项
-叫做HTTP-only的cookie。Http-only可以在浏览器设置，也可以在服务器设置。但只能在服务器上读取。这种cookie值js无法读取。
-注意：因为所有cookie都会作为请求头部由浏览器发送给服务器，所以在cookie种保存大量信息可能影响特定域浏览器请求的性能。保存的cookie越大，请求完成的时间就越长。即使浏览器对cookie大小有限制，最好还是尽可能只能保存必要信息，避免性能问题。
-对cookie的限制及其特性决定了cookie并不是存储大量数据的理想方式。
-
-Web Storage
-目标：
-Web Storage的规范目标：
-
-提供在cookie之外的存储会话数据的途径
-提供跨会话持久化存储大量数据的机制
-
-Storage类型
-目标：可用于保存键值对数据，直到达到存储控件上限(取决于浏览器)。
-Storage实例的特征方法：
-
-clear():删除所有值，注意在FireBox中没有实现。
-getItem(name):取得给定name的值。
-key(index):取值给定数值位置的名称。
-removeItem(name):删除给定name的键值对。
-
-注意：
-
-通过 length 属性可以确定 Storage 对象中保存了多少名&#x2F;值对。
-
-&#x2F;&#x2F;方法一
-for (let i = 0, len = sessionStorage.length; i &amp;lt; len; i++){ 
- let key = sessionStorage.key(i); 
- let value = sessionStorage.getItem(key); 
-    console.log(key,value);
- } 
-&#x2F;&#x2F;方法二
-for (let key in sessionStorage){ 
- let value = sessionStorage.getItem(key); 
- console.log(key,value);
-}
-
-
-Storage...</small>
     
   </p>
 

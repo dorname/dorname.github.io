@@ -82,6 +82,10 @@
         <loc>https://dorname.github.io/blockchain/page/1/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/blockchain/what-is-blockchain/</loc>
+        <lastmod>2023-10-10</lastmod>
+    </url>
+    <url>
         <loc>https://dorname.github.io/js_learning/</loc>
     </url>
     <url>
@@ -113,6 +117,10 @@
     <url>
         <loc>https://dorname.github.io/js_learning/section-9-reflection-proxy/</loc>
         <lastmod>2023-06-27</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/js_learning/v8engine/</loc>
+        <lastmod>2023-10-04</lastmod>
     </url>
     <url>
         <loc>https://dorname.github.io/mege_git/</loc>
@@ -177,6 +185,12 @@
     </url>
     <url>
         <loc>https://dorname.github.io/tags/blockchain/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/c/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/c/page/1/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/database/</loc>
