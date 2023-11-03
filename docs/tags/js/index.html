@@ -820,7 +820,11 @@
           
   <p class="card-text text-muted">
     
-      <small>...</small>
+      <small>v8引擎项目结构
+目录&#x2F;文件描述
+api包含了 V8 引擎的 C++ API，可以用来在 C++ 代码中调用 JavaScript 代码
+asmjsasmjs 目录是 V8 引擎的 Asm.js 支持代码所在的目录，包含了 Asm.js 相关的头文件和源文件。Asm.js 是一种 JavaScript 子集，可以通过限制语言特性和语法来提高 JavaScript 代码的性能。V8 引擎通过解析 Asm.js 代码，并将其编译成高效的机器码来提高 JavaScript 代码的性能。asmjs 目录下的代码实现了 Asm.js 相关的解析器、编译器、代码生成器等功能，是 V8 引擎支持 Asm.js 的基础。在 asmjs 目录下，asm-js.cc 文件实现了 Asm.js 相关的函数和类，包括 StdlibMathMember 和 AreStdlibMembersValid 等函数，用于解析和编译 Asm.js 代码。
+astast 目录是 V8 引擎的抽象语法树（AST）相关代码所在的目录，包含了 AST 相关的头文件和源文件。抽象语法树是一种用于表示程序语法结构的树形数据结构，可以用于编译器的语法分析、代码优化和代码生成等过程。在 V8...</small>
     
   </p>
 

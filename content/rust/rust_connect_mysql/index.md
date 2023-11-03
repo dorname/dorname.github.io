@@ -17,7 +17,7 @@ taxonomies:
 
 - 创建一个新的***Rust***项目
 
-  ```cargo
+  ```
   cargo new web_server_demo
   ```
 
@@ -27,7 +27,7 @@ taxonomies:
   2. 添加mysql依赖，连接/操作mysql数据库。
   3. 添加serde库依赖，用来序列化结构体实例。
 
-  ```cargo
+  ```
   [dependencies]
   actix-web = "4"
   mysql = "*"# 通配符*表示可以使用任何版本，通常会拉取最新版本

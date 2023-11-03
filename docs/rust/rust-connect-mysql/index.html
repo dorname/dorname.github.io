@@ -816,7 +816,7 @@
 <ul>
 <li>
 <p>创建一个新的<em><strong>Rust</strong></em>项目</p>
-<pre data-lang="cargo" style="background-color:#2b303b;color:#c0c5ce;" class="language-cargo "><code class="language-cargo" data-lang="cargo"><span>cargo new web_server_demo
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cargo new web_server_demo
 </span></code></pre>
 </li>
 <li>
@@ -826,7 +826,7 @@
 <li>添加mysql依赖，连接/操作mysql数据库。</li>
 <li>添加serde库依赖，用来序列化结构体实例。</li>
 </ol>
-<pre data-lang="cargo" style="background-color:#2b303b;color:#c0c5ce;" class="language-cargo "><code class="language-cargo" data-lang="cargo"><span>[dependencies]
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[dependencies]
 </span><span>actix-web = &quot;4&quot;
 </span><span>mysql = &quot;*&quot;# 通配符*表示可以使用任何版本，通常会拉取最新版本
 </span><span>serde = { version = &quot;1.0&quot;, features = [&quot;derive&quot;] }
