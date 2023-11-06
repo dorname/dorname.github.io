@@ -184,6 +184,8 @@ Date:   Sat Sep 16 11:58:11 2023 +0800
 #{对象类型} #{content.lenght}\0#{content}
 ```
 
+注意：`\0`表示空字符，代表字符串的结束标记。
+
 例如：
 
 ```
@@ -242,7 +244,11 @@ tree #{content.lenght}\0#{content}
 
 ### 提交对象的存储结构
 
+```
+commit #{content.lenght}\0#{mode} #{obj_hash}\nauthor #{用户名称} <#{email}> #{时间戳} #{时区信息}\ncommitter #{用户名称} <#{email}> #{时间戳} #{时区信息}\n\n#{提交信息}\n
+```
 
+**注意：**`\0`代表空字符 `\n`代表换行符
 
 ## Git引用
 

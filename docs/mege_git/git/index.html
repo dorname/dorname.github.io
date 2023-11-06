@@ -921,6 +921,7 @@
 <p><strong>Git</strong>对象具备自己的存储策略，元数据结构如下：</p>
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>#{对象类型} #{content.lenght}\0#{content}
 </span></code></pre>
+<p>注意：<code>\0</code>表示空字符，代表字符串的结束标记。</p>
 <p>例如：</p>
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>&quot;blob 16\u0000what is up, doc?&quot;
 </span></code></pre>
@@ -958,6 +959,9 @@
 </span></code></pre>
 <p><strong>注意：</strong><code>#{dir1 or file1's hash}</code>需要从<code>HEX</code>转换成字节序再作字符串拼接。</p>
 <h3 id="ti-jiao-dui-xiang-de-cun-chu-jie-gou">提交对象的存储结构</h3>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>commit #{content.lenght}\0#{mode} #{obj_hash}\nauthor #{用户名称} &lt;#{email}&gt; #{时间戳} #{时区信息}\ncommitter #{用户名称} &lt;#{email}&gt; #{时间戳} #{时区信息}\n\n#{提交信息}\n
+</span></code></pre>
+<p><strong>注意：</strong><code>\0</code>代表空字符 <code>\n</code>代表换行符</p>
 <h2 id="gityin-yong">Git引用</h2>
 <p>TODO</p>
 <h2 id="bao-wen-jian">包文件</h2>
