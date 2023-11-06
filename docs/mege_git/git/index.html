@@ -947,6 +947,17 @@
 </span></code></pre>
 </li>
 </ul>
+<h3 id="shu-dui-xiang-de-cun-chu-jie-gou">树对象的存储结构</h3>
+<p>基础对象个是如上述树对象的结构为：</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>tree #{content.lenght}\0#{content}
+</span></code></pre>
+<p>树对象的content有进一步的存储结构：</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>//#{content}
+</span><span>//mode 40000代表树对象 100644代表blob对象
+</span><span>#{mode} #{dir1_name or file1_name}#{dir1 or file1&#39;s hash}#{mode} #{dir2_name or file2_name}#{dir2 or file2&#39;s hash}...
+</span></code></pre>
+<p><strong>注意：</strong><code>#{dir1 or file1's hash}</code>需要从<code>HEX</code>转换成字节序再作字符串拼接。</p>
+<h3 id="ti-jiao-dui-xiang-de-cun-chu-jie-gou">提交对象的存储结构</h3>
 <h2 id="gityin-yong">Git引用</h2>
 <p>TODO</p>
 <h2 id="bao-wen-jian">包文件</h2>
