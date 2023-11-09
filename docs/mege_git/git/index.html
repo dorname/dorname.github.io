@@ -919,9 +919,9 @@
 <p>实际上每次我们运行 <code>git add</code> 和 <code>git commit</code> 命令时，Git 所做的工作实质就是将被改写的文件保存为数据对象，更新暂存区，记录树对象，最后创建一个指明了顶层树对象和父提交的提交对象。 这三种主要的 Git 对象——数据对象、树对象、提交对象——最初均以单独文件的形式保存在 <code>.git/objects</code> 目录下。 </p>
 <h2 id="dui-xiang-cun-chu-jie-gou">对象存储结构</h2>
 <p><strong>Git</strong>对象具备自己的存储策略，元数据结构如下：</p>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>#{对象类型} #{content.lenght}\0#{content}
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>#{对象类型} #{content.len}\0#{content}
 </span></code></pre>
-<p>注意：<code>\0</code>表示空字符，代表字符串的结束标记。</p>
+<p>注意：<code>\0</code>表示空字符，代表字符串的结束标记，content 是字节序列不是字符串，故len也是指序列的长度不是对应字符串的长度，通常可能没有影响，但当你去求树对象的hash或者解压缩树对象内容时，就会明白其中的不同，尤其使用rust去实现时。</p>
 <p>例如：</p>
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>&quot;blob 16\u0000what is up, doc?&quot;
 </span></code></pre>
@@ -931,7 +931,7 @@
 </span></code></pre>
 <p><strong>注意：</strong><code>hash</code>的长度为定长40个字符。</p>
 <p>可使用<code>git hash-object</code>命令来做尝试。</p>
-<p><strong>注意，请在git的自带工具中使用目前在<code>VSCODE</code>的命令行执行得到的结果是不一样的。具体什么原因还有待研究。</strong></p>
+<p><strong>注意：请在git的自带工具中使用目前在<code>VSCODE</code>的命令行执行得到的结果是不一样的。具体什么原因还有待研究。</strong></p>
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>echo -n &quot;what is up, doc?&quot; | git hash-object --stdin
 </span><span>&quot;bd9dbf5aae1a3862dd1526723246b20206e5fc37&quot;
 </span></code></pre>
@@ -958,11 +958,323 @@
 </span><span>//mode 40000代表树对象 100644代表blob对象
 </span><span>#{mode} #{dir1_name or file1_name}#{dir1 or file1&#39;s hash}#{mode} #{dir2_name or file2_name}#{dir2 or file2&#39;s hash}...
 </span></code></pre>
-<p><strong>注意：</strong><code>#{dir1 or file1's hash}</code>需要从<code>HEX</code>转换成字节序再作字符串拼接。</p>
 <h3 id="ti-jiao-dui-xiang-de-cun-chu-jie-gou">提交对象的存储结构</h3>
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>commit #{content.lenght}\0#{mode} #{obj_hash}\nauthor #{用户名称} &lt;#{email}&gt; #{时间戳} #{时区信息}\ncommitter #{用户名称} &lt;#{email}&gt; #{时间戳} #{时区信息}\n\n#{提交信息}\n
 </span></code></pre>
 <p><strong>注意：</strong><code>\0</code>代表空字符 <code>\n</code>代表换行符</p>
+<h3 id="gitcun-chu-dui-xiang-shi-yan-rust">Git存储对象实验（Rust）</h3>
+<p>实验目标旨在理解<strong>GIt存储对象</strong>的存储策略。</p>
+<h4 id="gou-jian-gitdui-xiang-cun-chu-nei-rong-bing-ji-suan-hash">构建Git对象存储内容并计算hash</h4>
+<ol>
+<li>
+<p>定义存储对象的数据结构。</p>
+<p>由上述章节内容归纳，要定义一个结构体，要求可以描述<em>Blob</em>对象、<em>Tree</em>对象和<em>Commit</em>对象存储内容至少需要以下要素信息：存储内容、对象模式、对象类型和子对象集以及文件名称。</p>
+<p>**注意:**生产环境中不同对象还是分别创建对应的结构体，此处只做实验帮助理解，不考虑程序冗余。</p>
+<table><thead><tr><th>字段编码</th><th>字段名称</th><th>字段类型</th><th>说明</th></tr></thead><tbody>
+<tr><td>content</td><td>存储内容</td><td>Vec<u8></td><td>git对象的存储内容</td></tr>
+<tr><td>mode</td><td>对象模式</td><td>String</td><td>git的对象模式100644代表blob对象模式、040000代表tree对象模式</td></tr>
+<tr><td>data_type</td><td>对象类型</td><td>String</td><td>blob、tree、commit</td></tr>
+<tr><td>nodes</td><td>子对象集合</td><td>Vec<Data></td><td>tree、commit 的关联对象</td></tr>
+<tr><td>file_name</td><td>文件名称</td><td>String</td><td>文件名成blob使用</td></tr>
+<tr><td>msg</td><td>提交信息</td><td>String</td><td>commit 对象使用</td></tr>
+</tbody></table>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">derive</span><span>(Clone)]
+</span><span style="color:#b48ead;">struct </span><span>Data {
+</span><span>    </span><span style="color:#bf616a;">content</span><span>: Vec&lt;</span><span style="color:#b48ead;">u8</span><span>&gt;,
+</span><span>    </span><span style="color:#bf616a;">mode</span><span>: String,
+</span><span>    </span><span style="color:#bf616a;">data_type</span><span>: String,
+</span><span>    </span><span style="color:#bf616a;">nodes</span><span>:Option&lt;Vec&lt;Data&gt;&gt;,
+</span><span>    </span><span style="color:#bf616a;">file_name</span><span>:String
+</span><span>}
+</span><span style="color:#b48ead;">impl </span><span>Data{
+</span><span style="color:#65737e;">//获取blob对象的存储内容
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">get_data</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>) -&gt; String {
+</span><span>        format!(
+</span><span>            &quot;</span><span style="color:#d08770;">{} {}</span><span style="color:#96b5b4;">\x00</span><span style="color:#d08770;">{}</span><span>&quot;,
+</span><span>            </span><span style="color:#bf616a;">self</span><span>.data_type,
+</span><span>            </span><span style="color:#bf616a;">self</span><span>.content.</span><span style="color:#96b5b4;">len</span><span>(),
+</span><span>            </span><span style="color:#bf616a;">self</span><span>.content.</span><span style="color:#96b5b4;">as_bstr</span><span>()
+</span><span>        )
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">add_node</span><span>(&amp;</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">self</span><span>,</span><span style="color:#bf616a;">subnode</span><span>:Data){
+</span><span>        </span><span style="color:#b48ead;">if let </span><span>Some(x) = &amp;</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">self</span><span>.nodes{
+</span><span>            x.</span><span style="color:#96b5b4;">push</span><span>(subnode);
+</span><span>        }</span><span style="color:#b48ead;">else</span><span>{
+</span><span>            </span><span style="color:#bf616a;">self</span><span>.nodes = Some(vec![subnode]);
+</span><span>        }
+</span><span>    }
+</span><span style="color:#65737e;">//获取blob对象在树对象中的存储内容
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">get_tree_data</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>) -&gt; Vec&lt;</span><span style="color:#b48ead;">u8</span><span>&gt; {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> hash = encode::get_sha_1(</span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#96b5b4;">get_data</span><span>());
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">:</span><span style="color:#96b5b4;">\n</span><span>&quot;,hash);
+</span><span>        </span><span style="color:#b48ead;">let</span><span> mode = </span><span style="color:#bf616a;">self</span><span>.mode.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> queue = hex::decode(hash).</span><span style="color:#96b5b4;">expect</span><span>(&quot;</span><span style="color:#a3be8c;">Invalid hex string</span><span>&quot;);
+</span><span>        </span><span style="color:#b48ead;">let</span><span> file_name = </span><span style="color:#bf616a;">self</span><span>.file_name.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> nil = &quot;</span><span style="color:#96b5b4;">\x00</span><span>&quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> space = &quot; &quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        [mode,space,file_name,nil,queue].</span><span style="color:#96b5b4;">concat</span><span>()
+</span><span> }
+</span><span>}
+</span></code></pre>
+</li>
+<li>
+<p>为结构体实现对象的初始化方法。</p>
+<p><code>blob</code>对象初始化方法</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">new_blob</span><span>(</span><span style="color:#bf616a;">content</span><span>: Vec&lt;</span><span style="color:#b48ead;">u8</span><span>&gt;, </span><span style="color:#bf616a;">mode</span><span>: String, </span><span style="color:#bf616a;">data_type</span><span>: String,</span><span style="color:#bf616a;">file_name</span><span>:String) -&gt; </span><span style="color:#b48ead;">Self </span><span>{
+</span><span>        Data {
+</span><span>            content: content,
+</span><span>            mode: mode,
+</span><span>            data_type: data_type,
+</span><span>            nodes:None,
+</span><span>            file_name:file_name,
+</span><span>            msg:None
+</span><span>        }
+</span><span>    }
+</span></code></pre>
+<p>单元测试：</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>生成测试用例:
+</span><span>文件:test.txt 文件内容:what is up, doc? hash:bd9dbf5aae1a3862dd1526723246b20206e5fc37
+</span></code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">test</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test_blob</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">let</span><span> blob_1 = Data::new_blob(&quot;</span><span style="color:#a3be8c;">what is up, doc?</span><span>&quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>(),&quot;</span><span style="color:#a3be8c;">100644</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),&quot;</span><span style="color:#a3be8c;">blob</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),&quot;</span><span style="color:#a3be8c;">test.txt</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>());
+</span><span>assert_eq!(encode::sha_1(blob_1.content.</span><span style="color:#96b5b4;">as_bstr</span><span>()));
+</span><span>}
+</span></code></pre>
+<p><code>tree</code>对象初始化方法</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>  </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">new_tree</span><span>(</span><span style="color:#bf616a;">mode</span><span>: String, </span><span style="color:#bf616a;">data_type</span><span>: String,</span><span style="color:#bf616a;">nodes</span><span>:Vec&lt;Data&gt;)-&gt;</span><span style="color:#b48ead;">Self</span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> copy_nodes = nodes.</span><span style="color:#96b5b4;">clone</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> byte_type = data_type.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> space = &quot; &quot;.</span><span style="color:#96b5b4;">to_string</span><span>().</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> nil = </span><span style="color:#b48ead;">b</span><span>&quot;</span><span style="color:#96b5b4;">\x00</span><span>&quot;.</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> v:Vec&lt;Vec&lt;</span><span style="color:#b48ead;">u8</span><span>&gt;&gt; = vec![byte_type,space,nil];
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> len = </span><span style="color:#d08770;">0</span><span>;
+</span><span>        </span><span style="color:#b48ead;">for</span><span> node in nodes{
+</span><span>            </span><span style="color:#b48ead;">let mut</span><span> data = node.</span><span style="color:#96b5b4;">get_tree_data</span><span>();
+</span><span>            len += data.</span><span style="color:#96b5b4;">len</span><span>();
+</span><span>            v.</span><span style="color:#96b5b4;">push</span><span>(data);
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">let</span><span> len = len.</span><span style="color:#96b5b4;">to_string</span><span>().</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        v.</span><span style="color:#96b5b4;">insert</span><span>(</span><span style="color:#d08770;">2</span><span>, len);
+</span><span>        Data {
+</span><span>            mode:mode,
+</span><span>            data_type:data_type,  
+</span><span>            nodes:Some(copy_nodes), 
+</span><span>            file_name:&quot; &quot;.</span><span style="color:#96b5b4;">to_string</span><span>(), </span><span style="color:#65737e;">//树对象不需要，以空字符串占位避免报错
+</span><span>            content:v.</span><span style="color:#96b5b4;">concat</span><span>(),
+</span><span>            msg:None
+</span><span>        }
+</span><span>    }
+</span></code></pre>
+<p>单元测试：</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>生成测试用例:
+</span><span>文件:demo.txt 内容:test hash:30d74d258442c7c65512eafab474568dd706c430
+</span><span>文件:test.txt 内容:what is up, doc? hash:bd9dbf5aae1a3862dd1526723246b20206e5fc37
+</span><span>树对象:dcc20f823c15ba6394596b475c03d08cdc4417a0
+</span><span>解析后的树对象内容:
+</span><span>tree 72\0100644 demo.txt\00\xD7M%\x84B\xC7\xC6U\x12\xEA\xFA\xB4tV\x8D\xD7\x06\xC40100644 test.txt\0\xBD\x9D\xBFZ\xAE\x1A8b\xDD\x15&amp;r2F\xB2\x02\x06\xE5\xFC7&quot;
+</span></code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">test</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">new_tree_test</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> blob_1 = Data::new_blob(
+</span><span>        &quot;</span><span style="color:#a3be8c;">what is up, doc?</span><span>&quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">100644</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">blob</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">test.txt</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>    );
+</span><span>    </span><span style="color:#b48ead;">let</span><span> blob_2 = Data::new_blob(
+</span><span>        &quot;</span><span style="color:#a3be8c;">test</span><span>&quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">100644</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">blob</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">demo.txt</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>    );
+</span><span>    </span><span style="color:#b48ead;">let</span><span> tree = Data::new_tree(
+</span><span>        &quot;</span><span style="color:#a3be8c;">40000</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        vec![blob_2, blob_1],
+</span><span>    );
+</span><span>    assert_eq!(
+</span><span>        encode::sha_1(tree.content),
+</span><span>        &quot;</span><span style="color:#a3be8c;">dcc20f823c15ba6394596b475c03d08cdc4417a0</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>()
+</span><span>    );
+</span><span>}
+</span></code></pre>
+<p><code>commit</code>对象初始化</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>   </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">new_commit</span><span>(</span><span style="color:#bf616a;">msg</span><span>: String, </span><span style="color:#bf616a;">node</span><span>: Data) -&gt; </span><span style="color:#b48ead;">Self </span><span>{
+</span><span>        </span><span style="color:#65737e;">//commit
+</span><span>        </span><span style="color:#b48ead;">let</span><span> byte_type = &quot;</span><span style="color:#a3be8c;">commit</span><span>&quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> space = &quot; &quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> nil = &quot;</span><span style="color:#96b5b4;">\x00</span><span>&quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> next_line = &quot;</span><span style="color:#96b5b4;">\n</span><span>&quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> author = &quot;</span><span style="color:#a3be8c;">author</span><span>&quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> author_val = &quot;</span><span style="color:#a3be8c;">dorname</span><span>&quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> email_val = &quot;</span><span style="color:#a3be8c;">&lt;lgqfighting@163.com&gt;</span><span>&quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> now = SystemTime::now();
+</span><span>        </span><span style="color:#65737e;">// let timestamp = now.duration_since(UNIX_EPOCH).unwrap().as_secs();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> timestamp = &quot;</span><span style="color:#a3be8c;">1699193914</span><span>&quot;;
+</span><span>        </span><span style="color:#b48ead;">let</span><span> timezone_offset = &quot;</span><span style="color:#a3be8c;">+0800</span><span>&quot;;
+</span><span>        </span><span style="color:#b48ead;">let</span><span> node_copy = node.</span><span style="color:#96b5b4;">clone</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> formatted_timestamp = format!(&quot;</span><span style="color:#d08770;">{} {}</span><span>&quot;, timestamp, timezone_offset)
+</span><span>            .</span><span style="color:#96b5b4;">as_bytes</span><span>()
+</span><span>            .</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> commiter = &quot;</span><span style="color:#a3be8c;">committer</span><span>&quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> node_byte_type = node.data_type.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> node_hash = encode::sha_1(node.content).</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let</span><span> message = msg.</span><span style="color:#96b5b4;">clone</span><span>().</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> v = vec![
+</span><span>            node_byte_type,
+</span><span>            space.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            node_hash,
+</span><span>            next_line.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            author,
+</span><span>            space.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            author_val.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            space.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            email_val.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            space.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            formatted_timestamp.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            next_line.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            commiter,
+</span><span>            space.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            author_val,
+</span><span>            space.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            email_val,
+</span><span>            space.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            formatted_timestamp.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            next_line.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            next_line.</span><span style="color:#96b5b4;">clone</span><span>(),
+</span><span>            message,
+</span><span>            next_line,
+</span><span>        ];
+</span><span>        </span><span style="color:#65737e;">// let v = vec![byte_type,space,]
+</span><span>        </span><span style="color:#b48ead;">let</span><span> len = v.</span><span style="color:#96b5b4;">clone</span><span>().</span><span style="color:#96b5b4;">concat</span><span>().</span><span style="color:#96b5b4;">len</span><span>().</span><span style="color:#96b5b4;">to_string</span><span>().</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>();
+</span><span>        v.</span><span style="color:#96b5b4;">insert</span><span>(</span><span style="color:#d08770;">0</span><span>, byte_type);
+</span><span>        v.</span><span style="color:#96b5b4;">insert</span><span>(</span><span style="color:#d08770;">1</span><span>, space);
+</span><span>        v.</span><span style="color:#96b5b4;">insert</span><span>(</span><span style="color:#d08770;">2</span><span>, len);
+</span><span>        v.</span><span style="color:#96b5b4;">insert</span><span>(</span><span style="color:#d08770;">3</span><span>, nil);
+</span><span>        </span><span style="color:#b48ead;">let</span><span> content = v.</span><span style="color:#96b5b4;">concat</span><span>();
+</span><span>        Data {
+</span><span>            content: content,
+</span><span>            mode: &quot;&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>            data_type: &quot;</span><span style="color:#a3be8c;">commit</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>            nodes: Some(vec![node_copy]),
+</span><span>            file_name: &quot;&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>            msg: Some(msg),
+</span><span>        }
+</span><span>    }
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>测试用例:
+</span><span>提交对象 ff11bc76cb7e488b83369a169e255fb4ca2ee328
+</span><span>解压后的存储内容为
+</span><span>&quot;commit 171\x00tree dcc20f823c15ba6394596b475c03d08cdc4417a0\nauthor dorname &lt;lgqfighting@163.com&gt; 1699193914 +0800\ncommitter dorname &lt;lgqfighting@163.com&gt; 1699193914 +0800\n\nfirst commit\n&quot;
+</span></code></pre>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">test</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">commit_test</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> blob_1 = Data::new_blob(
+</span><span>        &quot;</span><span style="color:#a3be8c;">what is up, doc?</span><span>&quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">100644</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">blob</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">test.txt</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>    );
+</span><span>    </span><span style="color:#b48ead;">let</span><span> blob_2 = Data::new_blob(
+</span><span>        &quot;</span><span style="color:#a3be8c;">test</span><span>&quot;.</span><span style="color:#96b5b4;">as_bytes</span><span>().</span><span style="color:#96b5b4;">to_vec</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">100644</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">blob</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">demo.txt</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>    );
+</span><span>    </span><span style="color:#b48ead;">let</span><span> tree = Data::new_tree(
+</span><span>        &quot;</span><span style="color:#a3be8c;">40000</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(),
+</span><span>        vec![blob_2, blob_1],
+</span><span>    );
+</span><span>    </span><span style="color:#b48ead;">let</span><span> commit = Data::new_commit(&quot;</span><span style="color:#a3be8c;">first commit</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>(), tree);
+</span><span>    assert_eq!(
+</span><span>        encode::sha_1(commit.content),
+</span><span>        &quot;</span><span style="color:#a3be8c;">ff11bc76cb7e488b83369a169e255fb4ca2ee328</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>()
+</span><span>    );
+</span><span>}
+</span></code></pre>
+</li>
+</ol>
+<h4 id="du-qu-gitdui-xiang-cun-chu-nei-rong">读取Git对象存储内容</h4>
+<p>准备测试用例</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>文件:demo.txt 内容:test hash:30d74d258442c7c65512eafab474568dd706c430
+</span><span>文件:test.txt 内容:what is up, doc? hash:bd9dbf5aae1a3862dd1526723246b20206e5fc37
+</span><span>对应blob对象文件地址
+</span><span>.git/objects/30/d74d258442c7c65512eafab474568dd706c430
+</span><span>.git/objects/bd/9dbf5aae1a3862dd1526723246b20206e5fc37
+</span><span>对应tree对象文件地址
+</span><span>.git/objects/dc/c20f823c15ba6394596b475c03d08cdc4417a0
+</span><span>对应commit对象地址
+</span><span>.git/objects/ff/11bc76cb7e488b83369a169e255fb4ca2ee328
+</span></code></pre>
+<p>存储内容解压方法:树对象的解压是比较坑的因为hash值必须得二次解析,blob和commit对象可以使用同样的方法解</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">pub fn </span><span style="color:#8fa1b3;">decode_reader</span><span>(</span><span style="color:#bf616a;">bytes</span><span>: &amp;[</span><span style="color:#b48ead;">u8</span><span>]) -&gt; io::Result&lt;String&gt; {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> z = ZlibDecoder::new(bytes);
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> s = String::new();
+</span><span>    z.</span><span style="color:#96b5b4;">read_to_string</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> s)?;
+</span><span>    Ok(s)
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">pub fn </span><span style="color:#8fa1b3;">decode_tree</span><span>(</span><span style="color:#bf616a;">bytes</span><span>: &amp;[</span><span style="color:#b48ead;">u8</span><span>]) -&gt; io::Result&lt;String&gt; {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> z = ZlibDecoder::new(bytes);
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> vector = Vec::&lt;</span><span style="color:#b48ead;">u8</span><span>&gt;::new();
+</span><span>    z.</span><span style="color:#96b5b4;">read_to_end</span><span>(&amp;</span><span style="color:#b48ead;">mut</span><span> vector)?;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> type_data_index = vector.</span><span style="color:#96b5b4;">find_byte</span><span>(</span><span style="color:#d08770;">0x00</span><span>).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> obj_data_arr: Vec&lt;</span><span style="color:#b48ead;">u8</span><span>&gt; = vector.</span><span style="color:#96b5b4;">drain</span><span>(type_data_index + </span><span style="color:#d08770;">1</span><span>..).</span><span style="color:#96b5b4;">collect</span><span>();
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> type_data = vector.</span><span style="color:#96b5b4;">as_bstr</span><span>().</span><span style="color:#96b5b4;">to_string</span><span>();
+</span><span>        type_data+=&quot;</span><span style="color:#96b5b4;">\n</span><span>&quot;;
+</span><span>        </span><span style="color:#b48ead;">while let </span><span>Some(index) = obj_data_arr.</span><span style="color:#96b5b4;">find_byte</span><span>(</span><span style="color:#d08770;">0x00</span><span>) {
+</span><span>            type_data+=&amp;format!(&quot;</span><span style="color:#a3be8c;">子对象：</span><span style="color:#d08770;">{} </span><span>&quot;,&amp;obj_data_arr[..index].</span><span style="color:#96b5b4;">as_bstr</span><span>());
+</span><span>            type_data+=&amp;format!(&quot;</span><span style="color:#a3be8c;">Hash: </span><span style="color:#d08770;">{}</span><span style="color:#96b5b4;">\n</span><span>&quot;,hex::encode(&amp;obj_data_arr[index + </span><span style="color:#d08770;">1</span><span>..index + </span><span style="color:#d08770;">21</span><span>]));
+</span><span>            obj_data_arr.</span><span style="color:#96b5b4;">drain</span><span>(..index + </span><span style="color:#d08770;">21</span><span>);
+</span><span>        }
+</span><span>    Ok(type_data)
+</span><span>}
+</span></code></pre>
+<p>单元测试</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>
+</span><span>#[</span><span style="color:#bf616a;">test</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">blob_test</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">use </span><span>std::fs;
+</span><span>    </span><span style="color:#b48ead;">use </span><span>std::fs::File;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> tree_object_file: Vec&lt;</span><span style="color:#b48ead;">u8</span><span>&gt; =
+</span><span>        fs::read(&quot;</span><span style="color:#a3be8c;">/project/git_lab/src/testfile/30/d74d258442c7c65512eafab474568dd706c430</span><span>&quot;)
+</span><span>            .</span><span style="color:#96b5b4;">expect</span><span>(&quot;</span><span style="color:#a3be8c;">文件读取成功</span><span>&quot;);
+</span><span>    </span><span style="color:#b48ead;">let</span><span> content_byte = </span><span style="color:#96b5b4;">decode_reader</span><span>(&amp;tree_object_file[..]).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;, content_byte);
+</span><span>}
+</span><span style="color:#65737e;">//blob 4test
+</span><span>#[</span><span style="color:#bf616a;">test</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">tree_test</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">use </span><span>std::fs;
+</span><span>    </span><span style="color:#b48ead;">use </span><span>std::fs::File;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> tree_object_file: Vec&lt;</span><span style="color:#b48ead;">u8</span><span>&gt; =
+</span><span>        fs::read(&quot;</span><span style="color:#a3be8c;">/project/git_lab/src/testfile/dc/c20f823c15ba6394596b475c03d08cdc4417a0</span><span>&quot;)
+</span><span>            .</span><span style="color:#96b5b4;">expect</span><span>(&quot;</span><span style="color:#a3be8c;">文件读取成功</span><span>&quot;);
+</span><span>    </span><span style="color:#b48ead;">let</span><span> content_byte = </span><span style="color:#96b5b4;">decode_tree</span><span>(&amp;tree_object_file[..]).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;, content_byte);
+</span><span>}
+</span><span style="color:#65737e;">//output
+</span><span style="color:#65737e;">//tree 72
+</span><span style="color:#65737e;">//子对象：100644 demo.txt Hash: 30d74d258442c7c65512eafab474568dd706c430
+</span><span style="color:#65737e;">//子对象：100644 test.txt Hash: bd9dbf5aae1a3862dd1526723246b20206e5fc37
+</span><span>
+</span><span>#[</span><span style="color:#bf616a;">test</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">commit_test</span><span>(){
+</span><span>    </span><span style="color:#b48ead;">use </span><span>std::fs;
+</span><span>    </span><span style="color:#b48ead;">use </span><span>std::fs::File;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> tree_object_file: Vec&lt;</span><span style="color:#b48ead;">u8</span><span>&gt; =
+</span><span>        fs::read(&quot;</span><span style="color:#a3be8c;">/project/git_lab/src/testfile/ff/11bc76cb7e488b83369a169e255fb4ca2ee328</span><span>&quot;)
+</span><span>            .</span><span style="color:#96b5b4;">expect</span><span>(&quot;</span><span style="color:#a3be8c;">文件读取成功</span><span>&quot;);
+</span><span>    </span><span style="color:#b48ead;">let</span><span> content_byte = </span><span style="color:#96b5b4;">decode_reader</span><span>(&amp;tree_object_file[..]).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>    println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;, content_byte);
+</span><span>}
+</span><span style="color:#65737e;">//commit 171tree dcc20f823c15ba6394596b475c03d08cdc4417a0
+</span><span style="color:#65737e;">//author dorname &lt;lgqfighting@163.com&gt; 1699193914 +0800
+</span><span style="color:#65737e;">//committer dorname &lt;lgqfighting@163.com&gt; 1699193914 +0800
+</span></code></pre>
 <h2 id="gityin-yong">Git引用</h2>
 <p>TODO</p>
 <h2 id="bao-wen-jian">包文件</h2>
