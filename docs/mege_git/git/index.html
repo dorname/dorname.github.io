@@ -925,10 +925,11 @@
 <p>例如：</p>
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>&quot;blob 16\u0000what is up, doc?&quot;
 </span></code></pre>
-<p>元数据整体由头部信息和存储信息两部分组成，头部信息为对象类型和存储信息长度，最后添加上存储信息的内容。元数据类型为字符串。<strong>Git</strong>将头部信息的存储信息拼接起来后使用<em><strong>SHA-1</strong></em>计算一个<em>hash</em>值。
-例子中的计算结果为</p>
+<p>元数据整体由头部信息和存储信息两部分组成，头部信息为对象类型和存储信息长度，最后添加上存储信息的内容。元数据类型为字符串。<strong>Git</strong>将头部信息的存储信息拼接起来后使用<em><strong>SHA-1</strong></em>计算一个<em>hash</em>值。</p>
+<p>例子中的计算结果为</p>
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>&quot;bd9dbf5aae1a3862dd1526723246b20206e5fc37&quot;
 </span></code></pre>
+<p><strong>注意：</strong><code>hash</code>的长度为定长40个字符。</p>
 <p>可使用<code>git hash-object</code>命令来做尝试。</p>
 <p><strong>注意，请在git的自带工具中使用目前在<code>VSCODE</code>的命令行执行得到的结果是不一样的。具体什么原因还有待研究。</strong></p>
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>echo -n &quot;what is up, doc?&quot; | git hash-object --stdin
