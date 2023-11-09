@@ -181,10 +181,10 @@ Date:   Sat Sep 16 11:58:11 2023 +0800
 **Git**对象具备自己的存储策略，元数据结构如下：
 
 ```
-#{对象类型} #{content.lenght}\0#{content}
+#{对象类型} #{content.len}\0#{content}
 ```
 
-注意：`\0`表示空字符，代表字符串的结束标记。
+注意：`\0`表示空字符，代表字符串的结束标记，content 是字节序列不是字符串，故len也是指序列的长度不是对应字符串的长度，通常可能没有影响，但当你去求树对象的hash或者解压缩树对象内容时，就会明白其中的不同，尤其使用rust去实现时。
 
 例如：
 
@@ -204,7 +204,7 @@ Date:   Sat Sep 16 11:58:11 2023 +0800
 
 可使用`git hash-object`命令来做尝试。
 
-**注意，请在git的自带工具中使用目前在`VSCODE`的命令行执行得到的结果是不一样的。具体什么原因还有待研究。**
+**注意：请在git的自带工具中使用目前在`VSCODE`的命令行执行得到的结果是不一样的。具体什么原因还有待研究。**
 
 ```
 echo -n "what is up, doc?" | git hash-object --stdin
@@ -243,8 +243,6 @@ tree #{content.lenght}\0#{content}
 #{mode} #{dir1_name or file1_name}#{dir1 or file1's hash}#{mode} #{dir2_name or file2_name}#{dir2 or file2's hash}...
 ```
 
-**注意：**`#{dir1 or file1's hash}`需要从`HEX`转换成字节序再作字符串拼接。
-
 ### 提交对象的存储结构
 
 ```
@@ -252,6 +250,356 @@ commit #{content.lenght}\0#{mode} #{obj_hash}\nauthor #{用户名称} <#{email}>
 ```
 
 **注意：**`\0`代表空字符 `\n`代表换行符
+
+### Git存储对象实验（Rust）
+
+实验目标旨在理解**GIt存储对象**的存储策略。
+
+#### 构建Git对象存储内容并计算hash
+
+1. 定义存储对象的数据结构。
+
+   由上述章节内容归纳，要定义一个结构体，要求可以描述*Blob*对象、*Tree*对象和*Commit*对象存储内容至少需要以下要素信息：存储内容、对象模式、对象类型和子对象集以及文件名称。
+
+   **注意:**生产环境中不同对象还是分别创建对应的结构体，此处只做实验帮助理解，不考虑程序冗余。
+
+   | 字段编码  | 字段名称   | 字段类型  | 说明                                                        |
+   | --------- | ---------- | --------- | ----------------------------------------------------------- |
+   | content   | 存储内容   | Vec<u8>   | git对象的存储内容                                           |
+   | mode      | 对象模式   | String    | git的对象模式100644代表blob对象模式、040000代表tree对象模式 |
+   | data_type | 对象类型   | String    | blob、tree、commit                                          |
+   | nodes     | 子对象集合 | Vec<Data> | tree、commit 的关联对象                                     |
+   | file_name | 文件名称   | String    | 文件名成blob使用                                            |
+   | msg       | 提交信息   | String    | commit 对象使用                                             |
+
+   ```rust
+   #[derive(Clone)]
+   struct Data {
+       content: Vec<u8>,
+       mode: String,
+       data_type: String,
+       nodes:Option<Vec<Data>>,
+       file_name:String
+   }
+   impl Data{
+   //获取blob对象的存储内容
+   fn get_data(&self) -> String {
+           format!(
+               "{} {}\x00{}",
+               self.data_type,
+               self.content.len(),
+               self.content.as_bstr()
+           )
+       }
+       fn add_node(&mut self,subnode:Data){
+           if let Some(x) = &mut self.nodes{
+               x.push(subnode);
+           }else{
+               self.nodes = Some(vec![subnode]);
+           }
+       }
+   //获取blob对象在树对象中的存储内容
+   fn get_tree_data(&self) -> Vec<u8> {
+           let hash = encode::get_sha_1(self.get_data());
+           println!("{}:\n",hash);
+           let mode = self.mode.as_bytes().to_vec();
+           let queue = hex::decode(hash).expect("Invalid hex string");
+           let file_name = self.file_name.as_bytes().to_vec();
+           let nil = "\x00".as_bytes().to_vec();
+           let space = " ".as_bytes().to_vec();
+           [mode,space,file_name,nil,queue].concat()
+    }
+   }
+   ```
+
+2. 为结构体实现对象的初始化方法。
+
+   `blob`对象初始化方法
+
+   ```rust
+   fn new_blob(content: Vec<u8>, mode: String, data_type: String,file_name:String) -> Self {
+           Data {
+               content: content,
+               mode: mode,
+               data_type: data_type,
+               nodes:None,
+               file_name:file_name,
+               msg:None
+           }
+       }
+   ```
+
+   单元测试：
+
+   ```
+   生成测试用例:
+   文件:test.txt 文件内容:what is up, doc? hash:bd9dbf5aae1a3862dd1526723246b20206e5fc37
+   ```
+
+   ```rust
+   #[test]
+   fn test_blob(){
+       let blob_1 = Data::new_blob("what is up, doc?".as_bytes().to_vec(),"100644".to_string(),"blob".to_string(),"test.txt".to_string());
+   assert_eq!(encode::sha_1(blob_1.content.as_bstr()));
+   }
+   ```
+
+   `tree`对象初始化方法
+
+   ```rust
+     fn new_tree(mode: String, data_type: String,nodes:Vec<Data>)->Self{
+           let copy_nodes = nodes.clone();
+           let byte_type = data_type.as_bytes().to_vec();
+           let space = " ".to_string().as_bytes().to_vec();
+           let nil = b"\x00".to_vec();
+           let mut v:Vec<Vec<u8>> = vec![byte_type,space,nil];
+           let mut len = 0;
+           for node in nodes{
+               let mut data = node.get_tree_data();
+               len += data.len();
+               v.push(data);
+           }
+           let len = len.to_string().as_bytes().to_vec();
+           v.insert(2, len);
+           Data {
+               mode:mode,
+               data_type:data_type,  
+               nodes:Some(copy_nodes), 
+               file_name:" ".to_string(), //树对象不需要，以空字符串占位避免报错
+               content:v.concat(),
+               msg:None
+           }
+       }
+   ```
+
+   单元测试：
+
+   ```
+   生成测试用例:
+   文件:demo.txt 内容:test hash:30d74d258442c7c65512eafab474568dd706c430
+   文件:test.txt 内容:what is up, doc? hash:bd9dbf5aae1a3862dd1526723246b20206e5fc37
+   树对象:dcc20f823c15ba6394596b475c03d08cdc4417a0
+   解析后的树对象内容:
+   tree 72\0100644 demo.txt\00\xD7M%\x84B\xC7\xC6U\x12\xEA\xFA\xB4tV\x8D\xD7\x06\xC40100644 test.txt\0\xBD\x9D\xBFZ\xAE\x1A8b\xDD\x15&r2F\xB2\x02\x06\xE5\xFC7"
+   ```
+
+   ```rust
+   #[test]
+   fn new_tree_test() {
+       let blob_1 = Data::new_blob(
+           "what is up, doc?".as_bytes().to_vec(),
+           "100644".to_string(),
+           "blob".to_string(),
+           "test.txt".to_string(),
+       );
+       let blob_2 = Data::new_blob(
+           "test".as_bytes().to_vec(),
+           "100644".to_string(),
+           "blob".to_string(),
+           "demo.txt".to_string(),
+       );
+       let tree = Data::new_tree(
+           "40000".to_string(),
+           "tree".to_string(),
+           vec![blob_2, blob_1],
+       );
+       assert_eq!(
+           encode::sha_1(tree.content),
+           "dcc20f823c15ba6394596b475c03d08cdc4417a0".to_string()
+       );
+   }
+   ```
+
+   `commit`对象初始化
+
+   ```rust
+      fn new_commit(msg: String, node: Data) -> Self {
+           //commit
+           let byte_type = "commit".as_bytes().to_vec();
+           let space = " ".as_bytes().to_vec();
+           let nil = "\x00".as_bytes().to_vec();
+           let next_line = "\n".as_bytes().to_vec();
+           let author = "author".as_bytes().to_vec();
+           let author_val = "dorname".as_bytes().to_vec();
+           let email_val = "<lgqfighting@163.com>".as_bytes().to_vec();
+           let now = SystemTime::now();
+           // let timestamp = now.duration_since(UNIX_EPOCH).unwrap().as_secs();
+           let timestamp = "1699193914";
+           let timezone_offset = "+0800";
+           let node_copy = node.clone();
+           let formatted_timestamp = format!("{} {}", timestamp, timezone_offset)
+               .as_bytes()
+               .to_vec();
+           let commiter = "committer".as_bytes().to_vec();
+           let node_byte_type = node.data_type.as_bytes().to_vec();
+           let node_hash = encode::sha_1(node.content).as_bytes().to_vec();
+           let message = msg.clone().as_bytes().to_vec();
+           let mut v = vec![
+               node_byte_type,
+               space.clone(),
+               node_hash,
+               next_line.clone(),
+               author,
+               space.clone(),
+               author_val.clone(),
+               space.clone(),
+               email_val.clone(),
+               space.clone(),
+               formatted_timestamp.clone(),
+               next_line.clone(),
+               commiter,
+               space.clone(),
+               author_val,
+               space.clone(),
+               email_val,
+               space.clone(),
+               formatted_timestamp.clone(),
+               next_line.clone(),
+               next_line.clone(),
+               message,
+               next_line,
+           ];
+           // let v = vec![byte_type,space,]
+           let len = v.clone().concat().len().to_string().as_bytes().to_vec();
+           v.insert(0, byte_type);
+           v.insert(1, space);
+           v.insert(2, len);
+           v.insert(3, nil);
+           let content = v.concat();
+           Data {
+               content: content,
+               mode: "".to_string(),
+               data_type: "commit".to_string(),
+               nodes: Some(vec![node_copy]),
+               file_name: "".to_string(),
+               msg: Some(msg),
+           }
+       }
+   ```
+
+   ```
+   测试用例:
+   提交对象 ff11bc76cb7e488b83369a169e255fb4ca2ee328
+   解压后的存储内容为
+   "commit 171\x00tree dcc20f823c15ba6394596b475c03d08cdc4417a0\nauthor dorname <lgqfighting@163.com> 1699193914 +0800\ncommitter dorname <lgqfighting@163.com> 1699193914 +0800\n\nfirst commit\n"
+   ```
+
+   ```rust
+   #[test]
+   fn commit_test() {
+       let blob_1 = Data::new_blob(
+           "what is up, doc?".as_bytes().to_vec(),
+           "100644".to_string(),
+           "blob".to_string(),
+           "test.txt".to_string(),
+       );
+       let blob_2 = Data::new_blob(
+           "test".as_bytes().to_vec(),
+           "100644".to_string(),
+           "blob".to_string(),
+           "demo.txt".to_string(),
+       );
+       let tree = Data::new_tree(
+           "40000".to_string(),
+           "tree".to_string(),
+           vec![blob_2, blob_1],
+       );
+       let commit = Data::new_commit("first commit".to_string(), tree);
+       assert_eq!(
+           encode::sha_1(commit.content),
+           "ff11bc76cb7e488b83369a169e255fb4ca2ee328".to_string()
+       );
+   }
+   ```
+
+#### 读取Git对象存储内容
+
+准备测试用例
+
+```
+文件:demo.txt 内容:test hash:30d74d258442c7c65512eafab474568dd706c430
+文件:test.txt 内容:what is up, doc? hash:bd9dbf5aae1a3862dd1526723246b20206e5fc37
+对应blob对象文件地址
+.git/objects/30/d74d258442c7c65512eafab474568dd706c430
+.git/objects/bd/9dbf5aae1a3862dd1526723246b20206e5fc37
+对应tree对象文件地址
+.git/objects/dc/c20f823c15ba6394596b475c03d08cdc4417a0
+对应commit对象地址
+.git/objects/ff/11bc76cb7e488b83369a169e255fb4ca2ee328
+```
+
+存储内容解压方法:树对象的解压是比较坑的因为hash值必须得二次解析,blob和commit对象可以使用同样的方法解
+
+```rust
+pub fn decode_reader(bytes: &[u8]) -> io::Result<String> {
+    let mut z = ZlibDecoder::new(bytes);
+    let mut s = String::new();
+    z.read_to_string(&mut s)?;
+    Ok(s)
+}
+
+pub fn decode_tree(bytes: &[u8]) -> io::Result<String> {
+    let mut z = ZlibDecoder::new(bytes);
+    let mut vector = Vec::<u8>::new();
+    z.read_to_end(&mut vector)?;
+    let type_data_index = vector.find_byte(0x00).unwrap();
+
+        let mut obj_data_arr: Vec<u8> = vector.drain(type_data_index + 1..).collect();
+        let mut type_data = vector.as_bstr().to_string();
+        type_data+="\n";
+        while let Some(index) = obj_data_arr.find_byte(0x00) {
+            type_data+=&format!("子对象：{} ",&obj_data_arr[..index].as_bstr());
+            type_data+=&format!("Hash: {}\n",hex::encode(&obj_data_arr[index + 1..index + 21]));
+            obj_data_arr.drain(..index + 21);
+        }
+    Ok(type_data)
+}
+```
+
+单元测试
+
+```rust
+
+#[test]
+fn blob_test(){
+    use std::fs;
+    use std::fs::File;
+    let tree_object_file: Vec<u8> =
+        fs::read("/project/git_lab/src/testfile/30/d74d258442c7c65512eafab474568dd706c430")
+            .expect("文件读取成功");
+    let content_byte = decode_reader(&tree_object_file[..]).unwrap();
+    println!("{}", content_byte);
+}
+//blob 4test
+#[test]
+fn tree_test() {
+    use std::fs;
+    use std::fs::File;
+    let tree_object_file: Vec<u8> =
+        fs::read("/project/git_lab/src/testfile/dc/c20f823c15ba6394596b475c03d08cdc4417a0")
+            .expect("文件读取成功");
+    let content_byte = decode_tree(&tree_object_file[..]).unwrap();
+    println!("{}", content_byte);
+}
+//output
+//tree 72
+//子对象：100644 demo.txt Hash: 30d74d258442c7c65512eafab474568dd706c430
+//子对象：100644 test.txt Hash: bd9dbf5aae1a3862dd1526723246b20206e5fc37
+
+#[test]
+fn commit_test(){
+    use std::fs;
+    use std::fs::File;
+    let tree_object_file: Vec<u8> =
+        fs::read("/project/git_lab/src/testfile/ff/11bc76cb7e488b83369a169e255fb4ca2ee328")
+            .expect("文件读取成功");
+    let content_byte = decode_reader(&tree_object_file[..]).unwrap();
+    println!("{}", content_byte);
+}
+//commit 171tree dcc20f823c15ba6394596b475c03d08cdc4417a0
+//author dorname <lgqfighting@163.com> 1699193914 +0800
+//committer dorname <lgqfighting@163.com> 1699193914 +0800
+```
 
 ## Git引用
 
