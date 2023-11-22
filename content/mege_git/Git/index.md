@@ -1,5 +1,5 @@
 ---
-title: git原理
+title: Git对象及其存储结构
 date: 2023-11-03
 extra:
     image: ../git.png
@@ -10,7 +10,7 @@ taxonomies:
     - liguangqiao  
 ---
 
-# **Git原理学习**
+# **Git对象及其存储结构**
 
 ## Git对象
 
