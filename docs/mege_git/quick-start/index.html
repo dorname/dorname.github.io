@@ -2,7 +2,7 @@
 <html>
   <head>
     
-    <title>Keep learning and trying - tags</title>
+    <title>Mega Quick Start Guide on Ubuntu 22.04 | Keep learning and trying</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -769,140 +769,140 @@
     </nav>
     <main class="container mx-auto my-5">
       
-  <h1>标签主题</h1>
+  <h1>Mega Quick Start Guide on Ubuntu 22.04</h1>
+  <p class="text-muted">
+    
   
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;blockchain&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      blockchain
-      <span class="badge bg-secondary">4</span>
-    </a>
   
+    
     <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;c&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      c++
-      <span class="badge bg-secondary">1</span>
-    </a>
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  28&#x2F;11&#x2F;2023
+
+  </p>
   
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;database&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      DataBase
-      <span class="badge bg-secondary">2</span>
-    </a>
+  <p>
+    
+      <a
+        href="https://dorname.github.io/tags/rust/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        rust
+      </a>
+    
+      <a
+        href="https://dorname.github.io/tags/git/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        git
+      </a>
+    
+  </p>
   
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;dioxus&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      dioxus
-      <span class="badge bg-secondary">1</span>
-    </a>
+  <div class="content">
+    <h1 id="quick-started-for-developing-and-testing-on-ubuntu-22-04">Quick Started for developing and testing on Ubuntu(22.04)</h1>
+<h2 id="install-rust-on-your-ubuntu-machine">Install Rust on your Ubuntu machine.</h2>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>TODO 按照Rust
+</span></code></pre>
+<h2 id="clone-mega-repository-and-build-it">Clone mega repository and build it.</h2>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>git clone https://github.com/web3infra-foundation/mega.git
+</span><span>cd mega
+</span><span>cargo build
+</span></code></pre>
+<h2 id="install-postgresql-and-init-database">Install PostgreSQL and init database.</h2>
+<ol>
+<li>
+<p>install PostgreSQL</p>
+</li>
+<li>
+<p>create database,then find the dump file in the SQL directory of the Mega repository and import it into the database.</p>
+</li>
+<li>
+<p>Create user and grant privileges.</p>
+</li>
+<li>
+<p>Install redis.</p>
+</li>
+<li>
+<p>Config environment variables for local test. For local testing, Mega uses the .env file to configure the required parameters. However, before starting the project, you also need to configure the environment variables such as <code>DB_USERNAME</code>, <code>DB_SECRET</code>, and <code>DB_HOST</code>.</p>
+</li>
+<li>
+<p>init the Mega</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cd mega
+</span><span>cargo run init
+</span></code></pre>
+</li>
+<li>
+<p>Start the Mega server for tesing</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cargo run https
+</span></code></pre>
+</li>
+<li>
+<p>Test the <code>git push</code> and <code>git clone</code></p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cd mega
+</span><span>git remote add local http://localhost:8000/projects/mega.git
+</span><span>git push local main
+</span><span>cd / &amp;&amp; mkdir temp_git
+</span><span>cd temp_git
+</span><span>git clone http://localhost:8000/projects/mega.git
+</span></code></pre>
+</li>
+</ol>
+
+  </div>
   
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;extjs&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      ExtJs
-      <span class="badge bg-secondary">2</span>
-    </a>
+    
   
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;git&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      git
-      <span class="badge bg-secondary">3</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;hashmap&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      hashMap
-      <span class="badge bg-secondary">1</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;js&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      js
-      <span class="badge bg-secondary">7</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;memory-leak&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      Memory leak
-      <span class="badge bg-secondary">1</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;mysql&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      MySql
-      <span class="badge bg-secondary">1</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;one-mind&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      One Mind
-      <span class="badge bg-secondary">1</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;pbft&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      pbft
-      <span class="badge bg-secondary">1</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;rust&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      Rust
-      <span class="badge bg-secondary">16</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;tauri&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      tauri
-      <span class="badge bg-secondary">1</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;webssembly&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      Webssembly
-      <span class="badge bg-secondary">2</span>
-    </a>
-  
-    <a
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;yew&#x2F;"
-      class="btn btn-primary m-2"
-    >
-      yew
-      <span class="badge bg-secondary">1</span>
-    </a>
+  <div class="card my-5">
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center">
+        
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;harry.jpg"
+    class="img-fluid m-auto d-block rounded-circle"
+    alt="Li Guangqiao"
+  />
+
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a
+              class="text-decoration-none text-reset"
+              href="https://dorname.github.io/authors/liguangqiao/"
+            >Li Guangqiao</a>
+          </h5>
+          <p class="card-text"><p>一个正在转rust的ExtJs前端工程师。迷信rust的整体发展，十分相信rust在各个领域都能发光发热，至少目前rust在很多领域上验证了其安全性、易维护性。但说实话对于我这种菜鸡也是真的难上手哈哈哈~~。
+思路总结：</p>
+<ul>
+<li>万物诞生都会有一个需求来源，每一个改变都是为了解决某个问题，最后应该考虑如何去做</li>
+<li>学会掌握一些宏观的知识和理论：系统论、还原论</li>
+<li>工程化思想，如何描述整体，从整体架构到模块关联等
+故学习东西应该像看地图一样，先看整体了解整体的结构，然后再聚焦每一个模块，对于模块的学习，思考三个问题，“是什么？”、“为什么？”、“怎么做？”；那么设计一个东西时也应该去考虑整体性和关联性。</li>
+</ul>
+<p>有关于未来的发展，以下是鄙人的粗浅的观点：</p>
+<ul>
+<li>编程语言未来应该是每个人必备的工具</li>
+<li>未来的交互方式应该会以语言交互为主流</li>
+<li>下一个去中心化的技术方案出来之前，区块链依然是web3建立价值体系的基础技术方案，如何将现实价值和虚拟价值联通是进入数字世界的一个大难题。</li>
+<li>未来注定是AI的世界。AI的进化会伴随绝大部分人的退化，届时除了尖端人才，人们学习的重心会放在何处？</li>
+</ul>
+</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   
 
     </main>
     
-    
+  
+
     
     <footer class="
       mt-auto p-5

@@ -68,6 +68,9 @@
         <loc>https://dorname.github.io/authors/liguangqiao/page/6/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/authors/liguangqiao/page/7/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/blockchain/</loc>
     </url>
     <url>
@@ -135,6 +138,10 @@
     </url>
     <url>
         <loc>https://dorname.github.io/mege_git/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/mege_git/quick-start/</loc>
+        <lastmod>2023-11-28</lastmod>
     </url>
     <url>
         <loc>https://dorname.github.io/rust/</loc>
@@ -270,6 +277,9 @@
     </url>
     <url>
         <loc>https://dorname.github.io/tags/rust/page/3/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/rust/page/4/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/tauri/</loc>
