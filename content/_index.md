@@ -16,12 +16,12 @@ extra:
       end: 4
       type: horizontal
       title: 分布式Git项目Mega
-  - - section: blockchain
+  - - section: js_learning
       size: 12 
       start: 0
       end: 12
       type: vertical
-      title: 区块链
+      title: js相关博客
       row: 4
   # - - section: articles
   #     size: 6
@@ -56,12 +56,12 @@ extra:
       end: 14
       type: carousel
       title: 杂活博客
-    - section: js_learning
+    - section: blockchain
       size: 8
       start: 0
       end: 14
       type: overlay 
-      title: js相关博客
+      title: 区块链
       rows:
        - 3
        - 4
