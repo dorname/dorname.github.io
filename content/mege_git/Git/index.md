@@ -601,34 +601,6 @@ fn commit_test(){
 //committer dorname <lgqfighting@163.com> 1699193914 +0800
 ```
 
-## Git引用
-
-TODO
-
-## 包文件
-
-TODO
-
-## 引用规范
-
-TODO
-
-## 传输协议
-
-TODO
-
-## 维护与数据恢复
-
-TODO
-
-## 环境变量
-
-TODO
-
-## 总结
-
-TODO
-
 
 
 

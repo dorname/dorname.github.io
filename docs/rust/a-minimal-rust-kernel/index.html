@@ -2,7 +2,7 @@
 <html>
   <head>
     
-    <title>走读Writing an OS in Rust实验（二） | Keep learning and trying</title>
+    <title>走读Writing an OS in Rust实验（三） | Keep learning and trying</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -769,7 +769,7 @@
     </nav>
     <main class="container mx-auto my-5">
       
-  <h1>走读Writing an OS in Rust实验（二）</h1>
+  <h1>走读Writing an OS in Rust实验（三）</h1>
   <p class="text-muted">
     
   
@@ -781,7 +781,7 @@
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  02&#x2F;12&#x2F;2023
+  05&#x2F;12&#x2F;2023
 
   </p>
   
@@ -797,120 +797,19 @@
   </p>
   
   <div class="content">
-    <h1 id="du-li-shi-ke-zhi-xing-cheng-xu">独立式可执行程序</h1>
+    <h1 id="zui-xiao-rustnei-he">最小Rust内核</h1>
 <p>（<a href="https://os.phil-opp.com/zh-CN/freestanding-rust-binary/#jin-yong-zhan-zhan-kai">参考自作者phil的官方博客</a>）</p>
-<p>为了用 Rust 编写一个操作系统内核，我们需要创建一个独立于操作系统的可执行程序。这样的可执行程序常被称作<strong>独立式可执行程序</strong>（freestanding executable）或<strong>裸机程序</strong>(bare-metal executable)。</p>
-<p>构建裸机程序主要需要五步：</p>
-<ol>
-<li>禁用标准库</li>
-<li>重新实现<code>panic</code>处理函数</li>
-<li>禁用栈展开（事实上重写程序入口）</li>
-<li>重写程序入口</li>
-<li>编译成裸机目标</li>
-</ol>
-<h2 id="jin-yong-biao-zhun-ku">禁用标准库</h2>
-<p>目标：断开与标准库的链接，使用核心库脱离操作系统绑定</p>
-<p><code>#![no_std]</code>添加到程序可以断开与标准库的链接</p>
-<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#![</span><span style="color:#bf616a;">no_std</span><span>]
-</span><span>
-</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
-</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Hello, world!</span><span>&quot;);
-</span><span>}
-</span></code></pre>
-<p><code>cargo build</code>验证</p>
-<ol>
-<li>发现<code>println!</code>宏已经找不到了。</li>
-</ol>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>error: cannot find macro `println` in this scope
-</span><span> --&gt; src/main.rs:4:5
-</span><span>  |
-</span><span>4 |     println!(&quot;Hello, world!&quot;);
-</span><span>  |     ^^^^^^^
-</span><span>
-</span><span>error: `#[panic_handler]` function required, but not found
-</span><span>
-</span><span>error: language item required, but not found: `eh_personality`
-</span></code></pre>
-<ol start="2">
-<li>去掉<code>println!(&quot;Hello, world!&quot;);</code>后重新build</li>
-</ol>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>error: `#[panic_handler]` function required, but not found
-</span><span>
-</span><span>error: language item required, but not found: `eh_personality`
-</span></code></pre>
-<h2 id="shi-xian-panicchu-li-han-shu">实现panic处理函数</h2>
-<p>目标：解决恐慌处理器函数缺失错误</p>
-<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>core::panic::PanicInfo;
-</span><span>
-</span><span style="color:#65737e;">/// 这个函数将在 panic 时被调用
-</span><span>#[</span><span style="color:#bf616a;">panic_handler</span><span>]
-</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">panic</span><span>(</span><span style="color:#bf616a;">_info</span><span>: &amp;PanicInfo) -&gt; ! {
-</span><span>    </span><span style="color:#b48ead;">loop </span><span>{}
-</span><span>}
-</span></code></pre>
-<p><code>cargo build</code>验证</p>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>error: language item required, but not found: `eh_personality`
-</span></code></pre>
-<p><strong>注意： eh_personality 语言项</strong></p>
-<p>语言项是一些编译器需求的特殊函数或类型。举例来说，Rust 的 <a href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html">Copy</a> trait 是一个这样的语言项，告诉编译器哪些类型需要遵循<strong>复制语义</strong>（<a href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html">copy semantics</a>）——当我们查找 <code>Copy</code> trait 的<a href="https://github.com/rust-lang/rust/blob/485397e49a02a3b7ff77c17e4a3f16c653925cb3/src/libcore/marker.rs#L296-L299">实现</a>时，我们会发现，一个特殊的 <code>#[lang = &quot;copy&quot;]</code> 属性将它定义为了一个语言项，达到与编译器联系的目的。</p>
-<p>我们可以自己实现语言项，但这是下下策：目前来看，语言项是高度不稳定的语言细节实现，它们不会经过编译期类型检查（所以编译器甚至不确保它们的参数类型是否正确）。幸运的是，我们有更稳定的方式，来修复上面的语言项错误。</p>
-<p><code>eh_personality</code> 语言项标记的函数，将被用于实现<strong>栈展开</strong>（<a href="https://www.bogotobogo.com/cplusplus/stackunwinding.php">stack unwinding</a>）。在使用标准库的情况下，当 panic 发生时，Rust 将使用栈展开，来运行在栈上所有活跃的变量的<strong>析构函数</strong>（destructor）——这确保了所有使用的内存都被释放，允许调用程序的<strong>父进程</strong>（parent thread）捕获 panic，处理并继续运行。但是，栈展开是一个复杂的过程，如 Linux 的 <a href="https://www.nongnu.org/libunwind/">libunwind</a> 或 Windows 的<strong>结构化异常处理</strong>（<a href="https://docs.microsoft.com/en-us/windows/win32/debug/structured-exception-handling">structured exception handling, SEH</a>），通常需要依赖于操作系统的库；所以我们不在自己编写的操作系统中使用它。</p>
-<h2 id="jin-yong-zhan-zhan-kai">禁用栈展开</h2>
-<p>目标：解决语言项找不到的问题</p>
-<p><code>Cagro.toml</code>文件添加配置项禁用panic的栈展开（包含开发环境和发布版本）</p>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[profile.dev]
-</span><span>panic = &quot;abort&quot;
-</span><span>
-</span><span>[profile.release]
-</span><span>panic = &quot;abort&quot;
-</span></code></pre>
-<p><code>cargo build</code>验证，已没有语言项的提示</p>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>error: requires `start` lang_item
-</span></code></pre>
-<p>显示缺少start语言项</p>
-<h2 id="zhong-xie-cheng-xu-ru-kou">重写程序入口</h2>
-<p>目标：解决start语言项缺少问题</p>
-<p>处理方案：不使用预定义的入口（<code>main</code>），重新编写一个函数作为操作系统入口</p>
-<p><code>#![no_main]</code>属性可以禁用预定入口，此时main函数已经可以安全删除</p>
-<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#![</span><span style="color:#bf616a;">no_std</span><span>]
-</span><span>#![</span><span style="color:#bf616a;">no_main</span><span>]
-</span><span>
-</span><span style="color:#b48ead;">use </span><span>core::panic::PanicInfo;
-</span><span>
-</span><span style="color:#65737e;">/// 这个函数将在 panic 时被调用
-</span><span>#[</span><span style="color:#bf616a;">panic_handler</span><span>]
-</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">panic</span><span>(</span><span style="color:#bf616a;">_info</span><span>: &amp;PanicInfo) -&gt; ! {
-</span><span>    </span><span style="color:#b48ead;">loop </span><span>{}
-</span><span>}
-</span></code></pre>
-<p>重新编写一个函数<code>_start</code></p>
-<p><strong>注意：函数名为 <code>_start</code> ，是因为大多数系统默认使用这个名字作为入口点名称</strong></p>
-<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">no_mangle</span><span>]
-</span><span style="color:#b48ead;">pub extern </span><span>&quot;</span><span style="color:#a3be8c;">C</span><span>&quot; </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">_start</span><span>() -&gt; ! {
-</span><span>    </span><span style="color:#b48ead;">loop </span><span>{}
-</span><span>}
-</span></code></pre>
-<p><code>_start</code>作为操作系统入口需要注意3点：</p>
-<ol>
-<li>确保Rust编译器正确输出一个名字为_start的函数，<code>#[no_mangle]</code>标记的作用是<strong>禁用名称重整</strong>——这确保Rust编译器输出一个名为<code>_start</code>的函数；否则，编译器可能最终生成名为<code>_ZN3blog_os4_start7hb173fedf945531caE</code>的函数，无法让链接器正确识别。</li>
-<li>函数标记为<code>extern &quot;C&quot;</code>，告诉编译器这个函数应当使用C语言的调用约定。而不是Rust语言的调用约定。</li>
-<li>设置返回值类型为永不返回类型。在 Rust 中，<code>!</code> 表示一个特殊的类型，称为 &quot;never&quot; 类型。这个类型表示一个永远不会返回的表达式或函数。通常，<code>!</code> 类型用于表示 panic 或者无限循环等永远不会正常结束的操作。 这是必需的，因为入口点不由任何函数调用，而是由操作系统或引导加载程序直接调用。 因此，入口点不应返回，而应调用一些特殊函数，例如操作系统的退出系统函数。 在我们的例子中，这函数中实现关闭机器可能是一个合理的操作，因为如果独立的二进制文件返回，则没有什么可做的。 现在，我们通过无限循环来满足要求。</li>
-</ol>
-<p><code>cargo build</code>验证</p>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>error: linking with `cc` failed: exit status: 1
-</span></code></pre>
-<h2 id="bian-yi-cheng-luo-ji-mu-biao">编译成裸机目标</h2>
-<p>目标：编译成裸机可执行程序</p>
-<p>编译前首先需要待解决链接器错误。链接器是将生成的代码组合成可执行文件的程序。 由于 Linux、Windows 和 macOS 之间的可执行格式不同，因此每个系统都有自己的链接器，会引发不同的错误。 错误的根本原因是相同的：链接器的默认配置假设我们的程序依赖于 C 运行时，但事实并非如此。 为了解决这些错误，我们需要告诉链接器它不应该包含 C 运行时。 我们可以通过将一组特定的参数传递给链接器或构建裸机目标来做到这一点。</p>
-<p>我是基于linux的，故仅仅介绍linux的编译参数</p>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cargo rustc -- -C link-arg=-nostartfiles
-</span></code></pre>
-<p>​	这条命令使用了 <code>cargo</code> 命令来调用 <code>rustc</code> 编译器，并传递了一些额外的参数给编译器。让我们逐步解释这个命令：</p>
-<ol>
-<li><strong><code>cargo rustc</code>：</strong> 这部分使用 <code>cargo</code> 工具来调用 Rust 编译器 <code>rustc</code>。<code>cargo rustc</code> 命令允许你向底层的 Rust 编译器传递额外的参数。</li>
-<li><strong><code>--</code>：</strong> 这是一个分隔符，表示 <code>cargo</code> 命令的选项结束，后面的内容应该传递给底层的编译器。在这种情况下，<code>--</code> 之后的内容将被传递给 <code>rustc</code>。</li>
-<li><strong><code>-C link-arg=-nostartfiles</code>：</strong> 这是传递给 <code>rustc</code> 的具体参数。这个参数告诉编译器在链接阶段使用 <code>-nostartfiles</code> 选项。<code>-nostartfiles</code> 是告诉链接器不使用标准的启动文件（start files）的选项。启动文件通常包含了程序启动前的初始化代码，现在sWs要禁用这些初始化。</li>
-</ol>
+<h2 id="qi-dong-jin-cheng">启动进程</h2>
+<ul>
+<li>
+<p>计算机开机时，它开始执行存储在主板 ROM 中的固件代码。 <strong>启动进程</strong>执行加电自检、检测可用 RAM 并预初始化 CPU 和硬件。 然后，它会查找可启动磁盘并开始启动操作系统内核。</p>
+</li>
+<li>
+<p>在 x86 上，有两种固件标准：“基本输入/输出系统”(BIOS) 和较新的“统一可扩展固件接口”(UEFI)。 BIOS 标准陈旧且过时，但简单且自 20 世纪 80 年代以来的任何 x86 计算机都得到良好支持。 相比之下，UEFI 更现代，具有更多功能，但设置更复杂。目前UEFI，作者已经开始支持了，详细进度去看作者的github仓库或者相关新的博客。</p>
+</li>
+</ul>
+<p><strong>启动进程的具体流程：</strong></p>
+<p>当您打开计算机时，它会从主板上的某些特殊闪存加载 BIOS。 BIOS 运行硬件的自检和初始化例程，然后查找可启动磁盘。 如果找到，控制权就会转移到其引导加载程序，这是存储在磁盘开头的 512 字节可执行代码部分。 大多数引导加载程序都大于 512 字节，因此引导加载程序通常分为较小的第一阶段（适合 512 字节）和第二阶段（随后由第一阶段加载）。 引导加载程序必须确定内核映像在磁盘上的位置并将其加载到内存中。 它还需要先将CPU从16位实模式切换到32位保护模式，然后再切换到64位长模式，其中64位寄存器和完整的主存储器都可用。 它的第三项工作是从 BIOS 查询某些信息（例如内存映射）并将其传递给操作系统内核。 编写引导加载程序有点麻烦，因为它需要汇编语言和许多非深入的步骤，例如“将这个神奇的值写入该处理器寄存器”。 因此，我们不会在本文中介绍引导加载程序的创建，而是提供一个名为 bootimage 的工具，该工具会自动将引导加载程序添加到内核中。 </p>
 
   </div>
   

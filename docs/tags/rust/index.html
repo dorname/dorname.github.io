@@ -782,6 +782,77 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;a-minimal-rust-kernel&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="走读Writing an OS in Rust实验（三）"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;a-minimal-rust-kernel&#x2F;"
+      rel="bookmark"
+      title="走读Writing an OS in Rust实验（三）"
+    ><b>走读Writing an OS in Rust实验（三）</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  05&#x2F;12&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>最小Rust内核
+（参考自作者phil的官方博客）
+启动进程
+
+
+计算机开机时，它开始执行存储在主板 ROM 中的固件代码。 启动进程执行加电自检、检测可用 RAM 并预初始化 CPU 和硬件。 然后，它会查找可启动磁盘并开始启动操作系统内核。
+
+
+在 x86 上，有两种固件标准：“基本输入&#x2F;输出系统”(BIOS) 和较新的“统一可扩展固件接口”(UEFI)。 BIOS 标准陈旧且过时，但简单且自 20 世纪 80 年代以来的任何 x86 计算机都得到良好支持。 相比之下，UEFI 更现代，具有更多功能，但设置更复杂。目前UEFI，作者已经开始支持了，详细进度去看作者的github仓库或者相关新的博客。
+
+
+启动进程的具体流程：
+当您打开计算机时，它会从主板上的某些特殊闪存加载 BIOS。 BIOS 运行硬件的自检和初始化例程，然后查找可启动磁盘。 如果找到，控制权就会转移到其引导加载程序，这是存储在磁盘开头的 512 字节可执行代码部分。 大多数引导加载程序都大于 512 字节，因此引导加载程序通常分为较小的第一阶段（适合 512 字节）和第二阶段（随后由第一阶段加载）。 引导加载程序必须确定内核映像在磁盘上的位置并将其加载到内存中。 它还需要先将CPU从16位实模式切换到32位保护模式，然后再切换到64位长模式，其中64位寄存器和完整的主存储器都可用。 它的第三项工作是从 BIOS 查询某些信息（例如内存映射）并将其传递给操作系统内核。 编写引导加载程序有点麻烦，因为它需要汇编语言和许多非深入的步骤，例如“将这个神奇的值写入该处理器寄存器”。 因此，我们不会在本文中介绍引导加载程序的创建，而是提供一个名为 bootimage 的工具，该工具会自动将引导加载程序添加到内核中。 
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;os-no-standard&#x2F;..&#x2F;rust.jpg"
     class="img-fluid m-auto d-block "
     alt="走读Writing an OS in Rust实验（二）"
@@ -1238,89 +1309,6 @@ TODO
   <p class="card-text text-muted">
     
       <small>...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;iter-closures&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust学习(五)迭代器和闭包"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;iter-closures&#x2F;"
-      rel="bookmark"
-      title="rust学习(五)迭代器和闭包"
-    ><b>rust学习(五)迭代器和闭包</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  16&#x2F;07&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>函数式编程
-Rust不像其他面向对象编程语言那样喜欢通过类来解决问题，而是推崇函数式编程。
-什么是函数式编程
-函数式编程是指将函数作为参数值或其他函数的返回值，在将函数赋值给变量之后执行。其中函数式编程的两个重要构件，分别是闭包和迭代器。
-闭包
-闭包是一种可以保存变量或者作为参数传递给其他函数使用的匿名函数。闭包可以在一处创建，然后在不同的上下文中执行。与普通函数不同，闭包允许捕获调用者作用域中的值，闭包特别适合用来定义那些只使用一次的函数。
-&#x2F;&#x2F;伪代码
-&#x2F;&#x2F;定义普通函数
-fn func_name(func_parameter) -&amp;gt; func_return_type{
-    code_body;
-    return_type
-}
-
-&#x2F;&#x2F;定义闭包
-|func_parameter| {
-    code_body;
-    return_value
-}
-
-注意：
-闭包也可能没有参数，同时返回值也可写可不写。Rust会自动推断闭包的参数类型和返回值类型，所以参数和返回值类型都可以不写。为了使用闭包，只需要将其赋值给变量，然后像调用函数一样调用它即可。
-   let count = |x:i32|-&amp;gt;i32 {
-        x+1
-    };
-    let num = 3;
-   ...</small>
     
   </p>
 

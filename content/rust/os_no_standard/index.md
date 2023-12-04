@@ -172,4 +172,4 @@ cargo rustc -- -C link-arg=-nostartfiles
 
 1. **`cargo rustc`：** 这部分使用 `cargo` 工具来调用 Rust 编译器 `rustc`。`cargo rustc` 命令允许你向底层的 Rust 编译器传递额外的参数。
 2. **`--`：** 这是一个分隔符，表示 `cargo` 命令的选项结束，后面的内容应该传递给底层的编译器。在这种情况下，`--` 之后的内容将被传递给 `rustc`。
-3. **`-C link-arg=-nostartfiles`：** 这是传递给 `rustc` 的具体参数。这个参数告诉编译器在链接阶段使用 `-nostartfiles` 选项。`-nostartfiles` 是告诉链接器不使用标准的启动文件（start files）的选项。启动文件通常包含了程序启动前的初始化代码，现在要禁用这些初始化。
+3. **`-C link-arg=-nostartfiles`：** 这是传递给 `rustc` 的具体参数。这个参数告诉编译器在链接阶段使用 `-nostartfiles` 选项。`-nostartfiles` 是告诉链接器不使用标准的启动文件（start files）的选项。启动文件通常包含了程序启动前的初始化代码，现在sWs要禁用这些初始化。
