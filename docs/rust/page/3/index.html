@@ -2,9 +2,7 @@
 <html>
   <head>
     
-    <title>
-	Keep learning and trying - authors: liguangqiao
-</title>
+    <title>Keep learning and trying</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -773,46 +771,11 @@
       
   
   
-  <div class="card my-5">
-    <div class="row g-0">
-      <div class="col-md-4 d-flex align-items-center">
-        
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;harry.jpg"
-    class="img-fluid m-auto d-block rounded-circle"
-    alt="Li Guangqiao"
-  />
-
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">
-            <a
-              class="text-decoration-none text-reset"
-              href="https://dorname.github.io/authors/liguangqiao/"
-            >Li Guangqiao</a>
-          </h5>
-          <p class="card-text"><p>一个正在转rust的ExtJs前端工程师。迷信rust的整体发展，十分相信rust在各个领域都能发光发热，至少目前rust在很多领域上验证了其安全性、易维护性。但说实话对于我这种菜鸡也是真的难上手哈哈哈~~。
-思路总结：</p>
-<ul>
-<li>万物诞生都会有一个需求来源，每一个改变都是为了解决某个问题，最后应该考虑如何去做</li>
-<li>学会掌握一些宏观的知识和理论：系统论、还原论</li>
-<li>工程化思想，如何描述整体，从整体架构到模块关联等
-故学习东西应该像看地图一样，先看整体了解整体的结构，然后再聚焦每一个模块，对于模块的学习，思考三个问题，“是什么？”、“为什么？”、“怎么做？”；那么设计一个东西时也应该去考虑整体性和关联性。</li>
-</ul>
-<p>有关于未来的发展，以下是鄙人的粗浅的观点：</p>
-<ul>
-<li>编程语言未来应该是每个人必备的工具</li>
-<li>未来的交互方式应该会以语言交互为主流</li>
-<li>下一个去中心化的技术方案出来之前，区块链依然是web3建立价值体系的基础技术方案，如何将现实价值和虚拟价值联通是进入数字世界的一个大难题。</li>
-<li>未来注定是AI的世界。AI的进化会伴随绝大部分人的退化，届时除了尖端人才，人们学习的重心会放在何处？</li>
-</ul>
-</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  
+    <h1 class="px-3">rust学习</h1>
+  
+  
+  
 	
     
   
@@ -823,9 +786,9 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;ownership&#x2F;..&#x2F;rust.jpg"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;exercism-clock&#x2F;..&#x2F;rust.jpg"
     class="img-fluid m-auto d-block "
-    alt="rust学习(二)所有权和生命周期"
+    alt="exercism——clock"
   />
 
         </div>
@@ -835,10 +798,10 @@
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;ownership&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;exercism-clock&#x2F;"
       rel="bookmark"
-      title="rust学习(二)所有权和生命周期"
-    ><b>rust学习(二)所有权和生命周期</b></a>
+      title="exercism——clock"
+    ><b>exercism——clock</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -852,165 +815,7 @@
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  15&#x2F;07&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>Rust所有权机制
-Rust语言引入所有权机制的目标
-主要为解决复杂系统中的资源管理和悬吊引用问题。
-所有权系统是Rust中用于管理内存的手段。
-所有权规则总结归纳：
-
-每个值（变量）都有一个所有者
-值在任意时刻都只有一个所有者
-当所有离开作用域时，其值将被丢弃(相当于执行垃圾回收)
-
-结论：Rust的值被唯一的对象管理着，一旦不使用，内存就会立刻释放。
-所有权简单实验
-
-
-借用
-let x = String::from(&amp;quot;hello&amp;quot;);
-let y = &amp;amp;x;
-
-
-
-克隆
-let x = 10;
-let y = x;
-println!(&amp;quot;测试通过{x},{y}&amp;quot;);
-&#x2F;&#x2F;测试通过10，10
-let a = &amp;quot;hello&amp;quot;;
-let b = a;
-println!(&amp;quot;测试通过{x},{y}&amp;quot;);
-let c = (1,2 as f64,&amp;quot;hello&amp;quot;);
-let d = c;
-println!(&amp;quot;测试:{:?},{:?}&amp;quot;,c,d);
-let g = d.clone();
-
-
-
-生命周期
-静态生命周期***&#x27;static和动态生命周期&#x27;a***
-静态生命周期在整个程序中期间存活
-动态生命周期，相关参数的生命周期以相对长生命周期的引用为准
-fn lifetime_test_one() -&amp;gt; &amp;amp;String{
-        let x= &amp;quot;hello&amp;quot;.to_string();
-       ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-9-reflection-proxy&#x2F;..&#x2F;js_logo.png"
-    class="img-fluid m-auto d-block "
-    alt="js学习笔记(9)——反射和代理"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-9-reflection-proxy&#x2F;"
-      rel="bookmark"
-      title="js学习笔记(9)——反射和代理"
-    ><b>js学习笔记(9)——反射和代理</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  27&#x2F;06&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>todo
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;hashmap&#x2F;hash.jpg"
-    class="img-fluid m-auto d-block "
-    alt="hashMap"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;hashmap&#x2F;"
-      rel="bookmark"
-      title="hashMap"
-    ><b>hashMap</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  17&#x2F;06&#x2F;2023
+  13&#x2F;05&#x2F;2023
 
     </small>
   </p>
@@ -1020,212 +825,6 @@ fn lifetime_test_one() -&amp;gt; &amp;amp;String{
   <p class="card-text text-muted">
     
       <small>...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;consensus&#x2F;..&#x2F;blockchain_one.jpg"
-    class="img-fluid m-auto d-block "
-    alt="拜占庭问题"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;consensus&#x2F;"
-      rel="bookmark"
-      title="拜占庭问题"
-    ><b>拜占庭问题</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  30&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>简述
-这种情况可以抽象地表达为一群拜占庭军队的将军和他们的军队驻扎在敌人的城市周围。因此，在一个叛徒面前，没有解决三个将军的办法，将军们只能通过信使交流，必须商定一个共同的作战计划。然而，其中一个或多个可能是叛徒，他们会试图混淆其他人。问题是找到一种算法来确保忠诚的将军们达成一致。研究表明，仅使用口头信息，这个问题是可以解决的，当且仅当超过三分之二的将军是忠诚的;所以一个叛徒可以迷惑两个忠诚的将军。有了不可伪造的文字信息，这个问题对任何数量的将军和可能的叛徒来说都是可以解决的。然后讨论了这些解决方案在可靠计算机系统中的应用。
-解决目标问题
-可靠的计算机系统必须处理故障部件，这些部件向系统的不同部分提供相互冲突的信息。
-即解决冲突信息，思想仍然是少数服从多数。
-目标
-找到一种合适的算法确保忠诚的将军能达到意见一致
-达到目标的条件
-
-A  所有忠诚的将军都决定同样的行动计划。
-B  一小撮叛徒不能使忠诚的将军们采纳一个坏计划。
-
-描述：条件B很难形式化，因为它要求准确地说出什么是糟糕的计划，而我们并不打算这样做。相反，我们考虑将军们如何做出决定。每个将军都观察敌人，并把他的观察结果传达给其他人。设v(i)为第i个将军传达的信息。每个一般使用一些方法来组合值v (1) .....V (n)变成一个单独的行动计划，其中n是将军的数目。条件A是通过让所有将军使用相同的方法来组合信息来实现的，条件B是通过使用一种鲁棒方法来实现的。例如，如果要做的唯一决定是进攻还是撤退，那么v(i)就是i将军的意见，即哪个选择是最好的，而最终的决定可以基于他们中的大多数人的投票。只有当忠诚的将军们在两种可能性中几乎平分，少数卖国贼才能影响决策，在这种情况下，任何一个决定都不能被称为坏决定。虽然这种方法可能不是满足条件A和B的唯一方法，但它是我们所知道的唯一方法。它采用了一种方法，将军们通过这种方法互相交流他们的价值观v (i)。显而易见的方法是第i个将军通过信使发送v (i)给对方将军。但是，这是行不通的，因为满足条件A要求每个忠诚的将军获得相同的值v(1) .....V (n)，一个叛国的将军可能会给不同的将军发送不同的值。要满足条件A，下列条件必须成立
-
-
-每个忠诚的将军必须获得相同的信息v (1) ....v (n)。
-条件1意味着将军不能使用直接从第i将军获得的值v(i)，因为叛变的第i将军可以将不同的值发送给不同的将军。这意味着，除非我们小心，在满足条件1的情况下，我们可能引入一种可能性，即将军使用的v (i)值与第i个将军发送的值不同——即使第i个将军是忠诚的。如果满足条件B，我们绝不允许这种情况发生。例如，我们不能允许少数卖国贼使洛亚将军以“撤退”的价值作决定，……如果每一个忠诚的将军都派人去“进攻”的话。因此，我们对每个i都有以下要求
-
-
-如果第i个将军是忠诚的，那么他发送的值必须被每个忠诚的将军用作***v (i)***的值。
-
-
-我们可以将条件I重写为条件对于每一个I(无论第I个将军是否忠诚)：1”.任何两个忠诚的将军使用相同的***v(i)***值。
-条件1&#x27;和2都是第i个将军发送的单个值的条件。因此，我们可以把我们的考虑限制在一个将军如何将他的价值传递给其他将军的问题上。我们用一个指挥将军向他的副官们发出命令的方式来描述这个问题。
-最终拜占庭将军的问题变成下面这样一个命题
-一个将军必须向他的n - 1个中将发出这样的命令
-对于命令的要求：
-
-
-IC1 所有忠诚的中尉都服从同一命令
-
-
-IC2 如果指挥官是忠诚的，那么每个忠诚的中尉都会服从他的命令。
-条件IC1和IC2称为交互一致性条件。注意，如果指挥官是忠诚的，IC1就会跟着IC2。然而，指挥官不需要忠诚。为了解决我们最初的问题，第i个将军通过使用拜占庭将军问题的解发送他的***v(i)值命令“使用v(i)***作为我的值”，其他将军作为副手。
-
-
-不可能的结果
-拜占庭将军问题看似简单。令人惊讶的事实表明，如果将军们只能发出口头信息，那么除非超过三分之二的将军是忠诚的，否则任何解决方案都不会奏效。特别是，在只有三个将军的情况下，在一个叛徒面前，任何解决方案都不可能奏效。口头信息的内容完全在发送者的控制之下，所以一个叛逆的发送者可以传递任何可能的信息。**这样的消息与计算机通常相互发送的消息类型相对应。在第4节中，我们考虑了签名的、书面的消息，但这是不正确的。（Such a message corresponds to the type of message that computers normally send to one another. In Section 4 we consider signed, written messages, for which this is not true....</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust连接mysql建表测试"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;"
-      rel="bookmark"
-      title="rust连接mysql建表测试"
-    ><b>rust连接mysql建表测试</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  29&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>rust连接mysql建表测试
-前期准备
-
-
-创建一个新的Rust项目
-cargo new web_server_demo
-
-
-
-修改Cargo.toml
-
-添加actix-web依赖，快速构建接口服务。
-添加mysql依赖，连接&#x2F;操作mysql数据库。
-添加serde库依赖，用来序列化结构体实例。
-
-[dependencies]
-actix-web = &amp;quot;4&amp;quot;
-mysql = &amp;quot;*&amp;quot;# 通配符*表示可以使用任何版本，通常会拉取最新版本
-serde = { version = &amp;quot;1.0&amp;quot;, features = [&amp;quot;derive&amp;quot;] }
-
-
-
-创建一个模块mysql_connect目录结构为
-
-
-src
-|--mysql_connect
-	|--mod.rs
-	|--database_test.rs
-|--main.rs
-
-mod.rs的内容
-&#x2F;&#x2F;导出模块database_test
-pub mod database_test;
-&#x2F;&#x2F;导入模块database_test所有函数
-pub use database_test::*;
-
-
-接下是模块database_test.rs的内容
-
-use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
-use mysql::{PooledConn, prelude::Queryable};
-use serde::Deserialize;
-const DATA_SOURCE_URL:&amp;amp;str = &amp;quot;mysql:&#x2F;&#x2F;root:lgq1995@localhost:3306&#x2F;example&amp;quot;;
-&#x2F;&#x2F; #[derive(Debug)]
-#[derive(Deserialize,Debug)]
-struct Info{
-    name:String
-}
-&#x2F;&#x2F;建表接口
-#[get(&amp;quot;&#x2F;create_table&amp;quot;)]
-async fn create_table(info:web::Query&amp;lt;Info&amp;gt;) -&amp;gt; impl Responder{
-    println!(&amp;quot;name:{:?}&amp;quot;,info.name);
- ...</small>
     
   </p>
 
@@ -1248,7 +847,7 @@ async fn create_table(info:web::Query&amp;lt;Info&amp;gt;) -&amp;gt; impl Respon
           <a
             class="page-link"
             
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;"
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;"
             
           >1</a>
         </li>
@@ -1260,21 +859,9 @@ async fn create_table(info:web::Query&amp;lt;Info&amp;gt;) -&amp;gt; impl Respon
           <a
             class="page-link"
             
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;2"
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;page&#x2F;2"
             
           >2</a>
-        </li>
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;3"
-            
-          >3</a>
         </li>
       
         <li class="
@@ -1285,47 +872,13 @@ async fn create_table(info:web::Query&amp;lt;Info&amp;gt;) -&amp;gt; impl Respon
             class="page-link"
             
             
-          >4</a>
-        </li>
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;5"
-            
-          >5</a>
-        </li>
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;6"
-            
-          >6</a>
-        </li>
-      
-        <li class="
-          page-item
-          
-        ">
-          <a
-            class="page-link"
-            
-            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;7"
-            
-          >7</a>
+          >3</a>
         </li>
       
     </ul>
   </nav>
+  
+
   
 
 

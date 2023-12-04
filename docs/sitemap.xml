@@ -167,6 +167,10 @@
         <lastmod>2023-07-16</lastmod>
     </url>
     <url>
+        <loc>https://dorname.github.io/rust/os-no-standard/</loc>
+        <lastmod>2023-12-02</lastmod>
+    </url>
+    <url>
         <loc>https://dorname.github.io/rust/ownership/</loc>
         <lastmod>2023-07-15</lastmod>
     </url>
@@ -175,6 +179,9 @@
     </url>
     <url>
         <loc>https://dorname.github.io/rust/page/2/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/rust/page/3/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/rust/rust-connect-mysql/</loc>
@@ -187,6 +194,10 @@
     <url>
         <loc>https://dorname.github.io/rust/stack/</loc>
         <lastmod>2023-08-06</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/rust/writing-os-in-rust/</loc>
+        <lastmod>2023-12-02</lastmod>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/</loc>

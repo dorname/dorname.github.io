@@ -823,6 +823,204 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;os-no-standard&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="走读Writing an OS in Rust实验（二）"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;os-no-standard&#x2F;"
+      rel="bookmark"
+      title="走读Writing an OS in Rust实验（二）"
+    ><b>走读Writing an OS in Rust实验（二）</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  02&#x2F;12&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>独立式可执行程序
+（参考自作者phil的官方博客）
+为了用 Rust 编写一个操作系统内核，我们需要创建一个独立于操作系统的可执行程序。这样的可执行程序常被称作独立式可执行程序（freestanding executable）或裸机程序(bare-metal executable)。
+构建裸机程序主要需要五步：
+
+禁用标准库
+重新实现panic处理函数
+禁用栈展开（事实上重写程序入口）
+重写程序入口
+编译成裸机目标
+
+禁用标准库
+目标：断开与标准库的链接，使用核心库脱离操作系统绑定
+#![no_std]添加到程序可以断开与标准库的链接
+#![no_std]
+
+fn main() {
+    println!(&amp;quot;Hello, world!&amp;quot;);
+}
+
+cargo build验证
+
+发现println!宏已经找不到了。
+
+error: cannot find macro `println` in this scope
+ --&amp;gt; src&#x2F;main.rs:4:5
+  |
+4 |     println!(&amp;quot;Hello, world!&amp;quot;);
+  |     ^^^^^^^
+
+error: `#[panic_handler]` function required, but not found
+
+error: language item required, but not found:...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;writing-os-in-rust&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="走读Writing an OS in Rust实验（一）"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;writing-os-in-rust&#x2F;"
+      rel="bookmark"
+      title="走读Writing an OS in Rust实验（一）"
+    ><b>走读Writing an OS in Rust实验（一）</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  02&#x2F;12&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Blob Os 内容大纲
+![](writing _an_os_in_rust_arch.png)
+
+移除Rust标准库
+
+标准库需要底层操作系统的支撑，想要裸机运行代码，要求Rust可执行文件使用核心库而不是标准库。
+
+基于X86架构的最小内核
+
+基于X86架构和Rust语言编写最小化的64位内核。本章将构建一个向显示器打印字符串，并能被打包为一个能够引导启动的磁盘映像。
+
+VGA字符模式
+
+VGA 字符模式（VGA text mode）是打印字符到屏幕的一种简单方式。在这篇文章中，为了包装这个模式为一个安全而简单的接口，我们将包装 unsafe 代码到独立的模块。我们还将实现对 Rust 语言格式化宏（formatting macros）的支持。
+
+内核测试
+
+本文主要讲述了在no_std环境下进行单元测试和集成测试的方法。我们将通过Rust的自定义测试框架来在我们的内核中执行一些测试函数。为了将结果反馈到QEMU上，我们需要使用QEMU的一些其他的功能以及bootimage工具。
+
+CPU异常处理
+
+CPU异常在很多情况下都有可能发生，比如访问无效的内存地址，或者在除法运算里除以0。为了处理这些错误，我们需要设置一个 中断描述符表 来提供异常处理函数。在文章的最后，我们的内核将能够捕获 断点异常 并在处理后恢复正常执行。
+
+双重故障
+
+在这篇文章中，我们会探索 double fault 异常的细节，它的触发条件是调用错误处理函数失败。通过捕获该异常，我们可以阻止致命的 triple faults 异常导致系统重启。为了尽可能避免 triple faults ，我们会在一个独立的内核栈配置 中断栈表 来捕捉 double faults。
+
+硬件中断
+
+在本文中，我们会对可编程的中断控制器进行设置，以将硬件中断转发给CPU，而要处理这些中断，只需要像处理异常一样在中断描述符表中加入一个新条目即可，在这里我们会以获取周期计时器的中断和获取键盘输入为例进行讲解。
+
+内存分页初探
+
+本文主要讲解 内存分页 机制，一种我们将会应用到操作系统里的十分常见的内存模型。同时，也会展开说明为何需要进行内存隔离、分段机制 是如何运作的、虚拟内存 是什么，以及内存分页是如何解决内存碎片问题的，同时也会对x86_64的多级页表布局进行探索。
+
+分页实现
+
+这篇文章展示了如何在我们的内核中实现分页支持。它首先探讨了使物理页表帧能够被内核访问的不同技术，并讨论了它们各自的优点和缺点。然后，它实现了一个地址转换功能和一个创建新映射的功能。
+
+栈分配
+
+这篇文章为我们的内核增加了对堆分配的支持。首先，它介绍了动态内存，并展示了借用检查器如何防止常见的分配错误。然后，它实现了 Rust 的基本分配接口，创建了一个堆内存区域，并设置了一个分配器包。在这篇文章的最后，内置 alloc crate 的所有分配和收集类型都将可供我们的内核使用。
+
+分配器设计
+
+这篇文章解释了如何从头开始实现堆分配器。它介绍并讨论了不同的分配器设计，包括凸块分配、链表分配和固定大小块分配。对于这三种设计中的每一种，我们将创建一个可用于内核的基本实现。
+
+异步和等待
+
+在这篇文章中，我们将探讨 Rust 的协作多任务处理和 async&#x2F;await 特性。我们详细介绍了 async&#x2F;await 在 Rust 中是如何工作的，包括 Future 特性的设计、状态机转换和固定。然后，我们通过创建一个异步键盘任务和一个基本的执行器，将对 async&#x2F;await 的基本支持添加到我们的内核中。
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git&#x2F;quick-start&#x2F;..&#x2F;git.png"
     class="img-fluid m-auto d-block "
     alt="Mega Quick Start Guide on Ubuntu 22.04"
@@ -1055,128 +1253,6 @@ $ echo &amp;quot;changing&amp;quot;...</small>
   <p class="card-text text-muted">
     
       <small>什么是区块链?
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;v8engine&#x2F;..&#x2F;js_logo.png"
-    class="img-fluid m-auto d-block "
-    alt="v8引擎"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;v8engine&#x2F;"
-      rel="bookmark"
-      title="v8引擎"
-    ><b>v8引擎</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  04&#x2F;10&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>v8引擎项目结构
-目录&#x2F;文件描述
-api包含了 V8 引擎的 C++ API，可以用来在 C++ 代码中调用 JavaScript 代码
-asmjsasmjs 目录是 V8 引擎的 Asm.js 支持代码所在的目录，包含了 Asm.js 相关的头文件和源文件。Asm.js 是一种 JavaScript 子集，可以通过限制语言特性和语法来提高 JavaScript 代码的性能。V8 引擎通过解析 Asm.js 代码，并将其编译成高效的机器码来提高 JavaScript 代码的性能。asmjs 目录下的代码实现了 Asm.js 相关的解析器、编译器、代码生成器等功能，是 V8 引擎支持 Asm.js 的基础。在 asmjs 目录下，asm-js.cc 文件实现了 Asm.js 相关的函数和类，包括 StdlibMathMember 和 AreStdlibMembersValid 等函数，用于解析和编译 Asm.js 代码。
-astast 目录是 V8 引擎的抽象语法树（AST）相关代码所在的目录，包含了 AST 相关的头文件和源文件。抽象语法树是一种用于表示程序语法结构的树形数据结构，可以用于编译器的语法分析、代码优化和代码生成等过程。在 V8...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git&#x2F;mega&#x2F;..&#x2F;git.png"
-    class="img-fluid m-auto d-block "
-    alt="Mega学习"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git&#x2F;mega&#x2F;"
-      rel="bookmark"
-      title="Mega学习"
-    ><b>Mega学习</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  30&#x2F;08&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>Mega(去中心化Git服务)
-Mega是一个去中心化、分布式的开源git项目。它的目标是提供一个更加安全和隐私保护的git服务，同时还可以提供高质量的代码托管和版本控制功能。Mega是完全开源的，任何人都可以自由地使用它，也可以参与到它的开发和维护中来。
 ...</small>
     
   </p>
