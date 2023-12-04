@@ -56,12 +56,12 @@ extra:
       end: 14
       type: carousel
       title: js相关博客
-    - section: webAssembly_rust_and_extJs-lab
+    - section: mega_git
       size: 8
       start: 0
       end: 14
       type: overlay 
-      title: wasm实验
+      title: 分布式Git项目Mega
       rows:
        - 3
        - 4
