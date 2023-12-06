@@ -13,7 +13,7 @@ taxonomies:
 
 # 最小Rust内核
 
-（[参考自作者phil的官方博客](https://os.phil-opp.com/zh-CN/freestanding-rust-binary/#jin-yong-zhan-zhan-kai)）
+（[参考原作者phil的官方博客](https://os.phil-opp.com/zh-CN/minimal-rust-kernel/)）
 
 ## 启动进程
 

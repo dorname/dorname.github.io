@@ -823,6 +823,123 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;git&#x2F;..&#x2F;git.png"
+    class="img-fluid m-auto d-block "
+    alt="Git对象及其存储结构"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;git&#x2F;"
+      rel="bookmark"
+      title="Git对象及其存储结构"
+    ><b>Git对象及其存储结构</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  03&#x2F;11&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Git对象及其存储结构
+Git对象
+Git是一个内容寻址文件系统。其核心思想就是键值对数据库（key-value data store），其核心行为包括：
+
+通过向 Git 仓库中插入任意类型的内容，它会返回一个唯一的键（key）。
+通过该键可以在任意时刻再次取回该内容。
+
+实验出真知
+可以通过底层命令 git hash-object 来演示上述效果——该命令可将任意数据保存于 .git&#x2F;objects 目录（即 对象数据库），并返回指向该数据对象的唯一的键。
+
+
+初始化一个Git仓库
+$ git init git_lab
+
+
+
+检查一下git对象目录(.git&#x2F;objects)生成了哪些文件夹，通过find命令查看所有文件夹（包含子文件夹）
+$ find .git&#x2F;objects&#x2F;
+.git&#x2F;objects&#x2F;
+.git&#x2F;objects&#x2F;info
+.git&#x2F;objects&#x2F;pack
+
+
+
+检查一下.git&#x2F;objects目录下生成了哪些文件，同样通过find+文件路径+类型参数-type f查看所有文件
+$ find .git&#x2F;objects&#x2F; -type f
+&#x2F;&#x2F;无输出表示没有文件
+
+
+
+接下来要开始创建并保存一个文件了，这里简单创建一个文本文件
+echo &amp;quot;git testing&amp;quot; &amp;gt; git_test.txt
+
+
+
+保存到git对象目录（.git&#x2F;objects）。这里使用了git hash-object命令，根据文件git_test.txt的内容生成一串hash值
+git hash-object -w git_test.txt
+34e75148c0aeb4efb212f817606d386b15190525
+
+注意：hash值仅与文件内容有关，与名称无关。
+$ echo &amp;quot;git testing&amp;quot; | git hash-object -w --stdin
+34e75148c0aeb4efb212f817606d386b15190525
+
+
+
+再次查看git对象目录（.git&#x2F;objects）下的所有文件
+$ find .git&#x2F;objects&#x2F; -type f
+.git&#x2F;objects&#x2F;34&#x2F;e75148c0aeb4efb212f817606d386b15190525
+
+其中hash值长度40，前两个字符用于子目录命名，后38个字符用于文件命名。hash算法参考SHA-1
+
+
+文件git_test.txt内容已经存储到对象数据库中，如果需要从git中取回数据，则需要通过cat-file命令实现（个人理解cat实际就是catch的缩写），其中指定 -p 选项可指示该命令自动判断内容的类型，并为我们显示大致的内容
+$ git cat-file -p 34e75148c0aeb4efb212f817606d386b15190525
+git testing
+
+
+
+版本变更实验：更新文件git_test.txt的内容并重新保存
+$ echo &amp;quot;changing&amp;quot;...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;what-is-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
     class="img-fluid m-auto d-block "
     alt="区块链的理解(阅读收集)"
@@ -1093,103 +1210,6 @@ console.log(&amp;quot;42&amp;quot;===42); &#x2F;&#x2F;false
 
 
 ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-6-set-types&#x2F;..&#x2F;js_logo.png"
-    class="img-fluid m-auto d-block "
-    alt="js学习笔记(6)——集合类型"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-6-set-types&#x2F;"
-      rel="bookmark"
-      title="js学习笔记(6)——集合类型"
-    ><b>js学习笔记(6)——集合类型</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  12&#x2F;08&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>集合引用类型
-Object
-Object很适合存储和在应用程序间交换数据。
-&#x2F;&#x2F;声明方式
-let obj = new Object();
-obj.age = 1;
-let obj_one = {
-    age:1
-};
-&#x2F;&#x2F;属性访问
-&#x2F;&#x2F;点语法
-console.log(obj.age);
-&#x2F;&#x2F;变量语法
-console.log(obj[&amp;quot;age&amp;quot;]);
-
-Object不管是实验和生产环境中都很常用所以这里不做过多的阐述
-Array
-Array同样是js中常用的引用类型。
-js的数组不同于其他编程语言，其每一个槽位都可以存储任意类型的数据。
-数组创建
-&#x2F;&#x2F;长度为20的空数组
-let colors = new Array(20);
-&#x2F;&#x2F;成员为&amp;quot;1&amp;quot;,&amp;quot;2&amp;quot;的数组
-colors = new Array(&amp;quot;1&amp;quot;,&amp;quot;2&amp;quot;);
-colors = [&amp;quot;1&amp;quot;,&amp;quot;2&amp;quot;];
-
-ES6中还有两个创建数组的方法
-
-通过from方法去创建数组
-
-&#x2F;&#x2F; 字符串会被拆分为单字符数组
-console.log(Array.from(&amp;quot;Matt&amp;quot;)); &#x2F;&#x2F; [&amp;quot;M&amp;quot;, &amp;quot;a&amp;quot;, &amp;quot;t&amp;quot;, &amp;quot;t&amp;quot;]
-
-&#x2F;&#x2F; 可以使用 from()将集合和映射转换为一个新数组
-const m = new Map().set(1, 2) 
- .set(3, 4); 
-const s = new Set().add(1) 
- .add(2) 
- .add(3) 
- .add(4);...</small>
     
   </p>
 

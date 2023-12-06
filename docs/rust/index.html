@@ -825,7 +825,7 @@
   <p class="card-text text-muted">
     
       <small>最小Rust内核
-（参考自作者phil的官方博客）
+（参考原作者phil的官方博客）
 启动进程
 
 
@@ -838,6 +838,108 @@
 启动进程的具体流程：
 当您打开计算机时，它会从主板上的某些特殊闪存加载 BIOS。 BIOS 运行硬件的自检和初始化例程，然后查找可启动磁盘。 如果找到，控制权就会转移到其引导加载程序，这是存储在磁盘开头的 512 字节可执行代码部分。 大多数引导加载程序都大于 512 字节，因此引导加载程序通常分为较小的第一阶段（适合 512 字节）和第二阶段（随后由第一阶段加载）。 引导加载程序必须确定内核映像在磁盘上的位置并将其加载到内存中。 它还需要先将CPU从16位实模式切换到32位保护模式，然后再切换到64位长模式，其中64位寄存器和完整的主存储器都可用。 它的第三项工作是从 BIOS 查询某些信息（例如内存映射）并将其传递给操作系统内核。 编写引导加载程序有点麻烦，因为它需要汇编语言和许多非深入的步骤，例如“将这个神奇的值写入该处理器寄存器”。 因此，我们不会在本文中介绍引导加载程序的创建，而是提供一个名为 bootimage 的工具，该工具会自动将引导加载程序添加到内核中。 
 ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;vga-text-code&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="走读Writing an OS in Rust实验（一）"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;vga-text-code&#x2F;"
+      rel="bookmark"
+      title="走读Writing an OS in Rust实验（一）"
+    ><b>走读Writing an OS in Rust实验（一）</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  05&#x2F;12&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>VGA文本模式
+参考原作者phil的官方博客
+目标：VGA文本模式将字符打印到屏幕上，要实现此目标需要将字符写入到VGA硬件的文本缓冲区。VGA文本缓冲区是一个二维数组，通常有25行和80列，直接呈现到屏幕上。每个数组条目通过以下格式描述单个屏幕字符：
+位值
+0-7ASCII码
+8-11前景色
+12-14背景色
+15闪烁位
+
+第一个字节表示应以 ASCII 编码打印的字符。更具体地说，它并不完全是 ASCII，而是一个名为代码页 437 的字符集，其中包含一些附加字符和轻微修改。为简单起见，我们将在这篇文章中继续称其为 ASCII 字符。第二个字节定义字符的显示方式。前四位定义前景色，后三位定义背景色，最后一位定义字符是否应该闪烁。
+数值位颜色数值位+明亮位亮色
+0x0Black0x8Dark Gray
+0x1Blue0x9Light Blue
+0x2Green0xaLight Green
+0x3Cyan0xbLight Cyan
+0x4Red0xcLight Red
+0x5Magenta0xdPink
+0x6Brown0xeYellow
+0x7Light Gray0xfWhite
+
+明亮位是高4位，对于前景色是色调变亮；对于背景色则是用作闪烁位
+VGA 文本缓冲区可通过内存映射的 I&#x2F;O 访问地址。这意味着对该地址的读取和写入不会访问 RAM，而是直接访问 VGA 硬件上的文本缓冲区。这意味着我们可以通过正常的内存操作读取和写入该地址0xb8000
+请注意，内存映射硬件可能不支持所有正常的 RAM 操作。例如，设备只能支持按字节读取，并在读取 a 时返回垃圾。幸运的是，文本缓冲区支持正常的读取和写入，因此我们不必以特殊方式处理它u64
+Rust 模块
+该模块用来处理字符打印逻辑
+&#x2F;&#x2F; in src&#x2F;main.rs
+mod vga_buffer;
+
+打印逻辑主要分为以下几步：
+
+定义颜色
+定义屏幕字符和文本缓冲区
+实现打印方法
+
+定义颜色
+
+
+枚举颜色
+#[allow(dead_code)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[repr(u8)]
+pub enum Color {
+    Black = 0, &#x2F;&#x2F;00000000
+    Blue = 1, &#x2F;&#x2F;00000001
+  ...</small>
     
   </p>
 
@@ -896,7 +998,7 @@
   <p class="card-text text-muted">
     
       <small>独立式可执行程序
-（参考自作者phil的官方博客）
+（参考原作者phil的官方博客）
 为了用 Rust 编写一个操作系统内核，我们需要创建一个独立于操作系统的可执行程序。这样的可执行程序常被称作独立式可执行程序（freestanding executable）或裸机程序(bare-metal executable)。
 构建裸机程序主要需要五步：
 
@@ -1255,64 +1357,6 @@ last返回栈顶数据
 程序实现
 TODO
 ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;enum-patten&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust学习(四)枚举和模式匹配"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;enum-patten&#x2F;"
-      rel="bookmark"
-      title="rust学习(四)枚举和模式匹配"
-    ><b>rust学习(四)枚举和模式匹配</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  16&#x2F;07&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>...</small>
     
   </p>
 
