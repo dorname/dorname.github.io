@@ -240,9 +240,9 @@ pub fn print_something() {
         buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
     };
 
-    writer.write_byte(b'H');
-    writer.write_string("ello ");
-    writer.write_string("Wörld!");
+    writer.write_byte(b'F');
+    writer.write_string("this");
+    writer.write_string("World!");
 }
 ```
 
@@ -261,3 +261,4 @@ pub extern "C" fn _start() -> ! {
 }
 ```
 
+![测试结果](./text_one.png)

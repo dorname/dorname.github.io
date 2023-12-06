@@ -995,9 +995,9 @@
 </span><span>        buffer: </span><span style="color:#b48ead;">unsafe </span><span>{ &amp;</span><span style="color:#b48ead;">mut </span><span>*(</span><span style="color:#d08770;">0xb8000 </span><span>as </span><span style="color:#b48ead;">*mut</span><span> Buffer) },
 </span><span>    };
 </span><span>
-</span><span>    writer.</span><span style="color:#96b5b4;">write_byte</span><span>(</span><span style="color:#b48ead;">b</span><span>&#39;</span><span style="color:#a3be8c;">H</span><span>&#39;);
-</span><span>    writer.</span><span style="color:#96b5b4;">write_string</span><span>(&quot;</span><span style="color:#a3be8c;">ello </span><span>&quot;);
-</span><span>    writer.</span><span style="color:#96b5b4;">write_string</span><span>(&quot;</span><span style="color:#a3be8c;">Wörld!</span><span>&quot;);
+</span><span>    writer.</span><span style="color:#96b5b4;">write_byte</span><span>(</span><span style="color:#b48ead;">b</span><span>&#39;</span><span style="color:#a3be8c;">F</span><span>&#39;);
+</span><span>    writer.</span><span style="color:#96b5b4;">write_string</span><span>(&quot;</span><span style="color:#a3be8c;">this</span><span>&quot;);
+</span><span>    writer.</span><span style="color:#96b5b4;">write_string</span><span>(&quot;</span><span style="color:#a3be8c;">World!</span><span>&quot;);
 </span><span>}
 </span></code></pre>
 <p><strong><code>buffer: unsafe { &amp;mut \*(0xb8000 as \*mut Buffer) }</code>：</strong> 这个字段是一个指向屏幕缓冲区的可变引用。<code>0xb8000</code> 是标准文本模式下的显存起始地址。通过将其转换为 <code>*mut Buffer</code> 类型，然后用 <code>&amp;mut</code> 取引用，代码创建了一个指向屏幕缓冲区的可变引用。实际上<code>Buffer</code>的内存布局同字段<code>chars</code>是一个二维数组，这里使用了 <code>unsafe</code> 关键字，因为涉及到对原始指针的操作，这可能会导致不安全的行为。</p>
@@ -1011,6 +1011,7 @@
 </span><span>    </span><span style="color:#b48ead;">loop </span><span>{}
 </span><span>}
 </span></code></pre>
+<p><img src="https://dorname.github.io/rust/vga-text-code/./text_one.png" alt="测试结果" /></p>
 
   </div>
   
