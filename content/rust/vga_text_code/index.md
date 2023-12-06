@@ -1,6 +1,6 @@
 ---
-title: 走读Writing an OS in Rust实验（一）
-date: 2023-12-05
+title: 走读Writing an OS in Rust实验（四）
+date: 2023-12-07
 extra:
     image: ../rust.jpg
 taxonomies:
