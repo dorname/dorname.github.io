@@ -57,6 +57,11 @@ mod vga_buffer;
 1. 定义颜色
 2. 定义屏幕字符和文本缓冲区
 3. 实现打印方法
+4. 避免打印操作被编译器优化
+5. 实现格式化宏
+6. 实现下一行函数
+7. 暴露一个全局的接口
+8. 实现恐慌的错误提示 
 
 ### 定义颜色
 
@@ -262,3 +267,346 @@ pub extern "C" fn _start() -> ! {
 ```
 
 ![测试结果](./text_one.png)
+
+尝试一下打印一下UTF-8字符
+
+```rust
+// in src/vga_buffer.rs
+
+pub fn print_something() {
+    let mut writer = Writer {
+        column_position: 0,
+        color_code: ColorCode::new(Color::Yellow, Color::Black),
+        buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
+    };
+
+    writer.write_byte(b'F');
+    writer.write_string("this");
+    writer.write_string("World!");
+    writer.write_string("测试")
+}
+```
+
+![](text_two.png)
+
+这是因为它由 [UTF-8](https://www.fileformat.info/info/unicode/utf8.htm) 中的两个字节表示，这两个字节都不属于可打印的 ASCII 范围。事实上，这是 UTF-8 的一个基本属性：多字节值的单个字节从来都不是有效的 ASCII。
+
+### 避免Rust编译器优化打印方法
+
+问题在于，我们只写入 ，而再也不会从中读取。编译器不知道我们是否真的访问了VGA缓冲内存（而不是普通的RAM），并且对某些字符出现在屏幕上的副作用一无所知。因此，它可能会决定这些写入是不必要的，可以省略。为了避免这种错误的优化，我们需要将这些写入指定为*[易失性](https://en.wikipedia.org/wiki/Volatile_(computer_programming))*。这告诉编译器写入有副作用，不应该优化掉.
+
+处理方案，就是引入**Volatile Lib**，并包裹屏幕字符结构体
+
+```
+# in Cargo.toml
+
+[dependencies]
+volatile = "0.2.6"
+```
+
+```rust
+// in src/vga_buffer.rs
+
+use volatile::Volatile;
+
+struct Buffer {
+    chars: [[Volatile<ScreenChar>; BUFFER_WIDTH]; BUFFER_HEIGHT],
+}
+```
+
+同时屏幕字符写入文本缓冲区的二维数组的时候，已经不能使用`=`号赋值，当前只能使用`write`方法写字符
+
+```rust
+// in src/vga_buffer.rs
+
+impl Writer {
+    pub fn write_byte(&mut self, byte: u8) {
+        match byte {
+            b'\n' => self.new_line(),
+            byte => {
+                ...
+
+                self.buffer.chars[row][col].write(ScreenChar {
+                    ascii_character: byte,
+                    color_code,
+                });
+                ...
+            }
+        }
+    }
+    ...
+}
+```
+
+### 实现格式化打印宏（write!）
+
+目标：为内核提供一个格式化宏，方便打印不同类型的数据。
+
+解决方法：实现`core::fmt::Write`特征
+
+```rust
+// in src/vga_buffer.rs
+
+use core::fmt;
+
+impl fmt::Write for Writer {
+    fn write_str(&mut self, s: &str) -> fmt::Result {
+        self.write_string(s);
+        Ok(())
+    }
+}
+
+```
+
+```rust
+// in src/vga_buffer.rs
+pub fn print_something(){
+    use core::fmt::Write;
+    let mut writer = Writer{
+        column_position:0,
+        color_code:ColorCode::new(Color::Yellow,Color::Black),
+        buffer:unsafe{&mut *(0xb8000 as *mut Buffer)}
+    };
+    writer.write_byte(b'F');
+    writer.write_string("uck this ");
+    writer.write_string("World!\n");
+    //打印UTF-8字符
+    // writer.write_string("测试");
+    write!(writer,"CN Dota 2018 LGD {},{},{},{},{}\n","AME","Maybe","Chalice","fy","xNove").unwrap();
+    write!(writer, "Trying find my life goal in {}\n",2023).unwrap();
+    write!(writer, "Trying about {} times",100000.0/3.0).unwrap();
+}
+```
+
+`cargo run`验证
+
+![](text_three.png)
+
+### 实现新增行逻辑
+
+实现思路：每个字符向上移动一行，清除最下面一行的内容，回到从最下面一行的第一个字符位重新开始。
+
+```rust
+impl Writer {
+    fn new_line(&mut self) {
+        for row in 1..BUFFER_HEIGHT {
+            for col in 0..BUFFER_WIDTH {
+                let character = self.buffer.chars[row][col].read();
+                self.buffer.chars[row - 1][col].write(character);
+            }
+        }
+        self.clear_row(BUFFER_HEIGHT - 1);
+        self.column_position = 0;
+    }
+
+    fn clear_row(&mut self,row:usize){
+        let blank = ScreenChar {
+            ascii_character:b' ',
+            color_code:self.color_code
+        };
+        for col in 0..BUFFER_WIDTH{
+            self.buffer.chars[row][col].write(blank);
+        }
+    }
+}
+```
+
+### 全局接口
+
+目标：提供一个全局的打印接口
+
+处理方案：定义一个全局变量`WRITER`
+
+```rust
+// in src/vga_buffer.rs
+
+pub static WRITER: Writer = Writer {
+    column_position: 0,
+    color_code: ColorCode::new(Color::Yellow, Color::Black),
+    buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
+};
+```
+
+`cargo run`发现报错，**原因是因为静态标记`static`内容都是在编译时期初始化的，而不是在运行时初始化的普通内容**
+
+```
+error[E0015]: cannot call non-const fn `ColorCode::new` in statics
+   --> src/vga_buffer.rs:131:16
+    |
+131 |     color_code:ColorCode::new(Color::Blue,Color::Black),
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: calls in statics are limited to constant functions, tuple structs and tuple variants
+    = note: consider wrapping this expression in `Lazy::new(|| ...)` from the `once_cell` crate: https://crates.io/crates/once_cell
+
+error[E0658]: dereferencing raw mutable pointers in statics is unstable
+   --> src/vga_buffer.rs:133:9
+    |
+133 |         &mut *(0xb8000 as *mut Buffer)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: see issue #57349 <https://github.com/rust-lang/rust/issues/57349> for more information
+    = help: add `#![feature(const_mut_refs)]` to the crate attributes to enable
+
+Some errors have detailed explanations: E0015, E0658.
+For more information about an error, try `rustc --explain E0015`.
+```
+
+处理方案：借用`lazy_statics`库，它保证静态变量在运行时初始化
+
+```
+[dependencies]
+lazy_static = {version = "1.0",features = ["spin_no_std"]}
+```
+
+```rust
+// in src/vga_buffer.rs
+use lazy_static::lazy_static;
+
+lazy_static!{
+    pub static ref WRITER:Writer = Writer {
+        column_position:0,
+        //这里为了好玩前景色换成了黑色背景色为猛男粉
+        color_code:ColorCode::new(Color::Black,Color::Pink),
+        buffer:unsafe {
+            &mut *(0xb8000 as *mut Buffer)
+        }
+    };
+}
+```
+
+注意：**接口现在仍然是比较鸡肋的，因为`WRITER`是不可变的变量，这意味着我们无法使用他的打印方法打印内容，简单理解，每次打印我们都需要调整`Writer`的buffer字段，如果不可变就没有意义**
+
+作者提到了两种方案：
+
+1. 定义成可变的静态变量，但是这样一来，对它的每次读取和写入都是不安全的，因为它很容易引入数据竞争和其他不好的事情。例如两个线程中同时使用了全局接口，就会引起数据竞争。
+2. 可使用`RefCell`和`UnsafeCell`来提供内部可变性，但这种方案又不是同步的。
+
+### 自旋锁
+
+为了获得同步的内部可变性，标准库的用户可以使用[互斥锁](https://doc.rust-lang.org/nightly/std/sync/struct.Mutex.html)。它通过在资源已锁定时阻塞线程来提供互斥。但是我们的基本内核没有任何阻塞支持，甚至没有线程的概念，所以我们也不能使用它。然而，计算机科学中有一种非常基本的互斥锁，它不需要操作系统功能：[自旋锁](https://en.wikipedia.org/wiki/Spinlock)。线程没有阻塞，而是简单地尝试在紧密循环中一次又一次地锁定它，从而消耗 CPU 时间，直到互斥锁再次释放。
+
+引入`spin crate`
+
+```
+# in Cargo.toml
+[dependencies]
+spin = "0.5.2"
+```
+
+然后，我们可以使用旋转互斥锁为`WRITER`添加安全的[内部可变性](https://doc.rust-lang.org/book/ch15-05-interior-mutability.html)
+
+```rust
+// in src/vga_buffer.rs
+
+use spin::Mutex;
+...
+lazy_static! {
+    pub static ref WRITER: Mutex<Writer> = Mutex::new(Writer {
+        column_position: 0,
+        color_code: ColorCode::new(Color::Yellow, Color::Black),
+        buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
+    });
+}
+```
+
+测试：
+
+尝试改变全局接口`WRITER`中的`Writer`
+
+1. `vga_buffer::WRITER.lock()`获取`Writer`
+2. 调用`write_str`方法测试`write_string`的打印功能
+3. 通过`Write`的写入宏`write!`往`Writer`中写入字符串
+
+```rust
+// in src/main.rs
+#[no_mangle]
+pub extern "C" fn _start() -> ! {
+    use core::fmt::Write;
+    vga_buffer::WRITER.lock().write_str("Hello again").unwrap();
+    write!(vga_buffer::WRITER.lock(), ", some numbers: {} {}", 42, 1.337).unwrap();
+
+    loop {}
+}
+```
+
+### 安全性
+
+请注意，我们的代码中只有一个不安全块，创建指向 的引用需要它。之后，所有操作都是安全的。默认情况下，Rust 对数组访问使用边界检查，因此我们不会意外地在缓冲区之外写入。因此，我们在类型系统中对所需的条件进行了编码，并能够为外部提供安全的接口。
+
+### 重新实现打印宏
+
+处理方案：参考标准库的`println`宏
+
+标准库的`println`宏源代码：
+
+```rust
+#[macro_export]
+macro_rules! println {
+    () => (print!("\n"));
+    ($($arg:tt)*) => (print!("{}\n", format_args!($($arg)*)));
+}
+```
+
+```rust
+#[macro_export]
+macro_rules! print {
+    ($($arg:tt)*) => ($crate::io::_print(format_args!($($arg)*)));
+}
+```
+
+宏扩展为对模块中 [`_print` 函数](https://github.com/rust-lang/rust/blob/29f5c699b11a6a148f097f82eaa05202f8799bbc/src/libstd/io/stdio.rs#L698)的调用。[`$crate` 变量](https://doc.rust-lang.org/1.30.0/book/first-edition/macros.html#the-variable-crate)通过扩展到在其他 crate 中使用时，确保宏也能在 crate 外部工作。
+
+[`format_args`宏](https://doc.rust-lang.org/nightly/std/macro.format_args.html)从传递的参数构建 [`fmt::Arguments`](https://doc.rust-lang.org/nightly/core/fmt/struct.Arguments.html) 类型，该类型将传递给 。libstd 调用的 [`_print` 函数](https://github.com/rust-lang/rust/blob/29f5c699b11a6a148f097f82eaa05202f8799bbc/src/libstd/io/stdio.rs#L698)，由于它支持不同的设备，因此相当复杂。我们不需要这种复杂性，因为我们只想打印到 VGA 缓冲区。
+
+要打印到 VGA 缓冲区，我们只需复制宏过来，修改它们以使用我们自己的函数：`println!` `print!` `_print`
+
+```rust
+#[macro_export]
+macro_rules! print {
+    ($($arg:tt)*) => {
+        ($crate::vga_buffer::_print(format_args!($($arg)*)));
+    };
+}
+
+#[macro_export]
+macro_rules! println {
+    () => ($crate::print!("\n"));
+    ($($arg:tt)*) => ($crate::print!("{}\n", format_args!($($arg)*)));
+}
+
+#[doc(hidden)]
+pub fn _print(args: fmt::Arguments) {
+    use core::fmt::Write;
+    WRITER.lock().write_fmt(args).unwrap();
+}
+```
+
+这里需要理解`write_fmt`本质上还是在调用`write_str`方法，均是`Write`特征中的方法。
+
+### 补充恐慌信息打印
+
+```rust
+// in main.rs
+
+/// This function is called on panic.
+#[panic_handler]
+fn panic(info: &PanicInfo) -> ! {
+    println!("{}", info);
+    loop {}
+}
+#[no_mangle]
+pub extern "C" fn _start() -> ! {
+    // use core::fmt::Write;
+    // vga_buffer::WRITER.lock().write_str("Hello again").unwrap();
+    // vga_buffer::WRITER.lock().write_str("Hello again again").unwrap();
+    // write!(vga_buffer::WRITER.lock(), ", some numbers: {} {}", 42, 1.337).unwrap();
+    println!("Hello World{}", "!");
+    panic!("This is a panic message");
+    loop {}
+}
+```
+
+测试`cargo run`:
+
+![](text_four.png)

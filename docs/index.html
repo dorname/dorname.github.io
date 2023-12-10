@@ -869,6 +869,11 @@ mod vga_buffer;
 定义颜色
 定义屏幕字符和文本缓冲区
 实现打印方法
+避免打印操作被编译器优化
+实现格式化宏
+实现下一行函数
+暴露一个全局的接口
+实现恐慌的错误提示 
 
 定义颜色
 
@@ -880,7 +885,7 @@ mod vga_buffer;
 pub enum Color {
     Black = 0, &#x2F;&#x2F;00000000
     Blue = 1, &#x2F;&#x2F;00000001
-  ...</small>
+ ...</small>
     
   </p>
 
@@ -1710,7 +1715,7 @@ CPU异常在很多情况下都有可能发生，比如访问无效的内存地�
   
     
     <div
-       id="bs-carousel-961346942"
+       id="bs-carousel-780738384"
        class="carousel slide"
        data-bs-ride="carousel"
     >
@@ -1881,7 +1886,7 @@ CPU异常在很多情况下都有可能发生，比如访问无效的内存地�
       <button
         class="carousel-control-prev"
         type="button"
-        data-bs-target="#bs-carousel-961346942"
+        data-bs-target="#bs-carousel-780738384"
         data-bs-slide="prev"
       >
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -1890,7 +1895,7 @@ CPU异常在很多情况下都有可能发生，比如访问无效的内存地�
       <button
         class="carousel-control-next"
         type="button"
-        data-bs-target="#bs-carousel-961346942"
+        data-bs-target="#bs-carousel-780738384"
         data-bs-slide="next"
       >
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
