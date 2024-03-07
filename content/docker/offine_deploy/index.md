@@ -2,7 +2,7 @@
 title: 离线部署dcoker与docker-compose
 date: 2024-03-07
 extra:
-    image: ../logo.png
+    image: ../docker.png
 taxonomies:
   tags:
     - blockchain

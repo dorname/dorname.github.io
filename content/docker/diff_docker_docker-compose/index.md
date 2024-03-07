@@ -2,7 +2,7 @@
 title: dcoker与docker-compose区别
 date: 2024-03-07
 extra:
-    image: ../logo.png
+    image: ../docker.png
 taxonomies:
   tags:
     - blockchain
