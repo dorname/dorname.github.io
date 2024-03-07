@@ -101,5 +101,5 @@ data_topics = [
   { title = "js学习", url = "js_learning"},
   { title = "Extjs/Rust/WASM实验", url = "webAssembly_rust_and_extJs-lab"},
   { title = "区块链", url = "blockchain"},
-  { title = "Mega", url = "mege_git"},
+  { title = "Mega", url = "mega_git"},
 ]

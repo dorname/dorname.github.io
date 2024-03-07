@@ -390,7 +390,7 @@
                     <li>
                       <a
                         class="dropdown-item"
-                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git"
                         onclick="switchTopic('Mega')"
                       >Mega</a>
                     </li>
@@ -823,7 +823,365 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+<<<<<<< HEAD
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-8-object&#x2F;..&#x2F;js_logo.png"
+=======
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;smart-pointers&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="rust学习(六)智能指针"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;smart-pointers&#x2F;"
+      rel="bookmark"
+      title="rust学习(六)智能指针"
+    ><b>rust学习(六)智能指针</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  16&#x2F;07&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>智能指针
+概念
+
+
+指针是包含内存地址的变量，用于引用或只想其他的数据。
+
+
+Rust中最常见的指针是引用，而引用只是一种普通指针，除了引用数据之外，没有其他功能，
+
+
+智能指针则是一种数据结构，其行为类似于指针，含有元数据，且在大部分情况下拥有指向的数据，提供内存管理或者绑定检查等附加功能，如管理文件句柄和网络连接。例如Rust中的Vec、String都可以看作智能指针。
+Rust语言为智能指针封装了两大Trait，当变量实现了这两个Trait后就不再是普通变量：
+
+
+Deref
+实现了Deref后，变量重载了解引用运算符*****,可以当作普通引用来使用，必要时可以自动或手动实现解引用。
+
+
+Drop
+实现Drop后，变量在超出作用域时会自动从堆中释放，当然还可以自定义实现其他功能，如释放文件或网络连接。
+
+
+
+
+特征
+
+智能指针在大部分情况下具有其所指向数据的所有权
+智能指针是一种数据结构，一般使用结构体来实现
+智能指针实现了Deref和Drop两个大trait
+
+名称描述实际作用
+Box&amp;lt;T&amp;gt;一种独占所有权的智能指针指向存储在堆上且类型为T的数据
+Rc&amp;lt;T&amp;gt;一种共享所有权的计数智能指针用于记录存储在堆上的值的引用数
+Arc&amp;lt;T&amp;gt;一种线程安全的共享所有权的计数智能指针可用于多线程
+Cell&amp;lt;T&amp;gt;一种提供内部可变性的容器，不是智能指针允许借用可变数据，编译时检查，参数T要求实现Copy trait
+RefCell&amp;lt;T&amp;gt;一种提供内部可变性的容器，不是智能指针允许借用可变数据，运行时检查，参数T不要求实现Copy trait
+Weak&amp;lt;T&amp;gt;一种与***Rc&amp;lt;T&amp;gt;***对应的弱引用类型用于解决***RefCell&amp;lt;T&amp;gt;***中出现的循环引用。
+Cow&amp;lt;T&amp;gt;是一种写时复制的枚举体智能指针我们使用***Cow&amp;lt;T&amp;gt;***主要是为了减少内存分配和复制，***Cow&amp;lt;T&amp;gt;***适用于读多写少的场景。
+Pin&amp;lt;T&amp;gt;Rust 标准库中的另一种智能指针类型用于解决在异步编程和使用不稳定的 APIs 时，对象被移动的问题。Pin 可以用于固定***（pin）***一个对象的内存地址，确保它不会被移动。
+
+自定义智能指针
+
+
+定义一个结构体MYBOX
+use std::ops::Deref;
+&#x2F;&#x2F;定义一个泛型参数的元组结构体
+struct MYBOX&amp;lt;T&amp;gt;(T);
+&#x2F;&#x2F;为元组结构体实现一个创建实例的方法
+impl&amp;lt;T&amp;gt; MYBOX&amp;lt;T&amp;gt;  {
+    fn new(x:T) -&amp;gt; Self{
+        Self(x)
+    }
+}
+
+
+
+结构体实现Deref特征
+impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
+    type Target = T;
+    fn deref(&amp;amp;self) -&amp;gt; &amp;amp;Self::Target {
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;generic-trait&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="rust学习(三)泛型和特征对象"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;generic-trait&#x2F;"
+      rel="bookmark"
+      title="rust学习(三)泛型和特征对象"
+    ><b>rust学习(三)泛型和特征对象</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  15&#x2F;07&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>泛型和特征对象
+泛型解决了多种数据类型可共用一个方法的问题，而特征对象（trait）则提供一种定义和限制泛型行为的方法，特征对象(trait)中封装各类型共享的方法
+泛型例子：
+use std::ops::Add;
+
+fn add_i8(a:i8,b:i8) -&amp;gt; i8 {
+    a+b
+}
+fn add_i16(a:i16,b:i16) -&amp;gt; i16 {
+    a+b
+}
+fn add_i32(a:i32,b:i32) -&amp;gt; i32 {
+    a+b
+}
+fn add&amp;lt;T:std::ops::Add + Add&amp;lt;Output = T&amp;gt;&amp;gt;(a:T,b:T) -&amp;gt; T {
+    a+b
+}
+fn add_test(){
+    println!(&amp;quot;{}&amp;quot;,add_i8(1,2));
+    println!(&amp;quot;{}&amp;quot;,add_i16(1,2));
+   ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;ownership&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="rust学习(二)所有权和生命周期"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;ownership&#x2F;"
+      rel="bookmark"
+      title="rust学习(二)所有权和生命周期"
+    ><b>rust学习(二)所有权和生命周期</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  15&#x2F;07&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Rust所有权机制
+Rust语言引入所有权机制的目标
+主要为解决复杂系统中的资源管理和悬吊引用问题。
+所有权系统是Rust中用于管理内存的手段。
+所有权规则总结归纳：
+
+每个值（变量）都有一个所有者
+值在任意时刻都只有一个所有者
+当所有离开作用域时，其值将被丢弃(相当于执行垃圾回收)
+
+结论：Rust的值被唯一的对象管理着，一旦不使用，内存就会立刻释放。
+所有权简单实验
+
+
+借用
+let x = String::from(&amp;quot;hello&amp;quot;);
+let y = &amp;amp;x;
+
+
+
+克隆
+let x = 10;
+let y = x;
+println!(&amp;quot;测试通过{x},{y}&amp;quot;);
+&#x2F;&#x2F;测试通过10，10
+let a = &amp;quot;hello&amp;quot;;
+let b = a;
+println!(&amp;quot;测试通过{x},{y}&amp;quot;);
+let c = (1,2 as f64,&amp;quot;hello&amp;quot;);
+let d = c;
+println!(&amp;quot;测试:{:?},{:?}&amp;quot;,c,d);
+let g = d.clone();
+
+
+
+生命周期
+静态生命周期***&#x27;static和动态生命周期&#x27;a***
+静态生命周期在整个程序中期间存活
+动态生命周期，相关参数的生命周期以相对长生命周期的引用为准
+fn lifetime_test_one() -&amp;gt; &amp;amp;String{
+        let x= &amp;quot;hello&amp;quot;.to_string();
+       ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-9-reflection-proxy&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block "
+    alt="js学习笔记(9)——反射和代理"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-9-reflection-proxy&#x2F;"
+      rel="bookmark"
+      title="js学习笔记(9)——反射和代理"
+    ><b>js学习笔记(9)——反射和代理</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  27&#x2F;06&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>todo
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;hashmap&#x2F;hash.jpg"
+>>>>>>> 15ebfe30406f4fdaea2e044bb6d11f5214f94896
     class="img-fluid m-auto d-block "
     alt="js学习笔记(8)——对象、类与面向对象编程"
   />
@@ -966,6 +1324,7 @@ console.log(Object.getOwnPropertyDescriptor(obj, &amp;#39;name&amp;#39;))
   
 
 	
+<<<<<<< HEAD
     
   
     <div class="card p-3 border-0">
@@ -1245,6 +1604,8 @@ fn add_test(){
   
 
 	
+=======
+>>>>>>> 15ebfe30406f4fdaea2e044bb6d11f5214f94896
   
   
   <nav>

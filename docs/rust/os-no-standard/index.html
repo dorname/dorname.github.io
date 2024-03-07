@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <title>走读Writing an OS in Rust实验（二） | Keep learning and trying</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          
+          id="default"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/cerulean/bootstrap.min.css"
+          
+          id="cerulean"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/cosmo/bootstrap.min.css"
+          
+          id="cosmo"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet"
+          
+          href="https://bootswatch.com/5/cyborg/bootstrap.min.css"
+          
+          id="cyborg"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/darkly/bootstrap.min.css"
+          
+          id="darkly"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/flatly/bootstrap.min.css"
+          
+          id="flatly"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/journal/bootstrap.min.css"
+          
+          id="journal"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/litera/bootstrap.min.css"
+          
+          id="litera"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/lumen/bootstrap.min.css"
+          
+          id="lumen"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/lux/bootstrap.min.css"
+          
+          id="lux"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/materia/bootstrap.min.css"
+          
+          id="materia"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/minty/bootstrap.min.css"
+          
+          id="minty"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/morph/bootstrap.min.css"
+          
+          id="morph"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/pulse/bootstrap.min.css"
+          
+          id="pulse"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/quartz/bootstrap.min.css"
+          
+          id="quartz"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/sandstone/bootstrap.min.css"
+          
+          id="sandstone"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/simplex/bootstrap.min.css"
+          
+          id="simplex"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/sketchy/bootstrap.min.css"
+          
+          id="sketchy"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/slate/bootstrap.min.css"
+          
+          id="slate"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/solar/bootstrap.min.css"
+          
+          id="solar"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/spacelab/bootstrap.min.css"
+          
+          id="spacelab"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/superhero/bootstrap.min.css"
+          
+          id="superhero"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/united/bootstrap.min.css"
+          
+          id="united"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/vapor/bootstrap.min.css"
+          
+          id="vapor"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/yeti/bootstrap.min.css"
+          
+          id="yeti"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/zephyr/bootstrap.min.css"
+          
+          id="zephyr"
+          class="alternate"
+        >
+      
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
+    <script src="https://dorname.github.io/js/topic.js"></script>
+    
+    
+    <script src="https://dorname.github.io/js/theme.js"></script>
+    
+    
+    <script src="https://dorname.github.io/js/scheme.js"></script>
+    
+    <script src="https://dorname.github.io/js/blockquote.js"></script>
+    <script src="https://dorname.github.io/js/img.js"></script>
+    
+    <script defer src="https://dorname.github.io/elasticlunr.min.js"></script>
+    <script defer src="https://dorname.github.io/search_index.en.js"></script>
+    <script src="https://dorname.github.io/js/search.js"></script>
+    
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>    
+    <!-- <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>   -->
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    
+      <div class="w-100">
+        <img src="https://dorname.github.io/img/banner.jpeg" class="w-100" />
+      </div>
+    
+    
+    
+    
+    <nav class="
+      navbar
+      navbar-expand-lg
+      navbar-dark
+      bg-dark
+    ">
+      <div class="container-fluid">
+        <a class="navbar-brand"
+          href="https:&#x2F;&#x2F;dorname.github.io&#x2F;"
+          title="主页"
+        >Keep learning and trying</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarColor02"
+          aria-controls="navbarColor02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav me-auto">
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors"
+                >作者</a>
+              </li>
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;dorname.github.io&#x2F;about"
+                >关于</a>
+              </li>
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags"
+                >相关主题</a>
+              </li>
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;github.com&#x2F;dorname?tab=repositories"
+                >Github</a>
+              </li>
+            
+            
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  博客分类
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust"
+                        onclick="switchTopic('Rust学习')"
+                      >Rust学习</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles"
+                        onclick="switchTopic('未分类博客')"
+                      >未分类博客</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning"
+                        onclick="switchTopic('js学习')"
+                      >Js学习</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab"
+                        onclick="switchTopic('Extjs&#x2F;Rust&#x2F;WASM实验')"
+                      >Extjs&#x2F;rust&#x2F;wasm实验</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain"
+                        onclick="switchTopic('区块链')"
+                      >区块链</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git"
+                        onclick="switchTopic('Mega')"
+                      >Mega</a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+            
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  选择一个主题
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('default')"
+                      >Default</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('cerulean')"
+                      >Cerulean</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('cosmo')"
+                      >Cosmo</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('cyborg')"
+                      >Cyborg</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('darkly')"
+                      >Darkly</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('flatly')"
+                      >Flatly</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('journal')"
+                      >Journal</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('litera')"
+                      >Litera</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('lumen')"
+                      >Lumen</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('lux')"
+                      >Lux</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('materia')"
+                      >Materia</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('minty')"
+                      >Minty</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('morph')"
+                      >Morph</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('pulse')"
+                      >Pulse</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('quartz')"
+                      >Quartz</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('sandstone')"
+                      >Sandstone</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('simplex')"
+                      >Simplex</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('sketchy')"
+                      >Sketchy</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('slate')"
+                      >Slate</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('solar')"
+                      >Solar</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('spacelab')"
+                      >Spacelab</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('superhero')"
+                      >Superhero</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('united')"
+                      >United</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('vapor')"
+                      >Vapor</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('yeti')"
+                      >Yeti</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('zephyr')"
+                      >Zephyr</a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+            
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  选择一个Scheme颜色
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('dark')"
+                      >Dark</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('light')"
+                      >Light</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('primary')"
+                      >Primary</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('primary inverted')"
+                      >Primary inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('secondary')"
+                      >Secondary</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('secondary inverted')"
+                      >Secondary inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('success')"
+                      >Success</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('success inverted')"
+                      >Success inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('danger')"
+                      >Danger</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('danger inverted')"
+                      >Danger inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('warning')"
+                      >Warning</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('warning inverted')"
+                      >Warning inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('info')"
+                      >Info</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('info inverted')"
+                      >Info inverted</a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+          </ul>
+          
+          <form class="d-flex" onsubmit="return goSearch(event)">
+            <input
+              class="form-control me-sm-2"
+              type="text"
+              placeholder="搜索"
+            />
+            <button
+              class="btn btn-secondary my-2 my-sm-0"
+              type="submit"
+            ><i class="fas fa-search"></i></button>
+          </form>
+          
+        </div>
+      </div>
+    </nav>
+    <main class="container mx-auto my-5">
+      
+  <h1>走读Writing an OS in Rust实验（二）</h1>
+  <p class="text-muted">
+    
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  02&#x2F;12&#x2F;2023
+
+  </p>
+  
+  <p>
+    
+      <a
+        href="https://dorname.github.io/tags/rust/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        Rust
+      </a>
+    
+  </p>
+  
+  <div class="content">
+    <h1 id="du-li-shi-ke-zhi-xing-cheng-xu">独立式可执行程序</h1>
+<p>（<a href="https://os.phil-opp.com/zh-CN/freestanding-rust-binary/#jin-yong-zhan-zhan-kai">参考原作者phil的官方博客</a>）</p>
+<p>为了用 Rust 编写一个操作系统内核，我们需要创建一个独立于操作系统的可执行程序。这样的可执行程序常被称作<strong>独立式可执行程序</strong>（freestanding executable）或<strong>裸机程序</strong>(bare-metal executable)。</p>
+<p>构建裸机程序主要需要五步：</p>
+<ol>
+<li>禁用标准库</li>
+<li>重新实现<code>panic</code>处理函数</li>
+<li>禁用栈展开（事实上重写程序入口）</li>
+<li>重写程序入口</li>
+<li>编译成裸机目标</li>
+</ol>
+<h2 id="jin-yong-biao-zhun-ku">禁用标准库</h2>
+<p>目标：断开与标准库的链接，使用核心库脱离操作系统绑定</p>
+<p><code>#![no_std]</code>添加到程序可以断开与标准库的链接</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#![</span><span style="color:#bf616a;">no_std</span><span>]
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Hello, world!</span><span>&quot;);
+</span><span>}
+</span></code></pre>
+<p><code>cargo build</code>验证</p>
+<ol>
+<li>发现<code>println!</code>宏已经找不到了。</li>
+</ol>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>error: cannot find macro `println` in this scope
+</span><span> --&gt; src/main.rs:4:5
+</span><span>  |
+</span><span>4 |     println!(&quot;Hello, world!&quot;);
+</span><span>  |     ^^^^^^^
+</span><span>
+</span><span>error: `#[panic_handler]` function required, but not found
+</span><span>
+</span><span>error: language item required, but not found: `eh_personality`
+</span></code></pre>
+<ol start="2">
+<li>去掉<code>println!(&quot;Hello, world!&quot;);</code>后重新build</li>
+</ol>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>error: `#[panic_handler]` function required, but not found
+</span><span>
+</span><span>error: language item required, but not found: `eh_personality`
+</span></code></pre>
+<h2 id="shi-xian-panicchu-li-han-shu">实现panic处理函数</h2>
+<p>目标：解决恐慌处理器函数缺失错误</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>core::panic::PanicInfo;
+</span><span>
+</span><span style="color:#65737e;">/// 这个函数将在 panic 时被调用
+</span><span>#[</span><span style="color:#bf616a;">panic_handler</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">panic</span><span>(</span><span style="color:#bf616a;">_info</span><span>: &amp;PanicInfo) -&gt; ! {
+</span><span>    </span><span style="color:#b48ead;">loop </span><span>{}
+</span><span>}
+</span></code></pre>
+<p><code>cargo build</code>验证</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>error: language item required, but not found: `eh_personality`
+</span></code></pre>
+<p><strong>注意： eh_personality 语言项</strong></p>
+<p>语言项是一些编译器需求的特殊函数或类型。举例来说，Rust 的 <a href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html">Copy</a> trait 是一个这样的语言项，告诉编译器哪些类型需要遵循<strong>复制语义</strong>（<a href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html">copy semantics</a>）——当我们查找 <code>Copy</code> trait 的<a href="https://github.com/rust-lang/rust/blob/485397e49a02a3b7ff77c17e4a3f16c653925cb3/src/libcore/marker.rs#L296-L299">实现</a>时，我们会发现，一个特殊的 <code>#[lang = &quot;copy&quot;]</code> 属性将它定义为了一个语言项，达到与编译器联系的目的。</p>
+<p>我们可以自己实现语言项，但这是下下策：目前来看，语言项是高度不稳定的语言细节实现，它们不会经过编译期类型检查（所以编译器甚至不确保它们的参数类型是否正确）。幸运的是，我们有更稳定的方式，来修复上面的语言项错误。</p>
+<p><code>eh_personality</code> 语言项标记的函数，将被用于实现<strong>栈展开</strong>（<a href="https://www.bogotobogo.com/cplusplus/stackunwinding.php">stack unwinding</a>）。在使用标准库的情况下，当 panic 发生时，Rust 将使用栈展开，来运行在栈上所有活跃的变量的<strong>析构函数</strong>（destructor）——这确保了所有使用的内存都被释放，允许调用程序的<strong>父进程</strong>（parent thread）捕获 panic，处理并继续运行。但是，栈展开是一个复杂的过程，如 Linux 的 <a href="https://www.nongnu.org/libunwind/">libunwind</a> 或 Windows 的<strong>结构化异常处理</strong>（<a href="https://docs.microsoft.com/en-us/windows/win32/debug/structured-exception-handling">structured exception handling, SEH</a>），通常需要依赖于操作系统的库；所以我们不在自己编写的操作系统中使用它。</p>
+<h2 id="jin-yong-zhan-zhan-kai">禁用栈展开</h2>
+<p>目标：解决语言项找不到的问题</p>
+<p><code>Cagro.toml</code>文件添加配置项禁用panic的栈展开（包含开发环境和发布版本）</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[profile.dev]
+</span><span>panic = &quot;abort&quot;
+</span><span>
+</span><span>[profile.release]
+</span><span>panic = &quot;abort&quot;
+</span></code></pre>
+<p><code>cargo build</code>验证，已没有语言项的提示</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>error: requires `start` lang_item
+</span></code></pre>
+<p>显示缺少start语言项</p>
+<h2 id="zhong-xie-cheng-xu-ru-kou">重写程序入口</h2>
+<p>目标：解决start语言项缺少问题</p>
+<p>处理方案：不使用预定义的入口（<code>main</code>），重新编写一个函数作为操作系统入口</p>
+<p><code>#![no_main]</code>属性可以禁用预定入口，此时main函数已经可以安全删除</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#![</span><span style="color:#bf616a;">no_std</span><span>]
+</span><span>#![</span><span style="color:#bf616a;">no_main</span><span>]
+</span><span>
+</span><span style="color:#b48ead;">use </span><span>core::panic::PanicInfo;
+</span><span>
+</span><span style="color:#65737e;">/// 这个函数将在 panic 时被调用
+</span><span>#[</span><span style="color:#bf616a;">panic_handler</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">panic</span><span>(</span><span style="color:#bf616a;">_info</span><span>: &amp;PanicInfo) -&gt; ! {
+</span><span>    </span><span style="color:#b48ead;">loop </span><span>{}
+</span><span>}
+</span></code></pre>
+<p>重新编写一个函数<code>_start</code></p>
+<p><strong>注意：函数名为 <code>_start</code> ，是因为大多数系统默认使用这个名字作为入口点名称</strong></p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">no_mangle</span><span>]
+</span><span style="color:#b48ead;">pub extern </span><span>&quot;</span><span style="color:#a3be8c;">C</span><span>&quot; </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">_start</span><span>() -&gt; ! {
+</span><span>    </span><span style="color:#b48ead;">loop </span><span>{}
+</span><span>}
+</span></code></pre>
+<p><code>_start</code>作为操作系统入口需要注意3点：</p>
+<ol>
+<li>确保Rust编译器正确输出一个名字为_start的函数，<code>#[no_mangle]</code>标记的作用是<strong>禁用名称重整</strong>——这确保Rust编译器输出一个名为<code>_start</code>的函数；否则，编译器可能最终生成名为<code>_ZN3blog_os4_start7hb173fedf945531caE</code>的函数，无法让链接器正确识别。</li>
+<li>函数标记为<code>extern &quot;C&quot;</code>，告诉编译器这个函数应当使用C语言的调用约定。而不是Rust语言的调用约定。</li>
+<li>设置返回值类型为永不返回类型。在 Rust 中，<code>!</code> 表示一个特殊的类型，称为 &quot;never&quot; 类型。这个类型表示一个永远不会返回的表达式或函数。通常，<code>!</code> 类型用于表示 panic 或者无限循环等永远不会正常结束的操作。 这是必需的，因为入口点不由任何函数调用，而是由操作系统或引导加载程序直接调用。 因此，入口点不应返回，而应调用一些特殊函数，例如操作系统的退出系统函数。 在我们的例子中，这函数中实现关闭机器可能是一个合理的操作，因为如果独立的二进制文件返回，则没有什么可做的。 现在，我们通过无限循环来满足要求。</li>
+</ol>
+<p><code>cargo build</code>验证</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>error: linking with `cc` failed: exit status: 1
+</span></code></pre>
+<h2 id="bian-yi-cheng-luo-ji-mu-biao">编译成裸机目标</h2>
+<p>目标：编译成裸机可执行程序</p>
+<p>编译前首先需要待解决链接器错误。链接器是将生成的代码组合成可执行文件的程序。 由于 Linux、Windows 和 macOS 之间的可执行格式不同，因此每个系统都有自己的链接器，会引发不同的错误。 错误的根本原因是相同的：链接器的默认配置假设我们的程序依赖于 C 运行时，但事实并非如此。 为了解决这些错误，我们需要告诉链接器它不应该包含 C 运行时。 我们可以通过将一组特定的参数传递给链接器或构建裸机目标来做到这一点。</p>
+<p>我是基于linux的，故仅仅介绍linux的编译参数</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cargo rustc -- -C link-arg=-nostartfiles
+</span></code></pre>
+<p>​	这条命令使用了 <code>cargo</code> 命令来调用 <code>rustc</code> 编译器，并传递了一些额外的参数给编译器。让我们逐步解释这个命令：</p>
+<ol>
+<li><strong><code>cargo rustc</code>：</strong> 这部分使用 <code>cargo</code> 工具来调用 Rust 编译器 <code>rustc</code>。<code>cargo rustc</code> 命令允许你向底层的 Rust 编译器传递额外的参数。</li>
+<li><strong><code>--</code>：</strong> 这是一个分隔符，表示 <code>cargo</code> 命令的选项结束，后面的内容应该传递给底层的编译器。在这种情况下，<code>--</code> 之后的内容将被传递给 <code>rustc</code>。</li>
+<li><strong><code>-C link-arg=-nostartfiles</code>：</strong> 这是传递给 <code>rustc</code> 的具体参数。这个参数告诉编译器在链接阶段使用 <code>-nostartfiles</code> 选项。<code>-nostartfiles</code> 是告诉链接器不使用标准的启动文件（start files）的选项。启动文件通常包含了程序启动前的初始化代码，现在sWs要禁用这些初始化。</li>
+</ol>
+
+  </div>
+  
+    
+  
+  <div class="card my-5">
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center">
+        
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;harry.jpg"
+    class="img-fluid m-auto d-block rounded-circle"
+    alt="Li Guangqiao"
+  />
+
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a
+              class="text-decoration-none text-reset"
+              href="https://dorname.github.io/authors/liguangqiao/"
+            >Li Guangqiao</a>
+          </h5>
+          <p class="card-text"><p>一个正在转rust的ExtJs前端工程师。迷信rust的整体发展，十分相信rust在各个领域都能发光发热，至少目前rust在很多领域上验证了其安全性、易维护性。但说实话对于我这种菜鸡也是真的难上手哈哈哈~~。
+思路总结：</p>
+<ul>
+<li>万物诞生都会有一个需求来源，每一个改变都是为了解决某个问题，最后应该考虑如何去做</li>
+<li>学会掌握一些宏观的知识和理论：系统论、还原论</li>
+<li>工程化思想，如何描述整体，从整体架构到模块关联等
+故学习东西应该像看地图一样，先看整体了解整体的结构，然后再聚焦每一个模块，对于模块的学习，思考三个问题，“是什么？”、“为什么？”、“怎么做？”；那么设计一个东西时也应该去考虑整体性和关联性。</li>
+</ul>
+<p>有关于未来的发展，以下是鄙人的粗浅的观点：</p>
+<ul>
+<li>编程语言未来应该是每个人必备的工具</li>
+<li>未来的交互方式应该会以语言交互为主流</li>
+<li>下一个去中心化的技术方案出来之前，区块链依然是web3建立价值体系的基础技术方案，如何将现实价值和虚拟价值联通是进入数字世界的一个大难题。</li>
+<li>未来注定是AI的世界。AI的进化会伴随绝大部分人的退化，届时除了尖端人才，人们学习的重心会放在何处？</li>
+</ul>
+</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+    </main>
+    
+  
+
+    
+    <footer class="
+      mt-auto p-5
+      bg-dark
+      text-center
+      text-white
+    ">
+      
+      <a
+        href="mailto:lgqfighting@163.com"
+        class="text-reset text-decoration-none"
+      >lgqfighting@163.com</a>
+      
+      
+      <div class="mt-2">
+        
+          <a
+            class="text-reset mx-1 bg-transparent"
+            href="https:&#x2F;&#x2F;chat.openai.com&#x2F;"
+            title="chatGPT"
+          ><i class="fab fa-glide-g"></i></a>
+        
+          <a
+            class="text-reset mx-1 bg-transparent"
+            href="https:&#x2F;&#x2F;wx.qq.com&#x2F;"
+            title="微信"
+          ><i class="fab fa-weixin"></i></a>
+        
+          <a
+            class="text-reset mx-1 bg-transparent"
+            href="https:&#x2F;&#x2F;www.google.com&#x2F;"
+            title="谷歌"
+          ><i class="fab fa-google"></i></a>
+        
+      </div>
+      
+    </footer>
+    
+  </body>
+</html>

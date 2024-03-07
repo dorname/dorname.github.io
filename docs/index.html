@@ -388,7 +388,7 @@
                     <li>
                       <a
                         class="dropdown-item"
-                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git"
                         onclick="switchTopic('Mega')"
                       >Mega</a>
                     </li>
@@ -798,9 +798,9 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;stack&#x2F;..&#x2F;rust.jpg"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;vga-text-code&#x2F;..&#x2F;rust.jpg"
     class="img-fluid m-auto d-block "
-    alt="rust实现栈数据结构"
+    alt="走读Writing an OS in Rust实验（四）"
   />
 
         </div>
@@ -810,10 +810,10 @@
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;stack&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;vga-text-code&#x2F;"
       rel="bookmark"
-      title="rust实现栈数据结构"
-    ><b>rust实现栈数据结构</b></a>
+      title="走读Writing an OS in Rust实验（四）"
+    ><b>走读Writing an OS in Rust实验（四）</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -827,7 +827,7 @@
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  06&#x2F;08&#x2F;2023
+  07&#x2F;12&#x2F;2023
 
     </small>
   </p>
@@ -836,168 +836,56 @@
           
   <p class="card-text text-muted">
     
-      <small>Rust实现栈数据结构
-数据结构(stack)的概念
-栈就是一种线性数据结构，可用于函数调用、网页数据记录等。
-栈的特性：元素先进后出，后进先出
-
-需求来源：
-了解栈数据结构和结构特性。
-目标：
-
-
-语言：Rust
-
-
-实现一个数据存储结构栈：Stack
-栈具有存储数据先进后出、后进先出的特性。
-
-
-功能需求：
-
-
-开辟一个栈结构的存储空间
-
-
-存储数据的基本操作：
-
-数据查询
-数据添加
-数据删除
-数据插入
-
-
-
-方便性工具方法
-
-空栈判断方法
-栈长度方法
-快速返回第一个入栈数据
-快速返回最后一个出栈数据
-
-
-
-总体功能结构图
-
-基础能力
-数据查询功能
-查询栈中的所有元素及其数据存储位置
-
-数据查询要素
-
-
-
-
-数据查询功能结构图
-无
-
-
-数据查询功能流程图
-
-
-
-数据删除功能
-删除指定的存储数据
-
-
-数据删除要素
-
-
-
-数据删除功能结构图
-
-
-
-数据删除功能流程图
-
-
-
-数据新增功能&#x2F;数据入栈
-数据新增实际为入栈方法，即添加到栈顶
-
-
-数据新增要素
-待入栈的数据
-
-
-数据新增功能结构图
-无
-
-
-数据新增功能流程图
-无
-
-
-数据插入功能
-数据插入根据指定位置插入栈中
-
-
-数据插入要素
-
-
-
-数据插入功能结构图
-无
-
-
-数据插入功能流程图
-
-
-
-出栈方法
-移除栈顶元素
-
-
-出栈要素
-栈顶位置top
-
-
-出栈功能结构图
-无
-
-
-出栈功能流程图
-
-
-无
-
-
-方便性能力
-空栈判断方法
-
-空栈判断要素
-空栈判断方法功能流程图
-
-栈长度方法
-
-栈长度方法
-
-获取第一个入栈数据方法
-
-返回栈底元素
-
-获取最后一个入栈数据方法
-
-返回栈顶元素
-
-程序结构图
-
-程序处理流程图
-TODO
-
-query查询方法
-remove删除方法
-push入栈方法
-insert插入方法
-pop出栈方法
-is_empty空栈判断方法
-get_size获取栈大小的方法
-first返回栈底数据
-last返回栈顶数据
-
-程序实现
-TODO
-...</small>
+      <small>VGA文本模式
+参考原作者phil的官方博客
+目标：VGA文本模式将字符打印到屏幕上，要实现此目标需要将字符写入到VGA硬件的文本缓冲区。VGA文本缓冲区是一个二维数组，通常有25行和80列，直接呈现到屏幕上。每个数组条目通过以下格式描述单个屏幕字符：
+位值
+0-7ASCII码
+8-11前景色
+12-14背景色
+15闪烁位
+
+第一个字节表示应以 ASCII 编码打印的字符。更具体地说，它并不完全是 ASCII，而是一个名为代码页 437 的字符集，其中包含一些附加字符和轻微修改。为简单起见，我们将在这篇文章中继续称其为 ASCII 字符。第二个字节定义字符的显示方式。前四位定义前景色，后三位定义背景色，最后一位定义字符是否应该闪烁。
+数值位颜色数值位+明亮位亮色
+0x0Black0x8Dark Gray
+0x1Blue0x9Light Blue
+0x2Green0xaLight Green
+0x3Cyan0xbLight Cyan
+0x4Red0xcLight Red
+0x5Magenta0xdPink
+0x6Brown0xeYellow
+0x7Light Gray0xfWhite
+
+明亮位是高4位，对于前景色是色调变亮；对于背景色则是用作闪烁位
+VGA 文本缓冲区可通过内存映射的 I&#x2F;O 访问地址。这意味着对该地址的读取和写入不会访问 RAM，而是直接访问 VGA 硬件上的文本缓冲区。这意味着我们可以通过正常的内存操作读取和写入该地址0xb8000
+请注意，内存映射硬件可能不支持所有正常的 RAM 操作。例如，设备只能支持按字节读取，并在读取 a 时返回垃圾。幸运的是，文本缓冲区支持正常的读取和写入，因此我们不必以特殊方式处理它u64
+Rust 模块
+该模块用来处理字符打印逻辑
+&#x2F;&#x2F; in src&#x2F;main.rs
+mod vga_buffer;
+
+打印逻辑主要分为以下几步：
+
+定义颜色
+定义屏幕字符和文本缓冲区
+实现打印方法
+避免打印操作被编译器优化
+实现格式化宏
+实现下一行函数
+暴露一个全局的接口
+实现恐慌的错误提示 
+
+定义颜色
+
+
+枚举颜色
+#[allow(dead_code)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[repr(u8)]
+pub enum Color {
+    Black = 0, &#x2F;&#x2F;00000000
+    Blue = 1, &#x2F;&#x2F;00000001
+ ...</small>
     
   </p>
 
@@ -1017,9 +905,9 @@ TODO
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;enum-patten&#x2F;..&#x2F;rust.jpg"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;a-minimal-rust-kernel&#x2F;..&#x2F;rust.jpg"
     class="img-fluid m-auto d-block "
-    alt="rust学习(四)枚举和模式匹配"
+    alt="走读Writing an OS in Rust实验（三）"
   />
 
         </div>
@@ -1029,10 +917,10 @@ TODO
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;enum-patten&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;a-minimal-rust-kernel&#x2F;"
       rel="bookmark"
-      title="rust学习(四)枚举和模式匹配"
-    ><b>rust学习(四)枚举和模式匹配</b></a>
+      title="走读Writing an OS in Rust实验（三）"
+    ><b>走读Writing an OS in Rust实验（三）</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -1046,7 +934,7 @@ TODO
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  16&#x2F;07&#x2F;2023
+  05&#x2F;12&#x2F;2023
 
     </small>
   </p>
@@ -1055,7 +943,30 @@ TODO
           
   <p class="card-text text-muted">
     
-      <small>...</small>
+      <small>最小Rust内核
+（参考原作者phil的官方博客）
+启动进程
+
+
+计算机开机时，它开始执行存储在主板 ROM 中的固件代码。 启动进程执行加电自检、检测可用 RAM 并预初始化 CPU 和硬件。 然后，它会查找可启动磁盘并开始启动操作系统内核。
+
+
+在 x86 上，有两种固件标准：“基本输入&#x2F;输出系统”(BIOS) 和较新的“统一可扩展固件接口”(UEFI)。 BIOS 标准陈旧且过时，但简单且自 20 世纪 80 年代以来的任何 x86 计算机都得到良好支持。 相比之下，UEFI 更现代，具有更多功能，但设置更复杂。目前UEFI，作者已经开始支持了，详细进度去看作者的github仓库或者相关新的博客。
+
+
+启动进程的具体流程：
+当您打开计算机时，它会从主板上的某些特殊闪存加载 BIOS。 BIOS 运行硬件的自检和初始化例程，然后查找可启动磁盘。 如果找到，控制权就会转移到其引导加载程序，这是存储在磁盘开头的 512 字节可执行代码部分。 大多数引导加载程序都大于 512 字节，因此引导加载程序通常分为较小的第一阶段（适合 512 字节）和第二阶段（随后由第一阶段加载）。 引导加载程序必须确定内核映像在磁盘上的位置并将其加载到内存中。 它还需要先将CPU从16位实模式切换到32位保护模式，然后再切换到64位长模式，其中64位寄存器和完整的主存储器都可用。 它的第三项工作是从 BIOS 查询某些信息（例如内存映射）并将其传递给操作系统内核。 编写引导加载程序有点麻烦，因为它需要汇编语言和许多非深入的步骤，例如“将这个神奇的值写入该处理器寄存器”。 因此，我们不会在本文中介绍引导加载程序的创建，而是提供一个名为 bootimage 的工具，该工具会自动将引导加载程序添加到内核中。 
+内核构建
+主要包含4个部分
+
+下载nightly版本的Rust
+项目配置清单
+编译内核
+向屏幕打印字符
+启动内核
+
+项目配置清单
+通过 --target 参数，cargo 支持不同的目标系统。这个目标系统可以使用一个目标三元组（target triple）来描述，它描述了 CPU 架构、平台供应者、操作系统和应用程序二进制接口（Application Binary...</small>
     
   </p>
 
@@ -1075,9 +986,9 @@ TODO
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;iter-closures&#x2F;..&#x2F;rust.jpg"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;os-no-standard&#x2F;..&#x2F;rust.jpg"
     class="img-fluid m-auto d-block "
-    alt="rust学习(五)迭代器和闭包"
+    alt="走读Writing an OS in Rust实验（二）"
   />
 
         </div>
@@ -1087,10 +998,10 @@ TODO
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;iter-closures&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;os-no-standard&#x2F;"
       rel="bookmark"
-      title="rust学习(五)迭代器和闭包"
-    ><b>rust学习(五)迭代器和闭包</b></a>
+      title="走读Writing an OS in Rust实验（二）"
+    ><b>走读Writing an OS in Rust实验（二）</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -1104,7 +1015,7 @@ TODO
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  16&#x2F;07&#x2F;2023
+  02&#x2F;12&#x2F;2023
 
     </small>
   </p>
@@ -1113,32 +1024,39 @@ TODO
           
   <p class="card-text text-muted">
     
-      <small>函数式编程
-Rust不像其他面向对象编程语言那样喜欢通过类来解决问题，而是推崇函数式编程。
-什么是函数式编程
-函数式编程是指将函数作为参数值或其他函数的返回值，在将函数赋值给变量之后执行。其中函数式编程的两个重要构件，分别是闭包和迭代器。
-闭包
-闭包是一种可以保存变量或者作为参数传递给其他函数使用的匿名函数。闭包可以在一处创建，然后在不同的上下文中执行。与普通函数不同，闭包允许捕获调用者作用域中的值，闭包特别适合用来定义那些只使用一次的函数。
-&#x2F;&#x2F;伪代码
-&#x2F;&#x2F;定义普通函数
-fn func_name(func_parameter) -&amp;gt; func_return_type{
-    code_body;
-    return_type
+      <small>独立式可执行程序
+（参考原作者phil的官方博客）
+为了用 Rust 编写一个操作系统内核，我们需要创建一个独立于操作系统的可执行程序。这样的可执行程序常被称作独立式可执行程序（freestanding executable）或裸机程序(bare-metal executable)。
+构建裸机程序主要需要五步：
+
+禁用标准库
+重新实现panic处理函数
+禁用栈展开（事实上重写程序入口）
+重写程序入口
+编译成裸机目标
+
+禁用标准库
+目标：断开与标准库的链接，使用核心库脱离操作系统绑定
+#![no_std]添加到程序可以断开与标准库的链接
+#![no_std]
+
+fn main() {
+    println!(&amp;quot;Hello, world!&amp;quot;);
 }
 
-&#x2F;&#x2F;定义闭包
-|func_parameter| {
-    code_body;
-    return_value
-}
+cargo build验证
 
-注意：
-闭包也可能没有参数，同时返回值也可写可不写。Rust会自动推断闭包的参数类型和返回值类型，所以参数和返回值类型都可以不写。为了使用闭包，只需要将其赋值给变量，然后像调用函数一样调用它即可。
-   let count = |x:i32|-&amp;gt;i32 {
-        x+1
-    };
-    let num = 3;
-   ...</small>
+发现println!宏已经找不到了。
+
+error: cannot find macro `println` in this scope
+ --&amp;gt; src&#x2F;main.rs:4:5
+  |
+4 |     println!(&amp;quot;Hello, world!&amp;quot;);
+  |     ^^^^^^^
+
+error: `#[panic_handler]` function required, but not found
+
+error: language item required, but not found:...</small>
     
   </p>
 
@@ -1158,9 +1076,9 @@ fn func_name(func_parameter) -&amp;gt; func_return_type{
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;smart-pointers&#x2F;..&#x2F;rust.jpg"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;writing-os-in-rust&#x2F;..&#x2F;rust.jpg"
     class="img-fluid m-auto d-block "
-    alt="rust学习(六)智能指针"
+    alt="走读Writing an OS in Rust实验（一）"
   />
 
         </div>
@@ -1170,10 +1088,10 @@ fn func_name(func_parameter) -&amp;gt; func_return_type{
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;smart-pointers&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;writing-os-in-rust&#x2F;"
       rel="bookmark"
-      title="rust学习(六)智能指针"
-    ><b>rust学习(六)智能指针</b></a>
+      title="走读Writing an OS in Rust实验（一）"
+    ><b>走读Writing an OS in Rust实验（一）</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -1187,7 +1105,7 @@ fn func_name(func_parameter) -&amp;gt; func_return_type{
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  16&#x2F;07&#x2F;2023
+  02&#x2F;12&#x2F;2023
 
     </small>
   </p>
@@ -1196,66 +1114,56 @@ fn func_name(func_parameter) -&amp;gt; func_return_type{
           
   <p class="card-text text-muted">
     
-      <small>智能指针
-概念
+      <small>Blob Os 内容大纲
+![](writing _an_os_in_rust_arch.png)
 
+移除Rust标准库
 
-指针是包含内存地址的变量，用于引用或只想其他的数据。
+标准库需要底层操作系统的支撑，想要裸机运行代码，要求Rust可执行文件使用核心库而不是标准库。
 
+基于X86架构的最小内核
 
-Rust中最常见的指针是引用，而引用只是一种普通指针，除了引用数据之外，没有其他功能，
+基于X86架构和Rust语言编写最小化的64位内核。本章将构建一个向显示器打印字符串，并能被打包为一个能够引导启动的磁盘映像。
 
+VGA字符模式
 
-智能指针则是一种数据结构，其行为类似于指针，含有元数据，且在大部分情况下拥有指向的数据，提供内存管理或者绑定检查等附加功能，如管理文件句柄和网络连接。例如Rust中的Vec、String都可以看作智能指针。
-Rust语言为智能指针封装了两大Trait，当变量实现了这两个Trait后就不再是普通变量：
+VGA 字符模式（VGA text mode）是打印字符到屏幕的一种简单方式。在这篇文章中，为了包装这个模式为一个安全而简单的接口，我们将包装 unsafe 代码到独立的模块。我们还将实现对 Rust 语言格式化宏（formatting macros）的支持。
 
+内核测试
 
-Deref
-实现了Deref后，变量重载了解引用运算符*****,可以当作普通引用来使用，必要时可以自动或手动实现解引用。
+本文主要讲述了在no_std环境下进行单元测试和集成测试的方法。我们将通过Rust的自定义测试框架来在我们的内核中执行一些测试函数。为了将结果反馈到QEMU上，我们需要使用QEMU的一些其他的功能以及bootimage工具。
 
+CPU异常处理
 
-Drop
-实现Drop后，变量在超出作用域时会自动从堆中释放，当然还可以自定义实现其他功能，如释放文件或网络连接。
+CPU异常在很多情况下都有可能发生，比如访问无效的内存地址，或者在除法运算里除以0。为了处理这些错误，我们需要设置一个 中断描述符表 来提供异常处理函数。在文章的最后，我们的内核将能够捕获 断点异常 并在处理后恢复正常执行。
 
+双重故障
 
+在这篇文章中，我们会探索 double fault 异常的细节，它的触发条件是调用错误处理函数失败。通过捕获该异常，我们可以阻止致命的 triple faults 异常导致系统重启。为了尽可能避免 triple faults ，我们会在一个独立的内核栈配置 中断栈表 来捕捉 double faults。
 
+硬件中断
 
-特征
+在本文中，我们会对可编程的中断控制器进行设置，以将硬件中断转发给CPU，而要处理这些中断，只需要像处理异常一样在中断描述符表中加入一个新条目即可，在这里我们会以获取周期计时器的中断和获取键盘输入为例进行讲解。
 
-智能指针在大部分情况下具有其所指向数据的所有权
-智能指针是一种数据结构，一般使用结构体来实现
-智能指针实现了Deref和Drop两个大trait
+内存分页初探
 
-名称描述实际作用
-Box&amp;lt;T&amp;gt;一种独占所有权的智能指针指向存储在堆上且类型为T的数据
-Rc&amp;lt;T&amp;gt;一种共享所有权的计数智能指针用于记录存储在堆上的值的引用数
-Arc&amp;lt;T&amp;gt;一种线程安全的共享所有权的计数智能指针可用于多线程
-Cell&amp;lt;T&amp;gt;一种提供内部可变性的容器，不是智能指针允许借用可变数据，编译时检查，参数T要求实现Copy trait
-RefCell&amp;lt;T&amp;gt;一种提供内部可变性的容器，不是智能指针允许借用可变数据，运行时检查，参数T不要求实现Copy trait
-Weak&amp;lt;T&amp;gt;一种与***Rc&amp;lt;T&amp;gt;***对应的弱引用类型用于解决***RefCell&amp;lt;T&amp;gt;***中出现的循环引用。
-Cow&amp;lt;T&amp;gt;是一种写时复制的枚举体智能指针我们使用***Cow&amp;lt;T&amp;gt;***主要是为了减少内存分配和复制，***Cow&amp;lt;T&amp;gt;***适用于读多写少的场景。
-Pin&amp;lt;T&amp;gt;Rust 标准库中的另一种智能指针类型用于解决在异步编程和使用不稳定的 APIs 时，对象被移动的问题。Pin 可以用于固定***（pin）***一个对象的内存地址，确保它不会被移动。
+本文主要讲解 内存分页 机制，一种我们将会应用到操作系统里的十分常见的内存模型。同时，也会展开说明为何需要进行内存隔离、分段机制 是如何运作的、虚拟内存 是什么，以及内存分页是如何解决内存碎片问题的，同时也会对x86_64的多级页表布局进行探索。
 
-自定义智能指针
+分页实现
 
+这篇文章展示了如何在我们的内核中实现分页支持。它首先探讨了使物理页表帧能够被内核访问的不同技术，并讨论了它们各自的优点和缺点。然后，它实现了一个地址转换功能和一个创建新映射的功能。
 
-定义一个结构体MYBOX
-use std::ops::Deref;
-&#x2F;&#x2F;定义一个泛型参数的元组结构体
-struct MYBOX&amp;lt;T&amp;gt;(T);
-&#x2F;&#x2F;为元组结构体实现一个创建实例的方法
-impl&amp;lt;T&amp;gt; MYBOX&amp;lt;T&amp;gt;  {
-    fn new(x:T) -&amp;gt; Self{
-        Self(x)
-    }
-}
+栈分配
 
+这篇文章为我们的内核增加了对堆分配的支持。首先，它介绍了动态内存，并展示了借用检查器如何防止常见的分配错误。然后，它实现了 Rust 的基本分配接口，创建了一个堆内存区域，并设置了一个分配器包。在这篇文章的最后，内置 alloc crate 的所有分配和收集类型都将可供我们的内核使用。
 
+分配器设计
 
-结构体实现Deref特征
-impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
-    type Target = T;
-    fn deref(&amp;amp;self) -&amp;gt; &amp;amp;Self::Target {
+这篇文章解释了如何从头开始实现堆分配器。它介绍并讨论了不同的分配器设计，包括凸块分配、链表分配和固定大小块分配。对于这三种设计中的每一种，我们将创建一个可用于内核的基本实现。
+
+异步和等待
+
+在这篇文章中，我们将探讨 Rust 的协作多任务处理和 async&#x2F;await 特性。我们详细介绍了 async&#x2F;await 在 Rust 中是如何工作的，包括 Future 特性的设计、状态机转换和固定。然后，我们通过创建一个异步键盘任务和一个基本的执行器，将对 async&#x2F;await 的基本支持添加到我们的内核中。
 ...</small>
     
   </p>
@@ -1278,7 +1186,7 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
             
   <h4
     class="border-bottom border-primary border-2 text-uppercase mt-5 fw-bold"
-  >杂活博客</h4>
+  >分布式Git项目Mega</h4>
 
           
           
@@ -1299,9 +1207,9 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;hashmap&#x2F;hash.jpg"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;quick-start&#x2F;..&#x2F;git.png"
     class="img-fluid m-auto d-block "
-    alt="hashMap"
+    alt="Mega Quick Start Guide on Ubuntu 22.04"
   />
 
         </div>
@@ -1311,10 +1219,10 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;hashmap&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;quick-start&#x2F;"
       rel="bookmark"
-      title="hashMap"
-    ><b>hashMap</b></a>
+      title="Mega Quick Start Guide on Ubuntu 22.04"
+    ><b>Mega Quick Start Guide on Ubuntu 22.04</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -1328,7 +1236,7 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  17&#x2F;06&#x2F;2023
+  28&#x2F;11&#x2F;2023
 
     </small>
   </p>
@@ -1349,9 +1257,9 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;leet-code-try&#x2F;leetcode_one.jpg"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;git&#x2F;..&#x2F;git.png"
     class="img-fluid m-auto d-block "
-    alt="leetCode刷题"
+    alt="Git对象及其存储结构"
   />
 
         </div>
@@ -1361,10 +1269,10 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;leet-code-try&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;git&#x2F;"
       rel="bookmark"
-      title="leetCode刷题"
-    ><b>leetCode刷题</b></a>
+      title="Git对象及其存储结构"
+    ><b>Git对象及其存储结构</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -1378,7 +1286,7 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  13&#x2F;05&#x2F;2023
+  03&#x2F;11&#x2F;2023
 
     </small>
   </p>
@@ -1399,9 +1307,9 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;mermory-leak&#x2F;leak.jpg"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;mega&#x2F;..&#x2F;git.png"
     class="img-fluid m-auto d-block "
-    alt="内存泄漏专题"
+    alt="Mega学习"
   />
 
         </div>
@@ -1411,10 +1319,10 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;mermory-leak&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;mega&#x2F;"
       rel="bookmark"
-      title="内存泄漏专题"
-    ><b>内存泄漏专题</b></a>
+      title="Mega学习"
+    ><b>Mega学习</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -1428,57 +1336,7 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  13&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-    
-      
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;brain-storm&#x2F;brain.jpg"
-    class="img-fluid m-auto d-block "
-    alt="小李很爱瞎想想"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;brain-storm&#x2F;"
-      rel="bookmark"
-      title="小李很爱瞎想想"
-    ><b>小李很爱瞎想想</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  12&#x2F;05&#x2F;2023
+  30&#x2F;08&#x2F;2023
 
     </small>
   </p>
@@ -1505,7 +1363,7 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
             
   <h4
     class="border-bottom border-primary border-2 text-uppercase mt-5 fw-bold"
-  >区块链</h4>
+  >js相关博客</h4>
 
           
           
@@ -1525,6 +1383,7 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
     <div class="card p-3 border-0">
       
   <img
+<<<<<<< HEAD
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;chainmaker&#x2F;..&#x2F;blockchain_one.jpg"
     class="img-fluid m-auto d-block card-img-top"
     alt="初识长安链"
@@ -1571,11 +1430,578 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
       
   <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;what-is-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
+=======
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;v8engine&#x2F;..&#x2F;js_logo.png"
+>>>>>>> 15ebfe30406f4fdaea2e044bb6d11f5214f94896
     class="img-fluid m-auto d-block card-img-top"
-    alt="区块链的理解(阅读收集)"
+    alt="v8引擎"
   />
 
       <div class="card-body">
+        
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;v8engine&#x2F;"
+      rel="bookmark"
+      title="v8引擎"
+    ><b>v8引擎</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  04&#x2F;10&#x2F;2023
+
+    </small>
+  </p>
+
+      </div>
+    </div>
+  
+
+      </div>
+    
+    
+      <div class="col-md">
+        
+  
+    <div class="card p-3 border-0">
+      
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;implicit-conversion&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block card-img-top"
+    alt="js隐式转换"
+  />
+
+      <div class="card-body">
+        
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;implicit-conversion&#x2F;"
+      rel="bookmark"
+      title="js隐式转换"
+    ><b>js隐式转换</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  22&#x2F;08&#x2F;2023
+
+    </small>
+  </p>
+
+      </div>
+    </div>
+  
+
+      </div>
+    
+    
+      <div class="col-md">
+        
+  
+    <div class="card p-3 border-0">
+      
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-6-set-types&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block card-img-top"
+    alt="js学习笔记(6)——集合类型"
+  />
+
+      <div class="card-body">
+        
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-6-set-types&#x2F;"
+      rel="bookmark"
+      title="js学习笔记(6)——集合类型"
+    ><b>js学习笔记(6)——集合类型</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  12&#x2F;08&#x2F;2023
+
+    </small>
+  </p>
+
+      </div>
+    </div>
+  
+
+      </div>
+    
+    
+      <div class="col-md">
+        
+  
+    <div class="card p-3 border-0">
+      
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-8-object&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block card-img-top"
+    alt="js学习笔记(8)——对象、类与面向对象编程"
+  />
+
+      <div class="card-body">
+        
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-8-object&#x2F;"
+      rel="bookmark"
+      title="js学习笔记(8)——对象、类与面向对象编程"
+    ><b>js学习笔记(8)——对象、类与面向对象编程</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  31&#x2F;07&#x2F;2023
+
+    </small>
+  </p>
+
+      </div>
+    </div>
+  
+
+      </div>
+    
+    
+    </div>
+    <div class="row">
+    
+      <div class="col-md">
+        
+  
+    <div class="card p-3 border-0">
+      
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-9-reflection-proxy&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block card-img-top"
+    alt="js学习笔记(9)——反射和代理"
+  />
+
+      <div class="card-body">
+        
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-9-reflection-proxy&#x2F;"
+      rel="bookmark"
+      title="js学习笔记(9)——反射和代理"
+    ><b>js学习笔记(9)——反射和代理</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  27&#x2F;06&#x2F;2023
+
+    </small>
+  </p>
+
+      </div>
+    </div>
+  
+
+      </div>
+    
+    
+      <div class="col-md">
+        
+  
+    <div class="card p-3 border-0">
+      
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-25-client-storage&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block card-img-top"
+    alt="js学习笔记(25)"
+  />
+
+      <div class="card-body">
+        
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-25-client-storage&#x2F;"
+      rel="bookmark"
+      title="js学习笔记(25)"
+    ><b>js学习笔记(25)</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  23&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+      </div>
+    </div>
+  
+
+      </div>
+    
+    
+      <div class="col-md">
+        
+  
+    <div class="card p-3 border-0">
+      
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-27-worker-thread&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block card-img-top"
+    alt="js学习笔记(27)"
+  />
+
+      <div class="card-body">
+        
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-27-worker-thread&#x2F;"
+      rel="bookmark"
+      title="js学习笔记(27)"
+    ><b>js学习笔记(27)</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  23&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+      </div>
+    </div>
+  
+
+      </div>
+    
+    </div>
+  
+
+            
+          
+        </div>
+      
+    </div>
+  
+    <div class="row">
+      
+        <div class="col-md-4">
+          
+            
+  <h4
+    class="border-bottom border-primary border-2 text-uppercase mt-5 fw-bold"
+  >杂活博客</h4>
+
+          
+          
+            
+            
+            
+              
+              
+              
+  
+    
+  
+    
+    <div
+       id="bs-carousel-750276204"
+       class="carousel slide"
+       data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        
+          <div class="carousel-item active">
+            <img
+              src="https://dorname.github.io/articles/hashmap/hash.jpg"
+              class="d-block w-100"
+              alt="hashMap"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5>hashMap</h5>
+              <p>
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  17&#x2F;06&#x2F;2023
+</p>
+            </div>
+          </div>
+        
+          <div class="carousel-item">
+            <img
+              src="https://dorname.github.io/articles/leet-code-try/leetcode_one.jpg"
+              class="d-block w-100"
+              alt="leetCode刷题"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5>leetCode刷题</h5>
+              <p>
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  13&#x2F;05&#x2F;2023
+</p>
+            </div>
+          </div>
+        
+          <div class="carousel-item">
+            <img
+              src="https://dorname.github.io/articles/mermory-leak/leak.jpg"
+              class="d-block w-100"
+              alt="内存泄漏专题"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5>内存泄漏专题</h5>
+              <p>
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  13&#x2F;05&#x2F;2023
+</p>
+            </div>
+          </div>
+        
+          <div class="carousel-item">
+            <img
+              src="https://dorname.github.io/articles/brain-storm/brain.jpg"
+              class="d-block w-100"
+              alt="小李很爱瞎想想"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5>小李很爱瞎想想</h5>
+              <p>
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  12&#x2F;05&#x2F;2023
+</p>
+            </div>
+          </div>
+        
+          <div class="carousel-item">
+            <img
+              src="https://dorname.github.io/articles/database-lab/database.jpg"
+              class="d-block w-100"
+              alt="数据库学习"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5>数据库学习</h5>
+              <p>
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  03&#x2F;05&#x2F;2023
+</p>
+            </div>
+          </div>
+        
+          <div class="carousel-item">
+            <img
+              src="https://dorname.github.io/articles/front-base-rust/front.jpg"
+              class="d-block w-100"
+              alt="基于rust的前端框架"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5>基于rust的前端框架</h5>
+              <p>
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  03&#x2F;05&#x2F;2023
+</p>
+            </div>
+          </div>
+        
+          <div class="carousel-item">
+            <img
+              src="https://dorname.github.io/articles/principle-of-blockchain/blockchain.jpg"
+              class="d-block w-100"
+              alt="区块链原理"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5>区块链原理</h5>
+              <p>
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  03&#x2F;05&#x2F;2023
+</p>
+            </div>
+          </div>
+        
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#bs-carousel-750276204"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#bs-carousel-750276204"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  
+
+  
+
+            
+          
+        </div>
+      
+        <div class="col-md-8">
+          
+            
+  <h4
+    class="border-bottom border-primary border-2 text-uppercase mt-5 fw-bold"
+  >区块链</h4>
+
+          
+          
+            
+            
+            
+              
+              
+                
+                
+                
+  
+    <div class="row">
+    
+    
+      <div class="col-md">
+        
+  
+    <div class="card border-0 text-white">
+      
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;what-is-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
+    class="img-fluid m-auto d-block card-img"
+    alt="区块链的理解(阅读收集)"
+  />
+
+      <div class="card-img-overlay">
         
   <h6 class="card-title">
     <a
@@ -1612,15 +2038,15 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
       <div class="col-md">
         
   
-    <div class="card p-3 border-0">
+    <div class="card border-0 text-white">
       
   <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;consensus&#x2F;..&#x2F;blockchain_one.jpg"
-    class="img-fluid m-auto d-block card-img-top"
+    class="img-fluid m-auto d-block card-img"
     alt="拜占庭问题"
   />
 
-      <div class="card-body">
+      <div class="card-img-overlay">
         
   <h6 class="card-title">
     <a
@@ -1657,15 +2083,15 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
       <div class="col-md">
         
   
-    <div class="card p-3 border-0">
+    <div class="card border-0 text-white">
       
   <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;classic-modern-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
-    class="img-fluid m-auto d-block card-img-top"
+    class="img-fluid m-auto d-block card-img"
     alt="经典区块链和现代区块链"
   />
 
-      <div class="card-body">
+      <div class="card-img-overlay">
         
   <h6 class="card-title">
     <a
@@ -1701,6 +2127,7 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
     </div>
   
 
+<<<<<<< HEAD
             
           
         </div>
@@ -2037,6 +2464,8 @@ impl&amp;lt;T&amp;gt; Deref for MYBOX&amp;lt;T&amp;gt; {
     </div>
   
 
+=======
+>>>>>>> 15ebfe30406f4fdaea2e044bb6d11f5214f94896
                 
               
                 

@@ -390,7 +390,7 @@
                     <li>
                       <a
                         class="dropdown-item"
-                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git"
                         onclick="switchTopic('Mega')"
                       >Mega</a>
                     </li>
@@ -823,7 +823,309 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+<<<<<<< HEAD
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;cryptography&#x2F;..&#x2F;logo.png"
+=======
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;git&#x2F;..&#x2F;git.png"
+    class="img-fluid m-auto d-block "
+    alt="Git对象及其存储结构"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;git&#x2F;"
+      rel="bookmark"
+      title="Git对象及其存储结构"
+    ><b>Git对象及其存储结构</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  03&#x2F;11&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Git对象及其存储结构
+Git对象
+Git是一个内容寻址文件系统。其核心思想就是键值对数据库（key-value data store），其核心行为包括：
+
+通过向 Git 仓库中插入任意类型的内容，它会返回一个唯一的键（key）。
+通过该键可以在任意时刻再次取回该内容。
+
+实验出真知
+可以通过底层命令 git hash-object 来演示上述效果——该命令可将任意数据保存于 .git&#x2F;objects 目录（即 对象数据库），并返回指向该数据对象的唯一的键。
+
+
+初始化一个Git仓库
+$ git init git_lab
+
+
+
+检查一下git对象目录(.git&#x2F;objects)生成了哪些文件夹，通过find命令查看所有文件夹（包含子文件夹）
+$ find .git&#x2F;objects&#x2F;
+.git&#x2F;objects&#x2F;
+.git&#x2F;objects&#x2F;info
+.git&#x2F;objects&#x2F;pack
+
+
+
+检查一下.git&#x2F;objects目录下生成了哪些文件，同样通过find+文件路径+类型参数-type f查看所有文件
+$ find .git&#x2F;objects&#x2F; -type f
+&#x2F;&#x2F;无输出表示没有文件
+
+
+
+接下来要开始创建并保存一个文件了，这里简单创建一个文本文件
+echo &amp;quot;git testing&amp;quot; &amp;gt; git_test.txt
+
+
+
+保存到git对象目录（.git&#x2F;objects）。这里使用了git hash-object命令，根据文件git_test.txt的内容生成一串hash值
+git hash-object -w git_test.txt
+34e75148c0aeb4efb212f817606d386b15190525
+
+注意：hash值仅与文件内容有关，与名称无关。
+$ echo &amp;quot;git testing&amp;quot; | git hash-object -w --stdin
+34e75148c0aeb4efb212f817606d386b15190525
+
+
+
+再次查看git对象目录（.git&#x2F;objects）下的所有文件
+$ find .git&#x2F;objects&#x2F; -type f
+.git&#x2F;objects&#x2F;34&#x2F;e75148c0aeb4efb212f817606d386b15190525
+
+其中hash值长度40，前两个字符用于子目录命名，后38个字符用于文件命名。hash算法参考SHA-1
+
+
+文件git_test.txt内容已经存储到对象数据库中，如果需要从git中取回数据，则需要通过cat-file命令实现（个人理解cat实际就是catch的缩写），其中指定 -p 选项可指示该命令自动判断内容的类型，并为我们显示大致的内容
+$ git cat-file -p 34e75148c0aeb4efb212f817606d386b15190525
+git testing
+
+
+
+版本变更实验：更新文件git_test.txt的内容并重新保存
+$ echo &amp;quot;changing&amp;quot;...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;what-is-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
+    class="img-fluid m-auto d-block "
+    alt="区块链的理解(阅读收集)"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;what-is-blockchain&#x2F;"
+      rel="bookmark"
+      title="区块链的理解(阅读收集)"
+    ><b>区块链的理解(阅读收集)</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  10&#x2F;10&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>什么是区块链?
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;v8engine&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block "
+    alt="v8引擎"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;v8engine&#x2F;"
+      rel="bookmark"
+      title="v8引擎"
+    ><b>v8引擎</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  04&#x2F;10&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>v8引擎项目结构
+目录&#x2F;文件描述
+api包含了 V8 引擎的 C++ API，可以用来在 C++ 代码中调用 JavaScript 代码
+asmjsasmjs 目录是 V8 引擎的 Asm.js 支持代码所在的目录，包含了 Asm.js 相关的头文件和源文件。Asm.js 是一种 JavaScript 子集，可以通过限制语言特性和语法来提高 JavaScript 代码的性能。V8 引擎通过解析 Asm.js 代码，并将其编译成高效的机器码来提高 JavaScript 代码的性能。asmjs 目录下的代码实现了 Asm.js 相关的解析器、编译器、代码生成器等功能，是 V8 引擎支持 Asm.js 的基础。在 asmjs 目录下，asm-js.cc 文件实现了 Asm.js 相关的函数和类，包括 StdlibMathMember 和 AreStdlibMembersValid 等函数，用于解析和编译 Asm.js 代码。
+astast 目录是 V8 引擎的抽象语法树（AST）相关代码所在的目录，包含了 AST 相关的头文件和源文件。抽象语法树是一种用于表示程序语法结构的树形数据结构，可以用于编译器的语法分析、代码优化和代码生成等过程。在 V8...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;mega&#x2F;..&#x2F;git.png"
+    class="img-fluid m-auto d-block "
+    alt="Mega学习"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;mega&#x2F;"
+      rel="bookmark"
+      title="Mega学习"
+    ><b>Mega学习</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  30&#x2F;08&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Mega(去中心化Git服务)
+Mega是一个去中心化、分布式的开源git项目。它的目标是提供一个更加安全和隐私保护的git服务，同时还可以提供高质量的代码托管和版本控制功能。Mega是完全开源的，任何人都可以自由地使用它，也可以参与到它的开发和维护中来。
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;implicit-conversion&#x2F;..&#x2F;js_logo.png"
+>>>>>>> 15ebfe30406f4fdaea2e044bb6d11f5214f94896
     class="img-fluid m-auto d-block "
     alt="加密算法"
   />
@@ -956,6 +1258,7 @@ MD5算法的Java实现-腾讯云开发者社区-腾讯云 (tencent.com)
   
 
 	
+<<<<<<< HEAD
     
   
     <div class="card p-3 border-0">
@@ -1530,6 +1833,8 @@ $ echo &amp;quot;changing&amp;quot;...</small>
   
 
 	
+=======
+>>>>>>> 15ebfe30406f4fdaea2e044bb6d11f5214f94896
   
   
   <nav>

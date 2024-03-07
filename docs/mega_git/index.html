@@ -2,7 +2,7 @@
 <html>
   <head>
     
-    <title>Mega学习 | Keep learning and trying</title>
+    <title>Keep learning and trying</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -388,7 +388,7 @@
                     <li>
                       <a
                         class="dropdown-item"
-                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git"
                         onclick="switchTopic('Mega')"
                       >Mega</a>
                     </li>
@@ -769,9 +769,237 @@
     </nav>
     <main class="container mx-auto my-5">
       
-  <h1>Mega学习</h1>
-  <p class="text-muted">
+  
+  
+  
+    <h1 class="px-3">Mega</h1>
+  
+  
+  
+	
     
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;quick-start&#x2F;..&#x2F;git.png"
+    class="img-fluid m-auto d-block "
+    alt="Mega Quick Start Guide on Ubuntu 22.04"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;quick-start&#x2F;"
+      rel="bookmark"
+      title="Mega Quick Start Guide on Ubuntu 22.04"
+    ><b>Mega Quick Start Guide on Ubuntu 22.04</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  28&#x2F;11&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Quick Started for developing and testing on Ubuntu(22.04)
+Install Rust on your Ubuntu machine.
+curl --proto &amp;#39;=https&amp;#39; --tlsv1.2 -sSf https:&#x2F;&#x2F;sh.rustup.rs | sh
+&#x2F;&#x2F; Configure the Environment Variable
+source $HOME&#x2F;.cargo&#x2F;env
+&#x2F;&#x2F; check your version
+rustc --version
+
+Clone mega repository and build it.
+git clone https:&#x2F;&#x2F;github.com&#x2F;web3infra-foundation&#x2F;mega.git
+cd mega
+cargo build
+
+Install PostgreSQL and init database.
+
+
+install PostgreSQL
+
+
+create database,then find the dump file in the...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;git&#x2F;..&#x2F;git.png"
+    class="img-fluid m-auto d-block "
+    alt="Git对象及其存储结构"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;git&#x2F;"
+      rel="bookmark"
+      title="Git对象及其存储结构"
+    ><b>Git对象及其存储结构</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  03&#x2F;11&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Git对象及其存储结构
+Git对象
+Git是一个内容寻址文件系统。其核心思想就是键值对数据库（key-value data store），其核心行为包括：
+
+通过向 Git 仓库中插入任意类型的内容，它会返回一个唯一的键（key）。
+通过该键可以在任意时刻再次取回该内容。
+
+实验出真知
+可以通过底层命令 git hash-object 来演示上述效果——该命令可将任意数据保存于 .git&#x2F;objects 目录（即 对象数据库），并返回指向该数据对象的唯一的键。
+
+
+初始化一个Git仓库
+$ git init git_lab
+
+
+
+检查一下git对象目录(.git&#x2F;objects)生成了哪些文件夹，通过find命令查看所有文件夹（包含子文件夹）
+$ find .git&#x2F;objects&#x2F;
+.git&#x2F;objects&#x2F;
+.git&#x2F;objects&#x2F;info
+.git&#x2F;objects&#x2F;pack
+
+
+
+检查一下.git&#x2F;objects目录下生成了哪些文件，同样通过find+文件路径+类型参数-type f查看所有文件
+$ find .git&#x2F;objects&#x2F; -type f
+&#x2F;&#x2F;无输出表示没有文件
+
+
+
+接下来要开始创建并保存一个文件了，这里简单创建一个文本文件
+echo &amp;quot;git testing&amp;quot; &amp;gt; git_test.txt
+
+
+
+保存到git对象目录（.git&#x2F;objects）。这里使用了git hash-object命令，根据文件git_test.txt的内容生成一串hash值
+git hash-object -w git_test.txt
+34e75148c0aeb4efb212f817606d386b15190525
+
+注意：hash值仅与文件内容有关，与名称无关。
+$ echo &amp;quot;git testing&amp;quot; | git hash-object -w --stdin
+34e75148c0aeb4efb212f817606d386b15190525
+
+
+
+再次查看git对象目录（.git&#x2F;objects）下的所有文件
+$ find .git&#x2F;objects&#x2F; -type f
+.git&#x2F;objects&#x2F;34&#x2F;e75148c0aeb4efb212f817606d386b15190525
+
+其中hash值长度40，前两个字符用于子目录命名，后38个字符用于文件命名。hash算法参考SHA-1
+
+
+文件git_test.txt内容已经存储到对象数据库中，如果需要从git中取回数据，则需要通过cat-file命令实现（个人理解cat实际就是catch的缩写），其中指定 -p 选项可指示该命令自动判断内容的类型，并为我们显示大致的内容
+$ git cat-file -p 34e75148c0aeb4efb212f817606d386b15190525
+git testing
+
+
+
+版本变更实验：更新文件git_test.txt的内容并重新保存
+$ echo &amp;quot;changing&amp;quot;...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;mega&#x2F;..&#x2F;git.png"
+    class="img-fluid m-auto d-block "
+    alt="Mega学习"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;mega&#x2F;"
+      rel="bookmark"
+      title="Mega学习"
+    ><b>Mega学习</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
   
   
     
@@ -783,80 +1011,35 @@
    - 
   30&#x2F;08&#x2F;2023
 
+    </small>
   </p>
-  
-  <p>
+
+          
+          
+  <p class="card-text text-muted">
     
-      <a
-        href="https://dorname.github.io/tags/rust/"
-        class="badge bg-dark text-decoration-none link-light me-1"
-      >
-        rust
-      </a>
-    
-      <a
-        href="https://dorname.github.io/tags/git/"
-        class="badge bg-dark text-decoration-none link-light me-1"
-      >
-        git
-      </a>
+      <small>Mega(去中心化Git服务)
+Mega是一个去中心化、分布式的开源git项目。它的目标是提供一个更加安全和隐私保护的git服务，同时还可以提供高质量的代码托管和版本控制功能。Mega是完全开源的，任何人都可以自由地使用它，也可以参与到它的开发和维护中来。
+...</small>
     
   </p>
-  
-  <div class="content">
-    <h1 id="mega-qu-zhong-xin-hua-gitfu-wu">Mega(去中心化Git服务)</h1>
-<p>Mega是一个去中心化、分布式的开源git项目。它的目标是提供一个更加安全和隐私保护的git服务，同时还可以提供高质量的代码托管和版本控制功能。Mega是完全开源的，任何人都可以自由地使用它，也可以参与到它的开发和维护中来。</p>
 
-  </div>
-  
-    
-  
-  <div class="card my-5">
-    <div class="row g-0">
-      <div class="col-md-4 d-flex align-items-center">
-        
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;harry.jpg"
-    class="img-fluid m-auto d-block rounded-circle"
-    alt="Li Guangqiao"
-  />
-
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">
-            <a
-              class="text-decoration-none text-reset"
-              href="https://dorname.github.io/authors/liguangqiao/"
-            >Li Guangqiao</a>
-          </h5>
-          <p class="card-text"><p>一个正在转rust的ExtJs前端工程师。迷信rust的整体发展，十分相信rust在各个领域都能发光发热，至少目前rust在很多领域上验证了其安全性、易维护性。但说实话对于我这种菜鸡也是真的难上手哈哈哈~~。
-思路总结：</p>
-<ul>
-<li>万物诞生都会有一个需求来源，每一个改变都是为了解决某个问题，最后应该考虑如何去做</li>
-<li>学会掌握一些宏观的知识和理论：系统论、还原论</li>
-<li>工程化思想，如何描述整体，从整体架构到模块关联等
-故学习东西应该像看地图一样，先看整体了解整体的结构，然后再聚焦每一个模块，对于模块的学习，思考三个问题，“是什么？”、“为什么？”、“怎么做？”；那么设计一个东西时也应该去考虑整体性和关联性。</li>
-</ul>
-<p>有关于未来的发展，以下是鄙人的粗浅的观点：</p>
-<ul>
-<li>编程语言未来应该是每个人必备的工具</li>
-<li>未来的交互方式应该会以语言交互为主流</li>
-<li>下一个去中心化的技术方案出来之前，区块链依然是web3建立价值体系的基础技术方案，如何将现实价值和虚拟价值联通是进入数字世界的一个大难题。</li>
-<li>未来注定是AI的世界。AI的进化会伴随绝大部分人的退化，届时除了尖端人才，人们学习的重心会放在何处？</li>
-</ul>
-</p>
+          
         </div>
       </div>
     </div>
-  </div>
+  
+
+	
+  
+  
 
   
+
 
     </main>
     
-  
-
+    
     
     <footer class="
       mt-auto p-5

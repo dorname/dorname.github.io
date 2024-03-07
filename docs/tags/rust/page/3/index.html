@@ -390,7 +390,7 @@
                     <li>
                       <a
                         class="dropdown-item"
-                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git"
                         onclick="switchTopic('Mega')"
                       >Mega</a>
                     </li>
@@ -782,6 +782,336 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="rust连接mysql建表测试"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;"
+      rel="bookmark"
+      title="rust连接mysql建表测试"
+    ><b>rust连接mysql建表测试</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  29&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>rust连接mysql建表测试
+前期准备
+
+
+创建一个新的Rust项目
+cargo new web_server_demo
+
+
+
+修改Cargo.toml
+
+添加actix-web依赖，快速构建接口服务。
+添加mysql依赖，连接&#x2F;操作mysql数据库。
+添加serde库依赖，用来序列化结构体实例。
+
+[dependencies]
+actix-web = &amp;quot;4&amp;quot;
+mysql = &amp;quot;*&amp;quot;# 通配符*表示可以使用任何版本，通常会拉取最新版本
+serde = { version = &amp;quot;1.0&amp;quot;, features = [&amp;quot;derive&amp;quot;] }
+
+
+
+创建一个模块mysql_connect目录结构为
+
+
+src
+|--mysql_connect
+	|--mod.rs
+	|--database_test.rs
+|--main.rs
+
+mod.rs的内容
+&#x2F;&#x2F;导出模块database_test
+pub mod database_test;
+&#x2F;&#x2F;导入模块database_test所有函数
+pub use database_test::*;
+
+
+接下是模块database_test.rs的内容
+
+use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+use mysql::{PooledConn, prelude::Queryable};
+use serde::Deserialize;
+const DATA_SOURCE_URL:&amp;amp;str = &amp;quot;mysql:&#x2F;&#x2F;root:lgq1995@localhost:3306&#x2F;example&amp;quot;;
+&#x2F;&#x2F; #[derive(Debug)]
+#[derive(Deserialize,Debug)]
+struct Info{
+    name:String
+}
+&#x2F;&#x2F;建表接口
+#[get(&amp;quot;&#x2F;create_table&amp;quot;)]
+async fn create_table(info:web::Query&amp;lt;Info&amp;gt;) -&amp;gt; impl Responder{
+    println!(&amp;quot;name:{:?}&amp;quot;,info.name);
+ ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;lab-one&#x2F;..&#x2F;new.jpg"
+    class="img-fluid m-auto d-block "
+    alt="WebAssembly Rust and ExtJs 实验(一)"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;lab-one&#x2F;"
+      rel="bookmark"
+      title="WebAssembly Rust and ExtJs 实验(一)"
+    ><b>WebAssembly Rust and ExtJs 实验(一)</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  29&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;leet-code-try&#x2F;leetcode_one.jpg"
+    class="img-fluid m-auto d-block "
+    alt="leetCode刷题"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;leet-code-try&#x2F;"
+      rel="bookmark"
+      title="leetCode刷题"
+    ><b>leetCode刷题</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  13&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>LeetCode
+88.合并两个有序数组
+思路：先无差别合到一个数组里，再对数组进行排序。
+这里使用了rust元素的排序方法
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="rust学习(一)基础概念"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;"
+      rel="bookmark"
+      title="rust学习(一)基础概念"
+    ><b>rust学习(一)基础概念</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  13&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Rust相关知识的思维导图
+
+浅入Rust基础
+目标：首先总结归纳Rust的基本内容，接着每天回顾一个了解过的rust基础
+常用语法
+变量和可变性
+
+
+变量的声明 
+&#x2F;&#x2F;let 变量名:变量类型 = 变量值
+let x = 5
+
+
+
+常量的声明
+&#x2F;&#x2F;const 常量名:常量类型 = 常量值
+const THE_X:U32 = 60*3;
+
+
+
+变量的可变性标记
+&#x2F;&#x2F;变量的可变性标记 mut
+let mut x = 5;
+x = 6;
+
+其他说明：
+
+
+可变变量重新声明成常态变量后，可变性会被覆盖掉，同时也会有相应的错误提示。
+let mut x = 5;
+let x = x+1;
+x = x+2; &#x2F;&#x2F;cannot mutate immutable variable `x`
+
+
+
+
+
+变量的封闭性
+变量的封闭性可以理解成，声明同名变量，会将上一个声明覆盖，直到下一个同名变量被声明，或者作用域结束。
+fn variablie(){
+    let x = 5;
+    let x = x...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;exercism-clock&#x2F;..&#x2F;rust.jpg"
     class="img-fluid m-auto d-block "
     alt="exercism——clock"
@@ -831,6 +1161,7 @@
   
 
 	
+<<<<<<< HEAD
     
   
     <div class="card p-3 border-0">
@@ -1115,6 +1446,8 @@ create database,then find the dump file in the...</small>
   
 
 	
+=======
+>>>>>>> 15ebfe30406f4fdaea2e044bb6d11f5214f94896
   
   
   <nav>

@@ -390,7 +390,7 @@
                     <li>
                       <a
                         class="dropdown-item"
-                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git"
                         onclick="switchTopic('Mega')"
                       >Mega</a>
                     </li>
@@ -823,7 +823,397 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+<<<<<<< HEAD
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;chainmaker&#x2F;..&#x2F;blockchain_one.jpg"
+=======
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;vga-text-code&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="走读Writing an OS in Rust实验（四）"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;vga-text-code&#x2F;"
+      rel="bookmark"
+      title="走读Writing an OS in Rust实验（四）"
+    ><b>走读Writing an OS in Rust实验（四）</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  07&#x2F;12&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>VGA文本模式
+参考原作者phil的官方博客
+目标：VGA文本模式将字符打印到屏幕上，要实现此目标需要将字符写入到VGA硬件的文本缓冲区。VGA文本缓冲区是一个二维数组，通常有25行和80列，直接呈现到屏幕上。每个数组条目通过以下格式描述单个屏幕字符：
+位值
+0-7ASCII码
+8-11前景色
+12-14背景色
+15闪烁位
+
+第一个字节表示应以 ASCII 编码打印的字符。更具体地说，它并不完全是 ASCII，而是一个名为代码页 437 的字符集，其中包含一些附加字符和轻微修改。为简单起见，我们将在这篇文章中继续称其为 ASCII 字符。第二个字节定义字符的显示方式。前四位定义前景色，后三位定义背景色，最后一位定义字符是否应该闪烁。
+数值位颜色数值位+明亮位亮色
+0x0Black0x8Dark Gray
+0x1Blue0x9Light Blue
+0x2Green0xaLight Green
+0x3Cyan0xbLight Cyan
+0x4Red0xcLight Red
+0x5Magenta0xdPink
+0x6Brown0xeYellow
+0x7Light Gray0xfWhite
+
+明亮位是高4位，对于前景色是色调变亮；对于背景色则是用作闪烁位
+VGA 文本缓冲区可通过内存映射的 I&#x2F;O 访问地址。这意味着对该地址的读取和写入不会访问 RAM，而是直接访问 VGA 硬件上的文本缓冲区。这意味着我们可以通过正常的内存操作读取和写入该地址0xb8000
+请注意，内存映射硬件可能不支持所有正常的 RAM 操作。例如，设备只能支持按字节读取，并在读取 a 时返回垃圾。幸运的是，文本缓冲区支持正常的读取和写入，因此我们不必以特殊方式处理它u64
+Rust 模块
+该模块用来处理字符打印逻辑
+&#x2F;&#x2F; in src&#x2F;main.rs
+mod vga_buffer;
+
+打印逻辑主要分为以下几步：
+
+定义颜色
+定义屏幕字符和文本缓冲区
+实现打印方法
+避免打印操作被编译器优化
+实现格式化宏
+实现下一行函数
+暴露一个全局的接口
+实现恐慌的错误提示 
+
+定义颜色
+
+
+枚举颜色
+#[allow(dead_code)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[repr(u8)]
+pub enum Color {
+    Black = 0, &#x2F;&#x2F;00000000
+    Blue = 1, &#x2F;&#x2F;00000001
+ ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;a-minimal-rust-kernel&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="走读Writing an OS in Rust实验（三）"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;a-minimal-rust-kernel&#x2F;"
+      rel="bookmark"
+      title="走读Writing an OS in Rust实验（三）"
+    ><b>走读Writing an OS in Rust实验（三）</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  05&#x2F;12&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>最小Rust内核
+（参考原作者phil的官方博客）
+启动进程
+
+
+计算机开机时，它开始执行存储在主板 ROM 中的固件代码。 启动进程执行加电自检、检测可用 RAM 并预初始化 CPU 和硬件。 然后，它会查找可启动磁盘并开始启动操作系统内核。
+
+
+在 x86 上，有两种固件标准：“基本输入&#x2F;输出系统”(BIOS) 和较新的“统一可扩展固件接口”(UEFI)。 BIOS 标准陈旧且过时，但简单且自 20 世纪 80 年代以来的任何 x86 计算机都得到良好支持。 相比之下，UEFI 更现代，具有更多功能，但设置更复杂。目前UEFI，作者已经开始支持了，详细进度去看作者的github仓库或者相关新的博客。
+
+
+启动进程的具体流程：
+当您打开计算机时，它会从主板上的某些特殊闪存加载 BIOS。 BIOS 运行硬件的自检和初始化例程，然后查找可启动磁盘。 如果找到，控制权就会转移到其引导加载程序，这是存储在磁盘开头的 512 字节可执行代码部分。 大多数引导加载程序都大于 512 字节，因此引导加载程序通常分为较小的第一阶段（适合 512 字节）和第二阶段（随后由第一阶段加载）。 引导加载程序必须确定内核映像在磁盘上的位置并将其加载到内存中。 它还需要先将CPU从16位实模式切换到32位保护模式，然后再切换到64位长模式，其中64位寄存器和完整的主存储器都可用。 它的第三项工作是从 BIOS 查询某些信息（例如内存映射）并将其传递给操作系统内核。 编写引导加载程序有点麻烦，因为它需要汇编语言和许多非深入的步骤，例如“将这个神奇的值写入该处理器寄存器”。 因此，我们不会在本文中介绍引导加载程序的创建，而是提供一个名为 bootimage 的工具，该工具会自动将引导加载程序添加到内核中。 
+内核构建
+主要包含4个部分
+
+下载nightly版本的Rust
+项目配置清单
+编译内核
+向屏幕打印字符
+启动内核
+
+项目配置清单
+通过 --target 参数，cargo 支持不同的目标系统。这个目标系统可以使用一个目标三元组（target triple）来描述，它描述了 CPU 架构、平台供应者、操作系统和应用程序二进制接口（Application Binary...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;os-no-standard&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="走读Writing an OS in Rust实验（二）"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;os-no-standard&#x2F;"
+      rel="bookmark"
+      title="走读Writing an OS in Rust实验（二）"
+    ><b>走读Writing an OS in Rust实验（二）</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  02&#x2F;12&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>独立式可执行程序
+（参考原作者phil的官方博客）
+为了用 Rust 编写一个操作系统内核，我们需要创建一个独立于操作系统的可执行程序。这样的可执行程序常被称作独立式可执行程序（freestanding executable）或裸机程序(bare-metal executable)。
+构建裸机程序主要需要五步：
+
+禁用标准库
+重新实现panic处理函数
+禁用栈展开（事实上重写程序入口）
+重写程序入口
+编译成裸机目标
+
+禁用标准库
+目标：断开与标准库的链接，使用核心库脱离操作系统绑定
+#![no_std]添加到程序可以断开与标准库的链接
+#![no_std]
+
+fn main() {
+    println!(&amp;quot;Hello, world!&amp;quot;);
+}
+
+cargo build验证
+
+发现println!宏已经找不到了。
+
+error: cannot find macro `println` in this scope
+ --&amp;gt; src&#x2F;main.rs:4:5
+  |
+4 |     println!(&amp;quot;Hello, world!&amp;quot;);
+  |     ^^^^^^^
+
+error: `#[panic_handler]` function required, but not found
+
+error: language item required, but not found:...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;writing-os-in-rust&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="走读Writing an OS in Rust实验（一）"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;writing-os-in-rust&#x2F;"
+      rel="bookmark"
+      title="走读Writing an OS in Rust实验（一）"
+    ><b>走读Writing an OS in Rust实验（一）</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  02&#x2F;12&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Blob Os 内容大纲
+![](writing _an_os_in_rust_arch.png)
+
+移除Rust标准库
+
+标准库需要底层操作系统的支撑，想要裸机运行代码，要求Rust可执行文件使用核心库而不是标准库。
+
+基于X86架构的最小内核
+
+基于X86架构和Rust语言编写最小化的64位内核。本章将构建一个向显示器打印字符串，并能被打包为一个能够引导启动的磁盘映像。
+
+VGA字符模式
+
+VGA 字符模式（VGA text mode）是打印字符到屏幕的一种简单方式。在这篇文章中，为了包装这个模式为一个安全而简单的接口，我们将包装 unsafe 代码到独立的模块。我们还将实现对 Rust 语言格式化宏（formatting macros）的支持。
+
+内核测试
+
+本文主要讲述了在no_std环境下进行单元测试和集成测试的方法。我们将通过Rust的自定义测试框架来在我们的内核中执行一些测试函数。为了将结果反馈到QEMU上，我们需要使用QEMU的一些其他的功能以及bootimage工具。
+
+CPU异常处理
+
+CPU异常在很多情况下都有可能发生，比如访问无效的内存地址，或者在除法运算里除以0。为了处理这些错误，我们需要设置一个 中断描述符表 来提供异常处理函数。在文章的最后，我们的内核将能够捕获 断点异常 并在处理后恢复正常执行。
+
+双重故障
+
+在这篇文章中，我们会探索 double fault 异常的细节，它的触发条件是调用错误处理函数失败。通过捕获该异常，我们可以阻止致命的 triple faults 异常导致系统重启。为了尽可能避免 triple faults ，我们会在一个独立的内核栈配置 中断栈表 来捕捉 double faults。
+
+硬件中断
+
+在本文中，我们会对可编程的中断控制器进行设置，以将硬件中断转发给CPU，而要处理这些中断，只需要像处理异常一样在中断描述符表中加入一个新条目即可，在这里我们会以获取周期计时器的中断和获取键盘输入为例进行讲解。
+
+内存分页初探
+
+本文主要讲解 内存分页 机制，一种我们将会应用到操作系统里的十分常见的内存模型。同时，也会展开说明为何需要进行内存隔离、分段机制 是如何运作的、虚拟内存 是什么，以及内存分页是如何解决内存碎片问题的，同时也会对x86_64的多级页表布局进行探索。
+
+分页实现
+
+这篇文章展示了如何在我们的内核中实现分页支持。它首先探讨了使物理页表帧能够被内核访问的不同技术，并讨论了它们各自的优点和缺点。然后，它实现了一个地址转换功能和一个创建新映射的功能。
+
+栈分配
+
+这篇文章为我们的内核增加了对堆分配的支持。首先，它介绍了动态内存，并展示了借用检查器如何防止常见的分配错误。然后，它实现了 Rust 的基本分配接口，创建了一个堆内存区域，并设置了一个分配器包。在这篇文章的最后，内置 alloc crate 的所有分配和收集类型都将可供我们的内核使用。
+
+分配器设计
+
+这篇文章解释了如何从头开始实现堆分配器。它介绍并讨论了不同的分配器设计，包括凸块分配、链表分配和固定大小块分配。对于这三种设计中的每一种，我们将创建一个可用于内核的基本实现。
+
+异步和等待
+
+在这篇文章中，我们将探讨 Rust 的协作多任务处理和 async&#x2F;await 特性。我们详细介绍了 async&#x2F;await 在 Rust 中是如何工作的，包括 Future 特性的设计、状态机转换和固定。然后，我们通过创建一个异步键盘任务和一个基本的执行器，将对 async&#x2F;await 的基本支持添加到我们的内核中。
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;quick-start&#x2F;..&#x2F;git.png"
+>>>>>>> 15ebfe30406f4fdaea2e044bb6d11f5214f94896
     class="img-fluid m-auto d-block "
     alt="初识长安链"
   />
@@ -835,7 +1225,11 @@
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
+<<<<<<< HEAD
       href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;chainmaker&#x2F;"
+=======
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;quick-start&#x2F;"
+>>>>>>> 15ebfe30406f4fdaea2e044bb6d11f5214f94896
       rel="bookmark"
       title="初识长安链"
     ><b>初识长安链</b></a>
@@ -898,6 +1292,7 @@ $ tree -L 3 ..&#x2F;build&#x2F;
   
 
 	
+<<<<<<< HEAD
     
   
     <div class="card p-3 border-0">
@@ -1216,6 +1611,8 @@ ExecReload=&#x2F;bin&#x2F;kill -s HUP $MAINPID
   
 
 	
+=======
+>>>>>>> 15ebfe30406f4fdaea2e044bb6d11f5214f94896
   
   
   <nav>

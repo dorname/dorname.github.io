@@ -10,18 +10,18 @@ extra:
       end: 4
       type: default
       title: Rust学习
-    - section: articles
+    - section: mega_git
       size: 4
       start: 0
       end: 4
       type: horizontal
-      title: 杂活博客
-  - - section: blockchain
+      title: 分布式Git项目Mega
+  - - section: js_learning
       size: 12 
       start: 0
       end: 12
       type: vertical
-      title: 区块链
+      title: js相关博客
       row: 4
   # - - section: articles
   #     size: 6
@@ -50,18 +50,18 @@ extra:
     #      icon: fas fa-rss
     #      button: secondary
     #      url: about
-  - - section: js_learning
+  - - section: articles
       size: 4
       start: 0
       end: 14
       type: carousel
-      title: js相关博客
-    - section: webAssembly_rust_and_extJs-lab
+      title: 杂活博客
+    - section: blockchain
       size: 8
       start: 0
       end: 14
       type: overlay 
-      title: wasm实验
+      title: 区块链
       rows:
        - 3
        - 4
