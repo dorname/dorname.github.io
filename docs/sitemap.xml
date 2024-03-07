@@ -71,7 +71,14 @@
         <loc>https://dorname.github.io/authors/liguangqiao/page/7/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/authors/liguangqiao/page/8/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/blockchain/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/blockchain/chainmaker/</loc>
+        <lastmod>2024-03-07</lastmod>
     </url>
     <url>
         <loc>https://dorname.github.io/blockchain/classic-modern-blockchain/</loc>
@@ -87,6 +94,42 @@
     <url>
         <loc>https://dorname.github.io/blockchain/what-is-blockchain/</loc>
         <lastmod>2023-10-10</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/distributed_system/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/distributed_system/consensus/</loc>
+        <lastmod>2024-03-07</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/distributed_system/contract/</loc>
+        <lastmod>2024-03-07</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/distributed_system/cryptography/</loc>
+        <lastmod>2024-01-25</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/distributed_system/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/distributed_system/theory/</loc>
+        <lastmod>2024-01-19</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/docker/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/docker/diff-docker-docker-compose/</loc>
+        <lastmod>2024-03-07</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/docker/offine-deploy/</loc>
+        <lastmod>2024-03-07</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/docker/page/1/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/js_learning/</loc>
@@ -124,6 +167,9 @@
     <url>
         <loc>https://dorname.github.io/js_learning/v8engine/</loc>
         <lastmod>2023-10-04</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/kubernetes/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/mege_git/</loc>
@@ -196,6 +242,12 @@
     </url>
     <url>
         <loc>https://dorname.github.io/tags/blockchain/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/blockchain/page/2/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/blockchain/page/3/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/c/</loc>

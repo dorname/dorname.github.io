@@ -823,9 +823,9 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-27-worker-thread&#x2F;..&#x2F;js_logo.png"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;ownership&#x2F;..&#x2F;rust.jpg"
     class="img-fluid m-auto d-block "
-    alt="js学习笔记(27)"
+    alt="rust学习(二)所有权和生命周期"
   />
 
         </div>
@@ -835,10 +835,10 @@
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-27-worker-thread&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;ownership&#x2F;"
       rel="bookmark"
-      title="js学习笔记(27)"
-    ><b>js学习笔记(27)</b></a>
+      title="rust学习(二)所有权和生命周期"
+    ><b>rust学习(二)所有权和生命周期</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -852,7 +852,7 @@
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  23&#x2F;05&#x2F;2023
+  15&#x2F;07&#x2F;2023
 
     </small>
   </p>
@@ -861,7 +861,106 @@
           
   <p class="card-text text-muted">
     
-      <small>Section 27 工作者线程
+      <small>Rust所有权机制
+Rust语言引入所有权机制的目标
+主要为解决复杂系统中的资源管理和悬吊引用问题。
+所有权系统是Rust中用于管理内存的手段。
+所有权规则总结归纳：
+
+每个值（变量）都有一个所有者
+值在任意时刻都只有一个所有者
+当所有离开作用域时，其值将被丢弃(相当于执行垃圾回收)
+
+结论：Rust的值被唯一的对象管理着，一旦不使用，内存就会立刻释放。
+所有权简单实验
+
+
+借用
+let x = String::from(&amp;quot;hello&amp;quot;);
+let y = &amp;amp;x;
+
+
+
+克隆
+let x = 10;
+let y = x;
+println!(&amp;quot;测试通过{x},{y}&amp;quot;);
+&#x2F;&#x2F;测试通过10，10
+let a = &amp;quot;hello&amp;quot;;
+let b = a;
+println!(&amp;quot;测试通过{x},{y}&amp;quot;);
+let c = (1,2 as f64,&amp;quot;hello&amp;quot;);
+let d = c;
+println!(&amp;quot;测试:{:?},{:?}&amp;quot;,c,d);
+let g = d.clone();
+
+
+
+生命周期
+静态生命周期***&#x27;static和动态生命周期&#x27;a***
+静态生命周期在整个程序中期间存活
+动态生命周期，相关参数的生命周期以相对长生命周期的引用为准
+fn lifetime_test_one() -&amp;gt; &amp;amp;String{
+        let x= &amp;quot;hello&amp;quot;.to_string();
+       ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-9-reflection-proxy&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block "
+    alt="js学习笔记(9)——反射和代理"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-9-reflection-proxy&#x2F;"
+      rel="bookmark"
+      title="js学习笔记(9)——反射和代理"
+    ><b>js学习笔记(9)——反射和代理</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  27&#x2F;06&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>todo
 ...</small>
     
   </p>
@@ -882,9 +981,9 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;leet-code-try&#x2F;leetcode_one.jpg"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;hashmap&#x2F;hash.jpg"
     class="img-fluid m-auto d-block "
-    alt="leetCode刷题"
+    alt="hashMap"
   />
 
         </div>
@@ -894,10 +993,10 @@
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;leet-code-try&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;hashmap&#x2F;"
       rel="bookmark"
-      title="leetCode刷题"
-    ><b>leetCode刷题</b></a>
+      title="hashMap"
+    ><b>hashMap</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -911,254 +1010,7 @@
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  13&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>LeetCode
-88.合并两个有序数组
-思路：先无差别合到一个数组里，再对数组进行排序。
-这里使用了rust元素的排序方法
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;mermory-leak&#x2F;leak.jpg"
-    class="img-fluid m-auto d-block "
-    alt="内存泄漏专题"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;mermory-leak&#x2F;"
-      rel="bookmark"
-      title="内存泄漏专题"
-    ><b>内存泄漏专题</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  13&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>内存泄漏
-什么是内存泄漏？
-内存泄漏指的是在计算机程序中动态分配的内存空间在不再被使用时没有被正确释放或回收的情况。当发生内存泄漏时，程序持续占用着一部分内存，而这些内存无法被其他部分或其他程序使用，从而导致系统的可用内存逐渐减少。
-内存泄漏可能由以下情况引起：
-
-动态内存分配未释放：在程序中使用诸如malloc、new等函数或操作符分配内存空间时，如果没有及时调用对应的释放函数或操作符，就会导致内存泄漏。例如，在C++中使用new操作符分配对象的内存，如果没有使用delete操作符释放内存，就会发生内存泄漏。
-数据结构中的循环引用：在某些情况下，数据结构中的对象之间可能存在循环引用关系，即对象A引用对象B，对象B又引用对象A，而且这些对象都不再被程序使用。这种情况下，即使这些对象不再需要，由于彼此之间存在引用关系，它们无法被垃圾回收器正确回收，从而导致内存泄漏。
-文件或资源未关闭：在使用文件、网络连接、数据库连接等外部资源时，如果没有正确关闭或释放这些资源，就会导致内存泄漏。即使程序不再使用这些资源，但操作系统或底层库可能仍然保持着相关的内存空间。
-
-内存泄漏会导致程序运行时占用的内存不断增加，最终可能导致系统的内存耗尽或程序性能下降。为了避免内存泄漏，开发者应当注意及时释放动态分配的内存，处理对象之间的引用关系，以及正确关闭文件和其他资源。使用合适的内存管理技术和工具，例如自动垃圾回收（Garbage Collection）或智能指针，也可以帮助减少内存泄漏的风险。
-js中的内存泄漏
-在JavaScript中，内存泄漏是指无用的对象仍然被占用内存，而无法被垃圾回收器释放的情况。JavaScript中的内存泄漏通常是由以下情况引起的：
-
-未及时清理定时器和事件监听器：在JavaScript中使用定时器（setTimeout或setInterval）或事件监听器（addEventListener）时，如果没有及时清理它们，即使它们不再需要，它们仍然保留对回调函数的引用，导致相关对象无法被垃圾回收。
-循环引用：如果存在对象之间的循环引用，即对象A引用了对象B，而对象B又引用了对象A，并且没有其他部分引用这些对象，就会发生内存泄漏。即使这些对象已经不再被程序使用，但由于它们之间的引用关系，垃圾回收器无法正确回收它们所占用的内存。
-未释放的DOM元素引用：在JavaScript中，如果在页面中创建了DOM元素的引用，但在后续不再需要时未及时释放，就会发生内存泄漏。即使从页面中删除了这些元素，它们仍然被引用，无法被垃圾回收器回收。
-闭包引用：JavaScript中的闭包函数可以访问其外部作用域的变量，如果在闭包函数中引用了外部作用域的变量，而闭包函数本身又没有被及时释放，就会导致引用的变量无法被垃圾回收。
-未释放的资源：在JavaScript中涉及到外部资源的操作，如网络请求、数据库连接等，如果没有正确释放这些资源，就会导致内存泄漏。这些资源可能占用系统内存或浏览器资源，而没有被及时释放。
-
-为了避免JavaScript中的内存泄漏问题，开发者可以采取以下措施：
-
-及时清理定时器和事件监听器，确保不再需要时将其移除。
-避免循环引用的产生，特别是在对象之间相互引用时要小心处理。
-在不再需要时释放对DOM元素的引用，尽量避免保留过多不必要的引用。
-在使用闭包函数时，注意及时释放不再需要的闭包函数和外部作用域的变量。
-对涉及到外部资源的操作，如网络请求、数据库连接等，要确保及时关闭或释放这些资源。
-使用现代的开发工具和浏览器提供的开发者工具进行内存泄漏的检测和分析，以及优化代码和内存使用。
-
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="rust学习(一)基础概念"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;"
-      rel="bookmark"
-      title="rust学习(一)基础概念"
-    ><b>rust学习(一)基础概念</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  13&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>Rust相关知识的思维导图
-
-浅入Rust基础
-目标：首先总结归纳Rust的基本内容，接着每天回顾一个了解过的rust基础
-常用语法
-变量和可变性
-
-
-变量的声明 
-&#x2F;&#x2F;let 变量名:变量类型 = 变量值
-let x = 5
-
-
-
-常量的声明
-&#x2F;&#x2F;const 常量名:常量类型 = 常量值
-const THE_X:U32 = 60*3;
-
-
-
-变量的可变性标记
-&#x2F;&#x2F;变量的可变性标记 mut
-let mut x = 5;
-x = 6;
-
-其他说明：
-
-
-可变变量重新声明成常态变量后，可变性会被覆盖掉，同时也会有相应的错误提示。
-let mut x = 5;
-let x = x+1;
-x = x+2; &#x2F;&#x2F;cannot mutate immutable variable `x`
-
-
-
-
-
-变量的封闭性
-变量的封闭性可以理解成，声明同名变量，会将上一个声明覆盖，直到下一个同名变量被声明，或者作用域结束。
-fn variablie(){
-    let x = 5;
-    let x = x...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;exercism-clock&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="exercism——clock"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;exercism-clock&#x2F;"
-      rel="bookmark"
-      title="exercism——clock"
-    ><b>exercism——clock</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  13&#x2F;05&#x2F;2023
+  17&#x2F;06&#x2F;2023
 
     </small>
   </p>
@@ -1168,6 +1020,212 @@ fn variablie(){
   <p class="card-text text-muted">
     
       <small>...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;consensus&#x2F;..&#x2F;blockchain_one.jpg"
+    class="img-fluid m-auto d-block "
+    alt="拜占庭问题"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;consensus&#x2F;"
+      rel="bookmark"
+      title="拜占庭问题"
+    ><b>拜占庭问题</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  30&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>简述
+这种情况可以抽象地表达为一群拜占庭军队的将军和他们的军队驻扎在敌人的城市周围。因此，在一个叛徒面前，没有解决三个将军的办法，将军们只能通过信使交流，必须商定一个共同的作战计划。然而，其中一个或多个可能是叛徒，他们会试图混淆其他人。问题是找到一种算法来确保忠诚的将军们达成一致。研究表明，仅使用口头信息，这个问题是可以解决的，当且仅当超过三分之二的将军是忠诚的;所以一个叛徒可以迷惑两个忠诚的将军。有了不可伪造的文字信息，这个问题对任何数量的将军和可能的叛徒来说都是可以解决的。然后讨论了这些解决方案在可靠计算机系统中的应用。
+解决目标问题
+可靠的计算机系统必须处理故障部件，这些部件向系统的不同部分提供相互冲突的信息。
+即解决冲突信息，思想仍然是少数服从多数。
+目标
+找到一种合适的算法确保忠诚的将军能达到意见一致
+达到目标的条件
+
+A  所有忠诚的将军都决定同样的行动计划。
+B  一小撮叛徒不能使忠诚的将军们采纳一个坏计划。
+
+描述：条件B很难形式化，因为它要求准确地说出什么是糟糕的计划，而我们并不打算这样做。相反，我们考虑将军们如何做出决定。每个将军都观察敌人，并把他的观察结果传达给其他人。设v(i)为第i个将军传达的信息。每个一般使用一些方法来组合值v (1) .....V (n)变成一个单独的行动计划，其中n是将军的数目。条件A是通过让所有将军使用相同的方法来组合信息来实现的，条件B是通过使用一种鲁棒方法来实现的。例如，如果要做的唯一决定是进攻还是撤退，那么v(i)就是i将军的意见，即哪个选择是最好的，而最终的决定可以基于他们中的大多数人的投票。只有当忠诚的将军们在两种可能性中几乎平分，少数卖国贼才能影响决策，在这种情况下，任何一个决定都不能被称为坏决定。虽然这种方法可能不是满足条件A和B的唯一方法，但它是我们所知道的唯一方法。它采用了一种方法，将军们通过这种方法互相交流他们的价值观v (i)。显而易见的方法是第i个将军通过信使发送v (i)给对方将军。但是，这是行不通的，因为满足条件A要求每个忠诚的将军获得相同的值v(1) .....V (n)，一个叛国的将军可能会给不同的将军发送不同的值。要满足条件A，下列条件必须成立
+
+
+每个忠诚的将军必须获得相同的信息v (1) ....v (n)。
+条件1意味着将军不能使用直接从第i将军获得的值v(i)，因为叛变的第i将军可以将不同的值发送给不同的将军。这意味着，除非我们小心，在满足条件1的情况下，我们可能引入一种可能性，即将军使用的v (i)值与第i个将军发送的值不同——即使第i个将军是忠诚的。如果满足条件B，我们绝不允许这种情况发生。例如，我们不能允许少数卖国贼使洛亚将军以“撤退”的价值作决定，……如果每一个忠诚的将军都派人去“进攻”的话。因此，我们对每个i都有以下要求
+
+
+如果第i个将军是忠诚的，那么他发送的值必须被每个忠诚的将军用作***v (i)***的值。
+
+
+我们可以将条件I重写为条件对于每一个I(无论第I个将军是否忠诚)：1”.任何两个忠诚的将军使用相同的***v(i)***值。
+条件1&#x27;和2都是第i个将军发送的单个值的条件。因此，我们可以把我们的考虑限制在一个将军如何将他的价值传递给其他将军的问题上。我们用一个指挥将军向他的副官们发出命令的方式来描述这个问题。
+最终拜占庭将军的问题变成下面这样一个命题
+一个将军必须向他的n - 1个中将发出这样的命令
+对于命令的要求：
+
+
+IC1 所有忠诚的中尉都服从同一命令
+
+
+IC2 如果指挥官是忠诚的，那么每个忠诚的中尉都会服从他的命令。
+条件IC1和IC2称为交互一致性条件。注意，如果指挥官是忠诚的，IC1就会跟着IC2。然而，指挥官不需要忠诚。为了解决我们最初的问题，第i个将军通过使用拜占庭将军问题的解发送他的***v(i)值命令“使用v(i)***作为我的值”，其他将军作为副手。
+
+
+不可能的结果
+拜占庭将军问题看似简单。令人惊讶的事实表明，如果将军们只能发出口头信息，那么除非超过三分之二的将军是忠诚的，否则任何解决方案都不会奏效。特别是，在只有三个将军的情况下，在一个叛徒面前，任何解决方案都不可能奏效。口头信息的内容完全在发送者的控制之下，所以一个叛逆的发送者可以传递任何可能的信息。**这样的消息与计算机通常相互发送的消息类型相对应。在第4节中，我们考虑了签名的、书面的消息，但这是不正确的。（Such a message corresponds to the type of message that computers normally send to one another. In Section 4 we consider signed, written messages, for which this is not true....</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="rust连接mysql建表测试"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;rust-connect-mysql&#x2F;"
+      rel="bookmark"
+      title="rust连接mysql建表测试"
+    ><b>rust连接mysql建表测试</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  29&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>rust连接mysql建表测试
+前期准备
+
+
+创建一个新的Rust项目
+cargo new web_server_demo
+
+
+
+修改Cargo.toml
+
+添加actix-web依赖，快速构建接口服务。
+添加mysql依赖，连接&#x2F;操作mysql数据库。
+添加serde库依赖，用来序列化结构体实例。
+
+[dependencies]
+actix-web = &amp;quot;4&amp;quot;
+mysql = &amp;quot;*&amp;quot;# 通配符*表示可以使用任何版本，通常会拉取最新版本
+serde = { version = &amp;quot;1.0&amp;quot;, features = [&amp;quot;derive&amp;quot;] }
+
+
+
+创建一个模块mysql_connect目录结构为
+
+
+src
+|--mysql_connect
+	|--mod.rs
+	|--database_test.rs
+|--main.rs
+
+mod.rs的内容
+&#x2F;&#x2F;导出模块database_test
+pub mod database_test;
+&#x2F;&#x2F;导入模块database_test所有函数
+pub use database_test::*;
+
+
+接下是模块database_test.rs的内容
+
+use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+use mysql::{PooledConn, prelude::Queryable};
+use serde::Deserialize;
+const DATA_SOURCE_URL:&amp;amp;str = &amp;quot;mysql:&#x2F;&#x2F;root:lgq1995@localhost:3306&#x2F;example&amp;quot;;
+&#x2F;&#x2F; #[derive(Debug)]
+#[derive(Deserialize,Debug)]
+struct Info{
+    name:String
+}
+&#x2F;&#x2F;建表接口
+#[get(&amp;quot;&#x2F;create_table&amp;quot;)]
+async fn create_table(info:web::Query&amp;lt;Info&amp;gt;) -&amp;gt; impl Responder{
+    println!(&amp;quot;name:{:?}&amp;quot;,info.name);
+ ...</small>
     
   </p>
 
@@ -1264,6 +1322,18 @@ fn variablie(){
             href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;7"
             
           >7</a>
+        </li>
+      
+        <li class="
+          page-item
+          
+        ">
+          <a
+            class="page-link"
+            
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;8"
+            
+          >8</a>
         </li>
       
     </ul>

@@ -782,9 +782,9 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;what-is-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;chainmaker&#x2F;..&#x2F;blockchain_one.jpg"
     class="img-fluid m-auto d-block "
-    alt="区块链的理解(阅读收集)"
+    alt="初识长安链"
   />
 
         </div>
@@ -794,10 +794,10 @@
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;what-is-blockchain&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;chainmaker&#x2F;"
       rel="bookmark"
-      title="区块链的理解(阅读收集)"
-    ><b>区块链的理解(阅读收集)</b></a>
+      title="初识长安链"
+    ><b>初识长安链</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -811,7 +811,7 @@
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  10&#x2F;10&#x2F;2023
+  07&#x2F;03&#x2F;2024
 
     </small>
   </p>
@@ -820,7 +820,97 @@
           
   <p class="card-text text-muted">
     
-      <small>什么是区块链?
+      <small>长安链（chainmaker）
+四节点docker离线部署
+环境准备
+我的实验环境是麒麟服务器外加一台可联网的机器（没有arm架构机器可以考虑使用qemu-static-user，安装之后允许本地跑arm架构的镜像，虽然会报警告，但没有影响运行）
+要求联网可以通过ssh远程访问服务器。
+目标是在服务器上部署四节点的CERT证书模式的长安链。
+1 服务器docker 和docker-compose 离线安装
+参考麒麟系统（arm64&#x2F;aarch64）离线安装docker和docker-compose_docker-compose-linux-aarch64-CSDN博客
+2 准备好长安链的arm64镜像。
+联网环境：
+docker pull chainmakerofficial&#x2F;chainmaker:v2.3.2_arm
+docker save -o chainmaker.tar chainmakerofficial&#x2F;chainmaker:v2.3.2_arm
+可以得到一个chainmaker.tar本地镜像包，并拷贝到服务器中（这里我是使用scp命令）
+服务器：
+docker load -i chainmaker.tar
+3 准备长安链的配置文件
+详细参考官方文档，只需要准备到2.1.2.4. 账户生成
+注意：国密版本需要修改配置模板参考官方文档
+2. 通过命令行体验链 — chainmaker-docs v2.3.2 documentation
+# 查看生成好的节点密钥和配置
+$ tree -L 3 ..&#x2F;build&#x2F;
+..&#x2F;build&#x2F;
+├── config
+│   ├── node1
+│   │   ├── admin
+│   │   ├── chainconfig
+│   │  ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;consensus&#x2F;..&#x2F;logo.png"
+    class="img-fluid m-auto d-block "
+    alt="共识算法"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;consensus&#x2F;"
+      rel="bookmark"
+      title="共识算法"
+    ><b>共识算法</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  07&#x2F;03&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>共识算法
+主要研究四个共识算法包含拜占庭容错共识、工作量证明共识、权益证明共识和Raft共识。
+拜占庭容错共识(PBFT)
+工作量证明共识(PoW)
+权益证明共识(PoS)
+权益证明共识(DPoS)
+Raft共识
 ...</small>
     
   </p>
@@ -841,9 +931,9 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;consensus&#x2F;..&#x2F;blockchain_one.jpg"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;contract&#x2F;..&#x2F;logo.png"
     class="img-fluid m-auto d-block "
-    alt="拜占庭问题"
+    alt="智能合约"
   />
 
         </div>
@@ -853,10 +943,10 @@
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;consensus&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;contract&#x2F;"
       rel="bookmark"
-      title="拜占庭问题"
-    ><b>拜占庭问题</b></a>
+      title="智能合约"
+    ><b>智能合约</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -870,7 +960,7 @@
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  30&#x2F;05&#x2F;2023
+  07&#x2F;03&#x2F;2024
 
     </small>
   </p>
@@ -879,44 +969,37 @@
           
   <p class="card-text text-muted">
     
-      <small>简述
-这种情况可以抽象地表达为一群拜占庭军队的将军和他们的军队驻扎在敌人的城市周围。因此，在一个叛徒面前，没有解决三个将军的办法，将军们只能通过信使交流，必须商定一个共同的作战计划。然而，其中一个或多个可能是叛徒，他们会试图混淆其他人。问题是找到一种算法来确保忠诚的将军们达成一致。研究表明，仅使用口头信息，这个问题是可以解决的，当且仅当超过三分之二的将军是忠诚的;所以一个叛徒可以迷惑两个忠诚的将军。有了不可伪造的文字信息，这个问题对任何数量的将军和可能的叛徒来说都是可以解决的。然后讨论了这些解决方案在可靠计算机系统中的应用。
-解决目标问题
-可靠的计算机系统必须处理故障部件，这些部件向系统的不同部分提供相互冲突的信息。
-即解决冲突信息，思想仍然是少数服从多数。
-目标
-找到一种合适的算法确保忠诚的将军能达到意见一致
-达到目标的条件
-
-A  所有忠诚的将军都决定同样的行动计划。
-B  一小撮叛徒不能使忠诚的将军们采纳一个坏计划。
-
-描述：条件B很难形式化，因为它要求准确地说出什么是糟糕的计划，而我们并不打算这样做。相反，我们考虑将军们如何做出决定。每个将军都观察敌人，并把他的观察结果传达给其他人。设v(i)为第i个将军传达的信息。每个一般使用一些方法来组合值v (1) .....V (n)变成一个单独的行动计划，其中n是将军的数目。条件A是通过让所有将军使用相同的方法来组合信息来实现的，条件B是通过使用一种鲁棒方法来实现的。例如，如果要做的唯一决定是进攻还是撤退，那么v(i)就是i将军的意见，即哪个选择是最好的，而最终的决定可以基于他们中的大多数人的投票。只有当忠诚的将军们在两种可能性中几乎平分，少数卖国贼才能影响决策，在这种情况下，任何一个决定都不能被称为坏决定。虽然这种方法可能不是满足条件A和B的唯一方法，但它是我们所知道的唯一方法。它采用了一种方法，将军们通过这种方法互相交流他们的价值观v (i)。显而易见的方法是第i个将军通过信使发送v (i)给对方将军。但是，这是行不通的，因为满足条件A要求每个忠诚的将军获得相同的值v(1) .....V (n)，一个叛国的将军可能会给不同的将军发送不同的值。要满足条件A，下列条件必须成立
-
-
-每个忠诚的将军必须获得相同的信息v (1) ....v (n)。
-条件1意味着将军不能使用直接从第i将军获得的值v(i)，因为叛变的第i将军可以将不同的值发送给不同的将军。这意味着，除非我们小心，在满足条件1的情况下，我们可能引入一种可能性，即将军使用的v (i)值与第i个将军发送的值不同——即使第i个将军是忠诚的。如果满足条件B，我们绝不允许这种情况发生。例如，我们不能允许少数卖国贼使洛亚将军以“撤退”的价值作决定，……如果每一个忠诚的将军都派人去“进攻”的话。因此，我们对每个i都有以下要求
-
-
-如果第i个将军是忠诚的，那么他发送的值必须被每个忠诚的将军用作***v (i)***的值。
-
-
-我们可以将条件I重写为条件对于每一个I(无论第I个将军是否忠诚)：1”.任何两个忠诚的将军使用相同的***v(i)***值。
-条件1&#x27;和2都是第i个将军发送的单个值的条件。因此，我们可以把我们的考虑限制在一个将军如何将他的价值传递给其他将军的问题上。我们用一个指挥将军向他的副官们发出命令的方式来描述这个问题。
-最终拜占庭将军的问题变成下面这样一个命题
-一个将军必须向他的n - 1个中将发出这样的命令
-对于命令的要求：
-
-
-IC1 所有忠诚的中尉都服从同一命令
-
-
-IC2 如果指挥官是忠诚的，那么每个忠诚的中尉都会服从他的命令。
-条件IC1和IC2称为交互一致性条件。注意，如果指挥官是忠诚的，IC1就会跟着IC2。然而，指挥官不需要忠诚。为了解决我们最初的问题，第i个将军通过使用拜占庭将军问题的解发送他的***v(i)值命令“使用v(i)***作为我的值”，其他将军作为副手。
-
-
-不可能的结果
-拜占庭将军问题看似简单。令人惊讶的事实表明，如果将军们只能发出口头信息，那么除非超过三分之二的将军是忠诚的，否则任何解决方案都不会奏效。特别是，在只有三个将军的情况下，在一个叛徒面前，任何解决方案都不可能奏效。口头信息的内容完全在发送者的控制之下，所以一个叛逆的发送者可以传递任何可能的信息。**这样的消息与计算机通常相互发送的消息类型相对应。在第4节中，我们考虑了签名的、书面的消息，但这是不正确的。（Such a message corresponds to the type of message that computers normally send to one another. In Section 4 we consider signed, written messages, for which this is not true....</small>
+      <small>智能合约
+主要以Fisco Bcos 和Hyperleger Fabric为主进行合约的学习和研究。
+Fisco Bcos合约
+Solidity合约
+revert错误处理
+revert指令的作用是回滚合约。
+合约的交易回执中，若状态码为0x16,状态信息为RevertInstruction，表示执行了回滚指令revert。
+地址传递
+状态变量修改函数的地址传递
+例如：
+现有合约TestAdd.sol、Test.sol，Test 导入了TestAdd并调用了它的test方法。
+已知部署Test 的用户地址为0xe2d3a5f33454452081eb2e4ba0f99f97e40fc840。
+合约地址为0x7d26aec47df6c3702c91898b05fec3a2efd0fd2f。
+用户调用合约的parent方法，当前合约的msg.sender地址是用户地址0xe2d3a5f33454452081eb2e4ba0f99f97e40fc840。
+那么调用test的msg.sender应该是合约地址还是发起交易用户地址？
+其中用到了两个solidity的官方api，包含msg.sender当前消息发送者、tx.origin交易原始调用者。
+使用错误处理回滚apirevert打印结果显示为合约地址:0x7d26aec47df6c3702c91898b05fec3a2efd0fd2f。
+msg.sender的地址具有传递性，并非调用链上和原始调用者保持一致，而是遵循调用关系，比如说，用户调用合约A方法则合约A中的msg.sender为用户公钥地址，合约A方法调用了合约B方法，则合约B中的msg.sender为合约A的地址，依此类推。
+tx.origin在整个调用链上始终保持一致，表示为最终发起交易的用户地址。
+Test
+&#x2F;&#x2F;Test.sol
+pragma solidity ^0.4.25;
+import &amp;quot;.&#x2F;TestUtil.sol&amp;quot;;
+&#x2F;&#x2F;字符串存储数据结构
+contract Test {
+    TestUtil t = new TestUtil();
+    event print(address,address);
+    function parent() public{
+        emit print(tx.origin,msg.sender);
+        t.test();
+  ...</small>
     
   </p>
 
@@ -936,9 +1019,9 @@ IC2 如果指挥官是忠诚的，那么每个忠诚的中尉都会服从他的�
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;principle-of-blockchain&#x2F;blockchain.jpg"
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;diff-docker-docker-compose&#x2F;..&#x2F;logo.png"
     class="img-fluid m-auto d-block "
-    alt="区块链原理"
+    alt="dcoker与docker-compose区别"
   />
 
         </div>
@@ -948,10 +1031,10 @@ IC2 如果指挥官是忠诚的，那么每个忠诚的中尉都会服从他的�
   <h6 class="card-title">
     <a
       class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;principle-of-blockchain&#x2F;"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;diff-docker-docker-compose&#x2F;"
       rel="bookmark"
-      title="区块链原理"
-    ><b>区块链原理</b></a>
+      title="dcoker与docker-compose区别"
+    ><b>dcoker与docker-compose区别</b></a>
   </h6>
   <p class="card-text">
     <small class="text-muted">
@@ -965,7 +1048,7 @@ IC2 如果指挥官是忠诚的，那么每个忠诚的中尉都会服从他的�
       title="Li Guangqiao"
     ><b>Li Guangqiao</b></a>
    - 
-  03&#x2F;05&#x2F;2023
+  07&#x2F;03&#x2F;2024
 
     </small>
   </p>
@@ -974,68 +1057,31 @@ IC2 如果指挥官是忠诚的，那么每个忠诚的中尉都会服从他的�
           
   <p class="card-text text-muted">
     
-      <small>...</small>
-    
-  </p>
+      <small>dcoker与docker-compose区别
+Docker 和 Docker Compose 在容器化技术中扮演着互补的角色。二者共同目的是简化容器的管理和部署过程，但它们在功能和使用场景上有所不同。
+Docker
+Docker 是一种容器化平台，提供了一个环境，让您可以在轻量级的容器中构建、发布和运行应用程序。容器允许您将应用程序及其依赖项打包到一个可移植的单元中，从而在任何支持 Docker 的环境中以一致的方式运行。Docker 的核心组件包括：
 
-          
-        </div>
-      </div>
-    </div>
-  
+Docker Daemon：运行在宿主机上的服务，负责构建、运行和分发 Docker 容器。
+Docker Client：用户通过命令行工具与 Docker Daemon 交互。
+Docker Images：只读模板，用于创建容器。镜像包含运行应用程序所需的代码、运行时、库等。
+Docker Containers：镜像的运行实例。容器在被启动时，在镜像的顶层添加一个可写层。
 
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;classic-modern-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
-    class="img-fluid m-auto d-block "
-    alt="经典区块链和现代区块链"
-  />
+Docker Compose
+Docker Compose 是一个用于定义和运行多容器 Docker 应用程序的工具。通过编写一个 YAML 文件（docker-compose.yml），您可以配置应用服务的所有方面，然后使用一个命令来启动和管理所有服务。Docker Compose 的关键特性包括：
 
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;classic-modern-blockchain&#x2F;"
-      rel="bookmark"
-      title="经典区块链和现代区块链"
-    ><b>经典区块链和现代区块链</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
+服务定义：在 docker-compose.yml 文件中定义您的应用程序的服务，这样您可以在一个命令中启动整个应用程序。
+网络配置：自动设置容器间的网络，使得不同的服务可以轻松地相互通信。
+卷管理：在服务之间共享数据或持久化数据时，可以配置和管理卷。
+依赖管理：可以明确服务启动的顺序，确保依赖的服务先启动。
 
-    </small>
-  </p>
+区别总结
 
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>TODO
-经典区块链：比特币和以太坊
-现代区块链：near和solana
-商用联盟区块链：蚂蚁链、长安链和FISCO链
+用途：Docker 专注于单个容器的生命周期管理，而 Docker Compose 用于在单个主机上编排多容器应用程序。
+作用范围：Docker 通常用于容器化单个应用或服务，Docker Compose 则允许您同时管理多个容器，定义它们如何相互作用。
+配置方法：Docker 使用 Dockerfile 来构建镜像，而 Docker Compose 使用 docker-compose.yml 文件来定义多服务应用程序的配置。
+
+在实际应用中，Docker Compose 大大简化了在开发、测试和生产环境中部署和管理多容器应用程序的复杂性。而 Docker 提供了底层技术和命令行工具来管理单个容器的生命周期。二者结合使用，能够高效地开发、部署和扩展容器化应用程序。
 ...</small>
     
   </p>
@@ -1047,7 +1093,130 @@ IC2 如果指挥官是忠诚的，那么每个忠诚的中尉都会服从他的�
   
 
 	
+    
   
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;offine-deploy&#x2F;..&#x2F;logo.png"
+    class="img-fluid m-auto d-block "
+    alt="离线部署dcoker与docker-compose"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;offine-deploy&#x2F;"
+      rel="bookmark"
+      title="离线部署dcoker与docker-compose"
+    ><b>离线部署dcoker与docker-compose</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  07&#x2F;03&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>离线部署docker与docker-compose
+离线部署docker参考文档 (tencent.com)
+docker-20.10.7.tgz
+
+
+解压安装包docker-20.10.7.tgz
+
+
+移动所有文件到&#x2F;usr&#x2F;bin&#x2F;目录下cp docker&#x2F;* &#x2F;usr&#x2F;bin&#x2F;
+
+
+将docker注册为service，在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建docker.service文件，并配置如下内容保存。
+[Unit]
+Description=Docker Application Container Engine
+Documentation=https:&#x2F;&#x2F;docs.docker.com
+After=network-online.target firewalld.service
+Wants=network-online.target
+[Service]
+Type=notify
+# the default is not to use systemd for cgroups because the delegate issues still
+# exists and systemd currently does not support the cgroup feature set required
+# for containers run by docker
+ExecStart=&#x2F;usr&#x2F;bin&#x2F;dockerd
+ExecReload=&#x2F;bin&#x2F;kill -s HUP $MAINPID
+# Having non-zero Limit*s causes performance problems due to...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+  
+  
+  <nav>
+    <ul class="pagination">
+      
+        <li class="
+          page-item
+          active
+        ">
+          <a
+            class="page-link"
+            
+            
+          >1</a>
+        </li>
+      
+        <li class="
+          page-item
+          
+        ">
+          <a
+            class="page-link"
+            
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;blockchain&#x2F;page&#x2F;2"
+            
+          >2</a>
+        </li>
+      
+        <li class="
+          page-item
+          
+        ">
+          <a
+            class="page-link"
+            
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags&#x2F;blockchain&#x2F;page&#x2F;3"
+            
+          >3</a>
+        </li>
+      
+    </ul>
+  </nav>
   
 
 

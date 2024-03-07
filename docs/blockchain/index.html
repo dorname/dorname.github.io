@@ -786,6 +786,90 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;chainmaker&#x2F;..&#x2F;blockchain_one.jpg"
+    class="img-fluid m-auto d-block "
+    alt="初识长安链"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;chainmaker&#x2F;"
+      rel="bookmark"
+      title="初识长安链"
+    ><b>初识长安链</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  07&#x2F;03&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>长安链（chainmaker）
+四节点docker离线部署
+环境准备
+我的实验环境是麒麟服务器外加一台可联网的机器（没有arm架构机器可以考虑使用qemu-static-user，安装之后允许本地跑arm架构的镜像，虽然会报警告，但没有影响运行）
+要求联网可以通过ssh远程访问服务器。
+目标是在服务器上部署四节点的CERT证书模式的长安链。
+1 服务器docker 和docker-compose 离线安装
+参考麒麟系统（arm64&#x2F;aarch64）离线安装docker和docker-compose_docker-compose-linux-aarch64-CSDN博客
+2 准备好长安链的arm64镜像。
+联网环境：
+docker pull chainmakerofficial&#x2F;chainmaker:v2.3.2_arm
+docker save -o chainmaker.tar chainmakerofficial&#x2F;chainmaker:v2.3.2_arm
+可以得到一个chainmaker.tar本地镜像包，并拷贝到服务器中（这里我是使用scp命令）
+服务器：
+docker load -i chainmaker.tar
+3 准备长安链的配置文件
+详细参考官方文档，只需要准备到2.1.2.4. 账户生成
+注意：国密版本需要修改配置模板参考官方文档
+2. 通过命令行体验链 — chainmaker-docs v2.3.2 documentation
+# 查看生成好的节点密钥和配置
+$ tree -L 3 ..&#x2F;build&#x2F;
+..&#x2F;build&#x2F;
+├── config
+│   ├── node1
+│   │   ├── admin
+│   │   ├── chainconfig
+│   │  ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;what-is-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
     class="img-fluid m-auto d-block "
     alt="区块链的理解(阅读收集)"

@@ -14,8 +14,12 @@ taxonomies:
 
 ## Install Rust on your Ubuntu machine.
 
-```
-TODO 按照Rust
+```sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+// Configure the Environment Variable
+source $HOME/.cargo/env
+// check your version
+rustc --version
 ```
 
 ## Clone mega repository and build it.

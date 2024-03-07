@@ -806,7 +806,11 @@
   <div class="content">
     <h1 id="quick-started-for-developing-and-testing-on-ubuntu-22-04">Quick Started for developing and testing on Ubuntu(22.04)</h1>
 <h2 id="install-rust-on-your-ubuntu-machine">Install Rust on your Ubuntu machine.</h2>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>TODO 按照Rust
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">curl --proto </span><span>&#39;</span><span style="color:#a3be8c;">=https</span><span>&#39;</span><span style="color:#bf616a;"> --tlsv1</span><span>.2</span><span style="color:#bf616a;"> -sSf</span><span> https://sh.rustup.rs | </span><span style="color:#bf616a;">sh
+</span><span style="color:#bf616a;">//</span><span> Configure the Environment Variable
+</span><span style="color:#96b5b4;">source </span><span>$</span><span style="color:#bf616a;">HOME</span><span>/.cargo/env
+</span><span style="color:#bf616a;">//</span><span> check your version
+</span><span style="color:#bf616a;">rustc --version
 </span></code></pre>
 <h2 id="clone-mega-repository-and-build-it">Clone mega repository and build it.</h2>
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>git clone https://github.com/web3infra-foundation/mega.git

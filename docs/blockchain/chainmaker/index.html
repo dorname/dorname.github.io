@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <title>初识长安链 | Keep learning and trying</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          
+          id="default"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/cerulean/bootstrap.min.css"
+          
+          id="cerulean"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/cosmo/bootstrap.min.css"
+          
+          id="cosmo"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet"
+          
+          href="https://bootswatch.com/5/cyborg/bootstrap.min.css"
+          
+          id="cyborg"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/darkly/bootstrap.min.css"
+          
+          id="darkly"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/flatly/bootstrap.min.css"
+          
+          id="flatly"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/journal/bootstrap.min.css"
+          
+          id="journal"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/litera/bootstrap.min.css"
+          
+          id="litera"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/lumen/bootstrap.min.css"
+          
+          id="lumen"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/lux/bootstrap.min.css"
+          
+          id="lux"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/materia/bootstrap.min.css"
+          
+          id="materia"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/minty/bootstrap.min.css"
+          
+          id="minty"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/morph/bootstrap.min.css"
+          
+          id="morph"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/pulse/bootstrap.min.css"
+          
+          id="pulse"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/quartz/bootstrap.min.css"
+          
+          id="quartz"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/sandstone/bootstrap.min.css"
+          
+          id="sandstone"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/simplex/bootstrap.min.css"
+          
+          id="simplex"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/sketchy/bootstrap.min.css"
+          
+          id="sketchy"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/slate/bootstrap.min.css"
+          
+          id="slate"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/solar/bootstrap.min.css"
+          
+          id="solar"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/spacelab/bootstrap.min.css"
+          
+          id="spacelab"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/superhero/bootstrap.min.css"
+          
+          id="superhero"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/united/bootstrap.min.css"
+          
+          id="united"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/vapor/bootstrap.min.css"
+          
+          id="vapor"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/yeti/bootstrap.min.css"
+          
+          id="yeti"
+          class="alternate"
+        >
+      
+        <link
+          rel="stylesheet alternate"
+          
+          href="https://bootswatch.com/5/zephyr/bootstrap.min.css"
+          
+          id="zephyr"
+          class="alternate"
+        >
+      
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
+    <script src="https://dorname.github.io/js/topic.js"></script>
+    
+    
+    <script src="https://dorname.github.io/js/theme.js"></script>
+    
+    
+    <script src="https://dorname.github.io/js/scheme.js"></script>
+    
+    <script src="https://dorname.github.io/js/blockquote.js"></script>
+    <script src="https://dorname.github.io/js/img.js"></script>
+    
+    <script defer src="https://dorname.github.io/elasticlunr.min.js"></script>
+    <script defer src="https://dorname.github.io/search_index.en.js"></script>
+    <script src="https://dorname.github.io/js/search.js"></script>
+    
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>    
+    <!-- <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>   -->
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    
+      <div class="w-100">
+        <img src="https://dorname.github.io/img/banner.jpeg" class="w-100" />
+      </div>
+    
+    
+    
+    
+    <nav class="
+      navbar
+      navbar-expand-lg
+      navbar-dark
+      bg-dark
+    ">
+      <div class="container-fluid">
+        <a class="navbar-brand"
+          href="https:&#x2F;&#x2F;dorname.github.io&#x2F;"
+          title="主页"
+        >Keep learning and trying</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarColor02"
+          aria-controls="navbarColor02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav me-auto">
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors"
+                >作者</a>
+              </li>
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;dorname.github.io&#x2F;about"
+                >关于</a>
+              </li>
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;dorname.github.io&#x2F;tags"
+                >相关主题</a>
+              </li>
+            
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https:&#x2F;&#x2F;github.com&#x2F;dorname?tab=repositories"
+                >Github</a>
+              </li>
+            
+            
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  博客分类
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust"
+                        onclick="switchTopic('Rust学习')"
+                      >Rust学习</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles"
+                        onclick="switchTopic('未分类博客')"
+                      >未分类博客</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning"
+                        onclick="switchTopic('js学习')"
+                      >Js学习</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab"
+                        onclick="switchTopic('Extjs&#x2F;Rust&#x2F;WASM实验')"
+                      >Extjs&#x2F;rust&#x2F;wasm实验</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain"
+                        onclick="switchTopic('区块链')"
+                      >区块链</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mege_git"
+                        onclick="switchTopic('Mega')"
+                      >Mega</a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+            
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  选择一个主题
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('default')"
+                      >Default</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('cerulean')"
+                      >Cerulean</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('cosmo')"
+                      >Cosmo</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('cyborg')"
+                      >Cyborg</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('darkly')"
+                      >Darkly</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('flatly')"
+                      >Flatly</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('journal')"
+                      >Journal</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('litera')"
+                      >Litera</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('lumen')"
+                      >Lumen</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('lux')"
+                      >Lux</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('materia')"
+                      >Materia</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('minty')"
+                      >Minty</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('morph')"
+                      >Morph</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('pulse')"
+                      >Pulse</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('quartz')"
+                      >Quartz</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('sandstone')"
+                      >Sandstone</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('simplex')"
+                      >Simplex</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('sketchy')"
+                      >Sketchy</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('slate')"
+                      >Slate</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('solar')"
+                      >Solar</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('spacelab')"
+                      >Spacelab</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('superhero')"
+                      >Superhero</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('united')"
+                      >United</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('vapor')"
+                      >Vapor</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('yeti')"
+                      >Yeti</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchTheme('zephyr')"
+                      >Zephyr</a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+            
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  选择一个Scheme颜色
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('dark')"
+                      >Dark</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('light')"
+                      >Light</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('primary')"
+                      >Primary</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('primary inverted')"
+                      >Primary inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('secondary')"
+                      >Secondary</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('secondary inverted')"
+                      >Secondary inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('success')"
+                      >Success</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('success inverted')"
+                      >Success inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('danger')"
+                      >Danger</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('danger inverted')"
+                      >Danger inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('warning')"
+                      >Warning</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('warning inverted')"
+                      >Warning inverted</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('info')"
+                      >Info</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onclick="switchScheme('info inverted')"
+                      >Info inverted</a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+          </ul>
+          
+          <form class="d-flex" onsubmit="return goSearch(event)">
+            <input
+              class="form-control me-sm-2"
+              type="text"
+              placeholder="搜索"
+            />
+            <button
+              class="btn btn-secondary my-2 my-sm-0"
+              type="submit"
+            ><i class="fas fa-search"></i></button>
+          </form>
+          
+        </div>
+      </div>
+    </nav>
+    <main class="container mx-auto my-5">
+      
+  <h1>初识长安链</h1>
+  <p class="text-muted">
+    
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  07&#x2F;03&#x2F;2024
+
+  </p>
+  
+  <p>
+    
+      <a
+        href="https://dorname.github.io/tags/blockchain/"
+        class="badge bg-dark text-decoration-none link-light me-1"
+      >
+        blockchain
+      </a>
+    
+  </p>
+  
+  <div class="content">
+    <h1 id="chang-an-lian-chainmaker">长安链（chainmaker）</h1>
+<h2 id="si-jie-dian-dockerchi-xian-bu-shu">四节点docker离线部署</h2>
+<h3 id="huan-jing-zhun-bei">环境准备</h3>
+<p>我的实验环境是麒麟服务器外加一台可联网的机器（没有arm架构机器可以考虑使用<code>qemu-static-user</code>，安装之后允许本地跑<code>arm</code>架构的镜像，虽然会报警告，但没有影响运行）</p>
+<p>要求联网可以通过ssh远程访问服务器。</p>
+<p><strong>目标是在服务器上部署四节点的CERT证书模式的长安链。</strong></p>
+<h4 id="1-fu-wu-qi-docker-he-docker-compose-chi-xian-an-zhuang">1 服务器docker 和docker-compose 离线安装</h4>
+<p>参考<a href="https://blog.csdn.net/qq_23845083/article/details/130768859">麒麟系统（arm64/aarch64）离线安装docker和docker-compose_docker-compose-linux-aarch64-CSDN博客</a></p>
+<h4 id="2-zhun-bei-hao-chang-an-lian-de-arm64jing-xiang">2 准备好长安链的arm64镜像。</h4>
+<p>联网环境：</p>
+<p><code>docker pull chainmakerofficial/chainmaker:v2.3.2_arm</code></p>
+<p><code>docker save -o chainmaker.tar chainmakerofficial/chainmaker:v2.3.2_arm</code></p>
+<p>可以得到一个<code>chainmaker.tar</code>本地镜像包，并拷贝到服务器中（这里我是使用<code>scp</code>命令）</p>
+<p>服务器：</p>
+<p><code>docker load -i chainmaker.tar</code></p>
+<h4 id="3-zhun-bei-chang-an-lian-de-pei-zhi-wen-jian">3 准备长安链的配置文件</h4>
+<p>详细参考官方文档，只需要准备到<strong>2.1.2.4. 账户生成</strong></p>
+<p><strong>注意：国密版本需要修改配置模板参考官方文档</strong></p>
+<p><a href="https://docs.chainmaker.org.cn/v2.3.2/html/quickstart/%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%93%E9%AA%8C%E9%93%BE.html">2. 通过命令行体验链 — chainmaker-docs v2.3.2 documentation</a></p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span># 查看生成好的节点密钥和配置
+</span><span>$ tree -L 3 ../build/
+</span><span>../build/
+</span><span>├── config
+</span><span>│   ├── node1
+</span><span>│   │   ├── admin
+</span><span>│   │   ├── chainconfig
+</span><span>│   │   ├── chainmaker.yml
+</span><span>│   │   ├── log.yml
+</span><span>│   │   ├── node1.key
+</span><span>│   │   ├── node1.nodeid
+</span><span>│   │   ├── node1.pem
+</span><span>│   │   └── user
+</span><span>│   ├── node2
+</span><span>│   │   ├── admin
+</span><span>│   │   ├── chainconfig
+</span><span>│   │   ├── chainmaker.yml
+</span><span>│   │   ├── log.yml
+</span><span>│   │   ├── node2.key
+</span><span>│   │   ├── node2.nodeid
+</span><span>│   │   ├── node2.pem
+</span><span>│   │   └── user
+</span><span>│   ├── node3
+</span><span>│   │   ├── admin
+</span><span>│   │   ├── chainconfig
+</span><span>│   │   ├── chainmaker.yml
+</span><span>│   │   ├── log.yml
+</span><span>│   │   ├── node3.key
+</span><span>│   │   ├── node3.nodeid
+</span><span>│   │   ├── node3.pem
+</span><span>│   │   └── user
+</span><span>│   └── node4
+</span><span>│       ├── admin
+</span><span>│       ├── chainconfig
+</span><span>│       ├── chainmaker.yml
+</span><span>│       ├── log.yml
+</span><span>│       ├── node4.key
+</span><span>│       ├── node4.nodeid
+</span><span>│       ├── node4.pem
+</span><span>│       └── user
+</span><span>├── crypto-config
+</span><span>│   ├── node1
+</span><span>│   │   ├── admin
+</span><span>│   │   ├── node1.key
+</span><span>│   │   ├── node1.nodeid
+</span><span>│   │   ├── node1.pem
+</span><span>│   │   └── user
+</span><span>│   ├── node2
+</span><span>│   │   ├── admin
+</span><span>│   │   ├── node2.key
+</span><span>│   │   ├── node2.nodeid
+</span><span>│   │   ├── node2.pem
+</span><span>│   │   └── user
+</span><span>│   ├── node3
+</span><span>│   │   ├── admin
+</span><span>│   │   ├── node3.key
+</span><span>│   │   ├── node3.nodeid
+</span><span>│   │   ├── node3.pem
+</span><span>│   │   └── user
+</span><span>│   └── node4
+</span><span>│       ├── admin
+</span><span>│       ├── node4.key
+</span><span>│       ├── node4.nodeid
+</span><span>│       ├── node4.pem
+</span><span>│       └── user
+</span><span>└── crypto_config.yml  
+</span></code></pre>
+<p>其中config目录用于节点组网</p>
+<p>crypto_config目录用于后续sdk接入</p>
+<h4 id="4-bian-xie-docker-compose-ymlwen-jian-he-qi-dong-jiao-ben">4 编写docker-compose.yml文件和启动脚本</h4>
+<p>可以参考<code>chainmaker-go</code>中的<code>scripts/docker/v2.3.0/four-nodes.docker-compose.yml</code>去写</p>
+<pre data-lang="yaml" style="background-color:#2b303b;color:#c0c5ce;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#bf616a;">version</span><span>: &#39;</span><span style="color:#a3be8c;">3</span><span>&#39;
+</span><span style="color:#bf616a;">services</span><span>:
+</span><span>  </span><span style="color:#bf616a;">node1</span><span>:
+</span><span>    </span><span style="color:#bf616a;">container_name</span><span>: </span><span style="color:#a3be8c;">cm-node1
+</span><span>    </span><span style="color:#bf616a;">hostname</span><span>: </span><span style="color:#a3be8c;">cm-node1
+</span><span>    </span><span style="color:#bf616a;">image</span><span>: &quot;</span><span style="color:#a3be8c;">chainmakerofficial/chainmaker:v2.3.2_arm</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">restart</span><span>: </span><span style="color:#a3be8c;">always
+</span><span>    </span><span style="color:#bf616a;">working_dir</span><span>: &quot;</span><span style="color:#a3be8c;">/chainmaker-go/bin</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">command</span><span>: &quot;</span><span style="color:#a3be8c;">./chainmaker start -c ../config/wx-org1.chainmaker.org/chainmaker.yml &gt; panic.log</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">ports</span><span>:
+</span><span>      - &quot;</span><span style="color:#a3be8c;">11301:11301</span><span>&quot;
+</span><span>      - &quot;</span><span style="color:#a3be8c;">12301:12301</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">volumes</span><span>:
+</span><span>      - </span><span style="color:#a3be8c;">../config/four-nodes/wx-org1.chainmaker.org:/chainmaker-go/config/wx-org1.chainmaker.org
+</span><span>      - </span><span style="color:#a3be8c;">./tmp/data1:/chainmaker-go/data
+</span><span>      - </span><span style="color:#a3be8c;">./tmp/log1:/chainmaker-go/log
+</span><span>    </span><span style="color:#bf616a;">networks</span><span>:
+</span><span>      </span><span style="color:#bf616a;">chainmakerofficial-localnet</span><span>:
+</span><span>        </span><span style="color:#bf616a;">aliases</span><span>:      
+</span><span>          - </span><span style="color:#a3be8c;">cm-node1
+</span><span>        </span><span style="color:#bf616a;">ipv4_address</span><span>: </span><span style="color:#d08770;">172.49.0.11
+</span><span>  </span><span style="color:#bf616a;">node2</span><span>:
+</span><span>    </span><span style="color:#bf616a;">container_name</span><span>: </span><span style="color:#a3be8c;">cm-node2
+</span><span>    </span><span style="color:#bf616a;">hostname</span><span>: </span><span style="color:#a3be8c;">cm-node2
+</span><span>    </span><span style="color:#bf616a;">image</span><span>: &quot;</span><span style="color:#a3be8c;">chainmakerofficial/chainmaker:v2.3.2_arm</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">restart</span><span>: </span><span style="color:#a3be8c;">always
+</span><span>    </span><span style="color:#bf616a;">working_dir</span><span>: &quot;</span><span style="color:#a3be8c;">/chainmaker-go/bin</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">command</span><span>: &quot;</span><span style="color:#a3be8c;">./chainmaker start -c ../config/wx-org2.chainmaker.org/chainmaker.yml &gt; panic.log</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">ports</span><span>:
+</span><span>      - &quot;</span><span style="color:#a3be8c;">11302:11302</span><span>&quot;
+</span><span>      - &quot;</span><span style="color:#a3be8c;">12302:12302</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">volumes</span><span>:
+</span><span>      - </span><span style="color:#a3be8c;">../config/four-nodes/wx-org2.chainmaker.org:/chainmaker-go/config/wx-org2.chainmaker.org
+</span><span>      - </span><span style="color:#a3be8c;">./tmp/data2:/chainmaker-go/data
+</span><span>      - </span><span style="color:#a3be8c;">./tmp/log2:/chainmaker-go/log
+</span><span>    </span><span style="color:#bf616a;">networks</span><span>:
+</span><span>      </span><span style="color:#bf616a;">chainmakerofficial-localnet</span><span>:
+</span><span>        </span><span style="color:#bf616a;">aliases</span><span>:      
+</span><span>          - </span><span style="color:#a3be8c;">cm-node2
+</span><span>        </span><span style="color:#bf616a;">ipv4_address</span><span>: </span><span style="color:#d08770;">172.49.0.12
+</span><span>  </span><span style="color:#bf616a;">node3</span><span>:
+</span><span>    </span><span style="color:#bf616a;">container_name</span><span>: </span><span style="color:#a3be8c;">cm-node3
+</span><span>    </span><span style="color:#bf616a;">hostname</span><span>: </span><span style="color:#a3be8c;">cm-node3
+</span><span>    </span><span style="color:#bf616a;">image</span><span>: &quot;</span><span style="color:#a3be8c;">chainmakerofficial/chainmaker:v2.3.2_arm</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">restart</span><span>: </span><span style="color:#a3be8c;">always
+</span><span>    </span><span style="color:#bf616a;">working_dir</span><span>: &quot;</span><span style="color:#a3be8c;">/chainmaker-go/bin</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">command</span><span>: &quot;</span><span style="color:#a3be8c;">./chainmaker start -c ../config/wx-org3.chainmaker.org/chainmaker.yml &gt; panic.log</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">ports</span><span>:
+</span><span>      - &quot;</span><span style="color:#a3be8c;">11303:11303</span><span>&quot;
+</span><span>      - &quot;</span><span style="color:#a3be8c;">12303:12303</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">volumes</span><span>:
+</span><span>      - </span><span style="color:#a3be8c;">../config/four-nodes/wx-org3.chainmaker.org:/chainmaker-go/config/wx-org3.chainmaker.org
+</span><span>      - </span><span style="color:#a3be8c;">./tmp/data3:/chainmaker-go/data
+</span><span>      - </span><span style="color:#a3be8c;">./tmp/log3:/chainmaker-go/log
+</span><span>    </span><span style="color:#bf616a;">networks</span><span>:
+</span><span>      </span><span style="color:#bf616a;">chainmakerofficial-localnet</span><span>:
+</span><span>        </span><span style="color:#bf616a;">aliases</span><span>:      
+</span><span>          - </span><span style="color:#a3be8c;">cm-node3
+</span><span>        </span><span style="color:#bf616a;">ipv4_address</span><span>: </span><span style="color:#d08770;">172.49.0.13
+</span><span>  </span><span style="color:#bf616a;">node4</span><span>:
+</span><span>    </span><span style="color:#bf616a;">container_name</span><span>: </span><span style="color:#a3be8c;">cm-node4
+</span><span>    </span><span style="color:#bf616a;">hostname</span><span>: </span><span style="color:#a3be8c;">cm-node4
+</span><span>    </span><span style="color:#bf616a;">image</span><span>: &quot;</span><span style="color:#a3be8c;">chainmakerofficial/chainmaker:v2.3.2_arm</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">restart</span><span>: </span><span style="color:#a3be8c;">always
+</span><span>    </span><span style="color:#bf616a;">working_dir</span><span>: &quot;</span><span style="color:#a3be8c;">/chainmaker-go/bin</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">command</span><span>: &quot;</span><span style="color:#a3be8c;">./chainmaker start -c ../config/wx-org4.chainmaker.org/chainmaker.yml &gt; panic.log</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">ports</span><span>:
+</span><span>      - &quot;</span><span style="color:#a3be8c;">11304:11304</span><span>&quot;
+</span><span>      - &quot;</span><span style="color:#a3be8c;">12304:12304</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">volumes</span><span>:
+</span><span>      - </span><span style="color:#a3be8c;">../config/four-nodes/wx-org4.chainmaker.org:/chainmaker-go/config/wx-org4.chainmaker.org
+</span><span>      - </span><span style="color:#a3be8c;">./tmp/data4:/chainmaker-go/data
+</span><span>      - </span><span style="color:#a3be8c;">./tmp/log4:/chainmaker-go/log
+</span><span>    </span><span style="color:#bf616a;">networks</span><span>:
+</span><span>      </span><span style="color:#bf616a;">chainmakerofficial-localnet</span><span>:
+</span><span>        </span><span style="color:#bf616a;">aliases</span><span>:      
+</span><span>          - </span><span style="color:#a3be8c;">cm-node4
+</span><span>        </span><span style="color:#bf616a;">ipv4_address</span><span>: </span><span style="color:#d08770;">172.49.0.14
+</span><span>
+</span><span style="color:#bf616a;">networks</span><span>:
+</span><span>  </span><span style="color:#bf616a;">chainmakerofficial-localnet</span><span>:
+</span><span>    </span><span style="color:#bf616a;">driver</span><span>: </span><span style="color:#a3be8c;">bridge
+</span><span>    </span><span style="color:#bf616a;">ipam</span><span>:
+</span><span>      </span><span style="color:#bf616a;">config</span><span>:
+</span><span>        - </span><span style="color:#bf616a;">subnet</span><span>: </span><span style="color:#a3be8c;">172.49.0.0/16
+</span></code></pre>
+<h4 id="5-chuang-jian-fu-wu-qi-xiang-mu-mu-lu-he-xiu-gai-wen-jian">5  创建服务器项目目录和修改文件</h4>
+<ul>
+<li>
+<p>创建chainmaker <code>mkdir chainmaker</code></p>
+</li>
+<li>
+<p>把准备好的文件材料放在<code>chainmaker</code>目录下包含<code>docker-compose.yml</code>文件、<code>config</code>目录、<code>crypto-config</code>目录</p>
+</li>
+<li>
+<p>修改docker-compose.yml文件</p>
+</li>
+</ul>
+<p>​	主要修改<code>      - ../config/four-nodes/wx-org1.chainmaker.org:/chainmaker-go/config/wx-org1.chainmaker.org</code>成当前config文件目录<code>      - ./config/node1:/chainmaker-go/config/wx-org1.chainmaker.org</code>。节点2、3、4一样。</p>
+<ul>
+<li>
+<p>修改config目录下每一个node的chainmaker.yml文件</p>
+<p>修改<code>seeds</code>因为我们是四个容器所以这部分修改成动态的配置如下：</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>- &quot;/dns/cm-node1/tcp/11301/p2p/QmfMMsPqkiQ53CWENvCMqo4cLv8mJXzsbJ3t7tnpp81ito&quot;
+</span><span>- &quot;/dns/cm-node2/tcp/11302/p2p/Qmb22Taf6EJJVuwVu3pRXHTCx3g8JPRFEY8FC1hYxLUSCm&quot;
+</span><span>- &quot;/dns/cm-node3/tcp/11303/p2p/QmRgmmXzGUjauHwD3xCDeApebBY7s2tedezutvzYJ6SAH6&quot;
+</span><span>- &quot;/dns/cm-node4/tcp/11304/p2p/QmZK1RbHchgN5G61mAqw184AHqfUvtEXjEMNyH2uB3XyDs&quot;
+</span></code></pre>
+</li>
+</ul>
+<h4 id="6-zhi-xing-jiao-ben-gou-jian-jing-xiang-bing-yun-xing-rong-qi">6 执行脚本构建镜像，并运行容器</h4>
+<p>构建并启动</p>
+<p><code>docker-compose -f docker-compose.yml up -d</code></p>
+<p>关闭容器</p>
+<p><code>docker-compose -f docker-compose.yml down --volumes</code></p>
+<p>查看容器运行 <code>docker ps</code></p>
+<p>观察内部日志<code>docker logs {容器id}</code></p>
+<h2 id="solidityhe-yue-bu-shu">solidity合约部署</h2>
+<h3 id="he-yue-bian-yi">合约编译</h3>
+<p>需要借助solcjs插件进行本地编译</p>
+<h2 id="cmcgong-ju-he-yue-bu-shu">CMC工具合约部署</h2>
+<p>进入chainmaker-go/tools/cmc编译（注意需要走交叉编译，因为涉及到在<code>x86架构</code>编译<code>arm架构</code>的可执行文件）</p>
+<p>本人是直接跑了一个镜像容器，通过文件夹映射的方式，把镜像中现成的cmc工具拿了出来，放到了chainmaker目录下。</p>
+<ol>
+<li>
+<p>chainmaker目录下创建目录<code>mkdir testdata</code></p>
+</li>
+<li>
+<p>把x需要的测试合约拷贝到<code>testdata</code>下,在源码项目<code>chainmaker-go/tools/cmc/testdata</code></p>
+</li>
+<li>
+<p>拷贝<code>crypto-config</code>到<code>testdata</code>目录下</p>
+</li>
+<li>
+<p>创建<code>sdk_config.yml</code></p>
+<pre data-lang="yaml" style="background-color:#2b303b;color:#c0c5ce;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#bf616a;">chain_client</span><span>:
+</span><span>  </span><span style="color:#65737e;"># 链ID
+</span><span>  </span><span style="color:#bf616a;">chain_id</span><span>: &quot;</span><span style="color:#a3be8c;">chain1</span><span>&quot;
+</span><span>  </span><span style="color:#65737e;"># 组织ID
+</span><span>  </span><span style="color:#bf616a;">org_id</span><span>: &quot;</span><span style="color:#a3be8c;">wx-org1.chainmaker.org</span><span>&quot;
+</span><span>  </span><span style="color:#65737e;"># 客户端用户私钥路径
+</span><span>  </span><span style="color:#bf616a;">user_key_file_path</span><span>: &quot;</span><span style="color:#a3be8c;">./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.key</span><span>&quot;
+</span><span>  </span><span style="color:#65737e;"># 客户端用户私钥密码(无密码则不需要设置)
+</span><span style="color:#65737e;">#  user_key_pwd: &quot;123&quot;
+</span><span>  </span><span style="color:#65737e;"># 客户端用户证书路径
+</span><span>  </span><span style="color:#bf616a;">user_crt_file_path</span><span>: &quot;</span><span style="color:#a3be8c;">./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.crt</span><span>&quot;
+</span><span>  </span><span style="color:#65737e;"># 客户端用户加密私钥路径(tls加密证书对应私钥，应用于国密GMTLS双证书体系；若未设置仅使用单证书）
+</span><span>  </span><span style="color:#bf616a;">user_enc_key_file_path</span><span>: &quot;</span><span style="color:#a3be8c;">./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.enc.key</span><span>&quot;
+</span><span>  </span><span style="color:#65737e;"># 客户端用户加密私钥密码(无密码则不需要设置)
+</span><span style="color:#65737e;">#  user_enc_key_pwd: &quot;123&quot;
+</span><span>  </span><span style="color:#65737e;"># 客户端用户加密证书路径(tls加密证书，应用于国密GMTLS双证书体系；若未设置仅使用单证书）
+</span><span>  </span><span style="color:#bf616a;">user_enc_crt_file_path</span><span>: &quot;</span><span style="color:#a3be8c;">./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.tls.enc.crt</span><span>&quot;
+</span><span>  </span><span style="color:#65737e;"># 客户端用户交易签名私钥路径(若未设置，将使用user_key_file_path)
+</span><span>  </span><span style="color:#bf616a;">user_sign_key_file_path</span><span>: &quot;</span><span style="color:#a3be8c;">./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.sign.key</span><span>&quot;
+</span><span>  </span><span style="color:#65737e;"># 客户端用户交易签名私钥密码(无密码则不需要设置)
+</span><span style="color:#65737e;">#  user_sign_key_pwd: &quot;123&quot;
+</span><span>  </span><span style="color:#65737e;"># 客户端用户交易签名证书路径(若未设置，将使用user_crt_file_path)
+</span><span>  </span><span style="color:#bf616a;">user_sign_crt_file_path</span><span>: &quot;</span><span style="color:#a3be8c;">./testdata/crypto-config/wx-org1.chainmaker.org/user/client1/client1.sign.crt</span><span>&quot;
+</span><span>  </span><span style="color:#65737e;"># 同步交易结果模式下，轮询获取交易结果时的最大轮询次数，删除此项或设为&lt;=0则使用默认值 10
+</span><span>  </span><span style="color:#bf616a;">retry_limit</span><span>: </span><span style="color:#d08770;">20
+</span><span>  </span><span style="color:#65737e;"># 同步交易结果模式下，每次轮询交易结果时的等待时间，单位：ms 删除此项或设为&lt;=0则使用默认值 500
+</span><span>  </span><span style="color:#bf616a;">retry_interval</span><span>: </span><span style="color:#d08770;">500
+</span><span>  </span><span style="color:#65737e;"># 当前签名证书的别名。当设置此配置项时，chain client 对象将自动检查链上是否已添加此别名，如果没有则自动上链此证书别名，
+</span><span>  </span><span style="color:#65737e;"># 并且后续所有交易都会使用别名，别名可降低交易体大小。若为空则不启用。
+</span><span style="color:#65737e;">#  alias: my_cert_alias
+</span><span>  </span><span style="color:#65737e;"># txid配置项：默认支持TimestampKey，如果开启enableNormalKey则使用NormalKey
+</span><span>  </span><span style="color:#bf616a;">enable_normal_key</span><span>: </span><span style="color:#d08770;">false
+</span><span>
+</span><span>  </span><span style="color:#bf616a;">enable_tx_result_dispatcher</span><span>: </span><span style="color:#d08770;">true
+</span><span>
+</span><span>  </span><span style="color:#bf616a;">nodes</span><span>:
+</span><span>    - </span><span style="color:#65737e;"># 节点地址，格式为：IP:端口:连接数
+</span><span>      </span><span style="color:#bf616a;">node_addr</span><span>: &quot;</span><span style="color:#a3be8c;">127.0.0.1:12301</span><span>&quot;
+</span><span>      </span><span style="color:#65737e;"># 节点连接数
+</span><span>      </span><span style="color:#bf616a;">conn_cnt</span><span>: </span><span style="color:#d08770;">10
+</span><span>      </span><span style="color:#65737e;"># RPC连接是否启用双向TLS认证
+</span><span>      </span><span style="color:#bf616a;">enable_tls</span><span>: </span><span style="color:#d08770;">true
+</span><span>      </span><span style="color:#65737e;"># 信任证书池路径
+</span><span>      </span><span style="color:#bf616a;">trust_root_paths</span><span>:
+</span><span>        - &quot;</span><span style="color:#a3be8c;">./testdata/crypto-config/wx-org1.chainmaker.org/ca</span><span>&quot;
+</span><span>      </span><span style="color:#65737e;"># TLS hostname
+</span><span>      </span><span style="color:#bf616a;">tls_host_name</span><span>: &quot;</span><span style="color:#a3be8c;">chainmaker.org</span><span>&quot;
+</span><span>  </span><span style="color:#bf616a;">archive</span><span>:
+</span><span>    </span><span style="color:#65737e;"># 数据归档链外存储相关配置
+</span><span>    </span><span style="color:#65737e;"># 如果使用了新版本的归档中心,这个地方配置为archivecenter
+</span><span>    </span><span style="color:#bf616a;">type</span><span>: &quot;</span><span style="color:#a3be8c;">mysql</span><span>&quot;  </span><span style="color:#65737e;"># archivecenter 归档中心, mysql mysql数据库    
+</span><span>    </span><span style="color:#bf616a;">dest</span><span>: &quot;</span><span style="color:#a3be8c;">root:123456:localhost:3306</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">secret_key</span><span>: </span><span style="color:#a3be8c;">xxx
+</span><span>  </span><span style="color:#bf616a;">rpc_client</span><span>:
+</span><span>    </span><span style="color:#bf616a;">max_receive_message_size</span><span>: </span><span style="color:#d08770;">100 </span><span style="color:#65737e;"># grpc客户端接收消息时，允许单条message大小的最大值(MB)
+</span><span>    </span><span style="color:#bf616a;">max_send_message_size</span><span>: </span><span style="color:#d08770;">100 </span><span style="color:#65737e;"># grpc客户端发送消息时，允许单条message大小的最大值(MB)
+</span><span>    </span><span style="color:#bf616a;">send_tx_timeout</span><span>: </span><span style="color:#d08770;">60 </span><span style="color:#65737e;"># grpc 客户端发送交易超时时间
+</span><span>    </span><span style="color:#bf616a;">get_tx_timeout</span><span>: </span><span style="color:#d08770;">60 </span><span style="color:#65737e;"># rpc 客户端查询交易超时时间
+</span><span>  </span><span style="color:#bf616a;">pkcs11</span><span>:
+</span><span>    </span><span style="color:#bf616a;">enabled</span><span>: </span><span style="color:#d08770;">false </span><span style="color:#65737e;"># pkcs11 is not used by default
+</span><span>    </span><span style="color:#bf616a;">library</span><span>: </span><span style="color:#a3be8c;">/usr/local/lib64/pkcs11/libupkcs11.so </span><span style="color:#65737e;"># path to the .so file of pkcs11 interface
+</span><span>    </span><span style="color:#bf616a;">label</span><span>: </span><span style="color:#a3be8c;">HSM </span><span style="color:#65737e;"># label for the slot to be used
+</span><span>    </span><span style="color:#bf616a;">password</span><span>: </span><span style="color:#d08770;">11111111 </span><span style="color:#65737e;"># password to logon the HSM(Hardware security module)
+</span><span>    </span><span style="color:#bf616a;">session_cache_size</span><span>: </span><span style="color:#d08770;">10 </span><span style="color:#65737e;"># size of HSM session cache, default to 10
+</span><span>    </span><span style="color:#bf616a;">hash</span><span>: &quot;</span><span style="color:#a3be8c;">SHA256</span><span>&quot; </span><span style="color:#65737e;"># hash algorithm used to compute SKI  
+</span><span>  </span><span style="color:#65737e;"># # 如果启用了归档中心,可以打开下面的归档中心配置  
+</span><span>  </span><span style="color:#bf616a;">archive_center_query_first</span><span>: </span><span style="color:#d08770;">true </span><span style="color:#65737e;"># 如果为true且归档中心配置打开,那么查询数据优先从归档中心查询 
+</span><span>  </span><span style="color:#65737e;"># archive_center_config:
+</span><span>  </span><span style="color:#65737e;">#   chain_genesis_hash: c670b598127f5795767d1acbae435e714797596f7e0a55dd05205da948de1a0a
+</span><span>  </span><span style="color:#65737e;">#   archive_center_http_url: http://127.0.0.1:13119
+</span><span>  </span><span style="color:#65737e;">#   request_second_limit: 10
+</span><span>  </span><span style="color:#65737e;">#   rpc_address: 127.0.0.1:13120
+</span><span>  </span><span style="color:#65737e;">#   tls_enable: false
+</span><span>  </span><span style="color:#65737e;">#   tls:
+</span><span>  </span><span style="color:#65737e;">#     server_name: archiveserver1.tls.wx-org.chainmaker.org
+</span><span>  </span><span style="color:#65737e;">#     priv_key_file: ./testdata/archivecenter/archiveclient1.tls.key
+</span><span>  </span><span style="color:#65737e;">#     cert_file: ./testdata/archivecenter/archiveclient1.tls.crt
+</span><span>  </span><span style="color:#65737e;">#     trust_ca_list:
+</span><span>  </span><span style="color:#65737e;">#       - ./testdata/archivecenter/ca.crt    
+</span><span>  </span><span style="color:#65737e;">#   max_send_msg_size: 200
+</span><span>  </span><span style="color:#65737e;">#   max_recv_msg_size: 200 
+</span></code></pre>
+</li>
+<li>
+<p>创建合约</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">./cmc</span><span> client contract user create \
+</span><span style="color:#bf616a;">--contract-name</span><span>=balance001 \
+</span><span style="color:#bf616a;">--runtime-type</span><span>=EVM \
+</span><span style="color:#bf616a;">--byte-code-path</span><span>=./testdata/balance-evm-demo/ledger_balance.bin \
+</span><span style="color:#bf616a;">--abi-file-path</span><span>=./testdata/balance-evm-demo/ledger_balance.abi \
+</span><span style="color:#bf616a;">--version</span><span>=1.0 \
+</span><span style="color:#bf616a;">--sdk-conf-path</span><span>=./testdata/sdk_config.yml \
+</span><span style="color:#bf616a;">--admin-key-file-paths</span><span>=./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.sign.key,./testdata/crypto-config/wx-org2.chainmaker.org/user/admin1/admin1.sign.key,./testdata/crypto-config/wx-org3.chainmaker.org/user/admin1/admin1.sign.key \
+</span><span style="color:#bf616a;">--admin-crt-file-paths</span><span>=./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.sign.crt,./testdata/crypto-config/wx-org2.chainmaker.org/user/admin1/admin1.sign.crt,./testdata/crypto-config/wx-org3.chainmaker.org/user/admin1/admin1.sign.crt \
+</span><span style="color:#bf616a;">--sync-result</span><span>=true
+</span></code></pre>
+</li>
+<li>
+<p>调用合约</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">./cmc</span><span> client contract user invoke \
+</span><span style="color:#bf616a;">--contract-name</span><span>=balance001 \
+</span><span style="color:#bf616a;">--method</span><span>=updateBalance \
+</span><span style="color:#bf616a;">--sdk-conf-path</span><span>=./testdata/sdk_config.yml \
+</span><span style="color:#bf616a;">--params</span><span>=&quot;</span><span style="color:#a3be8c;">[{</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">uint256</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">: </span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">10000</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">},{</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">address</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">: </span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">0xa166c92f4c8118905ad984919dc683a7bdb295c1</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">}]</span><span>&quot; \
+</span><span style="color:#bf616a;">--sync-result</span><span>=true \
+</span><span style="color:#bf616a;">--abi-file-path</span><span>=./testdata/balance-evm-demo/ledger_balance.abi
+</span></code></pre>
+</li>
+<li>
+<p>查询合约</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">./cmc</span><span> client contract user get \
+</span><span style="color:#bf616a;">--contract-name</span><span>=fact \
+</span><span style="color:#bf616a;">--method</span><span>=find_by_file_hash \
+</span><span style="color:#bf616a;">--sdk-conf-path</span><span>=./testdata/sdk_config.yml \
+</span><span style="color:#bf616a;">--params</span><span>=&quot;</span><span style="color:#a3be8c;">{</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">file_hash</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">:</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">ab3456df5799b87c77e7f88</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">}</span><span>&quot;
+</span></code></pre>
+</li>
+</ol>
+<p>更多的操作参考官方文档 <a href="https://docs.chainmaker.org.cn/v2.3.2/html/dev/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.html">3. 长安链CMC工具（Cert） — chainmaker-docs v2.3.2 documentation</a></p>
+<h2 id="chang-yong-pei-zhi-wen-jian-lu-jing">常用配置文件路径</h2>
+<p>以节点1为例</p>
+<p>节点区块链配置文件：<code>config/node1/chainconfig/bc1.yml</code></p>
+<p>节点证书配置文件：<code>config/node1/chainmaker.yml</code></p>
+<p>节点管理员证书文件目录:<code>config/node1/admin</code></p>
+<p>节点客户端证书文件目录<code>config/node1/user</code></p>
+
+  </div>
+  
+    
+  
+  <div class="card my-5">
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center">
+        
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;harry.jpg"
+    class="img-fluid m-auto d-block rounded-circle"
+    alt="Li Guangqiao"
+  />
+
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a
+              class="text-decoration-none text-reset"
+              href="https://dorname.github.io/authors/liguangqiao/"
+            >Li Guangqiao</a>
+          </h5>
+          <p class="card-text"><p>一个正在转rust的ExtJs前端工程师。迷信rust的整体发展，十分相信rust在各个领域都能发光发热，至少目前rust在很多领域上验证了其安全性、易维护性。但说实话对于我这种菜鸡也是真的难上手哈哈哈~~。
+思路总结：</p>
+<ul>
+<li>万物诞生都会有一个需求来源，每一个改变都是为了解决某个问题，最后应该考虑如何去做</li>
+<li>学会掌握一些宏观的知识和理论：系统论、还原论</li>
+<li>工程化思想，如何描述整体，从整体架构到模块关联等
+故学习东西应该像看地图一样，先看整体了解整体的结构，然后再聚焦每一个模块，对于模块的学习，思考三个问题，“是什么？”、“为什么？”、“怎么做？”；那么设计一个东西时也应该去考虑整体性和关联性。</li>
+</ul>
+<p>有关于未来的发展，以下是鄙人的粗浅的观点：</p>
+<ul>
+<li>编程语言未来应该是每个人必备的工具</li>
+<li>未来的交互方式应该会以语言交互为主流</li>
+<li>下一个去中心化的技术方案出来之前，区块链依然是web3建立价值体系的基础技术方案，如何将现实价值和虚拟价值联通是进入数字世界的一个大难题。</li>
+<li>未来注定是AI的世界。AI的进化会伴随绝大部分人的退化，届时除了尖端人才，人们学习的重心会放在何处？</li>
+</ul>
+</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+    </main>
+    
+  
+
+    
+    <footer class="
+      mt-auto p-5
+      bg-dark
+      text-center
+      text-white
+    ">
+      
+      <a
+        href="mailto:lgqfighting@163.com"
+        class="text-reset text-decoration-none"
+      >lgqfighting@163.com</a>
+      
+      
+      <div class="mt-2">
+        
+          <a
+            class="text-reset mx-1 bg-transparent"
+            href="https:&#x2F;&#x2F;chat.openai.com&#x2F;"
+            title="chatGPT"
+          ><i class="fab fa-glide-g"></i></a>
+        
+          <a
+            class="text-reset mx-1 bg-transparent"
+            href="https:&#x2F;&#x2F;wx.qq.com&#x2F;"
+            title="微信"
+          ><i class="fab fa-weixin"></i></a>
+        
+          <a
+            class="text-reset mx-1 bg-transparent"
+            href="https:&#x2F;&#x2F;www.google.com&#x2F;"
+            title="谷歌"
+          ><i class="fab fa-google"></i></a>
+        
+      </div>
+      
+    </footer>
+    
+  </body>
+</html>
