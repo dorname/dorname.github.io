@@ -102,4 +102,6 @@ data_topics = [
   { title = "Extjs/Rust/WASM实验", url = "webAssembly_rust_and_extJs-lab"},
   { title = "区块链", url = "blockchain"},
   { title = "Mega", url = "mega_git"},
+  { title = "分布式理论", url = "distributed_system"},
+  { title = "Docker容器", url = "docker"}
 ]
