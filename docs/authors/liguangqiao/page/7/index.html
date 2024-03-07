@@ -823,258 +823,369 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
-<<<<<<< HEAD
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-25-client-storage&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block "
+    alt="js学习笔记(25)"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-25-client-storage&#x2F;"
+      rel="bookmark"
+      title="js学习笔记(25)"
+    ><b>js学习笔记(25)</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  23&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Section 25 客户端存储
+js为什么会涉及到客户端存储呢？
+目标：将不常更新、且相对公用的数据存储在客户端中，减少与服务端的交互，提高整体的性能。
+cookie
+原始目标：
+要求HTTP头部包含会话信息。
+cookie具有局限性
+浏览器级别的局限性：
+
+不超过300个cookie
+每个cookie不超过4096字节
+每个域不超过20个cookie
+每个域不超过81920字节。
+
+域级别的局限性：
+浏览器每个域的cookie限制
+Edge不超过50
+Firefox不超过150个
+Opera不超过180个
+Safari和Chrome没有硬性限制
+
+浏览器对于cookie的过限处理：
+如果cookie总数超过了单域上限，浏览器会删除之前设置的cookie。
+
+Opera的处理策略是最少使用删除原则
+Firefox是随机删除原则
+
+cookie构成
+
+
+
+名称：cookie的唯一可标识，且不区分大小写，cookie名称必须经过URL编码。
+
+
+值：存储在cookie里的字符串值，值也必须经过URL编码
+
+
+域：cookie的有效域。发送到这个域的所有请求都会包含对应的cookie
+
+
+路径：请求URL中包含这个路径才会把cookie发送到服务器。
+
+
+过期时间：表示何时删除cookie的时间戳。
+​	删除策略：
+
+默认会话结束后删除cookie
+定时删除cookie
+
+
+
+安全标记：设置之后，只在使用SSL安全连接的情况下才会把cookie发送到服务器。例如:https:&#x2F;&#x2F;www.test.com会发送cookie，而请求http:&#x2F;&#x2F;www.wrox.com则不会。
+
+
+js的cookie
+js中的cookie接口只有*BOM(Brower Object Model)*的document.cookie
+取值过程会获取页面中所有的有效cookie字符串（根据域、路径、过期时间和安全设置），以分号分隔。
+子cookie
+子cookie的机制实际上是利用cookie的机制，将一连串的cookie信息编码成字符串，给cookie的其中一个键上。
+使用cookie的注意事项
+叫做HTTP-only的cookie。Http-only可以在浏览器设置，也可以在服务器设置。但只能在服务器上读取。这种cookie值js无法读取。
+注意：因为所有cookie都会作为请求头部由浏览器发送给服务器，所以在cookie种保存大量信息可能影响特定域浏览器请求的性能。保存的cookie越大，请求完成的时间就越长。即使浏览器对cookie大小有限制，最好还是尽可能只能保存必要信息，避免性能问题。
+对cookie的限制及其特性决定了cookie并不是存储大量数据的理想方式。
+
+Web Storage
+目标：
+Web Storage的规范目标：
+
+提供在cookie之外的存储会话数据的途径
+提供跨会话持久化存储大量数据的机制
+
+Storage类型
+目标：可用于保存键值对数据，直到达到存储控件上限(取决于浏览器)。
+Storage实例的特征方法：
+
+clear():删除所有值，注意在FireBox中没有实现。
+getItem(name):取得给定name的值。
+key(index):取值给定数值位置的名称。
+removeItem(name):删除给定name的键值对。
+
+注意：
+
+通过 length 属性可以确定 Storage 对象中保存了多少名&#x2F;值对。
+
+&#x2F;&#x2F;方法一
+for (let i = 0, len = sessionStorage.length; i &amp;lt; len; i++){ 
+ let key = sessionStorage.key(i); 
+ let value = sessionStorage.getItem(key); 
+    console.log(key,value);
+ } 
+&#x2F;&#x2F;方法二
+for (let key in sessionStorage){ 
+ let value = sessionStorage.getItem(key); 
+ console.log(key,value);
+}
+
+
+Storage...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-27-worker-thread&#x2F;..&#x2F;js_logo.png"
+    class="img-fluid m-auto d-block "
+    alt="js学习笔记(27)"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;section-27-worker-thread&#x2F;"
+      rel="bookmark"
+      title="js学习笔记(27)"
+    ><b>js学习笔记(27)</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  23&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Section 27 工作者线程
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;leet-code-try&#x2F;leetcode_one.jpg"
+    class="img-fluid m-auto d-block "
+    alt="leetCode刷题"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;leet-code-try&#x2F;"
+      rel="bookmark"
+      title="leetCode刷题"
+    ><b>leetCode刷题</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  13&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>LeetCode
+88.合并两个有序数组
+思路：先无差别合到一个数组里，再对数组进行排序。
+这里使用了rust元素的排序方法
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;mermory-leak&#x2F;leak.jpg"
+    class="img-fluid m-auto d-block "
+    alt="内存泄漏专题"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;mermory-leak&#x2F;"
+      rel="bookmark"
+      title="内存泄漏专题"
+    ><b>内存泄漏专题</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  13&#x2F;05&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>内存泄漏
+什么是内存泄漏？
+内存泄漏指的是在计算机程序中动态分配的内存空间在不再被使用时没有被正确释放或回收的情况。当发生内存泄漏时，程序持续占用着一部分内存，而这些内存无法被其他部分或其他程序使用，从而导致系统的可用内存逐渐减少。
+内存泄漏可能由以下情况引起：
+
+动态内存分配未释放：在程序中使用诸如malloc、new等函数或操作符分配内存空间时，如果没有及时调用对应的释放函数或操作符，就会导致内存泄漏。例如，在C++中使用new操作符分配对象的内存，如果没有使用delete操作符释放内存，就会发生内存泄漏。
+数据结构中的循环引用：在某些情况下，数据结构中的对象之间可能存在循环引用关系，即对象A引用对象B，对象B又引用对象A，而且这些对象都不再被程序使用。这种情况下，即使这些对象不再需要，由于彼此之间存在引用关系，它们无法被垃圾回收器正确回收，从而导致内存泄漏。
+文件或资源未关闭：在使用文件、网络连接、数据库连接等外部资源时，如果没有正确关闭或释放这些资源，就会导致内存泄漏。即使程序不再使用这些资源，但操作系统或底层库可能仍然保持着相关的内存空间。
+
+内存泄漏会导致程序运行时占用的内存不断增加，最终可能导致系统的内存耗尽或程序性能下降。为了避免内存泄漏，开发者应当注意及时释放动态分配的内存，处理对象之间的引用关系，以及正确关闭文件和其他资源。使用合适的内存管理技术和工具，例如自动垃圾回收（Garbage Collection）或智能指针，也可以帮助减少内存泄漏的风险。
+js中的内存泄漏
+在JavaScript中，内存泄漏是指无用的对象仍然被占用内存，而无法被垃圾回收器释放的情况。JavaScript中的内存泄漏通常是由以下情况引起的：
+
+未及时清理定时器和事件监听器：在JavaScript中使用定时器（setTimeout或setInterval）或事件监听器（addEventListener）时，如果没有及时清理它们，即使它们不再需要，它们仍然保留对回调函数的引用，导致相关对象无法被垃圾回收。
+循环引用：如果存在对象之间的循环引用，即对象A引用了对象B，而对象B又引用了对象A，并且没有其他部分引用这些对象，就会发生内存泄漏。即使这些对象已经不再被程序使用，但由于它们之间的引用关系，垃圾回收器无法正确回收它们所占用的内存。
+未释放的DOM元素引用：在JavaScript中，如果在页面中创建了DOM元素的引用，但在后续不再需要时未及时释放，就会发生内存泄漏。即使从页面中删除了这些元素，它们仍然被引用，无法被垃圾回收器回收。
+闭包引用：JavaScript中的闭包函数可以访问其外部作用域的变量，如果在闭包函数中引用了外部作用域的变量，而闭包函数本身又没有被及时释放，就会导致引用的变量无法被垃圾回收。
+未释放的资源：在JavaScript中涉及到外部资源的操作，如网络请求、数据库连接等，如果没有正确释放这些资源，就会导致内存泄漏。这些资源可能占用系统内存或浏览器资源，而没有被及时释放。
+
+为了避免JavaScript中的内存泄漏问题，开发者可以采取以下措施：
+
+及时清理定时器和事件监听器，确保不再需要时将其移除。
+避免循环引用的产生，特别是在对象之间相互引用时要小心处理。
+在不再需要时释放对DOM元素的引用，尽量避免保留过多不必要的引用。
+在使用闭包函数时，注意及时释放不再需要的闭包函数和外部作用域的变量。
+对涉及到外部资源的操作，如网络请求、数据库连接等，要确保及时关闭或释放这些资源。
+使用现代的开发工具和浏览器提供的开发者工具进行内存泄漏的检测和分析，以及优化代码和内存使用。
+
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;common&#x2F;..&#x2F;rust.jpg"
-=======
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;database-lab&#x2F;database.jpg"
-    class="img-fluid m-auto d-block "
-    alt="数据库学习"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;database-lab&#x2F;"
-      rel="bookmark"
-      title="数据库学习"
-    ><b>数据库学习</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>TODO
-学习和了解mysql、redis
-同时学习分布式数据库、时序数据库原理。
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;front-base-rust&#x2F;front.jpg"
-    class="img-fluid m-auto d-block "
-    alt="基于rust的前端框架"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;front-base-rust&#x2F;"
-      rel="bookmark"
-      title="基于rust的前端框架"
-    ><b>基于rust的前端框架</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>相关框架
-Dioxus
-一个类React风格的前端框架。
-web的实现——基于wasm帮助rust和js实现通信
-yew
-组件式开发框架，目前的判断类似于Ext。
-tauri
-轻量级跨平台前端框架
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;principle-of-blockchain&#x2F;blockchain.jpg"
-    class="img-fluid m-auto d-block "
-    alt="区块链原理"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;principle-of-blockchain&#x2F;"
-      rel="bookmark"
-      title="区块链原理"
-    ><b>区块链原理</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;classic-modern-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
-    class="img-fluid m-auto d-block "
-    alt="经典区块链和现代区块链"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;classic-modern-blockchain&#x2F;"
-      rel="bookmark"
-      title="经典区块链和现代区块链"
-    ><b>经典区块链和现代区块链</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>TODO
-经典区块链：比特币和以太坊
-现代区块链：near和solana
-商用联盟区块链：蚂蚁链、长安链和FISCO链
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;webAssembly_rust_and_extJs-lab&#x2F;preview&#x2F;..&#x2F;new.jpg"
->>>>>>> 15ebfe30406f4fdaea2e044bb6d11f5214f94896
     class="img-fluid m-auto d-block "
     alt="rust学习(一)基础概念"
   />
@@ -1154,253 +1265,6 @@ x = x+2; &#x2F;&#x2F;cannot mutate immutable variable `x`
 fn variablie(){
     let x = 5;
     let x = x...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;exercism-clock&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="exercism——clock"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;exercism-clock&#x2F;"
-      rel="bookmark"
-      title="exercism——clock"
-    ><b>exercism——clock</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  13&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;brain-storm&#x2F;brain.jpg"
-    class="img-fluid m-auto d-block "
-    alt="小李很爱瞎想想"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;brain-storm&#x2F;"
-      rel="bookmark"
-      title="小李很爱瞎想想"
-    ><b>小李很爱瞎想想</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  12&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>做一套适用于所有view框架的数据缓存管理
-灵感来源：我基于Ext的store做了一套缓存机制，实现了列表翻页缓存、为翻页新增提供了支撑。
-想法：做一个纯js的前台数据管理机制，快速接入前端的各种view框架。
-希望以黑盒的模式提供接口、达到可插拔的特性。
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;database-lab&#x2F;database.jpg"
-    class="img-fluid m-auto d-block "
-    alt="数据库学习"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;database-lab&#x2F;"
-      rel="bookmark"
-      title="数据库学习"
-    ><b>数据库学习</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>TODO
-学习和了解mysql、redis
-同时学习分布式数据库、时序数据库原理。
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;front-base-rust&#x2F;front.jpg"
-    class="img-fluid m-auto d-block "
-    alt="基于rust的前端框架"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;articles&#x2F;front-base-rust&#x2F;"
-      rel="bookmark"
-      title="基于rust的前端框架"
-    ><b>基于rust的前端框架</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  03&#x2F;05&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>相关框架
-Dioxus
-一个类React风格的前端框架。
-web的实现——基于wasm帮助rust和js实现通信
-yew
-组件式开发框架，目前的判断类似于Ext。
-tauri
-轻量级跨平台前端框架
-...</small>
     
   </p>
 
@@ -1509,6 +1373,18 @@ tauri
             href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;8"
             
           >8</a>
+        </li>
+      
+        <li class="
+          page-item
+          
+        ">
+          <a
+            class="page-link"
+            
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;9"
+            
+          >9</a>
         </li>
       
     </ul>
