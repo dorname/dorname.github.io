@@ -802,6 +802,133 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;fisco-bcos&#x2F;..&#x2F;blockchain_one.jpg"
+    class="img-fluid m-auto d-block "
+    alt="Fisco Bcos链"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;fisco-bcos&#x2F;"
+      rel="bookmark"
+      title="Fisco Bcos链"
+    ><b>Fisco Bcos链</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  08&#x2F;03&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Fisco Bcos
+国密链部署
+新机构接入已有链
+新节点接入所需要的文件：
+
+
+证书机构颁发的国密证书（需要从外部获取）
+
+
+证书机构生成的链证书（需要从外部获取）
+
+
+群组创世文件（需要从已有的区块链网路节点中取）group.1.genesis
+
+
+群组1节点地址{ip:port}
+
+
+generator二进制文件
+
+
+fisco-bcos2.8.0版本二进制文件
+
+
+conf配置目录
+
+
+模板目录tpl（用完可以删掉）
+.
+├── applicationContext.xml
+├── config.ini
+├── config.ini.gm
+├── download_console.sh
+├── group.i.genesis
+├── group.i.ini
+├── load_new_groups.sh
+├── reload_whitelist.sh
+├── start_all.sh
+├── start.sh
+├── stop_all.sh
+└── stop.sh
+
+
+
+pys 脚本目录
+
+
+log日志目录
+
+
+脚本执行步骤：
+
+
+将已有链的证书拷贝到新机构的目录下，这里分别将非国密证书和国密证书文件夹命名为chain_ca 、chain_ca_gm。
+
+
+利用链证书生成新机构的国密证书和私钥以及链证书。
+.&#x2F;generator --generate_agency_certificate .&#x2F;agency_ca .&#x2F;chain_ca kingdom
+.&#x2F;generator --generate_agency_certificate .&#x2F;agency_ca_gm .&#x2F;chain_ca_gm kingdom -g
+
+agency_ca&#x2F;
+└── kingdom
+    ├── agency.crt 机构非国密证书
+    ├── agency.key 机构私钥
+    └── ca.crt 链证书
+1 directory, 3 files
+
+agency_ca_gm&#x2F;
+└── kingdom
+  ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;chainmaker&#x2F;..&#x2F;blockchain_one.jpg"
     class="img-fluid m-auto d-block "
     alt="初识长安链"

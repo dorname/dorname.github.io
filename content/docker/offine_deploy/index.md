@@ -5,7 +5,7 @@ extra:
     image: ../docker.png
 taxonomies:
   tags:
-    - blockchain
+    - deploy
   authors:
     - liguangqiao
 ---

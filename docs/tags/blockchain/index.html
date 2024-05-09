@@ -798,6 +798,133 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;fisco-bcos&#x2F;..&#x2F;blockchain_one.jpg"
+    class="img-fluid m-auto d-block "
+    alt="Fisco Bcos链"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;fisco-bcos&#x2F;"
+      rel="bookmark"
+      title="Fisco Bcos链"
+    ><b>Fisco Bcos链</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  08&#x2F;03&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Fisco Bcos
+国密链部署
+新机构接入已有链
+新节点接入所需要的文件：
+
+
+证书机构颁发的国密证书（需要从外部获取）
+
+
+证书机构生成的链证书（需要从外部获取）
+
+
+群组创世文件（需要从已有的区块链网路节点中取）group.1.genesis
+
+
+群组1节点地址{ip:port}
+
+
+generator二进制文件
+
+
+fisco-bcos2.8.0版本二进制文件
+
+
+conf配置目录
+
+
+模板目录tpl（用完可以删掉）
+.
+├── applicationContext.xml
+├── config.ini
+├── config.ini.gm
+├── download_console.sh
+├── group.i.genesis
+├── group.i.ini
+├── load_new_groups.sh
+├── reload_whitelist.sh
+├── start_all.sh
+├── start.sh
+├── stop_all.sh
+└── stop.sh
+
+
+
+pys 脚本目录
+
+
+log日志目录
+
+
+脚本执行步骤：
+
+
+将已有链的证书拷贝到新机构的目录下，这里分别将非国密证书和国密证书文件夹命名为chain_ca 、chain_ca_gm。
+
+
+利用链证书生成新机构的国密证书和私钥以及链证书。
+.&#x2F;generator --generate_agency_certificate .&#x2F;agency_ca .&#x2F;chain_ca kingdom
+.&#x2F;generator --generate_agency_certificate .&#x2F;agency_ca_gm .&#x2F;chain_ca_gm kingdom -g
+
+agency_ca&#x2F;
+└── kingdom
+    ├── agency.crt 机构非国密证书
+    ├── agency.key 机构私钥
+    └── ca.crt 链证书
+1 directory, 3 files
+
+agency_ca_gm&#x2F;
+└── kingdom
+  ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;chainmaker&#x2F;..&#x2F;blockchain_one.jpg"
     class="img-fluid m-auto d-block "
     alt="初识长安链"
@@ -1099,88 +1226,6 @@ Docker Compose 是一个用于定义和运行多容器 Docker 应用程序的工
 
 在实际应用中，Docker Compose 大大简化了在开发、测试和生产环境中部署和管理多容器应用程序的复杂性。而 Docker 提供了底层技术和命令行工具来管理单个容器的生命周期。二者结合使用，能够高效地开发、部署和扩展容器化应用程序。
 ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;offine-deploy&#x2F;..&#x2F;docker.png"
-    class="img-fluid m-auto d-block "
-    alt="离线部署dcoker与docker-compose"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;offine-deploy&#x2F;"
-      rel="bookmark"
-      title="离线部署dcoker与docker-compose"
-    ><b>离线部署dcoker与docker-compose</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  07&#x2F;03&#x2F;2024
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>离线部署docker与docker-compose
-离线部署docker参考文档 (tencent.com)
-docker-20.10.7.tgz
-
-
-解压安装包docker-20.10.7.tgz
-
-
-移动所有文件到&#x2F;usr&#x2F;bin&#x2F;目录下cp docker&#x2F;* &#x2F;usr&#x2F;bin&#x2F;
-
-
-将docker注册为service，在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建docker.service文件，并配置如下内容保存。
-[Unit]
-Description=Docker Application Container Engine
-Documentation=https:&#x2F;&#x2F;docs.docker.com
-After=network-online.target firewalld.service
-Wants=network-online.target
-[Service]
-Type=notify
-# the default is not to use systemd for cgroups because the delegate issues still
-# exists and systemd currently does not support the cgroup feature set required
-# for containers run by docker
-ExecStart=&#x2F;usr&#x2F;bin&#x2F;dockerd
-ExecReload=&#x2F;bin&#x2F;kill -s HUP $MAINPID
-# Having non-zero Limit*s causes performance problems due to...</small>
     
   </p>
 

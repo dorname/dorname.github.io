@@ -92,6 +92,10 @@
         <lastmod>2023-05-30</lastmod>
     </url>
     <url>
+        <loc>https://dorname.github.io/blockchain/fisco-bcos/</loc>
+        <lastmod>2024-03-08</lastmod>
+    </url>
+    <url>
         <loc>https://dorname.github.io/blockchain/page/1/</loc>
     </url>
     <url>
@@ -135,6 +139,22 @@
         <loc>https://dorname.github.io/docker/page/1/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/go/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/gradle/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/gradle/basics/</loc>
+        <lastmod>2024-05-08</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/gradle/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/java/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/js_learning/</loc>
     </url>
     <url>
@@ -173,6 +193,13 @@
     </url>
     <url>
         <loc>https://dorname.github.io/kubernetes/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/kubernetes/deploy-flow/</loc>
+        <lastmod>2024-05-09</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/kubernetes/page/1/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/mega_git/</loc>
@@ -260,6 +287,12 @@
         <loc>https://dorname.github.io/tags/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/tags/bcos/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/bcos/page/1/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/tags/blockchain/</loc>
     </url>
     <url>
@@ -272,6 +305,12 @@
         <loc>https://dorname.github.io/tags/blockchain/page/3/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/tags/build-tools/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/build-tools/page/1/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/tags/c/</loc>
     </url>
     <url>
@@ -282,6 +321,12 @@
     </url>
     <url>
         <loc>https://dorname.github.io/tags/database/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/deploy/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/deploy/page/1/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/dioxus/</loc>

@@ -839,6 +839,259 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;contract&#x2F;..&#x2F;logo.png"
+    class="img-fluid m-auto d-block "
+    alt="智能合约"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;contract&#x2F;"
+      rel="bookmark"
+      title="智能合约"
+    ><b>智能合约</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  07&#x2F;03&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>智能合约
+主要以Fisco Bcos 和Hyperleger Fabric为主进行合约的学习和研究。
+Fisco Bcos合约
+Solidity合约
+revert错误处理
+revert指令的作用是回滚合约。
+合约的交易回执中，若状态码为0x16,状态信息为RevertInstruction，表示执行了回滚指令revert。
+地址传递
+状态变量修改函数的地址传递
+例如：
+现有合约TestAdd.sol、Test.sol，Test 导入了TestAdd并调用了它的test方法。
+已知部署Test 的用户地址为0xe2d3a5f33454452081eb2e4ba0f99f97e40fc840。
+合约地址为0x7d26aec47df6c3702c91898b05fec3a2efd0fd2f。
+用户调用合约的parent方法，当前合约的msg.sender地址是用户地址0xe2d3a5f33454452081eb2e4ba0f99f97e40fc840。
+那么调用test的msg.sender应该是合约地址还是发起交易用户地址？
+其中用到了两个solidity的官方api，包含msg.sender当前消息发送者、tx.origin交易原始调用者。
+使用错误处理回滚apirevert打印结果显示为合约地址:0x7d26aec47df6c3702c91898b05fec3a2efd0fd2f。
+msg.sender的地址具有传递性，并非调用链上和原始调用者保持一致，而是遵循调用关系，比如说，用户调用合约A方法则合约A中的msg.sender为用户公钥地址，合约A方法调用了合约B方法，则合约B中的msg.sender为合约A的地址，依此类推。
+tx.origin在整个调用链上始终保持一致，表示为最终发起交易的用户地址。
+Test
+&#x2F;&#x2F;Test.sol
+pragma solidity ^0.4.25;
+import &amp;quot;.&#x2F;TestUtil.sol&amp;quot;;
+&#x2F;&#x2F;字符串存储数据结构
+contract Test {
+    TestUtil t = new TestUtil();
+    event print(address,address);
+    function parent() public{
+        emit print(tx.origin,msg.sender);
+        t.test();
+  ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;diff-docker-docker-compose&#x2F;..&#x2F;docker.png"
+    class="img-fluid m-auto d-block "
+    alt="dcoker与docker-compose区别"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;diff-docker-docker-compose&#x2F;"
+      rel="bookmark"
+      title="dcoker与docker-compose区别"
+    ><b>dcoker与docker-compose区别</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  07&#x2F;03&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>dcoker与docker-compose区别
+Docker 和 Docker Compose 在容器化技术中扮演着互补的角色。二者共同目的是简化容器的管理和部署过程，但它们在功能和使用场景上有所不同。
+Docker
+Docker 是一种容器化平台，提供了一个环境，让您可以在轻量级的容器中构建、发布和运行应用程序。容器允许您将应用程序及其依赖项打包到一个可移植的单元中，从而在任何支持 Docker 的环境中以一致的方式运行。Docker 的核心组件包括：
+
+Docker Daemon：运行在宿主机上的服务，负责构建、运行和分发 Docker 容器。
+Docker Client：用户通过命令行工具与 Docker Daemon 交互。
+Docker Images：只读模板，用于创建容器。镜像包含运行应用程序所需的代码、运行时、库等。
+Docker Containers：镜像的运行实例。容器在被启动时，在镜像的顶层添加一个可写层。
+
+Docker Compose
+Docker Compose 是一个用于定义和运行多容器 Docker 应用程序的工具。通过编写一个 YAML 文件（docker-compose.yml），您可以配置应用服务的所有方面，然后使用一个命令来启动和管理所有服务。Docker Compose 的关键特性包括：
+
+服务定义：在 docker-compose.yml 文件中定义您的应用程序的服务，这样您可以在一个命令中启动整个应用程序。
+网络配置：自动设置容器间的网络，使得不同的服务可以轻松地相互通信。
+卷管理：在服务之间共享数据或持久化数据时，可以配置和管理卷。
+依赖管理：可以明确服务启动的顺序，确保依赖的服务先启动。
+
+区别总结
+
+用途：Docker 专注于单个容器的生命周期管理，而 Docker Compose 用于在单个主机上编排多容器应用程序。
+作用范围：Docker 通常用于容器化单个应用或服务，Docker Compose 则允许您同时管理多个容器，定义它们如何相互作用。
+配置方法：Docker 使用 Dockerfile 来构建镜像，而 Docker Compose 使用 docker-compose.yml 文件来定义多服务应用程序的配置。
+
+在实际应用中，Docker Compose 大大简化了在开发、测试和生产环境中部署和管理多容器应用程序的复杂性。而 Docker 提供了底层技术和命令行工具来管理单个容器的生命周期。二者结合使用，能够高效地开发、部署和扩展容器化应用程序。
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;offine-deploy&#x2F;..&#x2F;docker.png"
+    class="img-fluid m-auto d-block "
+    alt="离线部署dcoker与docker-compose"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;offine-deploy&#x2F;"
+      rel="bookmark"
+      title="离线部署dcoker与docker-compose"
+    ><b>离线部署dcoker与docker-compose</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  07&#x2F;03&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>离线部署docker与docker-compose
+离线部署docker参考文档 (tencent.com)
+docker-20.10.7.tgz
+
+
+解压安装包docker-20.10.7.tgz
+
+
+移动所有文件到&#x2F;usr&#x2F;bin&#x2F;目录下cp docker&#x2F;* &#x2F;usr&#x2F;bin&#x2F;
+
+
+将docker注册为service，在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建docker.service文件，并配置如下内容保存。
+[Unit]
+Description=Docker Application Container Engine
+Documentation=https:&#x2F;&#x2F;docs.docker.com
+After=network-online.target firewalld.service
+Wants=network-online.target
+[Service]
+Type=notify
+# the default is not to use systemd for cgroups because the delegate issues still
+# exists and systemd currently does not support the cgroup feature set required
+# for containers run by docker
+ExecStart=&#x2F;usr&#x2F;bin&#x2F;dockerd
+ExecReload=&#x2F;bin&#x2F;kill -s HUP $MAINPID
+# Having non-zero Limit*s causes performance problems due to...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;cryptography&#x2F;..&#x2F;logo.png"
     class="img-fluid m-auto d-block "
     alt="加密算法"
@@ -928,8 +1181,33 @@ HMacMD5和HMacSha256算法
 对称算法
 非对称算法
 数字签名
+**目标：**用于验证数据的完整性和来源。
+**场景举例：**当您收到一个数字签名的文件或消息时，您可以使用该签名来确认信息确实来自声称的发送者，并且在传输过程中未被篡改。数字签名通常用于软件分发、电子文件传输、电子邮件等领域，以确保通信的安全性。
+核心算法原理: 基于非对称加密，即私钥签名，公钥验签。
+**数字签名的工作原理：**使用一对密钥，一个公钥和一个私钥。私钥由信息的发送者保密持有，用于创建签名；公钥则是公开的，任何人都可以用它来验证签名。当创建数字签名时，会对原始信息使用私钥进行加密，生成一个唯一的签名。接收方在收到信息后，可以使用公钥对签名进行解密，并与原始信息进行比对，以验证其完整性和来源。
+**价值：**数字签名提供了一种确保信息传输安全、防止篡改和伪造的有效手段。
 数字证书
+数字证书是一种电子证明，用来证明公钥的所有者身份，它是公钥基础设施（PKI）的一个重要组成部分。数字证书包含了证书持有者的信息（如组织、个人等）、证书持有者的公钥、证书颁发机构（CA）的签名等信息。
+当一个实体（如个人、服务器、客户端等）希望在网络上证明自己的身份时，它会生成一对密钥（一个公钥和一个私钥）。该实体会保留私钥，并将公钥发送到一个受信任的证书颁发机构（CA）。CA会验证实体的身份，然后用CA的私钥对该实体的公钥及其身份信息进行签名，生成一个数字证书。
+数字证书的作用主要包括：
+
+身份验证：数字证书帮助验证一个实体的身份，确保公钥确实属于它声明的持有者。
+确保通信安全：通过数字证书，可以建立一个安全的通道，确保数据在传输过程中不被窃取或篡改。
+数据加密：数字证书中的公钥可用于加密数据，只有对应的私钥持有者才能解密，确保数据的机密性。
+数字签名：证书持有者可以使用其私钥创建数字签名，其他人可以使用公钥来验证签名的有效性。
+
+数字证书在互联网安全通信中扮演着关键角色，如HTTPS协议就依赖于服务器的数字证书来建立一个安全的连接。
 PKI体系
+公钥基础设施（PKI，Public Key Infrastructure）是一套用于管理公钥加密的技术和服务的框架，主要用于在不安全的网络环境中安全地传输信息。PKI 通过一系列的角色、策略、硬件、软件和程序提供数字证书的颁发、管理、分发、使用、存储和撤销。
+PKI 的主要组成部分包括：
+
+证书颁发机构（CA，Certificate Authority）：这是最核心的部分，负责颁发和管理数字证书。CA 会验证申请数字证书的实体（个人、组织、服务器等）的身份，并在验证后颁发一个数字证书。数字证书中包含了实体的公钥及其他身份信息，并由 CA 的私钥签名。
+注册机构（RA，Registration Authority）：RA 负责接收和验证数字证书申请者的身份信息，然后向 CA 推荐是否颁发证书。不是所有的 PKI 系统都有 RA，这取决于 PKI 的设计和需求。
+证书库（Certificate Repository）：通常是一个公开可访问的数据库，存储着所有颁发的证书及撤销的证书（通过证书撤销列表，CRL，来管理）。
+密钥备份和恢复系统：用于备份和恢复密钥对，以防密钥丢失或损坏。
+端点用户系统和应用：这些是使用 PKI 系统的终端，包括个人电脑、移动设备、服务器等，它们使用数字证书来进行加密通信、数字签名等。
+
+PKI 的工作原理基于非对称加密，其中每个用户都有一对密钥：公钥和私钥。公钥是公开的，可以安全地分发给任何请求方；私钥是保密的，只有密钥的拥有者才能访问。通过这种方式，PKI 实现了数据的加密传输、身份验证和数据完整性验证。这使得 PKI 成为确保网络通信安全、电子商务和数字签名等领域的关键技术。
 国密与国际算法
 SM1
 算法类型：分组加密算法
@@ -958,10 +1236,7 @@ SM4算法：SM4分组密码算法是我国自主设计的分组对称密码算�
 随着国密算法推广的延伸，金融领域引入SM2、SM3、SM4等算法逐步替换原有的RSA、ECC等国外算法。现有银联银行卡联网、银联IC两项规范都引入了国密算法相关要求。如下图所示为金融活动中会应用到国密算法的业务。
 参考文献
 
-MD5算法 - 知乎 (zhihu.com)
-MD5算法的Java实现-腾讯云开发者社区-腾讯云 (tencent.com)
-
-...</small>
+MD5算法 -...</small>
     
   </p>
 
@@ -1283,284 +1558,6 @@ Paxos协议（强一致模型）
 **基础认知：**分布式数据库中的每个节点都存储三份数据，一是事务日志数据，二是 DB 数据，三是事务日志执行位置。 事务日志表存储着数据库的操作日志记录，包括：写入 Put、修改 Update 和删除 Delete 等相关的操作日志，有些文章资料将事务日志表称为状态机其实是一个意思。 DB 数据表存储具体的业务数据。 事务日志执行位置用于记录当前节点执行到了哪一条操作记录；
 整体思路：
 通过...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;vga-text-code&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="走读Writing an OS in Rust实验（四）"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;vga-text-code&#x2F;"
-      rel="bookmark"
-      title="走读Writing an OS in Rust实验（四）"
-    ><b>走读Writing an OS in Rust实验（四）</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  07&#x2F;12&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>VGA文本模式
-参考原作者phil的官方博客
-目标：VGA文本模式将字符打印到屏幕上，要实现此目标需要将字符写入到VGA硬件的文本缓冲区。VGA文本缓冲区是一个二维数组，通常有25行和80列，直接呈现到屏幕上。每个数组条目通过以下格式描述单个屏幕字符：
-位值
-0-7ASCII码
-8-11前景色
-12-14背景色
-15闪烁位
-
-第一个字节表示应以 ASCII 编码打印的字符。更具体地说，它并不完全是 ASCII，而是一个名为代码页 437 的字符集，其中包含一些附加字符和轻微修改。为简单起见，我们将在这篇文章中继续称其为 ASCII 字符。第二个字节定义字符的显示方式。前四位定义前景色，后三位定义背景色，最后一位定义字符是否应该闪烁。
-数值位颜色数值位+明亮位亮色
-0x0Black0x8Dark Gray
-0x1Blue0x9Light Blue
-0x2Green0xaLight Green
-0x3Cyan0xbLight Cyan
-0x4Red0xcLight Red
-0x5Magenta0xdPink
-0x6Brown0xeYellow
-0x7Light Gray0xfWhite
-
-明亮位是高4位，对于前景色是色调变亮；对于背景色则是用作闪烁位
-VGA 文本缓冲区可通过内存映射的 I&#x2F;O 访问地址。这意味着对该地址的读取和写入不会访问 RAM，而是直接访问 VGA 硬件上的文本缓冲区。这意味着我们可以通过正常的内存操作读取和写入该地址0xb8000
-请注意，内存映射硬件可能不支持所有正常的 RAM 操作。例如，设备只能支持按字节读取，并在读取 a 时返回垃圾。幸运的是，文本缓冲区支持正常的读取和写入，因此我们不必以特殊方式处理它u64
-Rust 模块
-该模块用来处理字符打印逻辑
-&#x2F;&#x2F; in src&#x2F;main.rs
-mod vga_buffer;
-
-打印逻辑主要分为以下几步：
-
-定义颜色
-定义屏幕字符和文本缓冲区
-实现打印方法
-避免打印操作被编译器优化
-实现格式化宏
-实现下一行函数
-暴露一个全局的接口
-实现恐慌的错误提示 
-
-定义颜色
-
-
-枚举颜色
-#[allow(dead_code)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-#[repr(u8)]
-pub enum Color {
-    Black = 0, &#x2F;&#x2F;00000000
-    Blue = 1, &#x2F;&#x2F;00000001
- ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;a-minimal-rust-kernel&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="走读Writing an OS in Rust实验（三）"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;a-minimal-rust-kernel&#x2F;"
-      rel="bookmark"
-      title="走读Writing an OS in Rust实验（三）"
-    ><b>走读Writing an OS in Rust实验（三）</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  05&#x2F;12&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>最小Rust内核
-（参考原作者phil的官方博客）
-启动进程
-
-
-计算机开机时，它开始执行存储在主板 ROM 中的固件代码。 启动进程执行加电自检、检测可用 RAM 并预初始化 CPU 和硬件。 然后，它会查找可启动磁盘并开始启动操作系统内核。
-
-
-在 x86 上，有两种固件标准：“基本输入&#x2F;输出系统”(BIOS) 和较新的“统一可扩展固件接口”(UEFI)。 BIOS 标准陈旧且过时，但简单且自 20 世纪 80 年代以来的任何 x86 计算机都得到良好支持。 相比之下，UEFI 更现代，具有更多功能，但设置更复杂。目前UEFI，作者已经开始支持了，详细进度去看作者的github仓库或者相关新的博客。
-
-
-启动进程的具体流程：
-当您打开计算机时，它会从主板上的某些特殊闪存加载 BIOS。 BIOS 运行硬件的自检和初始化例程，然后查找可启动磁盘。 如果找到，控制权就会转移到其引导加载程序，这是存储在磁盘开头的 512 字节可执行代码部分。 大多数引导加载程序都大于 512 字节，因此引导加载程序通常分为较小的第一阶段（适合 512 字节）和第二阶段（随后由第一阶段加载）。 引导加载程序必须确定内核映像在磁盘上的位置并将其加载到内存中。 它还需要先将CPU从16位实模式切换到32位保护模式，然后再切换到64位长模式，其中64位寄存器和完整的主存储器都可用。 它的第三项工作是从 BIOS 查询某些信息（例如内存映射）并将其传递给操作系统内核。 编写引导加载程序有点麻烦，因为它需要汇编语言和许多非深入的步骤，例如“将这个神奇的值写入该处理器寄存器”。 因此，我们不会在本文中介绍引导加载程序的创建，而是提供一个名为 bootimage 的工具，该工具会自动将引导加载程序添加到内核中。 
-内核构建
-主要包含4个部分
-
-下载nightly版本的Rust
-项目配置清单
-编译内核
-向屏幕打印字符
-启动内核
-
-项目配置清单
-通过 --target 参数，cargo 支持不同的目标系统。这个目标系统可以使用一个目标三元组（target triple）来描述，它描述了 CPU 架构、平台供应者、操作系统和应用程序二进制接口（Application Binary...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;os-no-standard&#x2F;..&#x2F;rust.jpg"
-    class="img-fluid m-auto d-block "
-    alt="走读Writing an OS in Rust实验（二）"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;os-no-standard&#x2F;"
-      rel="bookmark"
-      title="走读Writing an OS in Rust实验（二）"
-    ><b>走读Writing an OS in Rust实验（二）</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  02&#x2F;12&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>独立式可执行程序
-（参考原作者phil的官方博客）
-为了用 Rust 编写一个操作系统内核，我们需要创建一个独立于操作系统的可执行程序。这样的可执行程序常被称作独立式可执行程序（freestanding executable）或裸机程序(bare-metal executable)。
-构建裸机程序主要需要五步：
-
-禁用标准库
-重新实现panic处理函数
-禁用栈展开（事实上重写程序入口）
-重写程序入口
-编译成裸机目标
-
-禁用标准库
-目标：断开与标准库的链接，使用核心库脱离操作系统绑定
-#![no_std]添加到程序可以断开与标准库的链接
-#![no_std]
-
-fn main() {
-    println!(&amp;quot;Hello, world!&amp;quot;);
-}
-
-cargo build验证
-
-发现println!宏已经找不到了。
-
-error: cannot find macro `println` in this scope
- --&amp;gt; src&#x2F;main.rs:4:5
-  |
-4 |     println!(&amp;quot;Hello, world!&amp;quot;);
-  |     ^^^^^^^
-
-error: `#[panic_handler]` function required, but not found
-
-error: language item required, but not found:...</small>
     
   </p>
 
