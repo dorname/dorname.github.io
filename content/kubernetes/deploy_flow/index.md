@@ -2,7 +2,7 @@
 title: kubernetes部署服务流程
 date: 2024-05-09
 extra:
-    image: ../logo.png
+    image: ../logo.jpg
 taxonomies:
   tags:
     - deploy_tools
