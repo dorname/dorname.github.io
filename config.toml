@@ -103,5 +103,8 @@ data_topics = [
   { title = "区块链", url = "blockchain"},
   { title = "Mega", url = "mega_git"},
   { title = "分布式理论", url = "distributed_system"},
-  { title = "Docker容器", url = "docker"}
+  { title = "Docker容器", url = "docker"},
+  { title = "k8s", url = "kubernetes"},
+  { title = "gradle", url = "gradle"}
+
 ]

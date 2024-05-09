@@ -411,6 +411,22 @@
                       >Docker容器</a>
                     </li>
                   
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;kubernetes"
+                        onclick="switchTopic('k8s')"
+                      >K8s</a>
+                    </li>
+                  
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;gradle"
+                        onclick="switchTopic('gradle')"
+                      >Gradle</a>
+                    </li>
+                  
                 </ul>
               </li>
             
@@ -788,94 +804,6 @@
     <main class="container mx-auto my-5">
       
   <h1>Posts by Topic: build_tools</h1>
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;kubernetes&#x2F;deploy-flow&#x2F;..&#x2F;logo.png"
-    class="img-fluid m-auto d-block "
-    alt="kubernetes部署服务流程"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;kubernetes&#x2F;deploy-flow&#x2F;"
-      rel="bookmark"
-      title="kubernetes部署服务流程"
-    ><b>kubernetes部署服务流程</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  09&#x2F;05&#x2F;2024
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>以java服务为例
-本地k8s集群采用kind部署，正式环境还是建议采用kubeadm来部署
-
-
-撰写集群配置文件kind.yaml
-kind: Cluster
-apiVersion: kind.x-k8s.io&#x2F;v1alpha4
-nodes:
-- role: control-plane
-  extraPortMappings:
-  - containerPort: 30001
-    hostPort: 30001                 
-
-由于kind是采用docker的方式部署集群，所以集群的端口策略需要在创建时期就在配置文件上设置好，不然后续无法通过宿主机访问集群中部署好的服务。
-
-
-创建集群
-kind create cluster --config .&#x2F;kind.yaml --name cluster-1
-
-
-
-准备好镜像文件javaServer.tar，并加载到本地kind集群
-docker load -i javaServer.tar
-&#x2F;&#x2F;javaServer:v1.0.0
-kind load docker-image javaServer:v1.0.0 --name cluster-1
-
-
-
-创建命名空间
-kubectl create namespace &amp;lt;空间名称&amp;gt;
-&#x2F;&#x2F;kubectl...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
 	
     
   

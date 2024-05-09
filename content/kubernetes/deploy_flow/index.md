@@ -5,7 +5,8 @@ extra:
     image: ../logo.png
 taxonomies:
   tags:
-    - build_tools
+    - deploy_tools
+    - manager_tools
   authors:
     - liguangqiao
 ---
