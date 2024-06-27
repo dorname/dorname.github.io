@@ -427,6 +427,14 @@
                       >Gradle</a>
                     </li>
                   
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;java"
+                        onclick="switchTopic('java')"
+                      >Java</a>
+                    </li>
+                  
                 </ul>
               </li>
             
@@ -855,6 +863,287 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;java&#x2F;basic&#x2F;..&#x2F;java.png"
+    class="img-fluid m-auto d-block "
+    alt="java基础"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;java&#x2F;basic&#x2F;"
+      rel="bookmark"
+      title="java基础"
+    ><b>java基础</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  26&#x2F;06&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Java
+反射基础
+ &#x2F;&#x2F; 动态加载类
+  Class&amp;lt;?&amp;gt; clazz = Class.forName(&amp;quot;java.util.ArrayList&amp;quot;);
+
+Class 是 Java 反射 API 中的一个核心类，用于表示所有类和接口在运行时的类型信息。
+Class&amp;lt;?&amp;gt;
+解释 Class&amp;lt;?&amp;gt;
+
+Class 类：这是 java.lang.reflect 包中的一个类，表示在运行时的类和接口。每个类都被 Class 类的一个实例所表示，无论它是一个普通类、接口、枚举还是注解。
+泛型 &amp;lt;?&amp;gt;（通配符）：在 Java 中，? 表示通配符，用于泛型编程。Class&amp;lt;?&amp;gt; 表示“未知的 Class 类型”，它是泛型语法的一部分。使用 ? 作为类型参数，你可以引用任何类型的 Class 对象。这种方式比使用 Class 类型更加安全，因为它防止了向 Class 对象中放入错误类型的实例。
+
+为什么使用 Class&amp;lt;?&amp;gt;
+
+类型安全：使用 Class&amp;lt;?&amp;gt; 比简单使用非泛型的 Class 类型更安全。它表明你并不关心 Class 对象的具体类型，但仍然保留了泛型的好处，即确保如果你对这个类对象进行操作，你不会错误地处理类型信息。
+避免类型警告：直接使用 Class 会导致编译器警告，如“Class 是原生类型”。使用 Class&amp;lt;?&amp;gt; 可以避免这些警告，使代码更干净，更符合 Java 的泛型约定。
+
+总结来说，Class&amp;lt;?&amp;gt; 是 Java...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;java&#x2F;reflect-and-proxy&#x2F;..&#x2F;java.png"
+    class="img-fluid m-auto d-block "
+    alt="java的反射和代理"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;java&#x2F;reflect-and-proxy&#x2F;"
+      rel="bookmark"
+      title="java的反射和代理"
+    ><b>java的反射和代理</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  26&#x2F;06&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>java的反射和代理机制
+java的反射特性
+反射特性允许程序在运行时检查、修改和操作自身的结构
+反射特性主要解决java运行时的灵活性和动态性问题，使得Java应用程序能够在运行时加载、探查、使用和修改类和对象的行为。
+使用场景：
+
+动态类加载。
+访问类的内部信息
+调用方法和访问字段
+数组操作
+实现泛型api
+动态代理
+调试和测试工具
+
+示例1：动态加载java.util.ArrayList类，调用其方法
+public void test(){
+  try {
+            Class&amp;lt;?&amp;gt; clazz = Class.forName(&amp;quot;java.util.ArrayList&amp;quot;);
+            Object arr = clazz.getDeclaredConstructor().newInstance();
+            Method add =...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;java&#x2F;version-problem&#x2F;..&#x2F;java.png"
+    class="img-fluid m-auto d-block "
+    alt="java"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;java&#x2F;version-problem&#x2F;"
+      rel="bookmark"
+      title="java"
+    ><b>java</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  26&#x2F;06&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>java问题总结
+JDK17编译出jdk8的代码
+核心原因还是因为在pom.xml或者build.gradle中指定问编译版本
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;fabric&#x2F;..&#x2F;blockchain_one.jpg"
+    class="img-fluid m-auto d-block "
+    alt="Hyperledger Fabric"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;fabric&#x2F;"
+      rel="bookmark"
+      title="Hyperledger Fabric"
+    ><b>Hyperledger Fabric</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  11&#x2F;05&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>超级账本
+专业术语和概念
+
+
+Assets— Asset definitions enable the exchange of almost anything with monetary value over the network, from whole foods to antique cars to currency futures.
+​	灵活的资产定义，从食物、汽车甚至未来货币，这些定义的资产可以在网络中流通。
+**详细描述：**资产可以是实体的（如房地产和硬件）也可以是无形的（如合同和知识产权）。Hyperledger Fabric 提供了使用链码（chaincode）交易修改资产的能力。
+​	在 Hyperledger Fabric 中，资产被表示为一组键值对的集合，状态变化被记录在通道账本（Channel ledger）上的交易中。资产可以以二进制和&#x2F;或 JSON 形式表示。
+
+
+Chaincode — Chaincode execution is partitioned from transaction ordering, limiting the required levels of trust and verification across node...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;kubernetes&#x2F;deploy-flow&#x2F;..&#x2F;logo.jpg"
     class="img-fluid m-auto d-block "
     alt="kubernetes部署服务流程"
@@ -924,396 +1213,6 @@ kind load docker-image javaServer:v1.0.0 --name cluster-1
 创建命名空间
 kubectl create namespace &amp;lt;空间名称&amp;gt;
 &#x2F;&#x2F;kubectl...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;gradle&#x2F;basics&#x2F;..&#x2F;gradle.png"
-    class="img-fluid m-auto d-block "
-    alt="Gradle基础"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;gradle&#x2F;basics&#x2F;"
-      rel="bookmark"
-      title="Gradle基础"
-    ><b>Gradle基础</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  08&#x2F;05&#x2F;2024
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>Gradle 基础
-原文出自官方文档Gradle Basics
-Gradle 可根据构建脚本中的信息自动构建、测试和部署软件.
-总体业务架构
-
-对文字的解释：
-
-
-业务包含三部分项目Project、构建工具Gradle和输出Output。项目作为输入经过构建工具后得到输出。
-
-
-项目部分：一个项目可以有多个子项目。根项目中会包含一个setting.gradle文件，子项目包含build.gradle和源码文件。
-
-
-构建工具部分：包含缓存Cache、构建工作流Build Flow和依赖管理Dependency Manager。根据引入插件Plugins添加默认的构建工作流、和引入的依赖项添加依赖
-
-
-输出部分：包含测试结果、项目包和与服务器持续集成的操作。
-
-
-Gradle 名词解释
-Project 项目
-Gradle 项目是可以构建的软件，例如应用程序或库。
-单个项目生成包括一个名为根项目的单个项目。
-多项目生成包括一个根项目和任意数量的子项目。
-Build Scripts 构建脚本集
-构建脚本向 Gradle 详细介绍了构建项目需要执行哪些步骤。
-每个项目可以包含一个或多个生成脚本。
-Dependency Manager 依赖关系管理
-依赖项管理是一种自动化技术，用于声明和解析项目所需的外部资源。
-每个项目通常都包含许多外部依赖项，Gradle 将在构建过程中解决这些依赖项。
-Task 任务
-任务是基本工作单元，例如编译代码或运行测试。
-每个项目都包含在构建脚本或插件中定义的一个或多个任务。
-Plugins 插件
-插件用于扩展 Gradle 的功能，并选择性地为项目贡献任务。
-Gradle 项目结构
-
-
-存放gradle wrapper文件和其他相关文件的地方。
-用于依赖项的版本管理
-执行wrapper的脚本
-定义跟项目名称并导入子项目
-子项目的构建脚本
-子项目的源码
-
-命令行接口
-参考官网Command-Line Interface Basics (gradle.org)
-Setting.gradle
-rootProject.name = &amp;#39;root-project&amp;#39;   &#x2F;&#x2F;项目名称
-include(&amp;#39;sub-project-a&amp;#39;) &#x2F;&#x2F;引入子项目            
-include(&amp;#39;sub-project-b&amp;#39;)
-include(&amp;#39;sub-project-c&amp;#39;)
-
-Build.gradle
-plugins {
-    id &amp;#39;application&amp;#39; ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;fisco-bcos&#x2F;..&#x2F;blockchain_one.jpg"
-    class="img-fluid m-auto d-block "
-    alt="Fisco Bcos链"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;fisco-bcos&#x2F;"
-      rel="bookmark"
-      title="Fisco Bcos链"
-    ><b>Fisco Bcos链</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  08&#x2F;03&#x2F;2024
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>Fisco Bcos
-国密链部署
-新机构接入已有链
-新节点接入所需要的文件：
-
-
-证书机构颁发的国密证书（需要从外部获取）
-
-
-证书机构生成的链证书（需要从外部获取）
-
-
-群组创世文件（需要从已有的区块链网路节点中取）group.1.genesis
-
-
-群组1节点地址{ip:port}
-
-
-generator二进制文件
-
-
-fisco-bcos2.8.0版本二进制文件
-
-
-conf配置目录
-
-
-模板目录tpl（用完可以删掉）
-.
-├── applicationContext.xml
-├── config.ini
-├── config.ini.gm
-├── download_console.sh
-├── group.i.genesis
-├── group.i.ini
-├── load_new_groups.sh
-├── reload_whitelist.sh
-├── start_all.sh
-├── start.sh
-├── stop_all.sh
-└── stop.sh
-
-
-
-pys 脚本目录
-
-
-log日志目录
-
-
-脚本执行步骤：
-
-
-将已有链的证书拷贝到新机构的目录下，这里分别将非国密证书和国密证书文件夹命名为chain_ca 、chain_ca_gm。
-
-
-利用链证书生成新机构的国密证书和私钥以及链证书。
-.&#x2F;generator --generate_agency_certificate .&#x2F;agency_ca .&#x2F;chain_ca kingdom
-.&#x2F;generator --generate_agency_certificate .&#x2F;agency_ca_gm .&#x2F;chain_ca_gm kingdom -g
-
-agency_ca&#x2F;
-└── kingdom
-    ├── agency.crt 机构非国密证书
-    ├── agency.key 机构私钥
-    └── ca.crt 链证书
-1 directory, 3 files
-
-agency_ca_gm&#x2F;
-└── kingdom
-  ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;chainmaker&#x2F;..&#x2F;blockchain_one.jpg"
-    class="img-fluid m-auto d-block "
-    alt="初识长安链"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;chainmaker&#x2F;"
-      rel="bookmark"
-      title="初识长安链"
-    ><b>初识长安链</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  07&#x2F;03&#x2F;2024
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>长安链（chainmaker）
-四节点docker离线部署
-环境准备
-我的实验环境是麒麟服务器外加一台可联网的机器（没有arm架构机器可以考虑使用qemu-static-user，安装之后允许本地跑arm架构的镜像，虽然会报警告，但没有影响运行）
-要求联网可以通过ssh远程访问服务器。
-目标是在服务器上部署四节点的CERT证书模式的长安链。
-1 服务器docker 和docker-compose 离线安装
-参考麒麟系统（arm64&#x2F;aarch64）离线安装docker和docker-compose_docker-compose-linux-aarch64-CSDN博客
-2 准备好长安链的arm64镜像。
-联网环境：
-docker pull chainmakerofficial&#x2F;chainmaker:v2.3.2_arm
-docker save -o chainmaker.tar chainmakerofficial&#x2F;chainmaker:v2.3.2_arm
-可以得到一个chainmaker.tar本地镜像包，并拷贝到服务器中（这里我是使用scp命令）
-服务器：
-docker load -i chainmaker.tar
-3 准备长安链的配置文件
-详细参考官方文档，只需要准备到2.1.2.4. 账户生成
-注意：国密版本需要修改配置模板参考官方文档
-2. 通过命令行体验链 — chainmaker-docs v2.3.2 documentation
-# 查看生成好的节点密钥和配置
-$ tree -L 3 ..&#x2F;build&#x2F;
-..&#x2F;build&#x2F;
-├── config
-│   ├── node1
-│   │   ├── admin
-│   │   ├── chainconfig
-│   │  ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;consensus&#x2F;..&#x2F;logo.png"
-    class="img-fluid m-auto d-block "
-    alt="共识算法"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;consensus&#x2F;"
-      rel="bookmark"
-      title="共识算法"
-    ><b>共识算法</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  07&#x2F;03&#x2F;2024
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>共识算法
-主要研究四个共识算法包含拜占庭容错共识、工作量证明共识、权益证明共识和Raft共识。
-拜占庭容错共识(PBFT)
-工作量证明共识(PoW)
-权益证明共识(PoS)
-权益证明共识(DPoS)
-Raft共识
-...</small>
     
   </p>
 
@@ -1434,6 +1333,18 @@ Raft共识
             href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;9"
             
           >9</a>
+        </li>
+      
+        <li class="
+          page-item
+          
+        ">
+          <a
+            class="page-link"
+            
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;10"
+            
+          >10</a>
         </li>
       
     </ul>

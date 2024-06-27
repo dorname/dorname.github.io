@@ -427,6 +427,14 @@
                       >Gradle</a>
                     </li>
                   
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;java"
+                        onclick="switchTopic('java')"
+                      >Java</a>
+                    </li>
+                  
                 </ul>
               </li>
             
@@ -855,6 +863,362 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;a-minimal-rust-kernel&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="走读Writing an OS in Rust实验（三）"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;a-minimal-rust-kernel&#x2F;"
+      rel="bookmark"
+      title="走读Writing an OS in Rust实验（三）"
+    ><b>走读Writing an OS in Rust实验（三）</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  05&#x2F;12&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>最小Rust内核
+（参考原作者phil的官方博客）
+启动进程
+
+
+计算机开机时，它开始执行存储在主板 ROM 中的固件代码。 启动进程执行加电自检、检测可用 RAM 并预初始化 CPU 和硬件。 然后，它会查找可启动磁盘并开始启动操作系统内核。
+
+
+在 x86 上，有两种固件标准：“基本输入&#x2F;输出系统”(BIOS) 和较新的“统一可扩展固件接口”(UEFI)。 BIOS 标准陈旧且过时，但简单且自 20 世纪 80 年代以来的任何 x86 计算机都得到良好支持。 相比之下，UEFI 更现代，具有更多功能，但设置更复杂。目前UEFI，作者已经开始支持了，详细进度去看作者的github仓库或者相关新的博客。
+
+
+启动进程的具体流程：
+当您打开计算机时，它会从主板上的某些特殊闪存加载 BIOS。 BIOS 运行硬件的自检和初始化例程，然后查找可启动磁盘。 如果找到，控制权就会转移到其引导加载程序，这是存储在磁盘开头的 512 字节可执行代码部分。 大多数引导加载程序都大于 512 字节，因此引导加载程序通常分为较小的第一阶段（适合 512 字节）和第二阶段（随后由第一阶段加载）。 引导加载程序必须确定内核映像在磁盘上的位置并将其加载到内存中。 它还需要先将CPU从16位实模式切换到32位保护模式，然后再切换到64位长模式，其中64位寄存器和完整的主存储器都可用。 它的第三项工作是从 BIOS 查询某些信息（例如内存映射）并将其传递给操作系统内核。 编写引导加载程序有点麻烦，因为它需要汇编语言和许多非深入的步骤，例如“将这个神奇的值写入该处理器寄存器”。 因此，我们不会在本文中介绍引导加载程序的创建，而是提供一个名为 bootimage 的工具，该工具会自动将引导加载程序添加到内核中。 
+内核构建
+主要包含4个部分
+
+下载nightly版本的Rust
+项目配置清单
+编译内核
+向屏幕打印字符
+启动内核
+
+项目配置清单
+通过 --target 参数，cargo 支持不同的目标系统。这个目标系统可以使用一个目标三元组（target triple）来描述，它描述了 CPU 架构、平台供应者、操作系统和应用程序二进制接口（Application Binary...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;os-no-standard&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="走读Writing an OS in Rust实验（二）"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;os-no-standard&#x2F;"
+      rel="bookmark"
+      title="走读Writing an OS in Rust实验（二）"
+    ><b>走读Writing an OS in Rust实验（二）</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  02&#x2F;12&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>独立式可执行程序
+（参考原作者phil的官方博客）
+为了用 Rust 编写一个操作系统内核，我们需要创建一个独立于操作系统的可执行程序。这样的可执行程序常被称作独立式可执行程序（freestanding executable）或裸机程序(bare-metal executable)。
+构建裸机程序主要需要五步：
+
+禁用标准库
+重新实现panic处理函数
+禁用栈展开（事实上重写程序入口）
+重写程序入口
+编译成裸机目标
+
+禁用标准库
+目标：断开与标准库的链接，使用核心库脱离操作系统绑定
+#![no_std]添加到程序可以断开与标准库的链接
+#![no_std]
+
+fn main() {
+    println!(&amp;quot;Hello, world!&amp;quot;);
+}
+
+cargo build验证
+
+发现println!宏已经找不到了。
+
+error: cannot find macro `println` in this scope
+ --&amp;gt; src&#x2F;main.rs:4:5
+  |
+4 |     println!(&amp;quot;Hello, world!&amp;quot;);
+  |     ^^^^^^^
+
+error: `#[panic_handler]` function required, but not found
+
+error: language item required, but not found:...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;writing-os-in-rust&#x2F;..&#x2F;rust.jpg"
+    class="img-fluid m-auto d-block "
+    alt="走读Writing an OS in Rust实验（一）"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;rust&#x2F;writing-os-in-rust&#x2F;"
+      rel="bookmark"
+      title="走读Writing an OS in Rust实验（一）"
+    ><b>走读Writing an OS in Rust实验（一）</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  02&#x2F;12&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Blob Os 内容大纲
+![](writing _an_os_in_rust_arch.png)
+
+移除Rust标准库
+
+标准库需要底层操作系统的支撑，想要裸机运行代码，要求Rust可执行文件使用核心库而不是标准库。
+
+基于X86架构的最小内核
+
+基于X86架构和Rust语言编写最小化的64位内核。本章将构建一个向显示器打印字符串，并能被打包为一个能够引导启动的磁盘映像。
+
+VGA字符模式
+
+VGA 字符模式（VGA text mode）是打印字符到屏幕的一种简单方式。在这篇文章中，为了包装这个模式为一个安全而简单的接口，我们将包装 unsafe 代码到独立的模块。我们还将实现对 Rust 语言格式化宏（formatting macros）的支持。
+
+内核测试
+
+本文主要讲述了在no_std环境下进行单元测试和集成测试的方法。我们将通过Rust的自定义测试框架来在我们的内核中执行一些测试函数。为了将结果反馈到QEMU上，我们需要使用QEMU的一些其他的功能以及bootimage工具。
+
+CPU异常处理
+
+CPU异常在很多情况下都有可能发生，比如访问无效的内存地址，或者在除法运算里除以0。为了处理这些错误，我们需要设置一个 中断描述符表 来提供异常处理函数。在文章的最后，我们的内核将能够捕获 断点异常 并在处理后恢复正常执行。
+
+双重故障
+
+在这篇文章中，我们会探索 double fault 异常的细节，它的触发条件是调用错误处理函数失败。通过捕获该异常，我们可以阻止致命的 triple faults 异常导致系统重启。为了尽可能避免 triple faults ，我们会在一个独立的内核栈配置 中断栈表 来捕捉 double faults。
+
+硬件中断
+
+在本文中，我们会对可编程的中断控制器进行设置，以将硬件中断转发给CPU，而要处理这些中断，只需要像处理异常一样在中断描述符表中加入一个新条目即可，在这里我们会以获取周期计时器的中断和获取键盘输入为例进行讲解。
+
+内存分页初探
+
+本文主要讲解 内存分页 机制，一种我们将会应用到操作系统里的十分常见的内存模型。同时，也会展开说明为何需要进行内存隔离、分段机制 是如何运作的、虚拟内存 是什么，以及内存分页是如何解决内存碎片问题的，同时也会对x86_64的多级页表布局进行探索。
+
+分页实现
+
+这篇文章展示了如何在我们的内核中实现分页支持。它首先探讨了使物理页表帧能够被内核访问的不同技术，并讨论了它们各自的优点和缺点。然后，它实现了一个地址转换功能和一个创建新映射的功能。
+
+栈分配
+
+这篇文章为我们的内核增加了对堆分配的支持。首先，它介绍了动态内存，并展示了借用检查器如何防止常见的分配错误。然后，它实现了 Rust 的基本分配接口，创建了一个堆内存区域，并设置了一个分配器包。在这篇文章的最后，内置 alloc crate 的所有分配和收集类型都将可供我们的内核使用。
+
+分配器设计
+
+这篇文章解释了如何从头开始实现堆分配器。它介绍并讨论了不同的分配器设计，包括凸块分配、链表分配和固定大小块分配。对于这三种设计中的每一种，我们将创建一个可用于内核的基本实现。
+
+异步和等待
+
+在这篇文章中，我们将探讨 Rust 的协作多任务处理和 async&#x2F;await 特性。我们详细介绍了 async&#x2F;await 在 Rust 中是如何工作的，包括 Future 特性的设计、状态机转换和固定。然后，我们通过创建一个异步键盘任务和一个基本的执行器，将对 async&#x2F;await 的基本支持添加到我们的内核中。
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;quick-start&#x2F;..&#x2F;git.png"
+    class="img-fluid m-auto d-block "
+    alt="Mega Quick Start Guide on Ubuntu 22.04"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;quick-start&#x2F;"
+      rel="bookmark"
+      title="Mega Quick Start Guide on Ubuntu 22.04"
+    ><b>Mega Quick Start Guide on Ubuntu 22.04</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  28&#x2F;11&#x2F;2023
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Quick Started for developing and testing on Ubuntu(22.04)
+Install Rust on your Ubuntu machine.
+curl --proto &amp;#39;=https&amp;#39; --tlsv1.2 -sSf https:&#x2F;&#x2F;sh.rustup.rs | sh
+&#x2F;&#x2F; Configure the Environment Variable
+source $HOME&#x2F;.cargo&#x2F;env
+&#x2F;&#x2F; check your version
+rustc --version
+
+Clone mega repository and build it.
+git clone https:&#x2F;&#x2F;github.com&#x2F;web3infra-foundation&#x2F;mega.git
+cd mega
+cargo build
+
+Install PostgreSQL and init database.
+
+
+install PostgreSQL
+
+
+create database,then find the dump file in the...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;git&#x2F;..&#x2F;git.png"
     class="img-fluid m-auto d-block "
     alt="Git对象及其存储结构"
@@ -953,295 +1317,6 @@ git testing
 
 版本变更实验：更新文件git_test.txt的内容并重新保存
 $ echo &amp;quot;changing&amp;quot;...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;what-is-blockchain&#x2F;..&#x2F;blockchain_one.jpg"
-    class="img-fluid m-auto d-block "
-    alt="区块链的理解(阅读收集)"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;what-is-blockchain&#x2F;"
-      rel="bookmark"
-      title="区块链的理解(阅读收集)"
-    ><b>区块链的理解(阅读收集)</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  10&#x2F;10&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>什么是区块链?
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;v8engine&#x2F;..&#x2F;js_logo.png"
-    class="img-fluid m-auto d-block "
-    alt="v8引擎"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;v8engine&#x2F;"
-      rel="bookmark"
-      title="v8引擎"
-    ><b>v8引擎</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  04&#x2F;10&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>v8引擎项目结构
-目录&#x2F;文件描述
-api包含了 V8 引擎的 C++ API，可以用来在 C++ 代码中调用 JavaScript 代码
-asmjsasmjs 目录是 V8 引擎的 Asm.js 支持代码所在的目录，包含了 Asm.js 相关的头文件和源文件。Asm.js 是一种 JavaScript 子集，可以通过限制语言特性和语法来提高 JavaScript 代码的性能。V8 引擎通过解析 Asm.js 代码，并将其编译成高效的机器码来提高 JavaScript 代码的性能。asmjs 目录下的代码实现了 Asm.js 相关的解析器、编译器、代码生成器等功能，是 V8 引擎支持 Asm.js 的基础。在 asmjs 目录下，asm-js.cc 文件实现了 Asm.js 相关的函数和类，包括 StdlibMathMember 和 AreStdlibMembersValid 等函数，用于解析和编译 Asm.js 代码。
-astast 目录是 V8 引擎的抽象语法树（AST）相关代码所在的目录，包含了 AST 相关的头文件和源文件。抽象语法树是一种用于表示程序语法结构的树形数据结构，可以用于编译器的语法分析、代码优化和代码生成等过程。在 V8...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;mega&#x2F;..&#x2F;git.png"
-    class="img-fluid m-auto d-block "
-    alt="Mega学习"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;mega_git&#x2F;mega&#x2F;"
-      rel="bookmark"
-      title="Mega学习"
-    ><b>Mega学习</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  30&#x2F;08&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>Mega(去中心化Git服务)
-Mega是一个去中心化、分布式的开源git项目。它的目标是提供一个更加安全和隐私保护的git服务，同时还可以提供高质量的代码托管和版本控制功能。Mega是完全开源的，任何人都可以自由地使用它，也可以参与到它的开发和维护中来。
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;implicit-conversion&#x2F;..&#x2F;js_logo.png"
-    class="img-fluid m-auto d-block "
-    alt="js隐式转换"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;js_learning&#x2F;implicit-conversion&#x2F;"
-      rel="bookmark"
-      title="js隐式转换"
-    ><b>js隐式转换</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  22&#x2F;08&#x2F;2023
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>js的隐式转换
-目前常见的隐式转换
-
-相关数据类型
-
-let str = &amp;quot;hello&amp;quot;;
-let str_num = &amp;quot;1&amp;quot;
-let boo = true;
-let num = 10;
-
-
-
-隐式数据类型转换
-
-
-隐式转换优先其他类型转换成字符串。
-数值、布尔值与字符串相加会隐式转换成字符串
-console.log(str+boo)&#x2F;&#x2F;字符串+bool值 &amp;quot;hellotrue&amp;quot;
-console.log(str+num)&#x2F;&#x2F;字符串+数值 &amp;quot;hello10&amp;quot;
-console.log(str_num+num)&#x2F;&#x2F;数值型字符串+数值 &amp;quot;110&amp;quot; 
-
-
-
-非字符串下优先数值。
-布尔值会隐式转换
-true =&amp;gt; 1
-false =&amp;gt; 0
-console.log(num+10) &#x2F;&#x2F;bool值+数值 11
-
-
-
-字符串和布尔值比较： 当一个字符串和一个布尔值进行比较时，JavaScript 会将布尔值转换为数字（true 为 1，false 为 0），然后与字符串进行比较。
-console.log(&amp;quot;10&amp;quot;&amp;gt;true); &#x2F;&#x2F;true
-console.log(&amp;quot;a&amp;quot;&amp;gt;true); &#x2F;&#x2F;false
-
-
-
-不同数据类型的比较： 在比较不同数据类型时，JavaScript 会尝试将其中一个值转换为另一个值的数据类型，然后再进行比较。这可能导致一些奇怪的结果。
-console.log(&amp;quot;42&amp;quot;==42);&#x2F;&#x2F;true
-console.log(&amp;quot;42&amp;quot;===42); &#x2F;&#x2F;false
-
-注意：在 JavaScript 中，双等号 == 和三等号 === 是用于比较值的操作符，核心区别是比较是否做隐式转换：
-
-双等号：双等号进行比较时会进行隐式类型转换。它会尝试将比较的两个值转换为相同的数据类型，然后再进行比较。这就导致了一些令人困惑的情况，因为不同数据类型的值在隐式转换后可能会变得相等。
-三等号：三等号进行比较时不会进行隐式类型转换，而是直接比较值和数据类型。只有在值和数据类型都相同的情况下，才会返回 true。
-
-
-
-
-
-...</small>
     
   </p>
 
@@ -1362,6 +1437,18 @@ console.log(&amp;quot;42&amp;quot;===42); &#x2F;&#x2F;false
             href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;9"
             
           >9</a>
+        </li>
+      
+        <li class="
+          page-item
+          
+        ">
+          <a
+            class="page-link"
+            
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;10"
+            
+          >10</a>
         </li>
       
     </ul>

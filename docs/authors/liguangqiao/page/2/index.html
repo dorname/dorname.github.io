@@ -427,6 +427,14 @@
                       >Gradle</a>
                     </li>
                   
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;java"
+                        onclick="switchTopic('java')"
+                      >Java</a>
+                    </li>
+                  
                 </ul>
               </li>
             
@@ -855,6 +863,396 @@
         <div class="col-md-4 d-flex align-items-center">
           
   <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;gradle&#x2F;basics&#x2F;..&#x2F;gradle.png"
+    class="img-fluid m-auto d-block "
+    alt="Gradle基础"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;gradle&#x2F;basics&#x2F;"
+      rel="bookmark"
+      title="Gradle基础"
+    ><b>Gradle基础</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  08&#x2F;05&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Gradle 基础
+原文出自官方文档Gradle Basics
+Gradle 可根据构建脚本中的信息自动构建、测试和部署软件.
+总体业务架构
+
+对文字的解释：
+
+
+业务包含三部分项目Project、构建工具Gradle和输出Output。项目作为输入经过构建工具后得到输出。
+
+
+项目部分：一个项目可以有多个子项目。根项目中会包含一个setting.gradle文件，子项目包含build.gradle和源码文件。
+
+
+构建工具部分：包含缓存Cache、构建工作流Build Flow和依赖管理Dependency Manager。根据引入插件Plugins添加默认的构建工作流、和引入的依赖项添加依赖
+
+
+输出部分：包含测试结果、项目包和与服务器持续集成的操作。
+
+
+Gradle 名词解释
+Project 项目
+Gradle 项目是可以构建的软件，例如应用程序或库。
+单个项目生成包括一个名为根项目的单个项目。
+多项目生成包括一个根项目和任意数量的子项目。
+Build Scripts 构建脚本集
+构建脚本向 Gradle 详细介绍了构建项目需要执行哪些步骤。
+每个项目可以包含一个或多个生成脚本。
+Dependency Manager 依赖关系管理
+依赖项管理是一种自动化技术，用于声明和解析项目所需的外部资源。
+每个项目通常都包含许多外部依赖项，Gradle 将在构建过程中解决这些依赖项。
+Task 任务
+任务是基本工作单元，例如编译代码或运行测试。
+每个项目都包含在构建脚本或插件中定义的一个或多个任务。
+Plugins 插件
+插件用于扩展 Gradle 的功能，并选择性地为项目贡献任务。
+Gradle 项目结构
+
+
+存放gradle wrapper文件和其他相关文件的地方。
+用于依赖项的版本管理
+执行wrapper的脚本
+定义跟项目名称并导入子项目
+子项目的构建脚本
+子项目的源码
+
+命令行接口
+参考官网Command-Line Interface Basics (gradle.org)
+Setting.gradle
+rootProject.name = &amp;#39;root-project&amp;#39;   &#x2F;&#x2F;项目名称
+include(&amp;#39;sub-project-a&amp;#39;) &#x2F;&#x2F;引入子项目            
+include(&amp;#39;sub-project-b&amp;#39;)
+include(&amp;#39;sub-project-c&amp;#39;)
+
+Build.gradle
+plugins {
+    id &amp;#39;application&amp;#39; ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;fisco-bcos&#x2F;..&#x2F;blockchain_one.jpg"
+    class="img-fluid m-auto d-block "
+    alt="Fisco Bcos链"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;fisco-bcos&#x2F;"
+      rel="bookmark"
+      title="Fisco Bcos链"
+    ><b>Fisco Bcos链</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  08&#x2F;03&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Fisco Bcos
+国密链部署
+新机构接入已有链
+新节点接入所需要的文件：
+
+
+证书机构颁发的国密证书（需要从外部获取）
+
+
+证书机构生成的链证书（需要从外部获取）
+
+
+群组创世文件（需要从已有的区块链网路节点中取）group.1.genesis
+
+
+群组1节点地址{ip:port}
+
+
+generator二进制文件
+
+
+fisco-bcos2.8.0版本二进制文件
+
+
+conf配置目录
+
+
+模板目录tpl（用完可以删掉）
+.
+├── applicationContext.xml
+├── config.ini
+├── config.ini.gm
+├── download_console.sh
+├── group.i.genesis
+├── group.i.ini
+├── load_new_groups.sh
+├── reload_whitelist.sh
+├── start_all.sh
+├── start.sh
+├── stop_all.sh
+└── stop.sh
+
+
+
+pys 脚本目录
+
+
+log日志目录
+
+
+脚本执行步骤：
+
+
+将已有链的证书拷贝到新机构的目录下，这里分别将非国密证书和国密证书文件夹命名为chain_ca 、chain_ca_gm。
+
+
+利用链证书生成新机构的国密证书和私钥以及链证书。
+.&#x2F;generator --generate_agency_certificate .&#x2F;agency_ca .&#x2F;chain_ca kingdom
+.&#x2F;generator --generate_agency_certificate .&#x2F;agency_ca_gm .&#x2F;chain_ca_gm kingdom -g
+
+agency_ca&#x2F;
+└── kingdom
+    ├── agency.crt 机构非国密证书
+    ├── agency.key 机构私钥
+    └── ca.crt 链证书
+1 directory, 3 files
+
+agency_ca_gm&#x2F;
+└── kingdom
+  ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;chainmaker&#x2F;..&#x2F;blockchain_one.jpg"
+    class="img-fluid m-auto d-block "
+    alt="初识长安链"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;blockchain&#x2F;chainmaker&#x2F;"
+      rel="bookmark"
+      title="初识长安链"
+    ><b>初识长安链</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  07&#x2F;03&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>长安链（chainmaker）
+四节点docker离线部署
+环境准备
+我的实验环境是麒麟服务器外加一台可联网的机器（没有arm架构机器可以考虑使用qemu-static-user，安装之后允许本地跑arm架构的镜像，虽然会报警告，但没有影响运行）
+要求联网可以通过ssh远程访问服务器。
+目标是在服务器上部署四节点的CERT证书模式的长安链。
+1 服务器docker 和docker-compose 离线安装
+参考麒麟系统（arm64&#x2F;aarch64）离线安装docker和docker-compose_docker-compose-linux-aarch64-CSDN博客
+2 准备好长安链的arm64镜像。
+联网环境：
+docker pull chainmakerofficial&#x2F;chainmaker:v2.3.2_arm
+docker save -o chainmaker.tar chainmakerofficial&#x2F;chainmaker:v2.3.2_arm
+可以得到一个chainmaker.tar本地镜像包，并拷贝到服务器中（这里我是使用scp命令）
+服务器：
+docker load -i chainmaker.tar
+3 准备长安链的配置文件
+详细参考官方文档，只需要准备到2.1.2.4. 账户生成
+注意：国密版本需要修改配置模板参考官方文档
+2. 通过命令行体验链 — chainmaker-docs v2.3.2 documentation
+# 查看生成好的节点密钥和配置
+$ tree -L 3 ..&#x2F;build&#x2F;
+..&#x2F;build&#x2F;
+├── config
+│   ├── node1
+│   │   ├── admin
+│   │   ├── chainconfig
+│   │  ...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;consensus&#x2F;..&#x2F;logo.png"
+    class="img-fluid m-auto d-block "
+    alt="共识算法"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;consensus&#x2F;"
+      rel="bookmark"
+      title="共识算法"
+    ><b>共识算法</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  07&#x2F;03&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>共识算法
+主要研究四个共识算法包含拜占庭容错共识、工作量证明共识、权益证明共识和Raft共识。
+拜占庭容错共识(PBFT)
+工作量证明共识(PoW)
+权益证明共识(PoS)
+权益证明共识(DPoS)
+Raft共识
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
     src="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;contract&#x2F;..&#x2F;logo.png"
     class="img-fluid m-auto d-block "
     alt="智能合约"
@@ -924,656 +1322,6 @@ contract Test {
         emit print(tx.origin,msg.sender);
         t.test();
   ...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;diff-docker-docker-compose&#x2F;..&#x2F;docker.png"
-    class="img-fluid m-auto d-block "
-    alt="dcoker与docker-compose区别"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;diff-docker-docker-compose&#x2F;"
-      rel="bookmark"
-      title="dcoker与docker-compose区别"
-    ><b>dcoker与docker-compose区别</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  07&#x2F;03&#x2F;2024
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>dcoker与docker-compose区别
-Docker 和 Docker Compose 在容器化技术中扮演着互补的角色。二者共同目的是简化容器的管理和部署过程，但它们在功能和使用场景上有所不同。
-Docker
-Docker 是一种容器化平台，提供了一个环境，让您可以在轻量级的容器中构建、发布和运行应用程序。容器允许您将应用程序及其依赖项打包到一个可移植的单元中，从而在任何支持 Docker 的环境中以一致的方式运行。Docker 的核心组件包括：
-
-Docker Daemon：运行在宿主机上的服务，负责构建、运行和分发 Docker 容器。
-Docker Client：用户通过命令行工具与 Docker Daemon 交互。
-Docker Images：只读模板，用于创建容器。镜像包含运行应用程序所需的代码、运行时、库等。
-Docker Containers：镜像的运行实例。容器在被启动时，在镜像的顶层添加一个可写层。
-
-Docker Compose
-Docker Compose 是一个用于定义和运行多容器 Docker 应用程序的工具。通过编写一个 YAML 文件（docker-compose.yml），您可以配置应用服务的所有方面，然后使用一个命令来启动和管理所有服务。Docker Compose 的关键特性包括：
-
-服务定义：在 docker-compose.yml 文件中定义您的应用程序的服务，这样您可以在一个命令中启动整个应用程序。
-网络配置：自动设置容器间的网络，使得不同的服务可以轻松地相互通信。
-卷管理：在服务之间共享数据或持久化数据时，可以配置和管理卷。
-依赖管理：可以明确服务启动的顺序，确保依赖的服务先启动。
-
-区别总结
-
-用途：Docker 专注于单个容器的生命周期管理，而 Docker Compose 用于在单个主机上编排多容器应用程序。
-作用范围：Docker 通常用于容器化单个应用或服务，Docker Compose 则允许您同时管理多个容器，定义它们如何相互作用。
-配置方法：Docker 使用 Dockerfile 来构建镜像，而 Docker Compose 使用 docker-compose.yml 文件来定义多服务应用程序的配置。
-
-在实际应用中，Docker Compose 大大简化了在开发、测试和生产环境中部署和管理多容器应用程序的复杂性。而 Docker 提供了底层技术和命令行工具来管理单个容器的生命周期。二者结合使用，能够高效地开发、部署和扩展容器化应用程序。
-...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;offine-deploy&#x2F;..&#x2F;docker.png"
-    class="img-fluid m-auto d-block "
-    alt="离线部署dcoker与docker-compose"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;docker&#x2F;offine-deploy&#x2F;"
-      rel="bookmark"
-      title="离线部署dcoker与docker-compose"
-    ><b>离线部署dcoker与docker-compose</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  07&#x2F;03&#x2F;2024
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>离线部署docker与docker-compose
-离线部署docker参考文档 (tencent.com)
-docker-20.10.7.tgz
-
-
-解压安装包docker-20.10.7.tgz
-
-
-移动所有文件到&#x2F;usr&#x2F;bin&#x2F;目录下cp docker&#x2F;* &#x2F;usr&#x2F;bin&#x2F;
-
-
-将docker注册为service，在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建docker.service文件，并配置如下内容保存。
-[Unit]
-Description=Docker Application Container Engine
-Documentation=https:&#x2F;&#x2F;docs.docker.com
-After=network-online.target firewalld.service
-Wants=network-online.target
-[Service]
-Type=notify
-# the default is not to use systemd for cgroups because the delegate issues still
-# exists and systemd currently does not support the cgroup feature set required
-# for containers run by docker
-ExecStart=&#x2F;usr&#x2F;bin&#x2F;dockerd
-ExecReload=&#x2F;bin&#x2F;kill -s HUP $MAINPID
-# Having non-zero Limit*s causes performance problems due to...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;cryptography&#x2F;..&#x2F;logo.png"
-    class="img-fluid m-auto d-block "
-    alt="加密算法"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;cryptography&#x2F;"
-      rel="bookmark"
-      title="加密算法"
-    ><b>加密算法</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  25&#x2F;01&#x2F;2024
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>密码学技术
-摘要算法
-
-摘要算法是指把任意长度的输入消息数据转化为固定长度的输出数据的一种密码算法，又称为散列函数 、 哈希函数 、 杂凑函数 、单向函数等。
-摘要算法所产生的固定长度的输出数据称为 摘要值、散列值和哈希值。
-摘要算法通常用来做数据完整性的判定，即对数据进行哈希计算然后比较摘要值是否一致。
-
-MD5算法
-目标
-通过MD5为数据建立一个唯一数字标识
-特点
-
-压缩性：输出长度固定
-抗修改：对原数据进行任何改动，都会影响输出结果
-强抗碰撞：已知原数据和其MD5值，想找到MD5值相同的另一个数据极其困难
-
-作用
-让大容量信息在用数字签名软件签署私人密钥前被压缩成一种保密的格式（就是把一个任意长度的字节串变换成一定长的16进制数字串）
-过程
-MD5算法的基本过程为：填充、分块、缓冲区初始化、循环压缩、计算结果。
-
-
-填充
-MD5算法对于待处理信息的位长有以下要求：假设信息长度为Kbit，填充位长为Pbit，且1&amp;lt;P&amp;lt;512，要求 
-$$
-K+P = (448)mod(512)
-$$
-当K=448(mod)512时，P = 512。
-再向上述填充好的消息尾部附加K值得低64位，最后得到一个长度位数为K+P+64 = 0(mod)512的消息
-
-
-分块
-
-把填充后的消息分割成L个位长位512bit的分组：Y0,Y1,...,YL-1。
-分组结果也可表示成N个位长位32bit字M0，M1,...,MN-1,N=Lx16。
-
-
-
-缓冲区初始化
-初始化一个128位的MD缓冲区，记为CVq，表示成4个32位寄存器（A,B,C,D）;CV0 = IV。迭代在MD缓冲区进行，最后异步的128位输出即位算法结果。
-
-
-循环压缩，每轮循环中一次迭代运算逻辑
-对A迭代：a = b + ()
-
-
-Sha256算法
-HMacMD5和HMacSha256算法
-对称算法
-非对称算法
-数字签名
-**目标：**用于验证数据的完整性和来源。
-**场景举例：**当您收到一个数字签名的文件或消息时，您可以使用该签名来确认信息确实来自声称的发送者，并且在传输过程中未被篡改。数字签名通常用于软件分发、电子文件传输、电子邮件等领域，以确保通信的安全性。
-核心算法原理: 基于非对称加密，即私钥签名，公钥验签。
-**数字签名的工作原理：**使用一对密钥，一个公钥和一个私钥。私钥由信息的发送者保密持有，用于创建签名；公钥则是公开的，任何人都可以用它来验证签名。当创建数字签名时，会对原始信息使用私钥进行加密，生成一个唯一的签名。接收方在收到信息后，可以使用公钥对签名进行解密，并与原始信息进行比对，以验证其完整性和来源。
-**价值：**数字签名提供了一种确保信息传输安全、防止篡改和伪造的有效手段。
-数字证书
-数字证书是一种电子证明，用来证明公钥的所有者身份，它是公钥基础设施（PKI）的一个重要组成部分。数字证书包含了证书持有者的信息（如组织、个人等）、证书持有者的公钥、证书颁发机构（CA）的签名等信息。
-当一个实体（如个人、服务器、客户端等）希望在网络上证明自己的身份时，它会生成一对密钥（一个公钥和一个私钥）。该实体会保留私钥，并将公钥发送到一个受信任的证书颁发机构（CA）。CA会验证实体的身份，然后用CA的私钥对该实体的公钥及其身份信息进行签名，生成一个数字证书。
-数字证书的作用主要包括：
-
-身份验证：数字证书帮助验证一个实体的身份，确保公钥确实属于它声明的持有者。
-确保通信安全：通过数字证书，可以建立一个安全的通道，确保数据在传输过程中不被窃取或篡改。
-数据加密：数字证书中的公钥可用于加密数据，只有对应的私钥持有者才能解密，确保数据的机密性。
-数字签名：证书持有者可以使用其私钥创建数字签名，其他人可以使用公钥来验证签名的有效性。
-
-数字证书在互联网安全通信中扮演着关键角色，如HTTPS协议就依赖于服务器的数字证书来建立一个安全的连接。
-PKI体系
-公钥基础设施（PKI，Public Key Infrastructure）是一套用于管理公钥加密的技术和服务的框架，主要用于在不安全的网络环境中安全地传输信息。PKI 通过一系列的角色、策略、硬件、软件和程序提供数字证书的颁发、管理、分发、使用、存储和撤销。
-PKI 的主要组成部分包括：
-
-证书颁发机构（CA，Certificate Authority）：这是最核心的部分，负责颁发和管理数字证书。CA 会验证申请数字证书的实体（个人、组织、服务器等）的身份，并在验证后颁发一个数字证书。数字证书中包含了实体的公钥及其他身份信息，并由 CA 的私钥签名。
-注册机构（RA，Registration Authority）：RA 负责接收和验证数字证书申请者的身份信息，然后向 CA 推荐是否颁发证书。不是所有的 PKI 系统都有 RA，这取决于 PKI 的设计和需求。
-证书库（Certificate Repository）：通常是一个公开可访问的数据库，存储着所有颁发的证书及撤销的证书（通过证书撤销列表，CRL，来管理）。
-密钥备份和恢复系统：用于备份和恢复密钥对，以防密钥丢失或损坏。
-端点用户系统和应用：这些是使用 PKI 系统的终端，包括个人电脑、移动设备、服务器等，它们使用数字证书来进行加密通信、数字签名等。
-
-PKI 的工作原理基于非对称加密，其中每个用户都有一对密钥：公钥和私钥。公钥是公开的，可以安全地分发给任何请求方；私钥是保密的，只有密钥的拥有者才能访问。通过这种方式，PKI 实现了数据的加密传输、身份验证和数据完整性验证。这使得 PKI 成为确保网络通信安全、电子商务和数字签名等领域的关键技术。
-国密与国际算法
-SM1
-算法类型：分组加密算法
-对称加密算法中的分组加密算法，其分组长度、秘钥长度都是128bit，算法安全保密强度跟 AES 相当，但是算法不公开，仅以IP核的形式存在于芯片中，需要通过加密芯片的接口进行调用。
-SM2
-算法类型：非对称加密算法
-它是基于椭圆曲线密码的公钥密码算法标准，其秘钥长度256bit，包含数字签名、密钥交换和公钥加密，用于替换RSA&#x2F;DH&#x2F;ECDSA&#x2F;ECDH等国际算法。可以满足电子认证服务系统等应用需求，由国家密码管理局于2010年12月17号发布。
-SM2采用的是ECC 256位的一种，其安全强度比RSA 2048位高，且运算速度快于RSA。
-SM3
-算法类型：密码杂凑算法
-用于替代MD5&#x2F;SHA-1&#x2F;SHA-2等国际算法，适用于数字签名和验证、消息认证码的生成与验证以及随机数的生成，可以满足电子认证服务系统等应用需求，于2010年12月17日发布。
-它是在SHA-256基础上改进实现的一种算法，采用Merkle-Damgard结构，消息分组长度为512bit，输出的摘要值长度为256bit。
-SM4
-算法类型：分组加密算法
-跟SM1类似，是我国自主设计的分组对称密码算法，用于替代DES&#x2F;AES等国际算法。SM4算法与AES算法具有相同的密钥长度、分组长度，都是128bit。于2012年3月21日发布，适用于密码应用中使用分组密码的需求。
-SM9
-算法类型：基于标识的非对称密码
-用椭圆曲线对实现的基于标识的数字签名算法、密钥交换协议、密钥封装机制和公钥加密与解密算法，包括数字签名生成算法和验证算法，并给出了数字签名与验证算法及其相应的流程。并提供了相应的流程。可以替代基于数字证书的PKI&#x2F;CA体系。
-SM9主要用于用户的身份认证。据新华网公开报道，SM9的加密强度等同于3072位密钥的RSA加密算法，于2016年3月28日发布。
-国密即国家密码局认定的国产密码算法。主要有SM1，SM2，SM3，SM4。密钥长度和分组长度均为128位。
-由于SM1、SM4加解密的分组大小为128bit，故对消息进行加解密时，若消息长度过长，需要进行分组，要消息长度不足，则要进行填充。
-国密算法的安全性
-SM2算法：SM2椭圆曲线公钥密码算法是我国自主设计的公钥密码算法，包括SM2-1椭圆曲线数字签名算法，SM2-2椭圆曲线密钥交换协议，SM2-3椭圆曲线公钥加密算法，分别用于实现数字签名密钥协商和数据加密等功能。SM2算法与RSA算法不同的是，SM2算法是基于椭圆曲线上点群离散对数难题，相对于RSA算法，256位的SM2密码强度已经比2048位的RSA密码强度要高。
-SM3算法：SM3杂凑算法是我国自主设计的密码杂凑算法，适用于商用密码应用中的数字签名和验证消息认证码的生成与验证以及随机数的生成，可满足多种密码应用的安全需求。为了保证杂凑算法的安全性，其产生的杂凑值的长度不应太短，例如MD5输出128比特杂凑值，输出长度太短，影响其安全性。SHA-1算法的输出长度为160比特，SM3算法的输出长度为256比特，因此SM3算法的安全性要高于MD5算法和SHA-1算法。
-SM4算法：SM4分组密码算法是我国自主设计的分组对称密码算法，用于实现数据的加密&#x2F;解密运算，以保证数据和信息的机密性。要保证一个对称密码算法的安全性的基本条件是其具备足够的密钥长度，SM4算法与AES算法具有相同的密钥长度分组长度128比特，因此在安全性上高于3DES算法。
-随着国密算法推广的延伸，金融领域引入SM2、SM3、SM4等算法逐步替换原有的RSA、ECC等国外算法。现有银联银行卡联网、银联IC两项规范都引入了国密算法相关要求。如下图所示为金融活动中会应用到国密算法的业务。
-参考文献
-
-MD5算法 -...</small>
-    
-  </p>
-
-          
-        </div>
-      </div>
-    </div>
-  
-
-	
-    
-  
-    <div class="card p-3 border-0">
-      <div class="row g-5">
-        
-        
-        <div class="col-md-4 d-flex align-items-center">
-          
-  <img
-    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;theory&#x2F;..&#x2F;logo.png"
-    class="img-fluid m-auto d-block "
-    alt="分布式系统核心理论"
-  />
-
-        </div>
-        
-        <div class="col-md-8">
-          
-  <h6 class="card-title">
-    <a
-      class="text-decoration-none text-reset"
-      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;distributed_system&#x2F;theory&#x2F;"
-      rel="bookmark"
-      title="分布式系统核心理论"
-    ><b>分布式系统核心理论</b></a>
-  </h6>
-  <p class="card-text">
-    <small class="text-muted">
-      
-  
-  
-    
-    <a
-      class="text-decoration-none text-reset"
-      href="https://dorname.github.io/authors/liguangqiao/"
-      title="Li Guangqiao"
-    ><b>Li Guangqiao</b></a>
-   - 
-  19&#x2F;01&#x2F;2024
-
-    </small>
-  </p>
-
-          
-          
-  <p class="card-text text-muted">
-    
-      <small>分布式系统核心理论
-概念
-分布式系统是指分散在多个物理机&#x2F;虚拟机节点的资源，节点在网络中相互通信，并对外暴露统一服务的系统。
-注意:外部访问节点A的接口时，内部路由到对应的节点服务。核心是搞一个哈希表，方便做路由转发。
-
-其他概念
-
-分布式容错，是指在分布式环境下，能够容忍一部分节点宕机，还能向外提供稳定的服务。
-分布式共识算法，是指在分布式环境下，各个节点能就某个值达成共识，即所有节点都认同某个值。
-
-设计目标
-
-为什么要设计分布式系统？
-
-​	设计分布式系统的目标是解决单节点资源限制问题。在业务量增长速度比较快的场景下，单节点的资源难适应（计算资源和存储资源需要不断扩）。
-
-分布式系统如何解决单节点的资源限制问题？
-
-​	关键词：多节点、节点通信、服务分散、容易拓展、高容错。通过将系统的服务分散到多个节点，有效提高了单节点的资源利用率，并且后续的拓展容易，只需要增加节点即可。
-
-引入分布式设计带来什么问题？
-
-节点与节点之间的关联数据容易出现不一致的情况。
-网络通信情况对系统性能存在比较大的影响。比如延迟。
-
-
-
-系统结构
-分布式系统的结构式由节点组成的一个P2P网络。
-P2P网络
-点对点技术，本质上也是基于C&#x2F;S模式，简单来说每个网络节点既是客户端也是服务端，不存在中心的服务器。
-内网穿透技术
-
-（1） UDP打洞技术
-最为常见的实现P2P的方式是采用UDP打洞技术，UDP打洞技术是通过中间服务器的协助在各自的NAT网关上建立相关的表项，使P2P连接的双方发送的报文能够直接穿透对方的NAT网关，从而实现P2P客户端互连。如果两台位于NAT设备后面的P2P客户端希望在自己的NAT网关上打个洞，那么他们需要一个协助者——集中服务器，并且还需要一种用于打洞的Session建立机制。
-Session建立机制：
-假定客户端A要发起对客户端B的直接连接，具体的“打洞”过程如下：
-（1）A最初不知道如何向客户端B发起连接，于是A向集中服务器（本质上是一台被设置在公网上的服务器，建立P2P的双方都可以直接访问到这台服务器。位于NAT网关后面的客户端A和B都可以与一台已知的集中服务器建立连接，并通过这台集中服务器了解对方的信息并中转各自的信息）发送消息，请求集中服务器帮助建立与客户端B的UDP连接。
-（2）集中服务器将含有B的外网和内网的地址二元组发给A，同时，集中服务器将包含有A的外网和内网的地址二元组信息的消息也发给B。这样一来， A与B就都知道对方外网和内网的地址二元组信息了。
-（3）当A收到由集中服务器发来的包含B的外网和内网的地址二元组信息后， A开始向B的地址二元组发送UDP数据包，并且A会自动锁定第一个给出响应的B的地址二元组。同理，当B收到由集中服务器发来的A的外网和内网地址二元组信息后，也会开始向A的外网和内网的地址二元组发送UDP数据包，并且自动锁定第一个得到A回应的地址二元组。一旦A与B都向对方的NAT设备在外网上的地址二元组发送了数据包，就打开了A与B之间的“洞”，A与B向对方的外网地址发送数据，等效为向对方的客户端直接发送UDP数据包了。一旦应用程序确认已经可以通过往对方的外网地址发送数据包的方式让数据包到达NAT后面的目的应用程序，程序会自动停止继续发送用于“打洞”的数据包，转而开始真正的P2P数据传输。
-当然，UDP转换协议提供的“洞”不是绝对可靠的，多数NAT设备内部都有一个UDP转换的空闲状态计时器，如果在一段时间内没有UDP数据通信，NAT设备会关掉由“打洞”过程打出来的“洞”。如果P2P应用程序希望“洞”的存活时间不受NAT网关的限制，就最好在穿越NAT以后设定一个穿越的有效期。
-（2） TCP打洞技术
-从现在的主流应用的角度上来看，基于TCP的P2P应用显然不如基于UDP的应用那么广泛，但是也存在打洞的需求。
-TCP相对于UDP而言要复杂的多，TCP连接的建立要依赖于三次握手的交互，所以NAT网关在处理TCP连接的时候，需要更多的开销。但是，由于TCP协议完备的状态机机制，TCP反而比UDP更能精确的获取某个Session的生命期。
-一种新的代理类型 XTCP 能解决这个问题，实现方式可以是采用搭建FRP服务器的方式，在传输数据的两端都部署上 FRP 客户端上用于建立直接的连接。实现方法点击此处
-Gossip协议
-Gossip协议是一种在分布式系统中用于节点间通信和数据同步的算法。这种协议通过“流言”（Gossip）方式传播信息，类似于人们通过口耳相传的方式传播小道消息。Gossip协议特别适用于大规模、无中心的网络环境，因为它不依赖于单一的通信路径或节点。
-Gossip协议的工作原理大致如下：
-
-随机性：每个节点定期与其他节点（通常是随机选择的）交换信息。这种随机选择的机制使得信息能够在网络中迅速扩散。
-信息交换：当两个节点交互时，它们会交换彼此还没有的信息，或者更新对方的过时信息。这个过程可以比作两个人互相交换彼此还没有听说过的最新八卦。
-冗余传播：由于每个节点都与多个其他节点交换信息，相同的信息会在网络中多次传播。这种冗余确保了信息即使在网络中存在故障的情况下也能可靠地传播。
-收敛性：随着时间的推移，所有节点最终会获取到网络中的全部信息，达到一致的状态（收敛）。这个过程的速度取决于节点交换信息的频率和网络的结构。
-
-Gossip协议有几个显著的优点：
-
-可扩展性：它能够很好地扩展到大规模网络，因为每个节点只需要与少数几个其他节点通信。
-容错性：由于信息通过多条路径传播，即使一些节点或连接失败，信息也可以通过其他路径传播。
-去中心化：它不依赖于任何中心节点或结构，增强了网络的鲁棒性。
-
-Gossip协议在多种场景中有应用，包括但不限于分布式数据库的数据同步、P2P网络、容错系统和一些基于微服务的架构中的服务发现机制。
-Gossip协议类型
-传播协议&#x2F;谣言协议（Dissemination Protocols &#x2F; Rumor-Mongering Protocols）：
-通过网络中的泛洪代理来工作，节点收到广播的数据后直接转发给所有的邻居节点；此方式可以提高网络的健壮性，但是容易造成广播风暴。
-反熵协议（Anti-Entropy Protocols）：用于修复复制数据，通过比较复制和协调差异进行操作；Hyperledger Fabric中的数据同步就是使用此方式实现。
-计算聚合的协议（Protocols that Compute Aggregates）：通过对网络中节点的信息进行采样，并将这些值组合起来得到系统范围内的值，从而计算出网络范围内的集合 ；之后将建立一种全面的信息流模式。
-Gossip数据传输
-Gossip 协议最终的目的是将数据分发到网络中的每一个节点，那么在不同的具体应用场景中如何保证网络中的每一个节点都能够接收到对应的数据且在不稳定的网络环境中保持数据的实时同步。
-Gossip数据分发协议实现了两种数据传输方式：
-
-
-推送方式（Push-based）：
-
-网络中的某个节点随机选择N个节点作为数据接收对象
-该节点向其选中的N个节点传输相应的信息
-接收到信息的节点处理它接收到的数据
-接收到数据的节点再从第一步开始重复执行
-
-
-
-
-拉取方式
-
-某个节点周期性地选择随机N个节点询问有没有最新的信息
-收到请求的节点回复请求节点其最近未收到的信息
-
-
-
-
-CAP设计原则
-一致性Consistency
-所有节点在同一时间看到相同的数据。这意味着一旦数据更新，所有的读取操作都应该返回最新的值。
-可用性Availability
-每个请求都能得到响应，无论响应成功或失败。系统应该保证每个请求不会因为系统故障而失败。（即时响应性）
-分区容错性Partition tolerance
-系统应该能够在网络分区（即某些节点之间的通信断裂）的情况下继续运行。
-三性权衡
-CAP定理指出，在任何分布式系统中，最多只能同时满足上述三个特性中的两个。具体来说：
-
-如果系统优先保证一致性和可用性（C和A），那么它可能无法处理网络分区。
-
-​	简单理解，前提条件就是节点数据保持实时一致，节点面对请求始终有响应。如果出现节点通信不可靠时，节点实时响应请求，除非节点在同一个分区，否则数据就无法保持一致，故保证C、A无法处理网络分区。
-
-如果系统优先保证一致性和分区容错性（C和P），那么在网络分区发生时，可能无法保持高可用性。
-
-​	简单理解，网络分区发生时，如果要保证数据一致且系统正常运行,相关的服务就需要停止，等待恢复节点通信，直到数据达到一致才可对外提供服务。此时可用性就无法保证了。
-
-如果系统优先保证可用性和分区容错性（A和P），那么在网络分区发生时，可能无法保持强一致性。
-
-​	简单理解，网络分区时时，服务需要及时响应，若此时不同分区的节点之间仍未恢复通信，则数据无法保持一致。
-Base设计理论
-核心思想：牺牲强一致性来获取高可用性，只强调最终的结果一致性。即区块链的共识机制。
-其实就是采用弱一致性模型来设计分布式系统。
-一致性问题
-分布式系统的一致性问题主要强调数据的一致性问题。
-导致分布式系统数据不一致的原因
-
-
-网络延迟： 导致节点数据同步出现延迟。
-举个例子，x 值为1，客户端1要求节点A的更新x值为2，节点A需要同步给节点B，但由于延迟问题还没有完成同步，此时客户端2通过节点B读取x值得到的值仍为1，即当前情景下节点A、B数据不一致。
-
-
-节点故障：某些节点可能因故障而未能接受或处理最新数据。
-举个例子，节点B宕机，未处理到节点A的数据更新请求。
-
-
-数据副本：在多个节点间维护数据副本时，同步更新可能导致不一致。
-举个例子，多节点维护同一份账本，同步更新过程可能存在数据不一致的情况。主要考虑延迟、处理顺序、节点硬件配置、并发冲突等因素。
-
-
-并发更新：多个节点同时对同一数据进行更新时可能导致冲突和不一致。
-
-
-时钟偏差：分布式系统中的不同节点可能有时钟偏差，影响时间顺序的数据处理。
-不同操作系统的中断逻辑可能不一样。
-
-
-消息丢失或重复：网络问题可能导致数据包的丢失或重复发送。
-重放攻击和丢包问题，存在一些简单的解决方式：时间戳和完整性验证(hash对比)，验证不同通知重新发送数据。
-
-
-一致性策略：如使用最终一致性而非严格一致性策略，会有过程不一致的情况出现。
-
-
-一致性模型类型
-目标：解决分布式系统的数据一致性问题.，保证节点之间关联的数据逻辑上完整且正确。
-
-强一致性模型，即严格一致性模型。
-弱一致性模型，即非严格一致性模型。
-
-简单来说，两者的区别是，是否能保证数据的过程一致性，能就是强一致性，不能就是弱一致性。但需要进一步理解的是，paxos的达到提案一致的过程存在数据不一致的情况，但paxos也归属强一致性模型，目前的理解可以为“提案提出——接受——一致”的过程中数据处于一种不可用的状态，所以不属于过程不一致。
-注：过程一致性的“过程”主要是指数据外部可用的过程。
-一致性协议
-两段提交（强一致性模型）
-核心思想：是在分布式事务中保证原子性。当一个事务跨多个节点时，要么所有节点上的参与进程都提交事务，要么都取消事务，强调事务一致性。
-优点：
-
-强一致性
-简单易实现
-场景广泛支持
-故障恢复
-适用于分布式系统
-
-存在的问题：(也就是在节点数量较少、网络比较稳定的前提下，可以考虑使用两段提交)
-
-性能开销大，需要等待所有节点表决完。
-若存在网络故障，进入一种无限等待的情况，即锁定状态。
-协调者节点崩坏，业务崩溃。
-
-Quorum（弱一致性模型）
-鸽巢原理：假设有m个苹果，需要全部分配给n个人，当m=n+1时，至少存在一个人拥有2个苹果。
-Quorum的主要作用的削弱一致性，增加可用性。
-场景推导：当前有N个节点，节点数据X需要保持一致。
-现有节点提出更新数据X，已知了M个节点更新数据X，当前已经读取R个节点的数据X，当R+M&amp;gt;N时（即R+M&amp;gt;=N+1），R中至少存在一个数据X为最新提交的版本。
-进一步推导，若希望读取M个节点的X时，M中至少存在一个数据X为最新提交的版本，可以得到大于半数的不等式推导：
-$$
-2M&amp;gt;=N+1
-=&amp;gt; M &amp;gt;= N&#x2F;2 + 1&#x2F;2
-=&amp;gt; M &amp;gt; N&#x2F;2
-$$
-故至少要保证更新超过N&#x2F;2个节点的数据X，可以保证读取最多不超过（N+1）&#x2F;2个节点或者N&#x2F;2个节点，可以获取到最新更新的数据X。
-从宏观来看可以认为，超过N&#x2F;2节点认定的操作，在分布式系统中该操作为有效操作，因为只要读取超过（N+1）&#x2F;2个节点或者N&#x2F;2个节点，总是能拿到一致的结果。
-注意：此处只能确认存在性，需要确认最新提交的数据X，可以考虑数据X的增加版本号，每次更新时更新版本号值，通过版本号来确认最新提交的数据X。
-Paxos协议（强一致模型）
-目标：确保分布式系统中数据的强一致性。paxos强调值的一致性
-注意：提案值一旦被接收，就算有新的节点提议被接收，其提议值也只能是之前最大编号对应的接收值。
-协议流程描述
-
-准备阶段
-
-
-提议者发起提案n；
-接收者收到提案请求后判断是否最大编号n(根据本地已接收的提案)，若是则通过“发起提案n”的申请，则接收者表示不再接受提案编号小于n的发起提案准备请求和发起提案接受请求，跳转至4，否则跳转至3
-通知提议者放弃本次提案。
-如果存在已经接收的提案，返回已通过的最大提案编码的提案内容，否则无返回或返回空值。
-回复者超过半数时，准备进入发起提案接收请求阶段；否则废除提议等待重新发起。
-
-
-
-接收阶段和学习阶段。
-
-
-提议者发起接收提案请求，包含提案编号n和对应的提案内容v。注意：若是在准备阶段中返回了已经接收的提案值，则接收请求的提案内容必须与该提案值保持一致，否则由提议者指定。
-验证编号n是否是已通过提案的最大编号？是则更新编号到本地，否则不接收提案n
-返回已经接收的最大的提案编号m
-提议者判断m和自己当前的提案编号n是否相等，是该接收者已经通过提案，否则接收者没有通过提案。
-通过提案的接收者数量为大多数时，认定提案通过，发起提案同步请求。
-接收者开始通知学习者同步提案结果，待最后一个学习者同步结束后，进行一致性检查，结果一致结束，不一致则等待重新发起提案。
-
-
-算法模拟
-假设存在3节点的paxos集群，这里需要注意每一个节点可以同时扮演提议者和接收者。
-**场景描述：**提议者A收到请求需要将X设置成3，提议者B收到请求将X设置成5，提议者A和B分别生成提案，其中A的编号为1，B的编号为2。
-提案准备阶段：
-
-提案准备阶段流程描述：
-
-
-提议者A和提议者B分别进入prepare阶段，将提案编号发给接收者。
-
-
-接收者A和接收者B在收到提议者A的prepare请求后，由于没有通过过任何prepare请求，也没有批准过任何的accept请求。则给提议者A返回尚无提案。
-
-
-接收者C由于先收到提议者B的prepare请求再收到提议者A的prepare请求，且接收者B的提案编号大于提议者A的提案编号，故不给提议者A返回。
-
-
-接收者A和接收者B在收到提议者B的prepare请求后，由于之前收到提议者A的prepare请求，则比较各自的提案编号，由于提议者B的提案编号大于提议者A的提案编号，且没有通过提案的接收请求，故给提议者B返回尚无提案，并向提议B保证（针对于后续的prepare请求和accept请求）：
-（1）承诺不再通过编号小于等于当前提案的prepare请求
-（2）承诺不再通过编号小于当前提案的accept请求，也就是不再通过编号小于当前提案
-（3）如果已经通过某一提案，则承诺在prepare请求的响应中返回已经通过的最大编号的提案内容。如果没有通过任何提案，则在prepare请求的响应中返回空值
-
-
-至此提议者A获得了prepare响应，提议者B获得了三个prepare响应。均超过了半数，可以发起提案接收请求。
-
-
-接收提案阶段
-
-接收提案阶段描述
-
-提议者A由于收到prepare响应中没有提案内容，则自行设置提案值[1,3]，并向各个接收者发起接收请求。
-接收者A、B、C收到提议者A的请求后，由于在prepare阶段，他们都向B保证了以下内容：承诺不再通过编号小于提案2的accept请求，也就是不再通过编号小于当前提案；如果已经通过某一提案，则承诺在prepare请求的响应中返回已经通过的最大编号的提案内容。如果没有通过任何提案，则在prepare请求的响应中返回空值。故给提议者A的返回prepare阶段通过的最大的提案编号2。
-提议者A收到2后，发现响应中的提案编号2比自己的提案编号1大，则认为accpet请求没有通过,提议者A需要重新回到prepare阶段进行协商。
-提议者B由于收到的prepare响应中没有提案内容，则自行设置提案值[2,5]，并向各个接收者发起接收请求。
-接收者A、B、C，在此期间没有通过任何的prepare请求也没有通过任何的accept请求，即同意批准该提案，返回2, 给proposerB。
-提议者B收到accept响应后，比对提案编号发现有大多数的提案编号是自己的编号，则认为该提案达成共识，完成协商过程。
-
-异步场景
-提议者B完成prepare请求后，发出accept请求，提案为[1,5]。在此过程中提议者A发起prepare请求，提案编号为2，并且接收者先收到提议者A的prepare请求，此时接收者会拒绝提议者B的accept请求。情况如下：
-
-
-接收者A收到提议者B的接收请求，由于本地没有比该提案编号大的提案，顺利接收提案[1,5]。
-接收者C、B、A依次收到提议者A的prepare请求，对于接收者A来说，编号2比编号1大，且A本地存在已通过的提案[1,5]，故返回[1,5]给提议者A；接收者B、C本地没有通过的提案故返回尚无通过提案。
-接收者B、C收到提议者B的accept请求，由于本地通过的最大提案编号是2，故返回给提案B已通过的最大提案编号2。
-提议者A收到了大多数的提案通过响应，发起accept请求,由于这些响应中存在已经接收通过的提案[1,5],故提议者A的提案值不能随意设置，必须设置成5，故accept请求的提案为[2,5]。
-接收者A、B、C接收到accept请求后由于本地没有比该提案更大编号，故返回提案编号2。
-提议者A收到编号2，判断与提议的提案编号是否相等，存在大多数相等，则提案达成一致，通知接收者发起提案同步(学习者的学习阶段)。
-
-应用案例：分布式数据库保持数据一致
-场景描述：
-分布式数据库中假设包含 3 个节点，客户端访问时通过轮询或随机访问的方式请求到其中的某个节点，我们要通过 Paxos 算法保证分布式数据库的 3 个节点中数据的一致性。 实际的分布式数据一致性流程更为复杂，此处为了方便阐述将这个过程进行一些简化。
-**基础认知：**分布式数据库中的每个节点都存储三份数据，一是事务日志数据，二是 DB 数据，三是事务日志执行位置。 事务日志表存储着数据库的操作日志记录，包括：写入 Put、修改 Update 和删除 Delete 等相关的操作日志，有些文章资料将事务日志表称为状态机其实是一个意思。 DB 数据表存储具体的业务数据。 事务日志执行位置用于记录当前节点执行到了哪一条操作记录；
-整体思路：
-通过...</small>
     
   </p>
 
@@ -1694,6 +1442,18 @@ Paxos协议（强一致模型）
             href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;9"
             
           >9</a>
+        </li>
+      
+        <li class="
+          page-item
+          
+        ">
+          <a
+            class="page-link"
+            
+            href="https:&#x2F;&#x2F;dorname.github.io&#x2F;authors&#x2F;liguangqiao&#x2F;page&#x2F;10"
+            
+          >10</a>
         </li>
       
     </ul>

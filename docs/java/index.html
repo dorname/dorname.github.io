@@ -425,6 +425,14 @@
                       >Gradle</a>
                     </li>
                   
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https:&#x2F;&#x2F;dorname.github.io&#x2F;java"
+                        onclick="switchTopic('java')"
+                      >Java</a>
+                    </li>
+                  
                 </ul>
               </li>
             
@@ -808,6 +816,219 @@
   
   
   
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;java&#x2F;basic&#x2F;..&#x2F;java.png"
+    class="img-fluid m-auto d-block "
+    alt="java基础"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;java&#x2F;basic&#x2F;"
+      rel="bookmark"
+      title="java基础"
+    ><b>java基础</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  26&#x2F;06&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>Java
+反射基础
+ &#x2F;&#x2F; 动态加载类
+  Class&amp;lt;?&amp;gt; clazz = Class.forName(&amp;quot;java.util.ArrayList&amp;quot;);
+
+Class 是 Java 反射 API 中的一个核心类，用于表示所有类和接口在运行时的类型信息。
+Class&amp;lt;?&amp;gt;
+解释 Class&amp;lt;?&amp;gt;
+
+Class 类：这是 java.lang.reflect 包中的一个类，表示在运行时的类和接口。每个类都被 Class 类的一个实例所表示，无论它是一个普通类、接口、枚举还是注解。
+泛型 &amp;lt;?&amp;gt;（通配符）：在 Java 中，? 表示通配符，用于泛型编程。Class&amp;lt;?&amp;gt; 表示“未知的 Class 类型”，它是泛型语法的一部分。使用 ? 作为类型参数，你可以引用任何类型的 Class 对象。这种方式比使用 Class 类型更加安全，因为它防止了向 Class 对象中放入错误类型的实例。
+
+为什么使用 Class&amp;lt;?&amp;gt;
+
+类型安全：使用 Class&amp;lt;?&amp;gt; 比简单使用非泛型的 Class 类型更安全。它表明你并不关心 Class 对象的具体类型，但仍然保留了泛型的好处，即确保如果你对这个类对象进行操作，你不会错误地处理类型信息。
+避免类型警告：直接使用 Class 会导致编译器警告，如“Class 是原生类型”。使用 Class&amp;lt;?&amp;gt; 可以避免这些警告，使代码更干净，更符合 Java 的泛型约定。
+
+总结来说，Class&amp;lt;?&amp;gt; 是 Java...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;java&#x2F;reflect-and-proxy&#x2F;..&#x2F;java.png"
+    class="img-fluid m-auto d-block "
+    alt="java的反射和代理"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;java&#x2F;reflect-and-proxy&#x2F;"
+      rel="bookmark"
+      title="java的反射和代理"
+    ><b>java的反射和代理</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  26&#x2F;06&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>java的反射和代理机制
+java的反射特性
+反射特性允许程序在运行时检查、修改和操作自身的结构
+反射特性主要解决java运行时的灵活性和动态性问题，使得Java应用程序能够在运行时加载、探查、使用和修改类和对象的行为。
+使用场景：
+
+动态类加载。
+访问类的内部信息
+调用方法和访问字段
+数组操作
+实现泛型api
+动态代理
+调试和测试工具
+
+示例1：动态加载java.util.ArrayList类，调用其方法
+public void test(){
+  try {
+            Class&amp;lt;?&amp;gt; clazz = Class.forName(&amp;quot;java.util.ArrayList&amp;quot;);
+            Object arr = clazz.getDeclaredConstructor().newInstance();
+            Method add =...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
+	
+    
+  
+    <div class="card p-3 border-0">
+      <div class="row g-5">
+        
+        
+        <div class="col-md-4 d-flex align-items-center">
+          
+  <img
+    src="https:&#x2F;&#x2F;dorname.github.io&#x2F;java&#x2F;version-problem&#x2F;..&#x2F;java.png"
+    class="img-fluid m-auto d-block "
+    alt="java"
+  />
+
+        </div>
+        
+        <div class="col-md-8">
+          
+  <h6 class="card-title">
+    <a
+      class="text-decoration-none text-reset"
+      href="https:&#x2F;&#x2F;dorname.github.io&#x2F;java&#x2F;version-problem&#x2F;"
+      rel="bookmark"
+      title="java"
+    ><b>java</b></a>
+  </h6>
+  <p class="card-text">
+    <small class="text-muted">
+      
+  
+  
+    
+    <a
+      class="text-decoration-none text-reset"
+      href="https://dorname.github.io/authors/liguangqiao/"
+      title="Li Guangqiao"
+    ><b>Li Guangqiao</b></a>
+   - 
+  26&#x2F;06&#x2F;2024
+
+    </small>
+  </p>
+
+          
+          
+  <p class="card-text text-muted">
+    
+      <small>java问题总结
+JDK17编译出jdk8的代码
+核心原因还是因为在pom.xml或者build.gradle中指定问编译版本
+...</small>
+    
+  </p>
+
+          
+        </div>
+      </div>
+    </div>
+  
+
 	
   
   

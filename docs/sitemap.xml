@@ -53,6 +53,9 @@
         <loc>https://dorname.github.io/authors/liguangqiao/page/1/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/authors/liguangqiao/page/10/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/authors/liguangqiao/page/2/</loc>
     </url>
     <url>
@@ -92,11 +95,18 @@
         <lastmod>2023-05-30</lastmod>
     </url>
     <url>
+        <loc>https://dorname.github.io/blockchain/fabric/</loc>
+        <lastmod>2024-05-11</lastmod>
+    </url>
+    <url>
         <loc>https://dorname.github.io/blockchain/fisco-bcos/</loc>
         <lastmod>2024-03-08</lastmod>
     </url>
     <url>
         <loc>https://dorname.github.io/blockchain/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/blockchain/page/2/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/blockchain/what-is-blockchain/</loc>
@@ -153,6 +163,21 @@
     </url>
     <url>
         <loc>https://dorname.github.io/java/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/java/basic/</loc>
+        <lastmod>2024-06-26</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/java/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/java/reflect-and-proxy/</loc>
+        <lastmod>2024-06-26</lastmod>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/java/version-problem/</loc>
+        <lastmod>2024-06-26</lastmod>
     </url>
     <url>
         <loc>https://dorname.github.io/js_learning/</loc>
@@ -284,6 +309,9 @@
         <lastmod>2023-12-02</lastmod>
     </url>
     <url>
+        <loc>https://dorname.github.io/spring/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/tags/</loc>
     </url>
     <url>
@@ -317,6 +345,12 @@
         <loc>https://dorname.github.io/tags/c/page/1/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/tags/code-language/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/code-language/page/1/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/tags/database/</loc>
     </url>
     <url>
@@ -347,6 +381,12 @@
         <loc>https://dorname.github.io/tags/extjs/page/1/</loc>
     </url>
     <url>
+        <loc>https://dorname.github.io/tags/fabric/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/fabric/page/1/</loc>
+    </url>
+    <url>
         <loc>https://dorname.github.io/tags/git/</loc>
     </url>
     <url>
@@ -357,6 +397,12 @@
     </url>
     <url>
         <loc>https://dorname.github.io/tags/hashmap/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/java/</loc>
+    </url>
+    <url>
+        <loc>https://dorname.github.io/tags/java/page/1/</loc>
     </url>
     <url>
         <loc>https://dorname.github.io/tags/js/</loc>
